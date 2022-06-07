@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { jsx, css } from "@emotion/react";
+import { css } from "@emotion/react";
+import App from "./App";
 
 const style = css`
   color: hotpink;
@@ -29,6 +29,7 @@ root.render(
   <React.StrictMode>
     <SomeComponent>
       <AnotherComponent />
+      <App></App>
     </SomeComponent>
   </React.StrictMode>
 );
