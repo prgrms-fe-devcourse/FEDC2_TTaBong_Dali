@@ -1,13 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { jsx, css } from "@emotion/react";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const style = css`
+  color: hotpink;
+`;
+
+const SomeComponent = ({ children }) => (
+  <div css={style}>
+    Some hotpink text.
+    {children}
+  </div>
+);
+
+const anotherStyle = css({
+  textDecoration: "underline",
+});
+
+const AnotherComponent = () => (
+  <div css={anotherStyle}>Some text with an underline.</div>
+);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <SomeComponent>
+      <AnotherComponent />
+    </SomeComponent>
   </React.StrictMode>
 );
 
