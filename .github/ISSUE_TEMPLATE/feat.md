@@ -1,5 +1,6 @@
 ---
-name: 기능 요청
+name: Feature_report
+about: "기능 요청"
 title: "Feat/ "
 labels: "feat"
 assignees: 
