@@ -1,7 +1,8 @@
 import React from 'react';
+import Test from './feature/Test';
 
-function App() {
-  return <div>Test</div>;
-}
+const App = () => {
+  return <Test />;
+};
 
 export default App;
