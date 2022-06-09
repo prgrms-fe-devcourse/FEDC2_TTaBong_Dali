@@ -2,7 +2,7 @@ import axios from 'axios';
 import Proptypes from 'prop-types';
 
 // 사용자가 이메일과 비밀번호로 서비스에 로그인합니다.
-export const login = async (email = '', password = '') => {
+export const logIn = async (email = '', password = '') => {
   try {
     const user = await axios.post(`/login`, {
       email,
@@ -18,7 +18,7 @@ export const login = async (email = '', password = '') => {
   return null;
 };
 
-login.propTypes = {
+logIn.propTypes = {
   email: Proptypes.string.isRequired,
   password: Proptypes.string.isRequired,
 };
