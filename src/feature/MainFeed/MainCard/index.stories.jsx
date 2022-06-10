@@ -16,15 +16,15 @@ export default {
       defaultValue: '',
       control: 'text',
     },
-    commentsNum: {
+    commenCount: {
       defaultValue: '',
       control: 'number',
     },
-    likesNumb: {
+    likeCount: {
       defaultValue: '',
       control: 'number',
     },
-    likesReason: {
+    likeReason: {
       defaultValue: '',
       control: 'text',
     },
