@@ -19,7 +19,13 @@ const theme = {
     bronze: ['#E4B368', '#F9D59F'],
     silver: ['#BEBEBE', '#DCDCDC'],
   },
-  spacing: ['8px', '16px', '24px', '32px', '40px'],
+  spacing: {
+    xsmall: '8px',
+    small: '16px',
+    medium: '24px',
+    large: '32px',
+    xlarge: '40px',
+  },
   size: {
     mobile: '(max-width: 600px)',
     tablet: '(max-width: 900px)',
