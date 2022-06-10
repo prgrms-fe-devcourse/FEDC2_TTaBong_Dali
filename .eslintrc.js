@@ -24,6 +24,8 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'no-nested-ternary': 0,
+    'react/function-component-definition': 0, // 화살표 함수 사용
+    'react/forbid-prop-types': 0, // PropTypes.array,object,any 가능하게
   },
   overrides: [
     {
