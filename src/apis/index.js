@@ -24,5 +24,10 @@ export {
   postNotifications,
 } from './notifications';
 export { postFollow, deleteFollow } from './follow';
-export { getMessages, getConversations, postMessages } from './messages';
+export {
+  getMessages,
+  getConversations,
+  postMessages,
+  putMessageSeen,
+} from './messages';
 export { searchUser, searchAll } from './search';
