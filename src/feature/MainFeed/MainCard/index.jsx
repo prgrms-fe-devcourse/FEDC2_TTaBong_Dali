@@ -6,11 +6,11 @@ import Label from '../../../components/Label';
 import Avatar from '../../../components/Avatar';
 
 const MainCard = ({
-  authorName,
-  receiverName,
-  commenCount,
-  likeCount,
-  likeReason,
+  authorName = '이름',
+  receiverName = '이름',
+  commenCount = 0,
+  likeCount = 0,
+  likeReason = '',
   labelTypes = [],
 }) => {
   // label이 없는경우를 대비해 default는 빈배열로 일단 처리
@@ -33,15 +33,13 @@ const MainCard = ({
               <Label type={type} />
             ))}
           </S.LabelContainer>
-          <div style={{ display: 'flex' }}>
-            <div>
-              <div>댓글 수 {commenCount}개</div>
-              <div>맞 따봉 {likeCount}개</div>
-            </div>
-            <div>
-              <img src={likes} alt="따봉" width="36px" height="36px" />
-            </div>
-          </div>
+          <S.LikeContainer>
+            <S.UpdateContainer>
+              <S.CountSpan>댓글 수 {commenCount}개</S.CountSpan>
+              <S.CountSpan>맞 따봉 {likeCount}개</S.CountSpan>
+            </S.UpdateContainer>
+            <img src={likes} alt="따봉" width="36px" height="36px" />
+          </S.LikeContainer>
         </div>
       </S.StyledSection>
     </S.BackgroundCard>
@@ -50,6 +48,10 @@ const MainCard = ({
 
 MainCard.propTypes = {
   labelTypes: PropTypes.array.isRequired,
+  authorName: PropTypes.string.isRequired,
+  receiverName: PropTypes.string.isRequired,
+  commenCount: PropTypes.number.isRequired,
+  likeCount: PropTypes.number.isRequired,
 };
 
 export default MainCard;

@@ -25,4 +25,24 @@ export const DivisionLine = styled.hr`
   color: ${(props) => props.theme.colors.gray[0]};
 `;
 
-export const PraiseContainer = styled.div``;
+export const PraiseContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const LikeContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  overflow-x: auto;
+`;
+
+export const UpdateContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const CountSpan = styled.span`
+  font-size: 8px;
+`;
