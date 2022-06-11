@@ -2,30 +2,30 @@ import React from 'react';
 import MainCard from '.';
 
 export default {
-  title: 'Feature/MainCard',
+  title: 'Feature/MainFeed/MainCard',
   component: MainCard,
   argTypes: {
     labelTypes: {
       defaultValue: ['moved', 'praise', 'warm'],
     },
     authorName: {
-      defaultValue: '',
+      defaultValue: '이우제',
       control: 'text',
     },
     receiverName: {
-      defaultValue: '',
+      defaultValue: '민상기',
       control: 'text',
     },
     commenCount: {
-      defaultValue: '',
+      defaultValue: '3',
       control: 'number',
     },
     likeCount: {
-      defaultValue: '',
+      defaultValue: '5',
       control: 'number',
     },
     likeReason: {
-      defaultValue: '',
+      defaultValue: '열심히 해서',
       control: 'text',
     },
   },
