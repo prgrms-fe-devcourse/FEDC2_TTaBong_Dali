@@ -66,7 +66,15 @@ export const TTaBongInnerContainer = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-//따봉 아이콘은 따로 스타일 설정 할 필요없이 바로 넣으면 되서 styled화 하진 않았습니다. 혹시 필요하다고 생각되면 말씀 해 주세요!
+export function TTaBongContainerBox({ children }) {
+  return (
+    <TTaBongContainer>
+      <TTaBongOuterContainer>
+        <TTaBongInnerContainer>{children}</TTaBongInnerContainer>
+      </TTaBongOuterContainer>
+    </TTaBongContainer>
+  );
+}
 
 /*
 //전체 회의록

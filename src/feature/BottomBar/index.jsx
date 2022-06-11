@@ -23,13 +23,9 @@ const BottomBar = ({ src, iconList, TTaBongIcon }) => {
         <Icon src={iconList[0]} />
         <Icon src={iconList[1]} />
       </S.IconContainer>
-      <S.TTaBongContainer>
-        <S.TTaBongOuterContainer>
-          <S.TTaBongInnerContainer>
-            <Icon src={TTaBongIcon} />
-          </S.TTaBongInnerContainer>
-        </S.TTaBongOuterContainer>
-      </S.TTaBongContainer>
+      <S.TTaBongContainerBox>
+        <Icon src={TTaBongIcon} />
+      </S.TTaBongContainerBox>
       <S.IconContainer>
         <Icon src={iconList[2]} />
         <Icon src={iconList[3]} />
