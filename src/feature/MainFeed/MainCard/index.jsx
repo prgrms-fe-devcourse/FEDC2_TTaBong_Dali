@@ -16,18 +16,18 @@ const MainCard = ({
   // label이 없는경우를 대비해 default는 빈배열로 일단 처리
   return (
     <S.BackgroundCard>
-      <S.StyledSection>
+      <S.FirstSection>
         <Avatar avatarName={authorName} />
-        <img src={TB} alt="따봉" width="36px" height="36px" />
+        <img src={TB} alt="따봉" width="40px" height="40px" />
         <Avatar avatarName={receiverName} />
-      </S.StyledSection>
+      </S.FirstSection>
       <S.DivisionLine />
-      <S.StyledSection>
+      <S.SecondSection>
         <S.PraiseContainer>
-          <h3>칭찬사유</h3>
-          <h5>{likeReason}</h5>
+          <S.PraiseReason>칭찬사유</S.PraiseReason>
+          <S.PrasieReason>{likeReason}</S.PrasieReason>
         </S.PraiseContainer>
-        <div>
+        <S.InfoContainer>
           <S.LabelContainer>
             {labelTypes.map((type) => (
               <Label type={type} />
@@ -38,16 +38,16 @@ const MainCard = ({
               <S.CountSpan>댓글 수 {commenCount}개</S.CountSpan>
               <S.CountSpan>맞 따봉 {likeCount}개</S.CountSpan>
             </S.UpdateContainer>
-            <img src={likes} alt="따봉" width="36px" height="36px" />
+            <img src={likes} alt="공감" width="28px" height="28px" />
           </S.LikeContainer>
-        </div>
-      </S.StyledSection>
+        </S.InfoContainer>
+      </S.SecondSection>
     </S.BackgroundCard>
   );
 };
 
 MainCard.propTypes = {
-  labelTypes: PropTypes.array.isRequired,
+  labelTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
   authorName: PropTypes.string.isRequired,
   receiverName: PropTypes.string.isRequired,
   commenCount: PropTypes.number.isRequired,

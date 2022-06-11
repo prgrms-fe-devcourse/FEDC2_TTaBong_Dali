@@ -10,7 +10,7 @@ const Label = ({ type = 'warm' }) => {
 };
 
 Label.propTypes = {
-  type: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Label;
