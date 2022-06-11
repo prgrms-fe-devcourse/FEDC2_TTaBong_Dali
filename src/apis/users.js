@@ -11,9 +11,12 @@ export const getAllUsers = async (offset = 0, limit = 10) => {
     if (allUsers.status === 200) {
       return allUsers;
     }
+
+    throw new Error(allUsers);
   } catch (e) {
     console.error(e);
   }
+
   return null;
 };
 
@@ -30,9 +33,12 @@ export const getOnlineUsers = async () => {
     if (onlineUsers.statusText === 'OK') {
       return onlineUsers;
     }
+
+    throw new Error(onlineUsers);
   } catch (e) {
     console.error(e);
   }
+
   return null;
 };
 
@@ -44,9 +50,12 @@ export const getSpecificUser = async (id) => {
     if (specificUser.statusText === 'OK') {
       return specificUser;
     }
+
+    throw new Error(specificUser);
   } catch (e) {
     console.error(e);
   }
+
   return null;
 };
 
@@ -54,6 +63,7 @@ getSpecificUser.propTypes = {
   id: Proptypes.string.isRequired,
 };
 
+// TE BOE IMPLEMENTED
 // 나의 프로필 이미지를 변경합니다.
 export const postProfileImg = async (
   JWTtoken = '',
@@ -84,6 +94,7 @@ postProfileImg.propTypes = {
   // image 받는 타입을 Binary로 받아야 하는데 어떻게?
 };
 
+// TE BOE IMPLEMENTED
 export const postCoverImg = async (
   JWTtoken = '',
   isCover = true,

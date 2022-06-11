@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {
   getAllChannels,
+  getAllUsers,
   getAuthUser,
   getSpecificChannel,
+  getSpecificUser,
   logIn,
   signUp,
 } from '../../apis';
@@ -15,6 +17,8 @@ function TestApiComponent() {
     fullName: '',
   });
   const [curUser, setCurUser] = useState({});
+  const [allUsers, setAllUsers] = useState([]);
+  const [receiver, setReceiver] = useState({});
 
   useEffect(() => {
     const fetchAllChannels = async () => {
@@ -32,8 +36,15 @@ function TestApiComponent() {
       setChannel(data);
     };
 
+    const fetchAllUsers = async () => {
+      const { data } = await getAllUsers();
+
+      setAllUsers(data);
+    };
+
     fetchAllChannels();
     fetchTestChannel();
+    fetchAllUsers();
   }, []);
 
   const handleAuthInputChange = (e, type) => {
@@ -45,7 +56,7 @@ function TestApiComponent() {
     });
   };
 
-  const handleLogInClick = async () => {
+  const handleLogInClick = async (e) => {
     const { data } = await logIn(authInput.email, authInput.password);
     const { user, token } = data;
 
@@ -57,7 +68,7 @@ function TestApiComponent() {
     setAuthInput({ email: '', password: '', fullName: '' });
   };
 
-  const handleSignUpClick = async () => {
+  const handleSignUpClick = async (e) => {
     const { data } = await signUp(
       authInput.email,
       authInput.fullName,
@@ -79,6 +90,14 @@ function TestApiComponent() {
     console.log(data);
   };
 
+  const handleOtherUserClick = async (receiverId) => {
+    const { data } = await getSpecificUser(receiverId);
+
+    if (!data) return;
+
+    setReceiver(data);
+  };
+
   return (
     <>
       <p>
@@ -89,24 +108,27 @@ function TestApiComponent() {
           name="email"
           placeholder="email"
           onChange={(e) => handleAuthInputChange(e, 'email')}
+          value={authInput.email}
         />
         <input
           name="password"
           placeholder="password"
           onChange={(e) => handleAuthInputChange(e, 'password')}
+          value={authInput.password}
         />
         <input
           name="fullName"
           placeholder="fullName"
           onChange={(e) => handleAuthInputChange(e, 'fullName')}
+          value={authInput.fullName}
         />
-        <button type="button" onClick={handleLogInClick}>
+        <button type="button" onClick={(e) => handleLogInClick(e)}>
           LogIn
         </button>
-        <button type="button" onClick={handleSignUpClick}>
+        <button type="button" onClick={(e) => handleSignUpClick(e)}>
           SingUp
         </button>
-        <button type="button" onClick={handleIsAuthedClick}>
+        <button type="button" onClick={(e) => handleIsAuthedClick(e)}>
           isAuthed
         </button>
       </form>
@@ -115,6 +137,25 @@ function TestApiComponent() {
         {curUser.fullName} / {curUser.password}
       </p>
       <p>curUser Token : {curUser.token}</p>
+      <p>
+        OtherUsers :
+        {allUsers
+          .filter((user) => user._id !== curUser._id)
+          .map((user) => (
+            <button
+              type="button"
+              onClick={() => {
+                handleOtherUserClick(user._id);
+              }}
+            >
+              {user.fullName}
+            </button>
+          ))}
+      </p>
+      <p>
+        receiver(id, fullName, email) : {receiver._id} / {receiver.fullName} /{' '}
+        {receiver.email}
+      </p>
     </>
   );
 }
