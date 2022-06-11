@@ -2,9 +2,7 @@ import React from 'react';
 // import * as S from './style';
 import PropTypes from 'prop-types';
 
-// Icon
-
-const Icon = ({ src, size = 20, alt, color }) => {
+const Icon = ({ src, size = 20, alt }) => {
   const iconStyle = {
     width: typeof size === 'string' ? size : `${(size / 8).toFixed(2)}rem`,
     height: typeof size === 'string' ? size : `${(size / 8).toFixed(2)}rem`,
@@ -19,7 +17,8 @@ const Icon = ({ src, size = 20, alt, color }) => {
 
 Icon.propTypes = {
   src: PropTypes.string.isRequired,
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  alt: PropTypes.string.isRequired,
 };
 
 export default Icon;

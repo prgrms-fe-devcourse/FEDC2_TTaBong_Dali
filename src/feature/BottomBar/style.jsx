@@ -24,7 +24,6 @@ export const IconContainer = styled.div`
   align-items: center;
 
   width: 50vw;
-  /* max-width: ${toRem(66)}; */
   margin: 0 ${toRem(24)};
 `;
 
@@ -47,7 +46,6 @@ export const TTaBongOuterContainer = styled.div`
   width: ${toRem(78)};
   height: ${toRem(78)};
   border-radius: ${toRem(39)};
-  //색상을 global하기로 했는데 사용법을 몰라서 일단 그냥 적어놓긴 했습니다 이거 고쳐야해요 흑흑
   background-color: ${(props) => props.theme.colors.white};
   box-shadow: inset 0 -4px 4px rgba(0, 0, 0, 0.1);
 `;
@@ -60,7 +58,6 @@ export const TTaBongInnerContainer = styled.div`
   width: ${toRem(66)};
   height: ${toRem(66)};
 
-  //색상 글로벌하기로 했는데 얘도 일단 적었습니다...바꿔야 해요 ㅜㅠ
   background-color: ${(props) => props.theme.colors.yellow[0]};
   border-radius: ${toRem(33)};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -75,13 +72,3 @@ export function TTaBongContainerBox({ children }) {
     </TTaBongContainer>
   );
 }
-
-/*
-//전체 회의록
-
-aboslute 설정을 주면 flex 영향에서 벗어나게 되거든요.
-leftbar, rightbar 따로 구분했던 거를 구분하지 말고 하나의 컴포넌트로 둔 다음에,
-flex justify-content 속성을 space-between으로 주면 알아서 양옆으로 붙어요.
-그래서 이렇게 하는게 컴포넌트를 더 간소화 할 수 있지 않을까 라는 생각 입 니 다. 
-
-*/
