@@ -1,13 +1,40 @@
-import React, { useState } from 'react';
-import { getAuthUser, logIn, signUp } from '../../apis';
+import React, { useEffect, useState } from 'react';
+import {
+  getAllChannels,
+  getAuthUser,
+  getSpecificChannel,
+  logIn,
+  signUp,
+} from '../../apis';
 
 function TestApiComponent() {
+  const [channel, setChannel] = useState({});
   const [authInput, setAuthInput] = useState({
     email: '',
     password: '',
     fullName: '',
   });
   const [curUser, setCurUser] = useState({});
+
+  useEffect(() => {
+    const fetchAllChannels = async () => {
+      const { data } = await getAllChannels();
+
+      console.log('-------------');
+      console.log('all channels');
+      console.log(data);
+      console.log('-------------');
+    };
+
+    const fetchTestChannel = async () => {
+      const { data } = await getSpecificChannel('Test');
+
+      setChannel(data);
+    };
+
+    fetchAllChannels();
+    fetchTestChannel();
+  }, []);
 
   const handleAuthInputChange = (e, type) => {
     const newAuthInput = { ...authInput };
@@ -54,6 +81,9 @@ function TestApiComponent() {
 
   return (
     <>
+      <p>
+        Channel : {channel._id} / {channel.name}
+      </p>
       <form>
         <input
           name="email"
