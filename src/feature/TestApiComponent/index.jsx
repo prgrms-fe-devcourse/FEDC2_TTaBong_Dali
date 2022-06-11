@@ -3,9 +3,12 @@ import {
   getAllChannels,
   getAllUsers,
   getAuthUser,
+  getConversations,
+  getMessages,
   getSpecificChannel,
   getSpecificUser,
   logIn,
+  postMessage,
   signUp,
 } from '../../apis';
 
@@ -19,6 +22,7 @@ function TestApiComponent() {
   const [curUser, setCurUser] = useState({});
   const [allUsers, setAllUsers] = useState([]);
   const [receiver, setReceiver] = useState({});
+  const [msgInput, setMsgInput] = useState('');
 
   useEffect(() => {
     const fetchAllChannels = async () => {
@@ -90,12 +94,44 @@ function TestApiComponent() {
     console.log(data);
   };
 
+  const handlePrintMessageClick = async (userId) => {
+    if (!curUser) return;
+
+    const { data } = await getMessages(curUser.token, userId);
+
+    console.log(data);
+  };
+
+  const handlePrintConversationClick = async () => {
+    if (!curUser) return;
+
+    const { data } = await getConversations(curUser.token);
+
+    console.log(data);
+  };
+
   const handleOtherUserClick = async (receiverId) => {
     const { data } = await getSpecificUser(receiverId);
 
     if (!data) return;
 
     setReceiver(data);
+  };
+
+  const handleMsgInputChange = async (e) => {
+    setMsgInput(e.target.value);
+  };
+
+  const handleSendMessageClick = async () => {
+    const dm = JSON.stringify({
+      type: 'msg',
+      postId: '',
+      content: msgInput,
+    });
+
+    const { data } = await postMessage(curUser.token, dm, receiver._id);
+
+    console.log(data);
   };
 
   return (
@@ -138,6 +174,25 @@ function TestApiComponent() {
       </p>
       <p>curUser Token : {curUser.token}</p>
       <p>
+        Messages
+        {allUsers.map((user) => (
+          <button
+            type="button"
+            onClick={() => {
+              handlePrintMessageClick(user._id);
+            }}
+          >
+            {user.fullName}
+          </button>
+        ))}
+      </p>
+      <p>
+        Conversation
+        <button type="button" onClick={handlePrintConversationClick}>
+          show
+        </button>
+      </p>
+      <p>
         OtherUsers :
         {allUsers
           .filter((user) => user._id !== curUser._id)
@@ -155,6 +210,13 @@ function TestApiComponent() {
       <p>
         receiver(id, fullName, email) : {receiver._id} / {receiver.fullName} /{' '}
         {receiver.email}
+      </p>
+      <p>
+        direct message :
+        <input name="post" value={msgInput} onChange={handleMsgInputChange} />
+        <button type="button" onClick={handleSendMessageClick}>
+          SEND
+        </button>
       </p>
     </>
   );

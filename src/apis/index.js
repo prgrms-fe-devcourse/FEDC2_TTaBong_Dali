@@ -27,7 +27,7 @@ export { postFollow, deleteFollow } from './follow';
 export {
   getMessages,
   getConversations,
-  postMessages,
+  postMessage,
   putMessageSeen,
 } from './messages';
 export { searchUser, searchAll } from './search';
