@@ -34,3 +34,27 @@ A(token), B(userId) 사이의 메세지를 모두 가져옵니다.
 dm type 메세지 일단 구현하긴 했음. 그런데 일단 한동안은 TTaBong, BigTTaBong type만 사용할 예정
 - [] : putMessageSeen
 나중에 dm기능 제대로 만들고 나서 해도 상관없을듯
+
+posts
+- [x] 특정 채널의 포스트 목록 : getChannelPosts
+all 버튼을 누르면 Test 채널의 모든 포스트를 가져와 posts에 저장한다.
+- [x] 특정 사용자의 포스트 목록 : getAuthorPosts
+author 버튼을 누르면 author의 모든 포스트를 가져와 posts에 저장한다.
+- [x] createPost : createPost
+1. login을 통해 curUser 저장
+2. other users 버튼을 통해 receiver 저장
+3. postInput에 post content 기입 -> handlePostInputChange
+4. TTaBong / BigTTaBong 버튼을 통해 handleCreatePostClick -> createPost 호출
+5. 이 때 {type, postId, content}를 JSON.stringfy를 통해 title로 전달한다.
+6. 동시에 따봉/빅따봉을 했다는 메세지가 receiver에게 전달된다.
+7. 이 메세지를 통해 추후 receiver가 받은 코인의 개수를 카운팅할 수 있다.
+- [x] 특정 포스트 상세보기 : getSpecificPost
+postId 버튼을 누르면 해당 post의 정보를 getSpecificPost api call로 불러와 출력
+- [x] 특정 포스트 수정 : putPost
+1. login을 통해 curUser
+2. editPostInput에 edit할 내용 기입 -> handleEditPostInputChange
+3. Edit 버튼 -> handleEditPostClick -> putPost 호출
+4. 따봉, 빅따봉의 종류를 바꾸면 메세지에도 영향을 줘야하는데... 이거 로직 다시 생각해봐야할듯 일단은 api만 붙임
+- [x] 특정 포스트 삭제 : deletePost
+delete 버튼을 누르면 해당 post의 postId를 통해 삭제
+삭제될 경우 메세지와 포스트의 양이 달라진다. 관련 로직 다시 짜야할 것.

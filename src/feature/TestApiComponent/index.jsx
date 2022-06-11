@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import {
+  createPost,
+  deletePost,
   getAllChannels,
   getAllUsers,
+  getAuthorPosts,
   getAuthUser,
+  getChannelPosts,
   getConversations,
   getMessages,
   getSpecificChannel,
+  getSpecificPost,
   getSpecificUser,
   logIn,
   postMessage,
+  putPost,
   signUp,
 } from '../../apis';
 
@@ -23,6 +29,9 @@ function TestApiComponent() {
   const [allUsers, setAllUsers] = useState([]);
   const [receiver, setReceiver] = useState({});
   const [msgInput, setMsgInput] = useState('');
+  const [postInput, setPostInput] = useState('');
+  const [posts, setPosts] = useState([]);
+  const [editPostInput, setEditPostInput] = useState('');
 
   useEffect(() => {
     const fetchAllChannels = async () => {
@@ -131,7 +140,80 @@ function TestApiComponent() {
 
     const { data } = await postMessage(curUser.token, dm, receiver._id);
 
+    setMsgInput('');
+
     console.log(data);
+  };
+
+  const handlePostInputChange = async (e) => {
+    setPostInput(e.target.value);
+  };
+
+  const handleCreatePostClick = async (type) => {
+    const title = JSON.stringify({
+      type,
+      receiver: receiver._id,
+      content: postInput,
+    });
+
+    const post = await (
+      await createPost(curUser.token, channel._id, title)
+    ).data;
+
+    const dm = JSON.stringify({
+      type,
+      postId: post._id,
+      content: '',
+    });
+
+    const msg = await postMessage(curUser.token, dm, receiver._id);
+
+    setReceiver({});
+    setPostInput('');
+
+    console.log(post);
+    console.log(msg);
+  };
+
+  const handleAllChannelPostsClick = async () => {
+    const { data } = await getChannelPosts(channel._id);
+
+    setPosts(data);
+  };
+
+  const handleAuthorPostsClick = async (userId) => {
+    const { data } = await getAuthorPosts(userId);
+
+    setPosts(data);
+  };
+
+  const handlePostInfoClick = async (postId) => {
+    const { data } = await getSpecificPost(postId);
+
+    console.log(data);
+  };
+
+  const handleDeletePostClick = async (postId) => {
+    const { data } = await deletePost(curUser.token, postId);
+
+    console.log(data);
+  };
+
+  const handleEditPostInputChange = async (e) => {
+    setEditPostInput(e.target.value);
+  };
+
+  const handleEditPostClick = async (postId, postTitle) => {
+    const title = JSON.stringify({
+      ...JSON.parse(postTitle),
+      content: editPostInput,
+    });
+
+    const { data } = await putPost(curUser.token, postId, channel._id, title);
+
+    setEditPostInput('');
+
+    setPosts([...posts].map((post) => (post._id === postId ? data : post)));
   };
 
   return (
@@ -213,10 +295,74 @@ function TestApiComponent() {
       </p>
       <p>
         direct message :
-        <input name="post" value={msgInput} onChange={handleMsgInputChange} />
+        <input name="dm" value={msgInput} onChange={handleMsgInputChange} />
         <button type="button" onClick={handleSendMessageClick}>
           SEND
         </button>
+      </p>
+      <p>
+        post input :
+        <input
+          name="post"
+          value={postInput}
+          onChange={(e) => handlePostInputChange(e)}
+        />
+        <button type="button" onClick={() => handleCreatePostClick('TTaBong')}>
+          TTaBong
+        </button>
+        <button
+          type="button"
+          onClick={() => handleCreatePostClick('BigTTaBong')}
+        >
+          BigTTaBong
+        </button>
+      </p>
+      <p>
+        <button type="button" onClick={handleAllChannelPostsClick}>
+          all
+        </button>
+        {allUsers.map((user) => (
+          <button
+            type="button"
+            onClick={() => handleAuthorPostsClick(user._id)}
+          >
+            author: {user.fullName}
+          </button>
+        ))}
+      </p>
+      <p>
+        <p>posts</p>
+        {posts.map((post) => (
+          <p>
+            <p>
+              <button
+                type="button"
+                onClick={() => handlePostInfoClick(post._id)}
+              >
+                {post._id}
+              </button>
+              <button
+                type="button"
+                onClick={() => handleDeletePostClick(post._id)}
+              >
+                DELETE
+              </button>
+              Edit :
+              <input
+                name="edit"
+                value={editPostInput}
+                onChange={handleEditPostInputChange}
+              />
+              <button
+                type="button"
+                onClick={() => handleEditPostClick(post._id, post.title)}
+              >
+                Edit
+              </button>
+            </p>
+            {post.title}
+          </p>
+        ))}
       </p>
     </>
   );

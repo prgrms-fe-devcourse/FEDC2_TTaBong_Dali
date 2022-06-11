@@ -11,8 +11,8 @@ export { getAllChannels, getSpecificChannel } from './channels';
 export {
   getChannelPosts,
   getAuthorPosts,
-  createPosts,
-  getPost,
+  createPost,
+  getSpecificPost,
   putPost,
   deletePost,
 } from './posts';
