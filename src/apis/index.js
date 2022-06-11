@@ -5,9 +5,9 @@ export {
   getSpecificUser,
   postProfileImg,
   postCoverImg,
-} from './user';
+} from './users';
 export { putPassword, putInfo } from './settings';
-export { getChannels, getSpecificChannel } from './channels';
+export { getAllChannels, getSpecificChannel } from './channels';
 export {
   getChannelPosts,
   getAuthorPosts,

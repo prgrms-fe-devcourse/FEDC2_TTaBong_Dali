@@ -8,13 +8,15 @@ export const logIn = async (email = '', password = '') => {
       email,
       password,
     });
-
     if (user.status === 200) {
       return user;
     }
+
+    throw new Error(user);
   } catch (e) {
     console.error(e);
   }
+
   return null;
 };
 
@@ -35,9 +37,12 @@ export const signUp = async (email, fullName, password) => {
     if (newUser.status === 200) {
       return newUser;
     }
+
+    throw new Error(newUser);
   } catch (e) {
     console.error(e);
   }
+
   return null;
 };
 
@@ -48,7 +53,7 @@ signUp.propTypes = {
 };
 
 // 사용자가 로그아웃 합니다.
-
+// TO BE IMPLEMENTED : 뭘 구현해야 할 지 모르겠음
 export const logOut = async () => {
   try {
     const newUser = await axios.post(`/logout`);
@@ -63,6 +68,7 @@ export const logOut = async () => {
 };
 
 // 사용자가 인증이 되었는지 확인합니다.
+// 일단 구현해놓긴 했는데 무슨 용도로 쓰는 것인지 모르겠습니다...!
 export const getAuthUser = async (JWTtoken) => {
   try {
     const user = await axios.get(`/auth-user`, {
