@@ -25,7 +25,7 @@ const MainCard = ({
       <S.SecondSection>
         <S.PraiseContainer>
           <S.PraiseReason>칭찬사유</S.PraiseReason>
-          <S.PrasieReason>{likeReason}</S.PrasieReason>
+          <S.PraiseContent>{likeReason}</S.PraiseContent>
         </S.PraiseContainer>
         <S.InfoContainer>
           <S.LabelContainer>
@@ -34,10 +34,10 @@ const MainCard = ({
             ))}
           </S.LabelContainer>
           <S.LikeContainer>
-            <S.UpdateContainer>
+            <S.CountNumContainer>
               <S.CountSpan>댓글 수 {commenCount}개</S.CountSpan>
               <S.CountSpan>맞 따봉 {likeCount}개</S.CountSpan>
-            </S.UpdateContainer>
+            </S.CountNumContainer>
             <img src={likes} alt="공감" width="28px" height="28px" />
           </S.LikeContainer>
         </S.InfoContainer>

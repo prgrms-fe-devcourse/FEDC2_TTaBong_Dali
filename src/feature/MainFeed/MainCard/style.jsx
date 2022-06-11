@@ -39,7 +39,7 @@ export const PraiseReason = styled.h3`
   font-weight: 700;
 `;
 
-export const PrasieReason = styled.div`
+export const PraiseContent = styled.div`
   padding-top: 8px;
   padding-right: 24px;
   overflow: hidden;
@@ -71,7 +71,7 @@ export const LikeContainer = styled.div`
   width: 100%;
 `;
 
-export const UpdateContainer = styled.div`
+export const CountNumContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
