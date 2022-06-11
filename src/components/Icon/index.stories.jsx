@@ -3,7 +3,7 @@ import Icon from '.';
 import User from '../../assets/icon_ranking_line.svg';
 
 export default {
-  title: 'Component/Icon',
+  title: 'Components/Icon',
   component: Icon,
   argTypes: {
     src: {
