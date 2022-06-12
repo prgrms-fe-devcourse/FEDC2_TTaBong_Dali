@@ -6,11 +6,13 @@ export default {
   component: Icon,
   argTypes: {
     icon: {
-      control: 'text',
-      defaultValue: 'list',
+      control: { type: 'radio' },
+      options: ['list', 'ranking', 'search', 'user', 'TTaBong'],
+      defaultValue: 'ranking',
     },
     type: {
-      control: 'text',
+      control: { type: 'radio' },
+      options: ['', 'Fill', 'Line'],
       defaultValue: 'Fill',
     },
     size: {
