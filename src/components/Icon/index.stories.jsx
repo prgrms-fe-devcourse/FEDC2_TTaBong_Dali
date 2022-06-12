@@ -18,7 +18,6 @@ export default {
           'searchLine',
           'userFill',
           'userLine',
-          'TTaBongWhite',
         ],
       },
       defaultValue: 'listFill',
@@ -26,6 +25,13 @@ export default {
     size: {
       control: 'number',
       defaultValue: 20,
+    },
+    alt: {
+      control: 'string',
+      defaultValue: '각 아이콘에 맞는 alt가 들어갈 예정',
+      table: {
+        disabled: true,
+      },
     },
   },
 };
@@ -42,7 +48,7 @@ const TTaBongWhiteContainer = styled.div`
 export function TTaBongWhite() {
   return (
     <TTaBongWhiteContainer>
-      <Icon name="TTaBongWhite" />
+      <Icon name="TTaBongWhite" alt="따봉 아이콘" />
     </TTaBongWhiteContainer>
   );
 }
