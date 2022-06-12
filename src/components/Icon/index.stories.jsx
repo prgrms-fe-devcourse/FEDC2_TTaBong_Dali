@@ -1,15 +1,20 @@
 import React from 'react';
 import Icon from '.';
-import User from '../../assets/icon_ranking_line.svg';
 
 export default {
   title: 'Components/Icon',
   component: Icon,
   argTypes: {
-    src: {
-      defaultValue: User,
+    icon: {
+      control: 'text',
+      defaultValue: 'list',
+    },
+    type: {
+      control: 'text',
+      defaultValue: 'Fill',
     },
     size: {
+      constrol: 'number',
       defaultValue: 10,
     },
   },
