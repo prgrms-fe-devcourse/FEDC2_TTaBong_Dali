@@ -14,7 +14,8 @@ const Icon = ({
     width: typeof size === 'string' ? size : `${(size / 8).toFixed(2)}rem`,
   };
 
-  const src = IconList[`${icon}${type}`];
+  const src =
+    icon === 'TTaBong' ? IconList.TTaBong : IconList[`${icon}${type}`];
 
   return (
     <div>

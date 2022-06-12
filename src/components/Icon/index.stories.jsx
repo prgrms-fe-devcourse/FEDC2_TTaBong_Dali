@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import Icon from '.';
 
 export default {
@@ -12,11 +13,11 @@ export default {
     },
     type: {
       control: { type: 'radio' },
-      options: ['', 'Fill', 'Line'],
+      options: ['Fill', 'Line'],
       defaultValue: 'Fill',
     },
     size: {
-      constrol: 'number',
+      control: 'number',
       defaultValue: 10,
     },
   },
@@ -24,4 +25,16 @@ export default {
 
 export function Default(args) {
   return <Icon {...args} />;
+}
+
+const TTaBongContainer = styled.div`
+  background-color: grey;
+`;
+
+export function TTaBong() {
+  return (
+    <TTaBongContainer>
+      <Icon icon="TTaBong" alt="TTaBong" />
+    </TTaBongContainer>
+  );
 }

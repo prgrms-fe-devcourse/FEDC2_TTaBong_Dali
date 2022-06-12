@@ -48,7 +48,7 @@ const BottomBar = ({ page = 'mainFeed' }) => {
         />
       </S.IconContainer>
       <S.TTaBongContainerBox>
-        <Icon icon="TTaBong" type="" alt="TTaBong" />
+        <Icon icon="TTaBong" alt="TTaBong" />
       </S.TTaBongContainerBox>
       <S.IconContainer>
         <Icon
