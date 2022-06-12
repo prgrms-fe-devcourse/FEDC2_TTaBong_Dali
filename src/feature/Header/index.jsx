@@ -14,7 +14,7 @@ const Header = () => {
           <Avatar size={30} />
         </S.CoinKingAvatarWrapper>
       </S.AvatarContainer>
-      <S.Logo>TTA BONG</S.Logo>
+      <S.PlacedLogo />
     </S.Header>
   );
 };

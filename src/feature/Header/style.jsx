@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Logo from '../../components/Logo';
 
 export const Header = styled.div`
   position: fixed;
@@ -48,15 +49,6 @@ export const CoinKingAvatarWrapper = styled.div`
   background-clip: content-box, border-box;
 `;
 
-export const Logo = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+export const PlacedLogo = styled(Logo)`
   margin-right: 8px;
-  font-family: 'Noto Sans';
-  font-weight: 800;
-  font-size: 23px;
-  text-align: center;
-  color: ${(props) => props.theme.colors.white};
 `;
