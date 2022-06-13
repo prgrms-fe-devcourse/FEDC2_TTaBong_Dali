@@ -12,6 +12,11 @@ function GlobalStyle() {
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
         }
+        input {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
       `}
     />
   );
