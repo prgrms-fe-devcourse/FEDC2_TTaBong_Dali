@@ -22,14 +22,14 @@ const Banner = ({ scrollDowned = false }) => {
   });
 
   return (
-    <>
+    <div>
       {show && (
         <S.BannerContainer className={scrollDowned ? 'hide' : 'show'}>
           <Avatar size={45} />
           <Avatar size={45} />
         </S.BannerContainer>
       )}
-    </>
+    </div>
   );
 };
 
