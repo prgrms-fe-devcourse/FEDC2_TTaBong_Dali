@@ -57,13 +57,12 @@ export const Logo = styled.div`
   font-weight: 800;
   font-size: 23px;
   text-align: center;
-  margin-left: 38px;
   color: ${({ theme }) => theme.colors.white};
 `;
 
 export const IconWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 16px;
   justify-content: center;
 `;

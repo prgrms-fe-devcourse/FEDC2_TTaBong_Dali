@@ -4,11 +4,7 @@ import * as S from './style';
 import Avatar from '../../components/Avatar';
 // 이모션 변수 사용
 // 현재 문제는 윈도우에서 좌표값이 잡힘 배너는 위에만 박혀있어서 좌표값이 바뀌지 않음
-const Banner = ({
-  scrollDowned = false,
-  TTaBongKing = null,
-  CoinKing = null,
-}) => {
+const Banner = ({ scrollDowned = false }) => {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
@@ -39,8 +35,8 @@ const Banner = ({
 
 Banner.propTypes = {
   scrollDowned: PropTypes.bool,
-  TTaBongKing: PropTypes.array.isRequired,
-  CoinKing: PropTypes.array.isRequired,
+  // TTaBongKing: PropTypes.array.isRequired,
+  // CoinKing: PropTypes.array.isRequired,
 };
 
 export default Banner;
