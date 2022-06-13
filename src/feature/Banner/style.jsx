@@ -1,28 +1,5 @@
 import styled from '@emotion/styled';
 
-const BannerUp = `  animation: down 0.5s ease;
-  @keyframes down {
-    0% {
-      transform: translateY(0px);
-    }
-    100% {
-      transform: translateY(-100px);
-    }
-  }
-`;
-
-const BannerDown = `
-animation: down 0.3s ease;
-@keyframes down {
-  0% {
-    transform: translateY(-80px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-`;
-
 export const BannerContainer = styled.div`
   position: fixed;
   z-index: 0;
@@ -48,9 +25,8 @@ export const BannerContainer = styled.div`
   }
 
   &.show {
-    background-color: red;
-    animation: down 0.5s ease;
-    @keyframes down {
+    animation: up 0.5s ease;
+    @keyframes up {
       0% {
         transform: translateY(-100px);
       }
