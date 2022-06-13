@@ -1,6 +1,7 @@
 ---
-name: 버그 보고
-title: ""
+name: Bug_report
+about: "버그 보고"
+title: "Bug/ "
 labels: "fix"
 ---
 

@@ -1,8 +1,13 @@
 import React from 'react';
-import Test from './feature/Test';
 
-const App = () => {
-  return <Test />;
-};
+import TestApiComponent from './feature/TestApiComponent';
+
+function App() {
+  return (
+    <div>
+      <TestApiComponent />
+    </div>
+  );
+}
 
 export default App;
