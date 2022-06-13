@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconList from '../../assets/icons';
 
-const Icon = ({ name = 'listFill', size = 20, alt = '리스트 아이콘' }) => {
+const Icon = ({ name, size = 20, alt = '리스트 아이콘' }) => {
   const iconStyle = {
     height: typeof size === 'string' ? size : `${(size / 8).toFixed(2)}rem`,
     width: typeof size === 'string' ? size : `${(size / 8).toFixed(2)}rem`,
