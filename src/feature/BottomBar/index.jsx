@@ -4,7 +4,7 @@ import * as S from './style';
 import Icon from '../../components/Icon';
 
 // page props로 'mainFeed', 'ranking', 'search', 'user'가 들어온다고 가정하겠습니다.
-const BottomBar = ({ page = 'mainFeed' }) => {
+const BottomBar = ({ page }) => {
   return (
     <S.BottomBarContainer>
       <S.IconContainer>
