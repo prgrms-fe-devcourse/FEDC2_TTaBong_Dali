@@ -13,7 +13,7 @@ export const BannerContainer = styled.div`
   border-radius: 0px 0px 30px 30px;
 
   &.hide {
-    animation: down 0.5s ease;
+    animation: down 0.4s ease;
     @keyframes down {
       0% {
         transform: translateY(0px);
@@ -25,7 +25,7 @@ export const BannerContainer = styled.div`
   }
 
   &.show {
-    animation: up 0.5s ease;
+    animation: up 0.4s ease;
     @keyframes up {
       0% {
         transform: translateY(-100px);

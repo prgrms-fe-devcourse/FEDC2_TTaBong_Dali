@@ -38,6 +38,7 @@ const Banner = ({
 };
 
 Banner.propTypes = {
+  scrollDowned: PropTypes.bool,
   TTaBongKing: PropTypes.array.isRequired,
   CoinKing: PropTypes.array.isRequired,
 };

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import Banner from '.';
-import { useScrollDown } from '../../hooks/useScroll';
+import { useScrollDown } from '../../hooks/useScrollDown';
 import Header from '../Header';
 
 export default {
@@ -27,7 +27,7 @@ export function Scrolldown(args) {
   const isScrollDowned = useScrollDown();
   return (
     <Container>
-      <Header />
+      <Header scrollDown={isScrollDowned} />
       <Banner scrollDowned={isScrollDowned} {...args} />
     </Container>
   );
