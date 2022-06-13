@@ -41,4 +41,4 @@ Banner.propTypes = {
   // CoinKing: PropTypes.array.isRequired,
 };
 
-export default Banner;
+export default React.memo(Banner);
