@@ -1,26 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import useRafState from './useRafState';
 
-export const useScrollDown = () => {
-  const [prevOffsetY, setOffsetY] = useState(0);
-  const [offset] = useScroll();
-
-  const [scrollDown, setScrollDown] = useState(false);
-  useEffect(() => {
-    if (offset.y > prevOffsetY) {
-      setScrollDown(true);
-      setOffsetY(offset.y);
-    }
-    if (offset.y < prevOffsetY) {
-      setScrollDown(false);
-      setOffsetY(offset.y);
-    }
-  }, [offset]);
-
-  return scrollDown;
-};
-
-const useScroll = () => {
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
+export const useScroll = () => {
+  const [offset, setOffset] = useRafState({ x: 0, y: 0 });
   useEffect(() => {
     const handleScroll = () => {
       setOffset({
