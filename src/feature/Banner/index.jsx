@@ -10,9 +10,11 @@ const Banner = ({ scrollDown = false }) => {
   useEffect(() => {
     let timer;
     if (scrollDown && scrollDown === show) {
+      clearTimeout(timer);
+
       timer = setTimeout(() => {
         setShow(false);
-      }, 300);
+      }, 220);
     }
     if (!scrollDown && scrollDown === show) {
       clearTimeout(timer);
