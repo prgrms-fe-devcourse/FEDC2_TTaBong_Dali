@@ -6,19 +6,32 @@ export default {
   title: 'Components/Icon',
   component: Icon,
   argTypes: {
-    icon: {
-      control: { type: 'radio' },
-      options: ['list', 'ranking', 'search', 'user', 'TTaBong'],
-      defaultValue: 'ranking',
-    },
-    type: {
-      control: { type: 'radio' },
-      options: ['Fill', 'Line'],
-      defaultValue: 'Fill',
+    name: {
+      control: {
+        type: 'select',
+        options: [
+          'listFill',
+          'listLine',
+          'rankingFill',
+          'rankingLine',
+          'searchFill',
+          'searchLine',
+          'userFill',
+          'userLine',
+        ],
+      },
+      defaultValue: 'listFill',
     },
     size: {
       control: 'number',
-      defaultValue: 10,
+      defaultValue: 20,
+    },
+    alt: {
+      control: 'string',
+      defaultValue: '각 아이콘에 맞는 alt가 들어갈 예정',
+      table: {
+        disabled: true,
+      },
     },
   },
 };
@@ -27,14 +40,15 @@ export function Default(args) {
   return <Icon {...args} />;
 }
 
-const TTaBongContainer = styled.div`
+const TTaBongWhiteContainer = styled.div`
+  padding: 1rem;
   background-color: grey;
 `;
 
-export function TTaBong() {
+export function TTaBongWhite() {
   return (
-    <TTaBongContainer>
-      <Icon icon="TTaBong" alt="TTaBong" />
-    </TTaBongContainer>
+    <TTaBongWhiteContainer>
+      <Icon name="TTaBongWhite" alt="따봉 아이콘" />
+    </TTaBongWhiteContainer>
   );
 }
