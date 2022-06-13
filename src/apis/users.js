@@ -1,23 +1,15 @@
-import axios from 'axios';
 import Proptypes from 'prop-types';
+import apiClient from './api';
+
+const USERS = `/users`;
 
 // 사용자 목록을 불러옵니다.
 export const getAllUsers = async (offset = 0, limit = 10) => {
-  try {
-    const allUsers = await axios.get(
-      `/users/get-users?offset=${offset}&limit=${limit}`,
-    );
+  const allUsers = await apiClient.get(
+    `${USERS}/get-users?offset=${offset}&limit=${limit}`,
+  );
 
-    if (allUsers.status === 200) {
-      return allUsers;
-    }
-
-    throw new Error(allUsers);
-  } catch (e) {
-    console.error(e);
-  }
-
-  return null;
+  return allUsers;
 };
 
 getAllUsers.propTypes = {
@@ -27,36 +19,16 @@ getAllUsers.propTypes = {
 
 // 현재 접속 중인 사용자 목록을 불러옵니다.
 export const getOnlineUsers = async () => {
-  try {
-    const onlineUsers = await axios.get(`/users/online-users`);
+  const onlineUsers = await apiClient.get(`${USERS}/online-users`);
 
-    if (onlineUsers.statusText === 'OK') {
-      return onlineUsers;
-    }
-
-    throw new Error(onlineUsers);
-  } catch (e) {
-    console.error(e);
-  }
-
-  return null;
+  return onlineUsers;
 };
 
 // 특정 사용자 정보를 불러옵니다.
 export const getSpecificUser = async (id) => {
-  try {
-    const specificUser = await axios.get(`/users/${id}`);
+  const specificUser = await apiClient.get(`${USERS}/${id}`);
 
-    if (specificUser.statusText === 'OK') {
-      return specificUser;
-    }
-
-    throw new Error(specificUser);
-  } catch (e) {
-    console.error(e);
-  }
-
-  return null;
+  return specificUser;
 };
 
 getSpecificUser.propTypes = {
@@ -71,7 +43,7 @@ export const postProfileImg = async (
   image = '',
 ) => {
   try {
-    const profileImg = await axios.post(`/users/upload-photo`, {
+    const profileImg = await apiClient.post(`${USERS}/upload-photo`, {
       headers: {
         Authorization: `bearer ${JWTtoken}`,
       },
@@ -101,7 +73,7 @@ export const postCoverImg = async (
   image = '',
 ) => {
   try {
-    const coverImg = await axios.post(`/users/upload-photo`, {
+    const coverImg = await apiClient.post(`${USERS}/upload-photo`, {
       headers: {
         Authorization: `bearer ${JWTtoken}`,
       },

@@ -35,24 +35,24 @@ function TestApiComponent() {
 
   useEffect(() => {
     const fetchAllChannels = async () => {
-      const { data } = await getAllChannels();
+      const channels = await getAllChannels();
 
       console.log('-------------');
       console.log('all channels');
-      console.log(data);
+      console.log(channels);
       console.log('-------------');
     };
 
     const fetchTestChannel = async () => {
-      const { data } = await getSpecificChannel('Test');
+      const testChannel = await getSpecificChannel('Test');
 
-      setChannel(data);
+      setChannel(testChannel);
     };
 
     const fetchAllUsers = async () => {
-      const { data } = await getAllUsers();
+      const allUsers = await getAllUsers();
 
-      setAllUsers(data);
+      setAllUsers(allUsers);
     };
 
     fetchAllChannels();
@@ -70,24 +70,20 @@ function TestApiComponent() {
   };
 
   const handleLogInClick = async (e) => {
-    const { data } = await logIn(authInput.email, authInput.password);
-    const { user, token } = data;
+    const { user, token } = await logIn(authInput.email, authInput.password);
 
     if (!user) return;
-
-    console.log({ user, token });
 
     setCurUser({ ...user, password: authInput.password, token });
     setAuthInput({ email: '', password: '', fullName: '' });
   };
 
   const handleSignUpClick = async (e) => {
-    const { data } = await signUp(
+    const { user, token } = await signUp(
       authInput.email,
       authInput.fullName,
       authInput.password,
     );
-    const { user, token } = data;
 
     if (!user) return;
 
@@ -99,32 +95,32 @@ function TestApiComponent() {
   const handleIsAuthedClick = async () => {
     if (!curUser) return;
 
-    const { data } = await getAuthUser(curUser.token);
-    console.log(data);
+    const user = await getAuthUser(curUser.token);
+    console.log(user);
   };
 
   const handlePrintMessageClick = async (userId) => {
     if (!curUser) return;
 
-    const { data } = await getMessages(curUser.token, userId);
+    const messages = await getMessages(curUser.token, userId);
 
-    console.log(data);
+    console.log(messages);
   };
 
   const handlePrintConversationClick = async () => {
     if (!curUser) return;
 
-    const { data } = await getConversations(curUser.token);
+    const conversations = await getConversations(curUser.token);
 
-    console.log(data);
+    console.log(conversations);
   };
 
   const handleOtherUserClick = async (receiverId) => {
-    const { data } = await getSpecificUser(receiverId);
+    const specificUser = await getSpecificUser(receiverId);
 
-    if (!data) return;
+    if (!specificUser) return;
 
-    setReceiver(data);
+    setReceiver(specificUser);
   };
 
   const handleMsgInputChange = async (e) => {
@@ -138,11 +134,11 @@ function TestApiComponent() {
       content: msgInput,
     });
 
-    const { data } = await postMessage(curUser.token, dm, receiver._id);
+    const sentMessage = await postMessage(curUser.token, dm, receiver._id);
 
     setMsgInput('');
 
-    console.log(data);
+    console.log(sentMessage);
   };
 
   const handlePostInputChange = async (e) => {
@@ -150,19 +146,23 @@ function TestApiComponent() {
   };
 
   const handleCreatePostClick = async (type) => {
+    if (!receiver) {
+      console.error('select receiver');
+
+      return;
+    }
+
     const title = JSON.stringify({
       type,
       receiver: receiver._id,
       content: postInput,
     });
 
-    const post = await (
-      await createPost(curUser.token, channel._id, title)
-    ).data;
+    const newPost = await await createPost(curUser.token, channel._id, title);
 
     const dm = JSON.stringify({
       type,
-      postId: post._id,
+      postId: newPost._id,
       content: '',
     });
 
@@ -171,32 +171,33 @@ function TestApiComponent() {
     setReceiver({});
     setPostInput('');
 
-    console.log(post);
+    console.log('new posted!');
+    console.log(newPost);
     console.log(msg);
   };
 
   const handleAllChannelPostsClick = async () => {
-    const { data } = await getChannelPosts(channel._id);
+    const channelPosts = await getChannelPosts(channel._id);
 
-    setPosts(data);
+    setPosts(channelPosts);
   };
 
   const handleAuthorPostsClick = async (userId) => {
-    const { data } = await getAuthorPosts(userId);
+    const authorPosts = await getAuthorPosts(userId);
 
-    setPosts(data);
+    setPosts(authorPosts);
   };
 
   const handlePostInfoClick = async (postId) => {
-    const { data } = await getSpecificPost(postId);
+    const specificPost = await getSpecificPost(postId);
 
-    console.log(data);
+    console.log(specificPost);
   };
 
   const handleDeletePostClick = async (postId) => {
-    const { data } = await deletePost(curUser.token, postId);
+    const res = await deletePost(curUser.token, postId);
 
-    console.log(data);
+    console.log(res);
   };
 
   const handleEditPostInputChange = async (e) => {
@@ -209,11 +210,11 @@ function TestApiComponent() {
       content: editPostInput,
     });
 
-    const { data } = await putPost(curUser.token, postId, channel._id, title);
+    const res = await putPost(curUser.token, postId, channel._id, title);
 
     setEditPostInput('');
 
-    setPosts([...posts].map((post) => (post._id === postId ? data : post)));
+    setPosts([...posts].map((post) => (post._id === postId ? res : post)));
   };
 
   return (

@@ -1,35 +1,20 @@
-import axios from 'axios';
 import Proptypes from 'prop-types';
+import apiClient from './api';
+
+const CHANNELS = '/channels';
 
 // 채널 목록을 불러옵니다
 export const getAllChannels = async () => {
-  try {
-    const channels = await axios.get(`/channels`);
+  const channels = await apiClient.get(`${CHANNELS}`);
 
-    if (channels.status === 200) {
-      return channels;
-    }
-
-    throw new Error(channels);
-  } catch (e) {
-    console.error(e);
-  }
-
-  return null;
+  return channels;
 };
 
 // 특정 채널 정보를 불러옵니다.
 export const getSpecificChannel = async (channelName) => {
-  try {
-    const specificChannel = await axios.get(`/channels/${channelName}`);
+  const specificChannel = await apiClient.get(`${CHANNELS}/${channelName}`);
 
-    if (specificChannel.status === 200) {
-      return specificChannel;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+  return specificChannel;
 };
 
 getSpecificChannel.propTypes = {
