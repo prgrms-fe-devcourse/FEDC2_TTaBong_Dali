@@ -25,9 +25,11 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/control-has-associated-label': 'off',
     'no-nested-ternary': 0,
-    'no-underscore-dangle': 0, // db에서 자주 사용되는 property가 _id이므로 언더스코어를 쓸 수 밖에 없다.
-    'no-unused-vars': 0, // 개발에 너무 방해돼서... 나중에 다시 조정할게요..!
-    'react/function-component-definition': 0, // react component는 화살표 함수로 하는 것으로!
+    'no-underscore-dangle': 0,
+    'no-unused-vars': 0,
+    'react/function-component-definition': 0, // 화살표 함수 사용
+    'react/forbid-prop-types': 0, // PropTypes.array,object,any 가능하게
+    'react/require-default-props': 0,
   },
   overrides: [
     {
