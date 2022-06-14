@@ -8,8 +8,12 @@ const TTaBongerAndTTaBonged = ({ authorName, receiverName }) => {
   return (
     <S.TTaBongsContainer>
       <Avatar avatarName={authorName} />
-      <img src={TB} alt="따봉" width="40px" height="40px" />
-      <Avatar avatarName={receiverName} />
+      <S.TTaBongedContainer>
+        <S.TTaBongIconWrapper>
+          <img src={TB} alt="따봉" width="40px" height="40px" />
+        </S.TTaBongIconWrapper>
+        <Avatar avatarName={receiverName} />
+      </S.TTaBongedContainer>
     </S.TTaBongsContainer>
   );
 };
