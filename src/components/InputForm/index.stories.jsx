@@ -7,7 +7,7 @@ export default {
     type: {
       defaultValue: 'auth',
       control: { type: 'radio' },
-      options: ['search', 'comment', 'auth'],
+      options: ['search', 'comment', 'edit', 'auth'],
     },
     invalid: {
       defaultValue: false,

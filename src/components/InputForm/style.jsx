@@ -7,7 +7,7 @@ import Avatar from '../Avatar';
 //   border-bottom: 2px solid ${theme.colors.gray[0]};
 // `;
 
-export const InputForm = styled.div`
+export const InputBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,6 +15,7 @@ export const InputForm = styled.div`
   border-bottom: 2px solid
     ${({ invalid, theme }) =>
       invalid ? theme.colors.red : theme.colors.gray[0]};
+  margin: ${({ type }) => type === 'edit' && '0 auto'};
 `;
 
 export const Input = styled.input`
@@ -22,7 +23,7 @@ export const Input = styled.input`
   outline-style: none;
   border: 0;
   outline: 0;
-  padding-bottom: 3px;
+  padding-bottom: 4px;
   ::placeholder {
     color: ${({ theme }) => theme.colors.gray[0]};
   }
@@ -52,6 +53,23 @@ export const CommentContainer = styled.form`
   border: 0;
   border-radius: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+export const EditContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  width: 292px;
+  height: 77px;
+  border: 0;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+export const AuthContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const PlacedAvatar = styled(Avatar)`
@@ -84,4 +102,12 @@ export const RemoveButton = styled.img`
   width: 16px;
   height: 16px;
   cursor: pointer;
+`;
+
+export const InputTypeLabel = styled.label`
+  width: ${({ type }) => (type === 'edit' ? '50px' : '34px')};
+  height: 20px;
+  font-size: 8px;
+  font-weight: bold;
+  padding-left: ${({ type }) => type === 'edit' && '16px'};
 `;
