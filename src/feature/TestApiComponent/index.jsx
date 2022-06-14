@@ -146,7 +146,7 @@ function TestApiComponent() {
   };
 
   const handleCreatePostClick = async (type) => {
-    if (!receiver) {
+    if (!receiver._id) {
       console.error('select receiver');
 
       return;
