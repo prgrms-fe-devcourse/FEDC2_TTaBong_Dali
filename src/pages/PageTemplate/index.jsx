@@ -8,7 +8,7 @@ const PageTemplate = ({ children, page }) => {
   return (
     <S.PageTemplate>
       <Header />
-      <S.MainSection>{children}</S.MainSection>
+      <S.ContentSection>{children}</S.ContentSection>
       <BottomBar page={page} />
     </S.PageTemplate>
   );

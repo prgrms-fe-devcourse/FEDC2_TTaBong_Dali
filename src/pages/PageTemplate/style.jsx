@@ -21,7 +21,7 @@ export const PageTemplate = styled.div`
   background-attachment: fixed;
 `;
 
-export const MainSection = styled.div`
+export const ContentSection = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -29,16 +29,6 @@ export const MainSection = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 74px;
-  border: 1px solid black;
   line-height: 2rem;
   overflow: auto;
-
-  div {
-    flex-shrink: 0;
-    width: 100%;
-    height: 500px;
-    background-color: white;
-    margin: 1rem 0;
-    border: 1px solid black;
-  }
 `;
