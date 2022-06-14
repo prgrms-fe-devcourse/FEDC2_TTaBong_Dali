@@ -11,16 +11,16 @@ export const InputBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${({ type }) =>
-    type === 'comment' ? '210px' : type === 'edit' ? '256px' : '307px'};
+  width: ${({ version }) =>
+    version === 'comment' ? '210px' : version === 'edit' ? '256px' : '307px'};
   border-bottom: 2px solid
     ${({ invalid, theme }) =>
       invalid ? theme.colors.red : theme.colors.gray[0]};
-  margin: ${({ type }) => type === 'edit' && '0 auto'};
+  margin: ${({ version }) => version === 'edit' && '0 auto'};
 `;
 
 export const Input = styled.input`
-  width: ${({ type }) => (type === 'comment' ? '95%' : '90%')};
+  width: ${({ version }) => (version === 'comment' ? '95%' : '90%')};
   outline-style: none;
   border: 0;
   outline: 0;
@@ -109,5 +109,5 @@ export const InputTypeLabel = styled.label`
   height: 20px;
   font-size: 12px;
   font-weight: bold;
-  padding-left: ${({ type }) => type === 'edit' && '16px'};
+  padding-left: ${({ version }) => version === 'edit' && '16px'};
 `;

@@ -45,8 +45,8 @@ export const StyledButton = styled.button`
   padding: 5px;
   width: 305px;
   height: 59px;
-  ${({ type }) => {
-    switch (type) {
+  ${({ version }) => {
+    switch (version) {
       case 'yellow':
         return yellowButtonStyle;
       case 'yellowOutlined':

@@ -4,7 +4,7 @@ export default {
   title: 'Components/Button',
   component: Button,
   argTypes: {
-    type: {
+    version: {
       defaultValue: 'skyblue',
       control: { type: 'radio' },
       options: ['skyblue', 'skyblueOutlined', 'yellow', 'yellowOutlined'],

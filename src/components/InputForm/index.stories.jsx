@@ -4,7 +4,7 @@ export default {
   title: 'Components/InputForm',
   component: InputForm,
   argTypes: {
-    type: {
+    version: {
       defaultValue: 'auth',
       control: { type: 'radio' },
       options: ['search', 'comment', 'edit', 'auth'],
