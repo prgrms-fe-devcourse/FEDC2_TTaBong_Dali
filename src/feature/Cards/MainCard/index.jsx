@@ -5,6 +5,7 @@ import likes from '../../../assets/sympathy_ttabong.svg';
 import Label from '../../../components/Label';
 import Avatar from '../../../components/Avatar';
 import TTaBongerAndTTaBonged from '../TTaBongerAndTTaBonged';
+import LabelList from '../LabelList';
 
 // 아바타2개 컨테이너 분리
 // 디비전 라인 컴포넌트 분리 -> base 로 분리
@@ -32,11 +33,7 @@ const MainCard = ({
           <S.PraiseContent>{likeReason}</S.PraiseContent>
         </S.PraiseContainer>
         <S.InfoContainer>
-          <S.LabelContainer>
-            {labelTypes.map((type) => (
-              <Label type={type} />
-            ))}
-          </S.LabelContainer>
+          <LabelList labelTypes={labelTypes} />
           <S.LikeContainer>
             <S.CountNumContainer>
               <S.CountSpan>댓글 수 {commenCount}개</S.CountSpan>
