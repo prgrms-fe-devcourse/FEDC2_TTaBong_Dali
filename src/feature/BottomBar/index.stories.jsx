@@ -7,7 +7,7 @@ export default {
   argTypes: {
     page: {
       control: { type: 'radio' },
-      options: ['mainFeed', 'ranking', 'search', 'user'],
+      options: ['mainFeed', 'rank', 'search', 'user'],
       defaultValue: 'mainFeed',
     },
   },

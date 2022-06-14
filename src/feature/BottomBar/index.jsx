@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as S from './style';
 import Icon from '../../components/Icon';
 
-// page props로 'mainFeed', 'ranking', 'search', 'user'가 들어온다고 가정하겠습니다.
+// page props로 'mainFeed', 'rank', 'search', 'user'가 들어온다고 가정하겠습니다.
 const BottomBar = ({ page }) => {
   return (
     <S.BottomBarContainer>
@@ -17,7 +17,7 @@ const BottomBar = ({ page }) => {
         </Link>
         <Link to="/rank">
           <Icon
-            name={page === 'ranking' ? 'rankingFill' : 'rankingLine'}
+            name={page === 'rank' ? 'rankFill' : 'rankLine'}
             alt="랭킹 아이콘"
           />
         </Link>

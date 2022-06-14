@@ -1,4 +1,4 @@
-export { default as MainPage } from './MainPage';
+export { default as MainFeedPage } from './MainFeedPage';
 export { default as RankPage } from './RankPage';
 export { default as TTaBongPage } from './TTaBongPage';
 export { default as SearchPage } from './SearchPage';

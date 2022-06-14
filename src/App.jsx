@@ -5,7 +5,7 @@ import GlobalStyle from './commons/style/GlobalStyle';
 import theme from './commons/style/themes';
 import {
   CardDetailPage,
-  MainPage,
+  MainFeedPage,
   RankPage,
   SearchPage,
   TTaBongPage,
@@ -18,14 +18,14 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Routes>
-        <Route path="/main/*" element={<MainPage />} />
+        <Route path="/mainFeed/*" element={<MainFeedPage />} />
         <Route path="/cardDetail/*" element={<CardDetailPage />} />
         <Route path="/rank/*" element={<RankPage />} />
         <Route path="/TTaBong/*" element={<TTaBongPage />} />
         <Route path="/search/*" element={<SearchPage />} />
         <Route path="/userProfile/*" element={<UserProfilePage />} />
         <Route path="/error/*" element={<NotFoundPage />} />
-        <Route path="/*" element={<Navigate to="/main" />} />
+        <Route path="/*" element={<Navigate to="/mainFeed" />} />
       </Routes>
     </ThemeProvider>
   );

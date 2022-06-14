@@ -12,8 +12,8 @@ export default {
         options: [
           'listFill',
           'listLine',
-          'rankingFill',
-          'rankingLine',
+          'rank',
+          'rank',
           'searchFill',
           'searchLine',
           'userFill',

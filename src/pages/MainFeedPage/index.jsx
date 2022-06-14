@@ -1,8 +1,8 @@
 import React from 'react';
 import BottomPage from '../../feature/BottomBar';
 
-const MainPage = () => {
+const MainFeedPage = () => {
   return <BottomPage page="mainFeed" />;
 };
 
-export default MainPage;
+export default MainFeedPage;
