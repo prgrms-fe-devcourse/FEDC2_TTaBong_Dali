@@ -13,6 +13,7 @@ const PageTemplate = ({ children, page }) => {
     </S.PageTemplate>
   );
 };
+
 PageTemplate.propTypes = {
   page: PropTypes.string.isRequired,
 };

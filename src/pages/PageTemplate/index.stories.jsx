@@ -13,6 +13,7 @@ export default {
     },
   },
 };
+
 export const Default = (args) => {
   return <PageTemplate {...args} />;
 };
