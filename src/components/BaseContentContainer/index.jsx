@@ -1,24 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as S from './style';
+import Constants from '../../commons/constants';
 
-const BaseContentContainer = ({ children, opacity = 1 }) => {
+const BaseContentContainer = ({
+  children,
+  opacityType = Constants.Opacity.OpacityVisible,
+}) => {
   return (
-    <S.Container opacity={opacity}>
-      <S.ContentSection>
-        <S.TestP>hello</S.TestP>
-        <S.TestP>hello</S.TestP>
-        <S.TestP>hello</S.TestP>
-        <S.TestP>hello</S.TestP>
-        {children}
-      </S.ContentSection>
+    <S.Container opacity={opacityType}>
+      <S.ContentSection>{children}</S.ContentSection>
     </S.Container>
   );
 };
 
 BaseContentContainer.propTypes = {
   children: PropTypes.node,
-  opacity: PropTypes.number,
+  opacityType: PropTypes.oneOf([
+    Constants.Opacity.OpacityVisible,
+    Constants.Opacity.OpacityTransparent,
+  ]),
 };
 
 export default BaseContentContainer;
