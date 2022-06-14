@@ -5,13 +5,15 @@ const toRem = (px) => {
 };
 
 export const BottomBarContainer = styled.div`
-  width: 95vw;
+  width: 90%;
   min-width: ${toRem(354)};
   height: ${toRem(71)};
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+
   display: flex;
   justify-content: space-between;
-  position: fixed;
-  bottom: 2rem;
+  flex-shrink: 0;
 
   background-color: ${(props) => props.theme.colors.white};
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);

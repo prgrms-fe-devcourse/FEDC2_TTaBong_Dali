@@ -4,10 +4,16 @@ import backgroundImage from '../../../public/background.png';
 export const PageTemplate = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
+  justify-content: space-between;
+  align-items: center;
+
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+
+  width: 100vw;
+  height: 100vh;
+  padding: 0 16px;
 
   background-image: url(${backgroundImage});
   background-repeat: no-repeat;
@@ -16,9 +22,23 @@ export const PageTemplate = styled.div`
 `;
 
 export const Section = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
-  margin: 80px 16px;
+  margin-top: 74px;
+  border: 1px solid black;
+  line-height: 2rem;
+  overflow: auto;
+
+  div {
+    flex-shrink: 0;
+    width: 100%;
+    height: 500px;
+    background-color: white;
+    margin: 1rem 0;
+    border: 1px solid black;
+  }
 `;
