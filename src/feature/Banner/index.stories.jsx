@@ -27,8 +27,8 @@ export function Scrolldown(args) {
   const isScrollDowned = useScrollDown();
   return (
     <Container>
-      <Header scrollDown={isScrollDowned} />
-      <Banner scrollDown={isScrollDowned} {...args} />
+      <Header isScrollDown={isScrollDowned} />
+      <Banner isScrollDown={isScrollDowned} {...args} />
     </Container>
   );
 }
