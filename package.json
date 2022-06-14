@@ -76,6 +76,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.6.2",
     "prop-types": "^15.8.1",
+    "react-router-dom": "^6.3.0",
     "webpack": "^5.73.0"
   }
 }
