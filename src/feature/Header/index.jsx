@@ -8,21 +8,20 @@ import Badge from '../../components/Badge';
 
 // 따봉왕, 코인왕 아바타 이미지 props로 받아야함
 
-const Header = ({ scrollDown = false }) => {
+const Header = ({ isScrollDown = false, isAlarm = false }) => {
   return (
-    <S.Header scrollDown={scrollDown}>
+    <S.Header isScrollDown={isScrollDown}>
       <S.AvatarContainer>
         <S.TTaBongKingAvatarWrapper>
           <Avatar size={30} />
         </S.TTaBongKingAvatarWrapper>
-
         <S.CoinKingAvatarWrapper>
           <Avatar size={30} />
         </S.CoinKingAvatarWrapper>
       </S.AvatarContainer>
       <S.Logo>TTA BONG</S.Logo>
       <S.IconWrapper>
-        <Badge dot>
+        <Badge dot={isAlarm}>
           <Icon src={iconAlarm} />
         </Badge>
       </S.IconWrapper>
@@ -31,7 +30,7 @@ const Header = ({ scrollDown = false }) => {
 };
 
 Header.propTypes = {
-  scrollDown: PropTypes.bool,
+  isScrollDown: PropTypes.bool,
 };
 
 export default Header;
