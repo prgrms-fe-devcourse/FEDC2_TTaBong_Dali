@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import Icon from '../../components/Icon';
 
@@ -8,27 +9,37 @@ const BottomBar = ({ page }) => {
   return (
     <S.BottomBarContainer>
       <S.IconContainer>
-        <Icon
-          name={page === 'mainFeed' ? 'listFill' : 'listLine'}
-          alt="리스트 아이콘"
-        />
-        <Icon
-          name={page === 'ranking' ? 'rankingFill' : 'rankingLine'}
-          alt="랭킹 아이콘"
-        />
+        <Link to="/main">
+          <Icon
+            name={page === 'mainFeed' ? 'listFill' : 'listLine'}
+            alt="리스트 아이콘"
+          />
+        </Link>
+        <Link to="/rank">
+          <Icon
+            name={page === 'ranking' ? 'rankingFill' : 'rankingLine'}
+            alt="랭킹 아이콘"
+          />
+        </Link>
       </S.IconContainer>
       <S.TTaBongContainerBox>
-        <Icon name="TTaBongWhite" alt="따봉 아이콘" />
+        <Link to="/TTaBong">
+          <Icon name="TTaBongWhite" alt="따봉 아이콘" />
+        </Link>
       </S.TTaBongContainerBox>
       <S.IconContainer>
-        <Icon
-          name={page === 'search' ? 'searchFill' : 'searchLine'}
-          alt="검색 아이콘"
-        />
-        <Icon
-          name={page === 'user' ? 'userFill' : 'userLine'}
-          alt="유저 아이콘"
-        />
+        <Link to="/search">
+          <Icon
+            name={page === 'search' ? 'searchFill' : 'searchLine'}
+            alt="검색 아이콘"
+          />
+        </Link>
+        <Link to="/userProfile">
+          <Icon
+            name={page === 'user' ? 'userFill' : 'userLine'}
+            alt="유저 아이콘"
+          />
+        </Link>
       </S.IconContainer>
     </S.BottomBarContainer>
   );
