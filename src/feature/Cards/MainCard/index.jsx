@@ -15,7 +15,7 @@ import Divider from '../../../components/Divider';
 const MainCard = ({
   authorName = '이름',
   receiverName = '이름',
-  commenCount = 0,
+  commentCount = 0,
   likeCount = 0,
   likeReason = '',
   labelTypes = [],
@@ -37,7 +37,7 @@ const MainCard = ({
           <LabelList labelTypes={labelTypes} />
           <S.LikeContainer>
             <S.CountNumContainer>
-              <S.CountSpan>댓글 수 {commenCount}개</S.CountSpan>
+              <S.CountSpan>댓글 수 {commentCount}개</S.CountSpan>
               <S.CountSpan>맞 따봉 {likeCount}개</S.CountSpan>
             </S.CountNumContainer>
             <img src={likes} alt="공감" width="28px" height="28px" />
@@ -52,7 +52,7 @@ MainCard.propTypes = {
   labelTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
   authorName: PropTypes.string.isRequired,
   receiverName: PropTypes.string.isRequired,
-  commenCount: PropTypes.number.isRequired,
+  commentCount: PropTypes.number.isRequired,
   likeCount: PropTypes.number.isRequired,
 };
 
