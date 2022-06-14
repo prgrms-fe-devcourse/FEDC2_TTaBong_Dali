@@ -9,14 +9,7 @@ export const BackgroundCard = styled.div`
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 `;
 
-export const FirstSection = styled.section`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 40px;
-`;
-
 export const SecondSection = styled.section`
-  display: flex;
   display: flex;
   justify-content: space-between;
   padding: 0 29px;
@@ -57,10 +50,6 @@ export const InfoContainer = styled.div`
   justify-content: center;
   align-items: flex-end;
   width: 50%;
-`;
-
-export const LabelContainer = styled.div`
-  display: flex;
 `;
 
 export const LikeContainer = styled.div`

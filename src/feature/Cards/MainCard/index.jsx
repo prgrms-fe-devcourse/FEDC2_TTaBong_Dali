@@ -6,6 +6,7 @@ import Label from '../../../components/Label';
 import Avatar from '../../../components/Avatar';
 import TTaBongerAndTTaBonged from '../TTaBongerAndTTaBonged';
 import LabelList from '../LabelList';
+import Divider from '../../../components/Divider';
 
 // 아바타2개 컨테이너 분리
 // 디비전 라인 컴포넌트 분리 -> base 로 분리
@@ -26,7 +27,7 @@ const MainCard = ({
         authorName={authorName}
         receiverName={receiverName}
       />
-      <S.DivisionLine />
+      <Divider size={300} />
       <S.SecondSection>
         <S.PraiseContainer>
           <S.PraiseReason>칭찬사유</S.PraiseReason>
