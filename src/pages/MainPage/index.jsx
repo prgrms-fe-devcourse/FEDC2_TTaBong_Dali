@@ -1,7 +1,8 @@
 import React from 'react';
+import BottomPage from '../../feature/BottomBar';
 
 const MainPage = () => {
-  return <div>main page</div>;
+  return <BottomPage page="mainFeed" />;
 };
 
 export default MainPage;

@@ -3,21 +3,29 @@ import { ThemeProvider } from '@emotion/react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import GlobalStyle from './commons/style/GlobalStyle';
 import theme from './commons/style/themes';
+import {
+  CardDetailPage,
+  MainPage,
+  RankPage,
+  SearchPage,
+  TTaBongPage,
+  UserProfilePage,
+} from './pages';
 import NotFoundPage from './pages/NotFound';
-import BottomBar from './feature/BottomBar';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Routes>
-        <Route path="/main" element={<BottomBar page="mainfeed" />} />
-        <Route path="/cardDetail" element={<NotFoundPage />} />
-        <Route path="/ranking" element={<NotFoundPage />} />
-        <Route path="/TTaBong" element={<NotFoundPage />} />
-        <Route path="/search" element={<NotFoundPage />} />
-        <Route path="/userProfile" element={<NotFoundPage />} />
-        <Route path="/*" element={<BottomBar />} />
+        <Route path="/main/*" element={<MainPage />} />
+        <Route path="/cardDetail/*" element={<CardDetailPage />} />
+        <Route path="/rank/*" element={<RankPage />} />
+        <Route path="/TTaBong/*" element={<TTaBongPage />} />
+        <Route path="/search/*" element={<SearchPage />} />
+        <Route path="/userProfile/*" element={<UserProfilePage />} />
+        <Route path="/error/*" element={<NotFoundPage />} />
+        <Route path="/*" element={<Navigate to="/main" />} />
       </Routes>
     </ThemeProvider>
   );
