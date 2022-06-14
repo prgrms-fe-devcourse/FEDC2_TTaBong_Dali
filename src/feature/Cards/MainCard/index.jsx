@@ -4,6 +4,11 @@ import TB from '../../../assets/ttabong_card.svg';
 import likes from '../../../assets/sympathy_ttabong.svg';
 import Label from '../../../components/Label';
 import Avatar from '../../../components/Avatar';
+import TTaBongerAndTTaBonged from '../TTaBongerAndTTaBonged';
+
+// 아바타2개 컨테이너 분리
+// 디비전 라인 컴포넌트 분리 -> base 로 분리
+// Card
 
 const MainCard = ({
   authorName = '이름',
@@ -16,11 +21,10 @@ const MainCard = ({
   // label이 없는경우를 대비해 default는 빈배열로 일단 처리
   return (
     <S.BackgroundCard>
-      <S.FirstSection>
-        <Avatar avatarName={authorName} />
-        <img src={TB} alt="따봉" width="40px" height="40px" />
-        <Avatar avatarName={receiverName} />
-      </S.FirstSection>
+      <TTaBongerAndTTaBonged
+        authorName={authorName}
+        receiverName={receiverName}
+      />
       <S.DivisionLine />
       <S.SecondSection>
         <S.PraiseContainer>
