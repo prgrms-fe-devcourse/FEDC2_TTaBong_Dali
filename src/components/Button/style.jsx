@@ -43,7 +43,8 @@ export const StyledButton = styled.button`
   box-sizing: border-box;
   font-size: 20px;
   padding: 5px;
-  width: 300px;
+  width: 305px;
+  height: 59px;
   ${({ type }) => {
     switch (type) {
       case 'yellow':

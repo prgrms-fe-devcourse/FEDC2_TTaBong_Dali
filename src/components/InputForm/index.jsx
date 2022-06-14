@@ -6,7 +6,7 @@ import searchIconBlue from '../../assets/icon_search_blue.svg';
 const InputForm = ({
   type = 'auth',
   inputType = '아이디',
-  invalid = 'false',
+  invalid = false,
   placeholder,
   onSubmit,
   ...props

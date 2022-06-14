@@ -11,7 +11,8 @@ export const InputBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${({ type }) => (type === 'comment' ? '210px' : '256px')};
+  width: ${({ type }) =>
+    type === 'comment' ? '210px' : type === 'edit' ? '256px' : '307px'};
   border-bottom: 2px solid
     ${({ invalid, theme }) =>
       invalid ? theme.colors.red : theme.colors.gray[0]};
@@ -19,7 +20,7 @@ export const InputBox = styled.div`
 `;
 
 export const Input = styled.input`
-  width: ${({ type }) => (type === 'comment' ? '95%' : '85%')};
+  width: ${({ type }) => (type === 'comment' ? '95%' : '90%')};
   outline-style: none;
   border: 0;
   outline: 0;
@@ -105,9 +106,8 @@ export const RemoveButton = styled.img`
 `;
 
 export const InputTypeLabel = styled.label`
-  width: ${({ type }) => (type === 'edit' ? '50px' : '34px')};
   height: 20px;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: bold;
   padding-left: ${({ type }) => type === 'edit' && '16px'};
 `;
