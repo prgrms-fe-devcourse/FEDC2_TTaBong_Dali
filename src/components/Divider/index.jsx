@@ -7,6 +7,9 @@ const Divider = ({ size = 300, color = theme.colors.gray[0] }) => {
   return <S.DivisionLine size={size} color={color} />;
 };
 
-Divider.propTypes = {};
+Divider.propTypes = {
+  size: PropTypes.number,
+  color: PropTypes.string,
+};
 
 export default Divider;

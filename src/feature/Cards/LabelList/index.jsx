@@ -19,6 +19,8 @@ const LabelList = ({ labelTypes = [] }) => {
   );
 };
 
-LabelList.propTypes = {};
+LabelList.propTypes = {
+  labelTypes: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default LabelList;

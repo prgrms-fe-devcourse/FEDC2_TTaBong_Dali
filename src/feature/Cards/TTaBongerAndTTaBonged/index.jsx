@@ -18,6 +18,9 @@ const TTaBongerAndTTaBonged = ({ authorName, receiverName }) => {
   );
 };
 
-TTaBongerAndTTaBonged.propTypes = {};
+TTaBongerAndTTaBonged.propTypes = {
+  authorName: PropTypes.string.isRequired,
+  receiverName: PropTypes.string.isRequired,
+};
 
 export default TTaBongerAndTTaBonged;

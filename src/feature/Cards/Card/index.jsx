@@ -10,6 +10,10 @@ const Card = ({ children, width = 358, height = 204 }) => {
   );
 };
 
-Card.propTypes = {};
+Card.propTypes = {
+  children: PropTypes.node.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number,
+};
 
 export default Card;
