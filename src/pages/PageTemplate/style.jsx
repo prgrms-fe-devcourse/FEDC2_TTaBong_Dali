@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import backgroundImage from '../../../public/background.png';
+import pageTemplateBackgroundImage from '../../../public/background.png';
 
 export const PageTemplate = styled.div`
   display: flex;
@@ -15,13 +15,13 @@ export const PageTemplate = styled.div`
   height: 100vh;
   padding: 0 16px;
 
-  background-image: url(${backgroundImage});
+  background-image: url(${pageTemplateBackgroundImage});
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-attachment: fixed;
 `;
 
-export const Section = styled.div`
+export const MainSection = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;

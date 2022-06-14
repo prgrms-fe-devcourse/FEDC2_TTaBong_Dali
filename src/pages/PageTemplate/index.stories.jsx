@@ -3,7 +3,7 @@ import PageTemplate from '.';
 
 // 'mainFeed', 'ranking', 'search', 'user'
 export default {
-  title: 'Component/PageTemplate',
+  title: 'Pages/PageTemplate',
   component: PageTemplate,
   argTypes: {
     page: {
