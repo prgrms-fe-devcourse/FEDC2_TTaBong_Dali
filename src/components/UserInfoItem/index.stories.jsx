@@ -13,12 +13,12 @@ export default {
       defaultValue: '',
       control: 'text',
     },
-    coinCount: {
-      defaultValue: '-1',
+    coin: {
+      defaultValue: null,
       control: 'number',
     },
-    TTaBongCount: {
-      defaultValue: '-1',
+    TTaBong: {
+      defaultValue: null,
       control: 'number',
     },
   },

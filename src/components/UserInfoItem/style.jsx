@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-export const UserInfoItem = styled.div`
+export const UserInfoItemContanier = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   width: 292px;
   height: 55px;
@@ -82,12 +83,13 @@ export const AvatarContainer = styled.div`
 `;
 
 export const UserNameContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
-export const TotalCountContainer = styled.div`
+export const CountContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,7 +98,7 @@ export const TotalCountContainer = styled.div`
   margin-right: 8px;
 `;
 
-export const CountContainer = styled.dl`
+export const CountWrapper = styled.dl`
   display: flex;
   flex-direction: column;
   justify-content: center;

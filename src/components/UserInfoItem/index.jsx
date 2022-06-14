@@ -6,11 +6,11 @@ const UserInfoItem = ({
   rank,
   avatarImg,
   userName,
-  coinCount = -1,
-  TTaBongCount = -1,
+  coin = null,
+  TTaBong = null,
 }) => {
   return (
-    <S.UserInfoItem>
+    <S.UserInfoItemContanier>
       <S.ImageContainer>
         {rank && (
           <S.RankContainer rank={rank}>
@@ -22,21 +22,21 @@ const UserInfoItem = ({
         </S.AvatarContainer>
       </S.ImageContainer>
       <S.UserNameContainer>{userName}</S.UserNameContainer>
-      <S.TotalCountContainer>
-        {coinCount >= 0 && (
-          <S.CountContainer>
+      <S.CountContainer>
+        {coin && (
+          <S.CountWrapper>
             <S.CountTitle>총 코인수</S.CountTitle>
-            <S.CountSpan>{coinCount}</S.CountSpan>
-          </S.CountContainer>
+            <S.CountSpan>{coin}</S.CountSpan>
+          </S.CountWrapper>
         )}
-        {TTaBongCount >= 0 && (
-          <S.CountContainer>
+        {TTaBong && (
+          <S.CountWrapper>
             <S.CountTitle>총 따봉수</S.CountTitle>
-            <S.CountSpan>{TTaBongCount}</S.CountSpan>
-          </S.CountContainer>
+            <S.CountSpan>{TTaBong}</S.CountSpan>
+          </S.CountWrapper>
         )}
-      </S.TotalCountContainer>
-    </S.UserInfoItem>
+      </S.CountContainer>
+    </S.UserInfoItemContanier>
   );
 };
 
@@ -44,9 +44,9 @@ UserInfoItem.propTypes = {
   rank: PropTypes.number,
   avatarImg: PropTypes.string,
   userName: PropTypes.string.isRequired,
-  coinCount: PropTypes.number,
-  TTaBongCount: PropTypes.number,
-  // coinCount와 TTaBongCount 둘 중 하나 이상은 필수
+  coin: PropTypes.number,
+  TTaBong: PropTypes.number,
+  // coinCount와 TTaBong 둘 중 하나 이상은 필수
 };
 
 export default UserInfoItem;
