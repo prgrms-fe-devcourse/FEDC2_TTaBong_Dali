@@ -16,7 +16,7 @@ export default {
       defaultValue: '민상기',
       control: 'text',
     },
-    commenCount: {
+    commentCount: {
       defaultValue: '3',
       control: 'number',
     },
