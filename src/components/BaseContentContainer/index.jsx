@@ -5,7 +5,7 @@ import Constants from '../../commons/constants';
 
 const BaseContentContainer = ({
   children,
-  opacityType = Constants.Opacity.OpacityVisible,
+  opacityType = Constants.OpacityVisible,
 }) => {
   return (
     <S.Container opacity={opacityType}>
@@ -17,8 +17,8 @@ const BaseContentContainer = ({
 BaseContentContainer.propTypes = {
   children: PropTypes.node,
   opacityType: PropTypes.oneOf([
-    Constants.Opacity.OpacityVisible,
-    Constants.Opacity.OpacityTransparent,
+    Constants.OpacityVisible,
+    Constants.OpacityTransparent,
   ]),
 };
 

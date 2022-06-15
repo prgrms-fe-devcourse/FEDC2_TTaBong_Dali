@@ -9,10 +9,7 @@ export default {
   argTypes: {
     opacityType: {
       control: { type: 'radio' },
-      options: [
-        Constants.Opacity.OpacityVisible,
-        Constants.Opacity.OpacityTransparent,
-      ],
+      options: [Constants.OpacityVisible, Constants.OpacityTransparent],
     },
   },
 };
