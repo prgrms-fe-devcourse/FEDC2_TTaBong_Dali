@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import BottomBar from '.';
 
 export default {
@@ -14,5 +15,9 @@ export default {
 };
 
 export function Default(args) {
-  return <BottomBar {...args} />;
+  return (
+    <Router>
+      <BottomBar {...args} />;
+    </Router>
+  );
 }
