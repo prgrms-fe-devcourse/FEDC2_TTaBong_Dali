@@ -7,6 +7,12 @@ export default {
   title: 'Components/BaseContentContainer',
   component: BaseContentContainer,
   argTypes: {
+    height: {
+      control: {
+        type: 'number',
+        default: '100%',
+      },
+    },
     opacityType: {
       control: { type: 'radio' },
       options: [Constants.OpacityVisible, Constants.OpacityTransparent],

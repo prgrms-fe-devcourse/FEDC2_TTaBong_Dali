@@ -3,8 +3,9 @@ import { getHexToRgb } from '../../utils/getHexToRgb';
 
 export const Container = styled.div`
   width: 95%;
-  min-height: 100%;
-  height: 100%;
+  height: ${(props) =>
+    typeof props.height === 'number' ? `${props.height}rem` : props.height};
+
   padding: 2rem 1rem 2rem 1rem;
   background-color: ${(props) =>
     `rgba(${getHexToRgb(props.theme.colors.white)},${props.opacity})`};
