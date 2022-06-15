@@ -10,12 +10,12 @@ import Divider from '../../../components/Divider';
 import CommentList from '../CommentList';
 
 const CardDetail = ({
-  authorName = '이름',
-  receiverName = '이름',
+  authorName = '',
+  receiverName = '',
   comments = [],
-  img = 'ㅁㅁ',
+  img = '',
   likeCount = 0,
-  PraiseReason = '안녕하세요',
+  PraiseReason = '',
   labelTypes = [],
 }) => {
   return (
@@ -30,9 +30,7 @@ const CardDetail = ({
             <S.PraiseReason>칭찬사유</S.PraiseReason>
             <S.PraiseContent>{PraiseReason}</S.PraiseContent>
           </S.PraiseContainer>
-          {img && (
-            <Image src="https://picsum.photos/200" width={136} height={136} />
-          )}
+          {img && <Image src={img} width={136} height={136} />}
         </S.contentContainer>
         <S.InfoContainer>
           <LabelList labelTypes={labelTypes} />

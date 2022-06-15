@@ -8,7 +8,7 @@ const CommentList = ({ comments = [], height = 232 }) => {
     <S.CommentListContainer height={height}>
       <S.CountSpan>댓글 수 {comments.length}개</S.CountSpan>
       <S.CommentList>
-        {comments.map((comment, i) => {
+        {comments.map((comment) => {
           return (
             <Comment
               key={comment._id}

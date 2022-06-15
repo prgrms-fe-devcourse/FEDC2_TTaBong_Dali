@@ -37,6 +37,10 @@ const Comment = ({ author, comment, createdTime }) => {
   );
 };
 
-Comment.propTypes = {};
+Comment.propTypes = {
+  author: PropTypes.object,
+  comment: PropTypes.object,
+  createdTime: PropTypes.string,
+};
 
 export default Comment;
