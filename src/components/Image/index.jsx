@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 import * as S from './style';
 
 const Image = ({ src, width, height, alt, mode = 'fill' }) => {
-  const imageStyle = {
-    width,
-    height,
-    objectFit: mode, // cover, fill, contain
-    borderRadius: '10px',
-  };
-
-  return <img src={src} alt={alt} style={{ ...imageStyle }} />;
+  return (
+    <S.Image src={src} alt={alt} width={width} height={height} mode={mode} />
+  );
 };
 
 Image.propTypes = {
