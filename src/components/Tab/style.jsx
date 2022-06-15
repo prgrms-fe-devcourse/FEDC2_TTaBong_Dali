@@ -14,12 +14,12 @@ const skyblueOutlinedTabStyle = ({ theme }) => css`
   color: ${theme.colors.skyblue[0]};
 `;
 
-export const TabWrapper = styled.button`
+export const TabItemWrapper = styled.button`
   appearance: none;
   box-sizing: border-box;
 
-  width: 20rem;
-  height: 5rem;
+  width: 10rem;
+  height: 3rem;
 
   border-radius: 40px;
 
@@ -30,5 +30,16 @@ export const TabWrapper = styled.button`
 
   cursor: pointer;
 
-  ${({ clicked }) => (clicked ? skyBlueTabStyle : skyblueOutlinedTabStyle)};
+  ${({ active }) => (active ? skyBlueTabStyle : skyblueOutlinedTabStyle)};
+`;
+
+export const TabItemContainer = styled.div`
+  box-sizing: border-box;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: space-evenly;
+
+  // temp
 `;

@@ -5,7 +5,11 @@ export default {
   title: 'Components/Tab',
   component: Tab,
   argTypes: {
-    clicked: {
+    activeIndex: {
+      control: 'number',
+      defaultValue: 0,
+    },
+    active: {
       control: 'boolean',
       defaultValue: true,
     },
@@ -13,5 +17,14 @@ export default {
 };
 
 export const Default = (args) => {
+  return (
+    <Tab {...args}>
+      <TabItem>따봉왕</TabItem>
+      <TabItem>코인왕</TabItem>
+    </Tab>
+  );
+};
+
+export const Item = (args) => {
   return <TabItem {...args}>코인왕</TabItem>;
 };

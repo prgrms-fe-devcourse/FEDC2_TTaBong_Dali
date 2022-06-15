@@ -1,20 +1,67 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as S from './style';
 import Button from '../Button';
 
-export const TabItem = ({ children, clicked = true }) => {
-  return <S.TabWrapper clicked={clicked}>{children}</S.TabWrapper>;
+export const TabItem = ({ children, active = false, onClick, ...props }) => {
+  return (
+    <S.TabItemWrapper active={active} onClick={onClick}>
+      {children}
+    </S.TabItemWrapper>
+  );
 };
 
 TabItem.propTypes = {
-  clicked: PropTypes.bool,
+  active: PropTypes.bool,
+  __TYPE: PropTypes.oneOf(['Tab.Item']),
 };
 
-const Tab = ({ children }) => {
-  return <div>hello</div>;
+TabItem.defaultProps = {
+  __TYPE: 'Tab.Item',
 };
 
-Tab.propTypes = {};
+const childrenToArray = (children, types) => {
+  return React.Children.toArray(children).filter((elem) => {
+    if (React.isValidElement(elem) && types.includes(elem.props.__TYPE)) {
+      return true;
+    }
+
+    console.warn(
+      `Onle accepts ${
+        Array.isArray(types) ? types.join(',') : types
+      } as its children`,
+    );
+
+    return false;
+  });
+};
+
+const Tab = ({ children, activeIndex = 0, ...props }) => {
+  const [currentActive, setCurrentActive] = useState(() => {
+    if (activeIndex >= 0) {
+      return activeIndex;
+    }
+
+    return 0;
+  });
+
+  const items = useMemo(() => {
+    return childrenToArray(children, 'Tab.Item').map((elem, index) => {
+      return React.cloneElement(elem, {
+        ...elem.props,
+        active: index === currentActive,
+        onClick: () => {
+          setCurrentActive(index);
+        },
+      });
+    });
+  }, [children, currentActive]);
+
+  return <S.TabItemContainer>{items}</S.TabItemContainer>;
+};
+
+Tab.propTypes = {
+  activeIndex: PropTypes.number,
+};
 
 export default Tab;
