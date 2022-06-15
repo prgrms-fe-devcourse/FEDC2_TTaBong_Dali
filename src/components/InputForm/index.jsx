@@ -41,7 +41,7 @@ const InputForm = ({
           />
         </S.InputBox>
         <S.ButtonBox>
-          <S.CommentButton>게시</S.CommentButton>
+          <S.CommentButton type="submit">게시</S.CommentButton>
         </S.ButtonBox>
       </S.CommentContainer>
     );
@@ -52,7 +52,7 @@ const InputForm = ({
         <S.InputBox>
           <S.Input name={name} type={type} placeholder={placeholder} />
           <S.ButtonBox>
-            <S.SearchButton src={searchIconBlue} alt="검색" />
+            <S.SearchButton type="submit" src={searchIconBlue} alt="검색" />
           </S.ButtonBox>
         </S.InputBox>
       </S.SearhContainer>
