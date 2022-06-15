@@ -1,30 +1,51 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import Icon from '../../components/Icon';
-import PropTypes from 'prop-types';
 
-
-const BottomBar = ({ iconList, TTaBongIcon }) => {
+// page props로 'mainFeed', 'rank', 'search', 'user'가 들어온다고 가정하겠습니다.
+const BottomBar = ({ page }) => {
   return (
     <S.BottomBarContainer>
       <S.IconContainer>
-        <Icon src={iconList[0]} />
-        <Icon src={iconList[1]} />
+        <Link to="/main">
+          <Icon
+            name={page === 'mainFeed' ? 'listFill' : 'listLine'}
+            alt="리스트 아이콘"
+          />
+        </Link>
+        <Link to="/rank">
+          <Icon
+            name={page === 'rank' ? 'rankFill' : 'rankLine'}
+            alt="랭킹 아이콘"
+          />
+        </Link>
       </S.IconContainer>
       <S.TTaBongContainerBox>
-        <Icon src={TTaBongIcon} />
+        <Link to="/TTaBong">
+          <Icon name="TTaBongWhite" alt="따봉 아이콘" />
+        </Link>
       </S.TTaBongContainerBox>
       <S.IconContainer>
-        <Icon src={iconList[2]} />
-        <Icon src={iconList[3]} />
+        <Link to="/search">
+          <Icon
+            name={page === 'search' ? 'searchFill' : 'searchLine'}
+            alt="검색 아이콘"
+          />
+        </Link>
+        <Link to="/userProfile">
+          <Icon
+            name={page === 'user' ? 'userFill' : 'userLine'}
+            alt="유저 아이콘"
+          />
+        </Link>
       </S.IconContainer>
     </S.BottomBarContainer>
   );
 };
-
 BottomBar.propTypes = {
-  iconList: PropTypes.arrayOf(PropTypes.string),
-  TTaBongIcon: PropTypes.string
+  page: PropTypes.string.isRequired,
 };
 
 export default BottomBar;

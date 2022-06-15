@@ -23,10 +23,14 @@ module.exports = {
     'react/prop-types': 0,
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/control-has-associated-label': 'off',
     'no-nested-ternary': 0,
+    'no-underscore-dangle': 0,
+    'no-unused-vars': 0,
     'react/function-component-definition': 0, // 화살표 함수 사용
     'react/forbid-prop-types': 0, // PropTypes.array,object,any 가능하게
     'react/jsx-props-no-spreading': 0, // props에 spread연산자 사용 가능하게
+    'react/require-default-props': 0,
   },
   overrides: [
     {

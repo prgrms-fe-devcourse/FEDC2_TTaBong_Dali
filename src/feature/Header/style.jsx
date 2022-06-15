@@ -7,12 +7,13 @@ export const Header = styled.div`
   right: 0%;
   top: 0%;
   height: 58px;
-
+  z-index: 1;
   display: flex;
   justify-content: space-between;
-
-  background-color: ${(props) => props.theme.colors.skyblue[0]};
-  border-radius: 0px 0px 30px 30px;
+  transition: border-radius 0.3s;
+  background-color: ${({ theme }) => theme.colors.skyblue[0]};
+  border-radius: ${({ isScrollDown }) =>
+    isScrollDown ? '0px 0px 30px 30px' : '0px'};
 `;
 
 export const AvatarContainer = styled.div`
@@ -51,4 +52,10 @@ export const CoinKingAvatarWrapper = styled.div`
 
 export const PlacedLogo = styled(Logo)`
   margin-right: 8px;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  justify-content: center;
 `;
