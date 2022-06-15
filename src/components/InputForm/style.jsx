@@ -111,3 +111,9 @@ export const InputTypeLabel = styled.label`
   font-weight: bold;
   padding-left: ${({ version }) => version === 'edit' && '16px'};
 `;
+
+export const Errors = styled.div`
+  margin-top: 4px;
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.red};
+`;

@@ -21,12 +21,17 @@ const useForm = ({ initialValues, onSubmit, validate }) => {
     setIsLoading(false);
   };
 
+  const removeAll = (name) => {
+    setValues({ ...values, [name]: '' });
+  };
+
   return {
     values,
     errors,
     isLoading,
     handleChange,
     handleSubmit,
+    removeAll,
   };
 };
 
