@@ -15,6 +15,7 @@ export default {
     comment: { defaultValue: '이것은 댓글입니다', control: 'text' },
     createdTime: {
       defaultValue: '2021-10-15T20:48:19.816Z',
+      control: 'text',
     },
   },
 };
