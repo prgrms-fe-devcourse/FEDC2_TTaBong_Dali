@@ -40,6 +40,4 @@ export const TabItemContainer = styled.div`
 
   display: flex;
   justify-content: space-evenly;
-
-  // temp
 `;

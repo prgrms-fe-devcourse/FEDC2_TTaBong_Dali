@@ -1,5 +1,5 @@
 import React from 'react';
-import Tab, { TabItem } from './index';
+import Tab, { TabItem } from '.';
 
 export default {
   title: 'Components/Tab',
