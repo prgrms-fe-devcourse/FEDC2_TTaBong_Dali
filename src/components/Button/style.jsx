@@ -43,9 +43,10 @@ export const StyledButton = styled.button`
   box-sizing: border-box;
   font-size: 20px;
   padding: 5px;
-  width: 300px;
-  ${({ type }) => {
-    switch (type) {
+  width: 305px;
+  height: 59px;
+  ${({ version }) => {
+    switch (version) {
       case 'yellow':
         return yellowButtonStyle;
       case 'yellowOutlined':

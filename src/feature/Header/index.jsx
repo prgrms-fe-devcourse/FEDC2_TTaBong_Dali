@@ -19,7 +19,7 @@ const Header = ({ isScrollDown = false, isAlarm = false }) => {
           <Avatar size={30} />
         </S.CoinKingAvatarWrapper>
       </S.AvatarContainer>
-      <S.Logo>TTA BONG</S.Logo>
+      <S.PlacedLogo />
       <S.IconWrapper>
         <Badge dot={isAlarm}>
           <Icon src={iconAlarm} />

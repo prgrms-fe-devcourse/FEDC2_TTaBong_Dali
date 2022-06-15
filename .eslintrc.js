@@ -29,6 +29,7 @@ module.exports = {
     'no-unused-vars': 0,
     'react/function-component-definition': 0, // 화살표 함수 사용
     'react/forbid-prop-types': 0, // PropTypes.array,object,any 가능하게
+    'react/jsx-props-no-spreading': 0, // props에 spread연산자 사용 가능하게
     'react/require-default-props': 0,
   },
   overrides: [

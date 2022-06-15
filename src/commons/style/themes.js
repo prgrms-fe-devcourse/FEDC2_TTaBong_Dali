@@ -6,7 +6,7 @@ const theme = {
     skyblue: ['#7EC9FF', '#BFE4FF'],
     yellow: ['#FFDD85', '#FFF8E7'],
     red: '#FD3535',
-    darkgray: ['#3F3F3F', '#4A4A4A'],
+    darkgray: ['#3F3F3F', '#4A4A4A', '#858585'],
     gray: ['#D9D9D9', '#ECECEC'],
     // 버튼 별 gradient
     praise: ['#7C89FF', '#95E6FF'],
