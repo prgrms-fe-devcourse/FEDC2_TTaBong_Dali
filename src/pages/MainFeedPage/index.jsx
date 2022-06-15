@@ -5,22 +5,14 @@ import MainCard from '../../feature/MainFeed/MainCard';
 import DummyData from '../../assets/data/dummyData';
 
 const MainFeedPage = () => {
-  const { Channel, Posts, Users } = DummyData;
+  const { Posts, Users } = DummyData;
   const [posts, setPosts] = useState([]);
 
-  // axios를 통해 api 데이터 불러오는 작업 필요
+  // 후에 axios를 통해 Channel을 거쳐 post를 받아오는 작업 필요.
   useEffect(() => {
-    const postIdList = Channel.posts;
-    const list = [];
-    postIdList.map((id) => {
-      Posts.map((post) => {
-        if (id === post._id) {
-          list.push(post);
-        }
-      });
-    });
-    setPosts(list);
+    setPosts(Posts);
   }, []);
+
   // MainCard에 들어갈 props : authorname, receiverName, commenCount, likeCount, likeReason, labelTypes
   // 저희 더미데이터에 label 타입에 관한 데이터가 들어있지 않네요..이건 또 어디에 넣죠 ㅜ 아마 type에 넣어야 할 것 같아요
   return (
