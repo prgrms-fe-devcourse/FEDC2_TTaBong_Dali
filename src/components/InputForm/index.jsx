@@ -9,7 +9,6 @@ const InputForm = ({
   type = 'text',
   version = 'auth',
   inputType = '아이디',
-  invalid = false,
   placeholder,
   onSubmit,
   onChange,
@@ -64,7 +63,7 @@ const InputForm = ({
     return (
       <S.EditContainer {...props}>
         <S.InputTypeLabel version={version}>{inputType}</S.InputTypeLabel>
-        <S.InputBox version={version} invalid={invalid}>
+        <S.InputBox version={version} invalid={errors[name]}>
           <S.Input
             name={name}
             type={type}
@@ -88,7 +87,7 @@ const InputForm = ({
   return (
     <S.AuthContainer {...props}>
       <S.InputTypeLabel>{inputType}</S.InputTypeLabel>
-      <S.InputBox invalid={invalid}>
+      <S.InputBox version={version} invalid={errors[name]}>
         <S.Input
           name={name}
           type={type}
@@ -116,7 +115,6 @@ InputForm.propTypes = {
   type: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
   version: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
   inputType: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
-  invalid: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
   placeholder: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
   errors: PropTypes.object.isRequired, // lint적용되면 isRequired 제거
 };

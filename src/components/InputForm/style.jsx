@@ -1,11 +1,5 @@
 import styled from '@emotion/styled';
-// import { css } from '@emotion/react';
 import Avatar from '../Avatar';
-
-// invalid에 따라 다른처리 할 수도
-// const outlinedInputStyle = ({ theme }) => css`
-//   border-bottom: 2px solid ${theme.colors.gray[0]};
-// `;
 
 export const InputBox = styled.div`
   display: flex;
