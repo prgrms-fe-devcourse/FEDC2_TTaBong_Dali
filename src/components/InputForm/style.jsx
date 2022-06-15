@@ -24,7 +24,7 @@ export const Input = styled.input`
   }
 `;
 
-export const SearhContainer = styled.form`
+export const SearchContainer = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;

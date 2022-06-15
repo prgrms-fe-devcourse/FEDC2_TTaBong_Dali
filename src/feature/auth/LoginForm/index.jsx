@@ -43,6 +43,7 @@ const LoginForm = ({ onSubmit }) => {
       />
       <S.NavContainer>
         <S.Nav>아이디 / 비밀번호 찾기</S.Nav>
+        <S.NavDivider>|</S.NavDivider>
         <S.Nav>회원가입</S.Nav>
       </S.NavContainer>
       <S.LoginButton type="submit" version="yellow">

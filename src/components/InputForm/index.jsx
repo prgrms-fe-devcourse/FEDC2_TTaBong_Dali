@@ -48,14 +48,14 @@ const InputForm = ({
   }
   if (version === 'search') {
     return (
-      <S.SearhContainer onSubmit={onSubmit} {...props}>
+      <S.SearchContainer onSubmit={onSubmit} {...props}>
         <S.InputBox>
           <S.Input name={name} type={type} placeholder={placeholder} />
-          <S.ButtonBox>
-            <S.SearchButton type="submit" src={searchIconBlue} alt="검색" />
-          </S.ButtonBox>
         </S.InputBox>
-      </S.SearhContainer>
+        <S.ButtonBox>
+          <S.SearchButton type="submit" src={searchIconBlue} alt="검색" />
+        </S.ButtonBox>
+      </S.SearchContainer>
     );
   }
   if (version === 'edit') {
