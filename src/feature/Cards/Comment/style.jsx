@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const CommentContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const UserInfoContainer = styled.div`
@@ -10,6 +10,8 @@ export const UserInfoContainer = styled.div`
   flex-direction: column;
   margin-left: 6px;
   margin-right: 6px;
+
+  flex-shrink: 0;
 `;
 
 export const UserName = styled.span`
