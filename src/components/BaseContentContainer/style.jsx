@@ -15,7 +15,3 @@ export const ContentSection = styled.div`
   height: 100%;
   overflow: auto;
 `;
-
-export const TestP = styled.p`
-  border: 1px solid red;
-`;
