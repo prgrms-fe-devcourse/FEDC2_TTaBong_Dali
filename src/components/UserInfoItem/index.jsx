@@ -11,7 +11,7 @@ const UserInfoItem = ({
 }) => {
   return (
     <S.UserInfoItemContanier>
-      <S.ImageContainer>
+      <S.RankerContainer>
         {rank && (
           <S.RankContainer rank={rank}>
             <S.Rank>{rank}</S.Rank>
@@ -20,8 +20,8 @@ const UserInfoItem = ({
         <S.AvatarContainer>
           <Avatar src={avatarImg} size={40} />
         </S.AvatarContainer>
-      </S.ImageContainer>
-      <S.UserNameContainer>{userName}</S.UserNameContainer>
+      </S.RankerContainer>
+      <S.UserNameWrapper>{userName}</S.UserNameWrapper>
       <S.CountContainer>
         {coin && (
           <S.CountWrapper>

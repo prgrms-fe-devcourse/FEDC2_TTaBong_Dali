@@ -13,7 +13,7 @@ export const UserInfoItemContanier = styled.div`
   border-radius: 40px 17px 17px 40px;
 `;
 
-export const ImageContainer = styled.div`
+export const RankerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,7 +82,7 @@ export const AvatarContainer = styled.div`
   display: flex;
 `;
 
-export const UserNameContainer = styled.div`
+export const UserNameWrapper = styled.div`
   max-width: 120px;
   white-space: nowrap;
   overflow: hidden;
