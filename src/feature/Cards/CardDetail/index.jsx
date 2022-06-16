@@ -24,14 +24,14 @@ const CardDetail = ({
         authorName={authorName}
         receiverName={receiverName}
       />
-      <S.mainSection>
-        <S.contentContainer>
+      <S.MainSection>
+        <S.ContentContainer>
           <S.PraiseContainer>
             <S.PraiseReasonWrapper>칭찬사유</S.PraiseReasonWrapper>
             <S.PraiseContentWrapper>{PraiseReason}</S.PraiseContentWrapper>
           </S.PraiseContainer>
           {img && <Image src={img} width={136} height={136} />}
-        </S.contentContainer>
+        </S.ContentContainer>
         <S.InfoContainer>
           <LabelList labelItems={labelItems} />
           <S.LikeContainer>
@@ -41,7 +41,7 @@ const CardDetail = ({
         </S.InfoContainer>
         <Divider size={320} />
         <CommentList comments={comments} />
-      </S.mainSection>
+      </S.MainSection>
     </Card>
   );
 };
