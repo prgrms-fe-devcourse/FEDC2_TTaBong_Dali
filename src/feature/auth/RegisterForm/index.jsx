@@ -15,8 +15,9 @@ const RegisterForm = ({ onSubmit }) => {
       password: '',
       passwordConfirm: '',
     },
-    onSubmit: () => {
-      console.log('submit!');
+    onSubmit: ({ email, userName, password }) => {
+      // console.log(email, userName, password);
+      onSubmit(email, userName, password);
     },
     validate: ({ userName, email, password, passwordConfirm }) => {
       const errors = {};
