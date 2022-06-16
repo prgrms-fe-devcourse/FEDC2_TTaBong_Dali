@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-export const mainSection = styled.div`
+export const MainSection = styled.div`
   margin: 0 16px;
 `;
 
-export const contentContainer = styled.section`
+export const ContentContainer = styled.section`
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
@@ -17,11 +17,11 @@ export const PraiseContainer = styled.div`
   flex-direction: column;
 `;
 
-export const PraiseReason = styled.h3`
+export const PraiseReasonWrapper = styled.h3`
   font-weight: 700;
 `;
 
-export const PraiseContent = styled.div`
+export const PraiseContentWrapper = styled.div`
   padding-top: 8px;
   padding-right: 24px;
   height: 144px;

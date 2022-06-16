@@ -27,8 +27,8 @@ const CardDetail = ({
       <S.mainSection>
         <S.contentContainer>
           <S.PraiseContainer>
-            <S.PraiseReason>칭찬사유</S.PraiseReason>
-            <S.PraiseContent>{PraiseReason}</S.PraiseContent>
+            <S.PraiseReasonWrapper>칭찬사유</S.PraiseReasonWrapper>
+            <S.PraiseContentWrapper>{PraiseReason}</S.PraiseContentWrapper>
           </S.PraiseContainer>
           {img && <Image src={img} width={136} height={136} />}
         </S.contentContainer>
