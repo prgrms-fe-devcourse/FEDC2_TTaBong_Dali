@@ -36,7 +36,7 @@ const MainFeedPage = () => {
           });
 
           return (
-            <Link to="/userProfile" className="mainCard">
+            <Link to="/cardDetail" className="mainCard">
               <MainCard
                 authorName={fullName}
                 receiverName={receiverName}
