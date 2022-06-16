@@ -2,10 +2,10 @@ import React from 'react';
 import MainCard from '.';
 
 export default {
-  title: 'Feature/MainFeed/MainCard',
+  title: 'feature/cards/MainCard',
   component: MainCard,
   argTypes: {
-    labelTypes: {
+    labelItems: {
       defaultValue: ['moved', 'praise', 'warm'],
     },
     authorName: {
@@ -16,7 +16,7 @@ export default {
       defaultValue: '민상기',
       control: 'text',
     },
-    commenCount: {
+    commentCount: {
       defaultValue: '3',
       control: 'number',
     },

@@ -35,6 +35,8 @@ export const StyledLabel = styled.div`
   align-items: center;
   font-size: 9px;
   font-weight: 800;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+
   ${({ type }) => {
     switch (type) {
       case 'warm':
