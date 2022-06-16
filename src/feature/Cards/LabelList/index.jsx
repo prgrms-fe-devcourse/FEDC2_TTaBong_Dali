@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import * as S from './style';
 import Label from '../../../components/Label';
 
-const LabelList = ({ labelTypes = [] }) => {
+const LabelList = ({ labelItems = [] }) => {
   return (
     <S.LabelContainer>
-      {labelTypes.map((type, index) =>
+      {labelItems.map((type, index) =>
         index === 0 ? (
           <Label type={type} />
         ) : (
@@ -20,7 +20,7 @@ const LabelList = ({ labelTypes = [] }) => {
 };
 
 LabelList.propTypes = {
-  labelTypes: PropTypes.arrayOf(PropTypes.string),
+  labelItems: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default LabelList;

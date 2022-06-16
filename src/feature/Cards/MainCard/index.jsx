@@ -18,7 +18,7 @@ const MainCard = ({
   commentCount = 0,
   likeCount = 0,
   likeReason = '',
-  labelTypes = [],
+  labelItems = [],
 }) => {
   // label이 없는경우를 대비해 default는 빈배열로 일단 처리
   return (
@@ -34,7 +34,7 @@ const MainCard = ({
           <S.PraiseContent>{likeReason}</S.PraiseContent>
         </S.PraiseContainer>
         <S.InfoContainer>
-          <LabelList labelTypes={labelTypes} />
+          <LabelList labelItems={labelItems} />
           <S.LikeContainer>
             <S.CountNumContainer>
               <S.CountSpan>댓글 수 {commentCount}개</S.CountSpan>
@@ -49,7 +49,7 @@ const MainCard = ({
 };
 
 MainCard.propTypes = {
-  labelTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  labelItems: PropTypes.arrayOf(PropTypes.string).isRequired,
   authorName: PropTypes.string.isRequired,
   receiverName: PropTypes.string.isRequired,
   commentCount: PropTypes.number.isRequired,

@@ -5,7 +5,7 @@ export default {
   title: 'Feature/Cards/LabelList',
   component: LabelList,
   argTypes: {
-    labelTypes: {
+    labelItems: {
       defaultValue: ['moved', 'praise', 'warm'],
     },
   },

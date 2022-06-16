@@ -16,7 +16,7 @@ const CardDetail = ({
   img = '',
   likeCount = 0,
   PraiseReason = '',
-  labelTypes = [],
+  labelItems = [],
 }) => {
   return (
     <Card width={342} height={614}>
@@ -33,7 +33,7 @@ const CardDetail = ({
           {img && <Image src={img} width={136} height={136} />}
         </S.contentContainer>
         <S.InfoContainer>
-          <LabelList labelTypes={labelTypes} />
+          <LabelList labelItems={labelItems} />
           <S.LikeContainer>
             <img src={likes} alt="공감" width="28px" height="28px" />
             <S.CountSpan>맞 따봉 {likeCount}개</S.CountSpan>
@@ -53,7 +53,7 @@ CardDetail.propTypes = {
   img: PropTypes.string,
   likeCount: PropTypes.string,
   PraiseReason: PropTypes.string.isRequired,
-  labelTypes: PropTypes.string.isRequired,
+  labelItems: PropTypes.string.isRequired,
 };
 
 export default CardDetail;
