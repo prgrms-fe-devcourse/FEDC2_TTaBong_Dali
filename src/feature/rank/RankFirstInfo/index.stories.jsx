@@ -10,11 +10,11 @@ export default {
       control: 'text',
     },
     coin: {
-      defaultValue: null,
+      defaultValue: '-1',
       control: 'number',
     },
     TTaBong: {
-      defaultValue: null,
+      defaultValue: '-1',
       control: 'number',
     },
   },

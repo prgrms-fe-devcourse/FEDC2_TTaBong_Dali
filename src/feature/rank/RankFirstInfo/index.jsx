@@ -2,12 +2,7 @@ import PropTypes from 'prop-types';
 import Avatar from '../../../components/Avatar';
 import * as S from './style';
 
-const RankFirstInfo = ({
-  avatarImg,
-  userName,
-  coin = null,
-  TTaBong = null,
-}) => {
+const RankFirstInfo = ({ avatarImg, userName, coin = -1, TTaBong = -1 }) => {
   return (
     <S.RankFirstContainer>
       <S.RankFirstWrapper>현재 1위</S.RankFirstWrapper>
@@ -18,13 +13,13 @@ const RankFirstInfo = ({
         </S.AvatarBox>
         <S.InfoBox>
           <S.UserNameWrapper>{userName}</S.UserNameWrapper>
-          {TTaBong && (
+          {TTaBong >= 0 && (
             <S.TotalCount>
               <S.CountTitle>총 따봉수</S.CountTitle>
               <S.CountNum>{TTaBong}</S.CountNum>
             </S.TotalCount>
           )}
-          {coin && (
+          {coin >= 0 && (
             <S.TotalCount>
               <S.CountTitle>총 코인수</S.CountTitle>
               <S.CountNum>{coin}</S.CountNum>
