@@ -1,11 +1,12 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { getPxToRem } from '../../utils/getPxToRem';
 
 const skyBlueTabStyle = ({ theme }) => css`
   border: 0;
   outline: 0;
   background-color: ${theme.colors.skyblue[0]};
-  color: white;
+  color: ${theme.colors.white};
 `;
 
 const skyblueOutlinedTabStyle = ({ theme }) => css`
@@ -16,12 +17,11 @@ const skyblueOutlinedTabStyle = ({ theme }) => css`
 
 export const TabItemWrapper = styled.button`
   appearance: none;
-  box-sizing: border-box;
 
   width: 10rem;
   height: 3rem;
 
-  border-radius: 40px;
+  border-radius: ${getPxToRem(40)};
 
   text-align: center;
   text-decoration: none;
