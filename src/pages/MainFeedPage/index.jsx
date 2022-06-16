@@ -21,7 +21,10 @@ const MainFeedPage = () => {
 
   return (
     <PageTemplate page="mainFeed">
-      <S.MainFeedPageContainer ref={ref}>
+      <S.MainFeedPageContainer
+        ref={ref}
+        className={!isScrollDown ? 'bannerShown' : null}
+      >
         <Banner isScrollDown={isScrollDown} />
         {posts.map((post) => {
           const { likes, comments, title, author } = post;

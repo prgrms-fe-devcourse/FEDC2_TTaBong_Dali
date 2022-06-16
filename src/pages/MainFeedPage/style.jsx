@@ -7,8 +7,12 @@ export const MainFeedPageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: auto;
-
   .mainCard {
     margin: 1rem 0;
+    text-decoration: none;
+    color: inherit;
+  }
+  &.bannerShown {
+    margin-top: 3rem;
   }
 `;
