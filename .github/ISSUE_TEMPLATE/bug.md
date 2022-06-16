@@ -15,3 +15,5 @@ labels: "fix"
 ### 실제 동작
 <!-- What behavior did you actually see? -->
 
+### 시급한 정도
+<!-- 🐢 천천히, 🏃🏻 보통, 🚨 긴급 -->
