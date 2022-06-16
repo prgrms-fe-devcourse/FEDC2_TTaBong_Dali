@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import MainFeed from '.';
 
 export default {
-  title: 'Pages/MainFeed',
+  title: 'Pages/MainFeedPage',
   component: MainFeed,
   argTypes: {},
 };
