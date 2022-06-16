@@ -2,7 +2,7 @@ import React from 'react';
 import CardDetail from '.';
 
 export default {
-  title: 'Feature/Cards/CardDetail',
+  title: 'feature/cards/CardDetail',
   component: CardDetail,
   argTypes: {
     labelItems: {

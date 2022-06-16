@@ -2,7 +2,7 @@ import React from 'react';
 import MainCard from '.';
 
 export default {
-  title: 'Feature/Cards/MainCard',
+  title: 'feature/cards/MainCard',
   component: MainCard,
   argTypes: {
     labelItems: {

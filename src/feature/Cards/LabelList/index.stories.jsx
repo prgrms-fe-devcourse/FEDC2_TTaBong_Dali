@@ -2,7 +2,7 @@ import React from 'react';
 import LabelList from '.';
 
 export default {
-  title: 'Feature/Cards/LabelList',
+  title: 'feature/cards/LabelList',
   component: LabelList,
   argTypes: {
     labelItems: {

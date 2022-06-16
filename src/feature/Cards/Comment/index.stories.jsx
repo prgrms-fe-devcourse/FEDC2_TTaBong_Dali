@@ -2,7 +2,7 @@ import React from 'react';
 import Comment from '.';
 
 export default {
-  title: 'Feature/Cards/Comment',
+  title: 'feature/cards/Comment',
   component: Comment,
   argTypes: {
     author: {

@@ -2,7 +2,7 @@ import React from 'react';
 import CommentList from '.';
 
 export default {
-  title: 'Feature/Cards/CommentList',
+  title: 'feature/cards/CommentList',
   component: CommentList,
   argTypes: {
     comments: {
