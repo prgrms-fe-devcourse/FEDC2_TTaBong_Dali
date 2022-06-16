@@ -18,7 +18,7 @@ export default {
           'searchLine',
           'userFill',
           'userLine',
-          'alarmIcon',
+          'alarmLine',
         ],
       },
       defaultValue: 'listFill',
