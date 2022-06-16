@@ -2,7 +2,12 @@ import PropTypes from 'prop-types';
 import Avatar from '../../../components/Avatar';
 import * as S from './style';
 
-const RankFirstInfo = ({ avatarImg, userName, coin = -1, TTaBong = -1 }) => {
+const RankFirstInfo = ({
+  avatarImg,
+  userName,
+  coinCount = -1,
+  TTaBongCount = -1,
+}) => {
   return (
     <S.RankFirstContainer>
       <S.RankFirstWrapper>현재 1위</S.RankFirstWrapper>
@@ -13,16 +18,16 @@ const RankFirstInfo = ({ avatarImg, userName, coin = -1, TTaBong = -1 }) => {
         </S.AvatarBox>
         <S.InfoBox>
           <S.UserNameWrapper>{userName}</S.UserNameWrapper>
-          {TTaBong >= 0 && (
+          {TTaBongCount >= 0 && (
             <S.TotalCount>
               <S.CountTitle>총 따봉수</S.CountTitle>
-              <S.CountNum>{TTaBong}</S.CountNum>
+              <S.CountNum>{TTaBongCount}</S.CountNum>
             </S.TotalCount>
           )}
-          {coin >= 0 && (
+          {coinCount >= 0 && (
             <S.TotalCount>
               <S.CountTitle>총 코인수</S.CountTitle>
-              <S.CountNum>{coin}</S.CountNum>
+              <S.CountNum>{coinCount}</S.CountNum>
             </S.TotalCount>
           )}
         </S.InfoBox>
@@ -34,8 +39,8 @@ const RankFirstInfo = ({ avatarImg, userName, coin = -1, TTaBong = -1 }) => {
 RankFirstInfo.propTypes = {
   avatarImg: PropTypes.string,
   userName: PropTypes.string.isRequired,
-  coin: PropTypes.number,
-  TTaBong: PropTypes.number,
+  coinCount: PropTypes.number,
+  TTaBongCount: PropTypes.number,
 };
 
 export default RankFirstInfo;

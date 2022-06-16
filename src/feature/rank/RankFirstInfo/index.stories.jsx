@@ -9,11 +9,11 @@ export default {
       defaultValue: '',
       control: 'text',
     },
-    coin: {
+    coinCount: {
       defaultValue: '-1',
       control: 'number',
     },
-    TTaBong: {
+    TTaBongCount: {
       defaultValue: '-1',
       control: 'number',
     },
