@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 import { getHexToRgb } from '../../utils/getHexToRgb';
 
 export const Container = styled.div`
@@ -11,7 +10,7 @@ export const Container = styled.div`
   background-color: ${({ backgroundColor, opacity }) =>
     `rgba(${getHexToRgb(backgroundColor)},${opacity})`};
 
-  border-radius: 30px;
+  border-radius: ${({ borderRadius }) => borderRadius};
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 `;
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import BaseCardContainer from '.';
-import Constants from '../../commons/constants';
 import PageTemplate from '../../pages/PageTemplate';
 import theme from '../../commons/style/themes';
 
@@ -22,12 +21,18 @@ export default {
     },
     opacityType: {
       control: { type: 'radio' },
-      options: [Constants.OpacityVisible, Constants.OpacityTransparent],
+      options: [...Object.values(theme.opacity)],
     },
     backgroundColor: {
       control: {
         type: 'color',
         defaultValue: 'white',
+      },
+    },
+    borderRadius: {
+      control: {
+        type: 'radio',
+        options: [...Object.values(theme.borderRadius)],
       },
     },
   },
