@@ -52,6 +52,7 @@ export const CoinKingAvatarWrapper = styled.div`
 
 export const PlacedLogo = styled(Logo)`
   margin-right: 8px;
+`;
 
 export const IconWrapper = styled.div`
   display: flex;
