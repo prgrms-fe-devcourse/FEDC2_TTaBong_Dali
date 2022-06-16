@@ -22,7 +22,7 @@ const Header = ({ isScrollDown = false, isAlarm = false }) => {
       <S.Logo>TTA BONG</S.Logo>
       <S.IconWrapper>
         <Badge dot={isAlarm}>
-          <Icon src={iconAlarm} />
+          <Icon name="alarmIcon" alt="알람 아이콘" />
         </Badge>
       </S.IconWrapper>
     </S.Header>
