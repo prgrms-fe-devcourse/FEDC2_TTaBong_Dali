@@ -1,12 +1,12 @@
 import React from 'react';
-import BaseContentContainer from '.';
+import BaseCardContainer from '.';
 import Constants from '../../commons/constants';
 import PageTemplate from '../../pages/PageTemplate';
 import theme from '../../commons/style/themes';
 
 export default {
-  title: 'Components/BaseContentContainer',
-  component: BaseContentContainer,
+  title: 'Components/BaseCardContainer',
+  component: BaseCardContainer,
   argTypes: {
     width: {
       control: {
@@ -34,13 +34,13 @@ export default {
 };
 
 export function Default(args) {
-  return <BaseContentContainer {...args} />;
+  return <BaseCardContainer {...args} />;
 }
 
 export function Template(args) {
   return (
     <PageTemplate>
-      <BaseContentContainer {...args}>
+      <BaseCardContainer {...args}>
         <p>hello world</p>
         <p>hello world</p>
         <p>hello world</p>
@@ -64,7 +64,7 @@ export function Template(args) {
         <p>hello world</p>
         <p>hello world</p>
         <p>hello world</p>
-      </BaseContentContainer>
+      </BaseCardContainer>
     </PageTemplate>
   );
 }

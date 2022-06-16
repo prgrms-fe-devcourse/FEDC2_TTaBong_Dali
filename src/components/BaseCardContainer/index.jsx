@@ -4,7 +4,7 @@ import * as S from './style';
 import Constants from '../../commons/constants';
 import theme from '../../commons/style/themes';
 
-const BaseContentContainer = ({
+const BaseCardContainer = ({
   children,
   width = '100%',
   height = '100%',
@@ -25,7 +25,7 @@ const BaseContentContainer = ({
   );
 };
 
-BaseContentContainer.propTypes = {
+BaseCardContainer.propTypes = {
   children: PropTypes.node,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -37,4 +37,4 @@ BaseContentContainer.propTypes = {
   ]),
 };
 
-export default BaseContentContainer;
+export default BaseCardContainer;
