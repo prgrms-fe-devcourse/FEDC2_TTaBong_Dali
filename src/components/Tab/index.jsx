@@ -1,9 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as S from './style';
-import Button from '../Button';
 
-export const TabItem = ({ children, active = false, onClick, ...props }) => {
+export const TabItem = ({ children, active = false, onClick }) => {
   return (
     <S.TabItemWrapper active={active} onClick={onClick}>
       {children}
@@ -36,7 +35,7 @@ const childrenToArray = (children, types) => {
   });
 };
 
-const Tab = ({ children, activeIndex = 0, ...props }) => {
+export const Tab = ({ children, activeIndex = 0 }) => {
   const [currentActive, setCurrentActive] = useState(() => {
     if (activeIndex >= 0) {
       return activeIndex;
