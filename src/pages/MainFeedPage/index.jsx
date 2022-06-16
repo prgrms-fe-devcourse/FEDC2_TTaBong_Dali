@@ -32,7 +32,7 @@ const MainFeedPage = () => {
           const { fullName } = author;
 
           const receiverName = Users.map((user) => {
-            if (user._id === receiver) return user.fullName;
+            return user._id === receiver ? user.fullName : null;
           });
 
           return (
