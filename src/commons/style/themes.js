@@ -31,6 +31,15 @@ const theme = {
     tablet: '(max-width: 900px)',
     desktop: '(min-width: 1200px)',
   },
+  opacity: {
+    tarnsparent: 0.7,
+    visible: 1.0,
+  },
+  borderRadius: {
+    edge: '5px',
+    rounded: '30px',
+    circle: '100%',
+  },
 };
 
 export default theme;
