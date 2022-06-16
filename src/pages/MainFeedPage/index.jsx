@@ -1,8 +1,8 @@
 import React from 'react';
-import BottomPage from '../../feature/BottomBar';
+import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 
 const MainFeedPage = () => {
-  return <BottomPage page="mainFeed" />;
+  return <PageTemplate page="mainFeed" />;
 };
 
 export default MainFeedPage;

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import Banner from '.';
-import { useScrollDown } from '../../hooks/useScrollDown';
+import { useScrollDown } from '../../../hooks/useScrollDown';
 import Header from '../Header';
 
 export default {
