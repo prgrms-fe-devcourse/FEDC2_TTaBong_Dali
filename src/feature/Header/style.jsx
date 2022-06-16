@@ -6,7 +6,7 @@ export const Header = styled.div`
   right: 0%;
   top: 0%;
   height: 58px;
-  z-index: 1;
+  z-index: 3000;
   display: flex;
   justify-content: space-between;
   transition: border-radius 0.3s;

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const BannerContainer = styled.div`
   position: fixed;
-  z-index: 0;
+  z-index: 2000;
   left: 0%;
   right: 0%;
   top: 58px;
