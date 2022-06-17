@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
 import PageTemaplte from '../../feature/pageTemplate/PageTemplate';
-import { Tab, TabItem } from '../../components/Tab';
+import { Tab, TabItem, useTab } from '../../components/Tab';
 import BaseCardContainer from '../../components/BaseCardContainer';
+import DummyData from '../../assets/data/dummyData';
 
 const SearchPage = () => {
+  const { Users, Posts } = DummyData;
+
+  const [currentActive, setCurrentActive] = useTab();
+  const [items, setItems] = useState(Posts);
+
+  const handleTabItemClick = (index) => {
+    setCurrentActive(index);
+    setItems(index === 0 ? Users : Posts);
+  };
+
   return (
     <PageTemaplte page="search">
       <S.SearchPageContainer>
@@ -12,14 +23,17 @@ const SearchPage = () => {
           <input />
         </S.InputWrapper>
         <S.TabWrapper>
-          <Tab>
+          <Tab
+            currentActive={currentActive}
+            handleTabItemClick={handleTabItemClick}
+          >
             <TabItem>사용자</TabItem>
             <TabItem>칭찬카드</TabItem>
           </Tab>
         </S.TabWrapper>
         <S.BaseCardWrapper>
           <BaseCardContainer>
-            <p>hello</p>
+            {currentActive === 0 ? '사용자' : '칭찬카드'}
           </BaseCardContainer>
         </S.BaseCardWrapper>
       </S.SearchPageContainer>

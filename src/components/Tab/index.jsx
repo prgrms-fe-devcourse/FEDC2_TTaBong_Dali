@@ -36,22 +36,26 @@ const childrenToArray = (children, types) => {
   });
 };
 
-export const Tab = ({ children, activeIndex = 0 }) => {
+export const useTab = (defaultActive = 0) => {
   const [currentActive, setCurrentActive] = useState(() => {
-    if (activeIndex >= 0) {
-      return activeIndex;
+    if (defaultActive >= 0) {
+      return defaultActive;
     }
 
     return 0;
   });
 
+  return [currentActive, setCurrentActive];
+};
+
+export const Tab = ({ children, currentActive, handleTabItemClick }) => {
   const items = useMemo(() => {
     return childrenToArray(children, 'Tab.Item').map((elem, index) => {
       return React.cloneElement(elem, {
         ...elem.props,
         active: index === currentActive,
         onClick: () => {
-          setCurrentActive(index);
+          handleTabItemClick(index);
         },
       });
     });
@@ -60,8 +64,6 @@ export const Tab = ({ children, activeIndex = 0 }) => {
   return <S.TabItemContainer>{items}</S.TabItemContainer>;
 };
 
-Tab.propTypes = {
-  activeIndex: PropTypes.number,
-};
+Tab.propTypes = {};
 
 export default Tab;
