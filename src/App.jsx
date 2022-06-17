@@ -19,7 +19,7 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/mainFeed/*" element={<MainFeedPage />} />
-        <Route path="/cardDetail/*" element={<CardDetailPage />} />
+        <Route path="/cardDetail/:id" element={<CardDetailPage />} />
         <Route path="/rank/*" element={<RankPage />} />
         <Route path="/TTaBong/*" element={<TTaBongPage />} />
         <Route path="/search/*" element={<SearchPage />} />
