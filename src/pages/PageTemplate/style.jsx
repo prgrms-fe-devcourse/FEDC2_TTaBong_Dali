@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import pageTemplateBackgroundImage from '../../../public/background.png';
+import pageTemplateBackgroundImage from '../../assets/background.png';
 
 export const PageTemplate = styled.div`
   display: flex;
