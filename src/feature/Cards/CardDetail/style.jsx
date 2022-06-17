@@ -50,3 +50,8 @@ export const CountSpan = styled.span`
   margin-top: 8px;
   font-size: 8px;
 `;
+
+export const CommentInputWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
+`;

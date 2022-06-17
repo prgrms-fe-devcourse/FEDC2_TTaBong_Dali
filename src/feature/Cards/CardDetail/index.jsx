@@ -8,6 +8,8 @@ import Image from '../../../components/Image';
 import likes from '../../../assets/sympathy_ttabong.svg';
 import Divider from '../../../components/Divider';
 import CommentList from '../CommentList';
+import BaseCardContainer from '../../../components/BaseCardContainer';
+import InputForm from '../../../components/InputForm';
 
 const CardDetail = ({
   authorName = '',
@@ -17,12 +19,16 @@ const CardDetail = ({
   likeCount = 0,
   PraiseReason = '',
   labelItems = [],
+  authorOnClick,
+  receiverOnClick,
 }) => {
   return (
     <Card width={342} height={614}>
       <TTaBongerAndTTaBonged
         authorName={authorName}
         receiverName={receiverName}
+        authorOnClick={authorOnClick}
+        receiverOnClick={receiverOnClick}
       />
       <S.MainSection>
         <S.ContentContainer>
@@ -40,7 +46,8 @@ const CardDetail = ({
           </S.LikeContainer>
         </S.InfoContainer>
         <Divider size={320} />
-        <CommentList comments={comments} />
+        <CommentList height={200} comments={comments} />
+        <InputForm version="comment" />
       </S.MainSection>
     </Card>
   );
@@ -54,6 +61,8 @@ CardDetail.propTypes = {
   likeCount: PropTypes.string,
   PraiseReason: PropTypes.string.isRequired,
   labelItems: PropTypes.string.isRequired,
+  authorOnClick: PropTypes.func,
+  receiverOnClick: PropTypes.func,
 };
 
 export default CardDetail;
