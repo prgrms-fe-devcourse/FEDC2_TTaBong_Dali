@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import * as S from './style';
 import PageTemplate from '../PageTemplate';
 import Banner from '../../feature/Banner';
-import MainCard from '../../feature/MainFeed/MainCard';
+import MainCard from '../../feature/Cards/MainCard';
 
 import DummyData from '../../assets/data/dummyData';
 import { useScrollDown } from '../../hooks/useScrollDown';
@@ -32,7 +32,7 @@ const MainFeedPage = () => {
           const { fullName } = author;
 
           const receiverName = Users.map((user) => {
-            if (user._id === receiver) return user.fullName;
+            return user._id === receiver ? user.fullName : null;
           });
 
           return (
