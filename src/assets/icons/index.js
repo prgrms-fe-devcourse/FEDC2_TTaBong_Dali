@@ -19,7 +19,6 @@ const IconList = {
   searchLine,
   userLine,
   TTaBongWhite,
-
   alarmLine,
 };
 

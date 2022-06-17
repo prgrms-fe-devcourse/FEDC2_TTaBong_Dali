@@ -21,7 +21,7 @@ const Header = ({ isScrollDown = false, isAlarm = false }) => {
       <S.PlacedLogo />
       <S.IconWrapper>
         <Badge dot={isAlarm}>
-          <Icon name="alarmLine" />
+          <Icon name="alarmLine" alt="알람 아이콘" />
         </Badge>
       </S.IconWrapper>
     </S.Header>

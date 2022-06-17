@@ -12,7 +12,7 @@ export const PageTemplate = styled.div`
   left: 0;
 
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   padding: 0 16px;
 
   background-image: url(${pageTemplateBackgroundImage});
@@ -23,6 +23,7 @@ export const PageTemplate = styled.div`
 
 export const ContentSection = styled.div`
   width: 100%;
+  height: 1rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -30,5 +31,4 @@ export const ContentSection = styled.div`
   align-items: center;
   margin-top: 74px;
   line-height: 2rem;
-  overflow: auto;
 `;
