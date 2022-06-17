@@ -6,7 +6,7 @@ export const useScroll = () => {
   const ref = useRef(null);
   useEffect(() => {
     const element = ref.current;
-    if (!element) return;
+    if (!element) return null;
 
     const handleScroll = () => {
       setOffset({
