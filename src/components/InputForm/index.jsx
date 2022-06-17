@@ -38,6 +38,7 @@ const InputForm = ({
             type={type}
             version={version}
             placeholder={placeholder}
+            onChange={onChange}
           />
         </S.InputBox>
         <S.ButtonBox>
@@ -50,7 +51,12 @@ const InputForm = ({
     return (
       <S.SearchContainer onSubmit={onSubmit} {...props}>
         <S.InputBox>
-          <S.Input name={name} type={type} placeholder={placeholder} />
+          <S.Input
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            onChange={onChange}
+          />
         </S.InputBox>
         <S.ButtonBox>
           <S.SearchButton type="submit" src={searchIconBlue} alt="검색" />
