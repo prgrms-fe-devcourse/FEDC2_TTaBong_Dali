@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import Banner from '../../feature/pageTemplate/Banner';
@@ -36,17 +35,15 @@ const MainFeedPage = () => {
           });
 
           return (
-            <Link to="/cardDetail" className="mainCard">
-              <MainCard
-                authorName={fullName}
-                receiverName={receiverName}
-                commenCount={comments.length}
-                likeCount={likes.length}
-                likeReason={content}
-                // 라벨 타입은 일단 임시로 하드코딩 해 두었습니다...!!
-                labelTypes={['warm', 'moved', 'praise']}
-              />
-            </Link>
+            <MainCard
+              authorName={fullName}
+              receiverName={receiverName}
+              commenCount={comments.length}
+              likeCount={likes.length}
+              likeReason={content}
+              // 라벨 타입은 일단 임시로 하드코딩 해 두었습니다...!!
+              labelTypes={['warm', 'moved', 'praise']}
+            />
           );
         })}
       </S.MainFeedPageContainer>
