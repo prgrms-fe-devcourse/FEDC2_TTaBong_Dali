@@ -12,6 +12,7 @@ export const TabItem = ({ children, active = false, onClick }) => {
 
 TabItem.propTypes = {
   active: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   __TYPE: PropTypes.oneOf(['Tab.Item']),
 };
 
