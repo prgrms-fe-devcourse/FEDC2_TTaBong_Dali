@@ -17,9 +17,7 @@ export const useScroll = () => {
 
     element.addEventListener('scroll', handleScroll, { passive: true });
 
-    return () => {
-      element.removeEventListener('scroll', handleScroll);
-    };
+    return () => element.removeEventListener('scroll', handleScroll);
   }, [ref, setOffset]);
 
   return [ref, offset];

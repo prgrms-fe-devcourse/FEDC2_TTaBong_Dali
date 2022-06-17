@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
-import PageTemplate from '../PageTemplate';
-import Banner from '../../feature/Banner';
+import PageTemplate from '../../feature/pageTemplate/PageTemplate';
+import Banner from '../../feature/pageTemplate/Banner';
 import MainCard from '../../feature/Cards/MainCard';
 
 import DummyData from '../../assets/data/dummyData';

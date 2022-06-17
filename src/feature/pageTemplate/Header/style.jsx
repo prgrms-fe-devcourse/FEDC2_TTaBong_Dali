@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Logo from '../../components/Logo';
+import Logo from '../../../components/Logo';
 
 export const Header = styled.div`
   position: fixed;
