@@ -24,9 +24,9 @@ const Avatar = ({
 };
 
 Avatar.propTypes = {
-  size: PropTypes.number.isRequired,
+  size: PropTypes.number,
   src: PropTypes.string.isRequired,
-  avatarName: PropTypes.string.isRequired,
+  avatarName: PropTypes.string,
 };
 
 export default Avatar;
