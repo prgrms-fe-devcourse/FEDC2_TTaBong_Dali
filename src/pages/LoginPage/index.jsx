@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as S from './style';
 import LoginForm from '../../feature/auth/LoginForm';
 import { loginUser } from '../../apis/auth';
