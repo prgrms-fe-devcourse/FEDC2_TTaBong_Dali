@@ -10,5 +10,5 @@ const Logo = ({ type = 'white', ...props }) => (
 export default Logo;
 
 Logo.propTypes = {
-  type: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
+  type: PropTypes.string,
 };
