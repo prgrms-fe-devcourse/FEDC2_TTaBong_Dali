@@ -1,7 +1,119 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+// import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
+import * as S from './style';
+import PageTemplate from '../../feature/pageTemplate/PageTemplate';
+import UserInfoItem from '../../components/UserInfoItem';
+import BaseCardContainer from '../../components/BaseCardContainer';
+import RankFirstInfo from '../../feature/rank/RankFirstInfo';
+import { getAllUsers, getChannelPosts } from '../../apis/index';
+import { TabItem } from '../../components/Tab';
 
 const RankPage = () => {
-  return <div>rank page</div>;
+  const [users, setUsers] = useState([
+    {
+      fullName: undefined,
+    },
+  ]);
+  const [goods, setGoods] = useState('TTaBongCount');
+
+  const sortGoods = (goods) => {
+    setUsers(
+      users.sort((pre, cur) => {
+        if (pre[goods] < cur[goods]) return 1;
+        if (pre[goods] > cur[goods]) return -1;
+        // 갯수가 같은 경우 id 우선 (먼저 만든 사람 우선)
+        if (pre._id > cur._id) return 1;
+        if (pre._id < cur._id) return -1;
+        return 0;
+      }),
+    );
+  };
+
+  const clickTTaBongKing = () => {
+    setGoods('TTaBongCount');
+    sortGoods('TTaBongCount');
+  };
+
+  const clickCoinKing = () => {
+    setGoods('coinCount');
+    sortGoods('coinCount');
+  };
+
+  // users = [{id, 이름, 따봉카운트, 코인카운트},...]
+  const sortUsers = async () => {
+    const allUsers = await getAllUsers();
+    const channelPosts = await getChannelPosts('62a19123d1b81239d875d20d');
+
+    const allUserInfo = allUsers.map(({ fullName, _id, posts }) => {
+      return { _id, fullName, TTaBongCount: posts.length, coinCount: 0 };
+    });
+
+    channelPosts.forEach(({ title }) => {
+      const { type, receiver } = JSON.parse(title);
+
+      // 아이디와 receiver가 같다면 해당 id 가진 객체에서 coinCount를 올려준다.
+      for (let i = 0; i < allUserInfo.length; i += 1) {
+        const { _id, coinCount } = allUserInfo[i];
+        if (receiver === _id) {
+          const count = type === 'TTaBongCount' ? coinCount + 1 : coinCount + 2;
+          allUserInfo[i].coinCount = count;
+          break;
+        }
+      }
+    });
+    setUsers(allUserInfo);
+  };
+
+  // 마운트 할 때는 따봉왕 정렬
+  useEffect(() => {
+    sortUsers();
+    sortGoods(goods);
+  }, []);
+
+  return (
+    <PageTemplate page="rank">
+      <S.RankPageContainer>
+        <S.TabContainer>
+          <TabItem active={goods === 'TTaBongCount'} onClick={clickTTaBongKing}>
+            따봉왕
+          </TabItem>
+          <TabItem active={goods === 'coinCount'} onClick={clickCoinKing}>
+            코인왕
+          </TabItem>
+        </S.TabContainer>
+        {/* height를 rem으로 줌 */}
+        <BaseCardContainer height={34} opacityType="0.7">
+          <RankFirstInfo
+            userName={users[0].fullName}
+            TTaBongCount={goods === 'TTaBongCount' ? users[0].TTaBongCount : -1}
+            coinCount={goods === 'coinCount' ? users[0].coinCount : -1}
+          />
+          <S.RankList>
+            {users.map((user, i) => {
+              if (i === 0) return null; // 랭크 1등 null
+
+              return (
+                <UserInfoItem
+                  rank={i + 1}
+                  key={user._id}
+                  userName={user.fullName}
+                  TTaBongCount={
+                    goods === 'TTaBongCount' ? user.TTaBongCount : -1
+                  }
+                  coinCount={goods === 'coinCount' ? user.coinCount : -1}
+                />
+              );
+            })}
+          </S.RankList>
+          {/* 사용자가 로그인 했다면 보여줘야함 */}
+          <S.MyRankWrapper>
+            <UserInfoItem rank={5} TTaBongCount={3} userName="사용자" />
+          </S.MyRankWrapper>
+        </BaseCardContainer>
+      </S.RankPageContainer>
+    </PageTemplate>
+  );
 };
 
 export default RankPage;
