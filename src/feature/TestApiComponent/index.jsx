@@ -17,6 +17,7 @@ import {
   putPost,
   signUp,
 } from '../../apis';
+import MainCard from '../Cards/MainCard';
 
 function TestApiComponent() {
   const [channel, setChannel] = useState({});
@@ -154,8 +155,12 @@ function TestApiComponent() {
 
     const title = JSON.stringify({
       type,
-      receiver: receiver._id,
+      receiver: {
+        _id: receiver._id,
+        fullName: receiver.fullName,
+      },
       content: postInput,
+      labels: ['warm', 'moved'],
     });
 
     const newPost = await await createPost(curUser.token, channel._id, title);
@@ -362,6 +367,7 @@ function TestApiComponent() {
               </button>
             </p>
             {post.title}
+            <MainCard post={post} />
           </p>
         ))}
       </p>
