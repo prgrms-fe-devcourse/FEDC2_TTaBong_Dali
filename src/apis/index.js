@@ -1,5 +1,6 @@
 export { logIn, signUp, logOut, getAuthUser } from './auth';
 export {
+  getUserList,
   getAllUsers,
   getOnlineUsers,
   getSpecificUser,
