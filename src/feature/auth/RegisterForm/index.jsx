@@ -64,7 +64,7 @@ const RegisterForm = ({ onSubmit }) => {
         removeAll={removeAll}
       />
       <S.RegisterButton type="submit" version="yellow">
-        LOG IN
+        SIGN UP
       </S.RegisterButton>
       <S.Nav>메인화면으로 가기</S.Nav>
     </S.RegisterForm>
