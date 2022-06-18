@@ -12,8 +12,8 @@ const LoginForm = ({ onSubmit }) => {
       email: '',
       password: '',
     },
-    onSubmit: ({ email, password }) => {
-      onSubmit(email, password);
+    onSubmit: async ({ email, password }) => {
+      await onSubmit(email, password);
     },
     validate: ({ email, password }) => {
       const errors = {};

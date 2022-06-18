@@ -15,9 +15,9 @@ const RegisterForm = ({ onSubmit }) => {
       password: '',
       passwordConfirm: '',
     },
-    onSubmit: ({ email, userName, password }) => {
+    onSubmit: async ({ email, userName, password }) => {
       // console.log(email, userName, password);
-      onSubmit(email, userName, password);
+      await onSubmit(email, userName, password);
     },
     validate: ({ userName, email, password, passwordConfirm }) => {
       const errors = {};
