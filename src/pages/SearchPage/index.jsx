@@ -18,7 +18,10 @@ const SearchPage = () => {
     users: [...DummyData.Users],
     posts: [...DummyData.Posts],
   });
-  const [searched, setSearched] = useState([]);
+  const [searched, setSearched] = useState({
+    users: [],
+    posts: [],
+  });
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -34,6 +37,7 @@ const SearchPage = () => {
 
   const handleTabItemClick = (index) => {
     setCurrentActive(index);
+
     console.log(items);
   };
 
@@ -49,7 +53,18 @@ const SearchPage = () => {
             JSON.parse(post.title).content.includes(keyword),
           );
 
-    setSearched(searched);
+    const searchedUsers = users.filter((user) =>
+      user.fullName.startsWith(keyword),
+    );
+
+    const searchedPosts = posts.filter((post) =>
+      JSON.parse(post.title).content.includes(keyword),
+    );
+
+    setSearched({
+      users: searchedUsers,
+      posts: searchedPosts,
+    });
   };
 
   return (
@@ -77,17 +92,17 @@ const SearchPage = () => {
         <S.BaseCardWrapper>
           <BaseCardContainer overflow="auto">
             {currentActive === 0
-              ? searched.map((item) => (
-                  <S.ItemWrapper key={item._id}>
+              ? searched.users.map((user) => (
+                  <S.ItemWrapper>
                     <UserInfoItem
-                      userName={item.fullName}
-                      TTaBongCount={item.posts.length}
+                      userName={user.fullName}
+                      TTaBongCount={user.posts.length}
                     />
                   </S.ItemWrapper>
                 ))
-              : searched.map((item) => (
-                  <S.ItemWrapper key={item._id}>
-                    <MainCard post={item} />
+              : searched.posts.map((post) => (
+                  <S.ItemWrapper>
+                    <MainCard post={post} />
                   </S.ItemWrapper>
                 ))}
           </BaseCardContainer>
