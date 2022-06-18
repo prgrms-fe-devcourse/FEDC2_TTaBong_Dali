@@ -35,15 +35,17 @@ const MainFeedPage = () => {
           });
 
           return (
-            <MainCard
-              authorName={fullName}
-              receiverName={receiverName}
-              commenCount={comments.length}
-              likeCount={likes.length}
-              likeReason={content}
-              // 라벨 타입은 일단 임시로 하드코딩 해 두었습니다...!!
-              labelTypes={['warm', 'moved', 'praise']}
-            />
+            <S.MainCardWrapper>
+              <MainCard
+                authorName={fullName}
+                receiverName={receiverName}
+                commenCount={comments.length}
+                likeCount={likes.length}
+                likeReason={content}
+                // 라벨 타입은 일단 임시로 하드코딩 해 두었습니다...!!
+                labelTypes={['warm', 'moved', 'praise']}
+              />
+            </S.MainCardWrapper>
           );
         })}
       </S.MainFeedPageContainer>
