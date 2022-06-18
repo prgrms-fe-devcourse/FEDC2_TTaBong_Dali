@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { postComments } from '../../apis/comments';
+import { deleteLike, postLike } from '../../apis/like';
 import { getSpecificPost } from '../../apis/posts';
 import { getSpecificUser } from '../../apis/users';
 import DummyData from '../../assets/data/dummyData';
@@ -14,7 +15,12 @@ import PageTemplate from '../PageTemplate';
 // PraiseReason = '',
 // labelItems = [],
 
-// 먼저 비동기로 값을 가져 오고 그다음 값을 넣기
+// like 버튼
+// 포스트의 likes와 유저의 Likes를 구분해서
+
+const likeToggle = (likes, userId) => {
+  return !!likes.filter((like) => like.user === userId).length;
+};
 
 const CardDetailPage = () => {
   const navigator = useNavigate();
@@ -22,25 +28,15 @@ const CardDetailPage = () => {
   const commentInput = useRef('');
   const [isLoading, setLoading] = useState(true);
   const [receivedUser, setReceivedUser] = useState({});
-
-  const [props, setProps] = useState({
-    // author,
-    // title,
-    // likes,
-    // comments,
-    // _id,
-    // type,
-    // receiver,
-    // content,
-    // labels,
-  });
+  const [props, setProps] = useState({});
 
   useEffect(() => {
     const getPosts = async () => {
       setLoading(true);
-      const data2 = await getSpecificPost(id);
-      const { author, title, likes, comments, _id } = data2;
+      const post = await getSpecificPost(id);
+      const { author, title, likes, comments, _id } = post;
       const { type, receiver, content, labels = [] } = JSON.parse(title);
+      const isLike = likeToggle(likes, ''); // 접속한 유저의 id 값 넣기
       setProps({
         author,
         title,
@@ -51,18 +47,23 @@ const CardDetailPage = () => {
         receiver,
         content,
         labels,
+        isLike,
       });
       setReceivedUser(await getSpecificUser(receiver));
       setLoading(false);
     };
-
     getPosts();
   }, []);
 
-  const onClick = (id) => {
-    console.log(navigator('/mainfeed'));
+  const onClickLike = async () => {
+    console.log('object');
+    // 먼저 접속한 유저의 jwt 토큰을 가져오고 없으면 로그인 페이지로 이동
+    if (props.isLike) {
+      await deleteLike('', props.id);
+    } else {
+      await postLike('', props.id);
+    }
   };
-
   const onChangeInput = useCallback((e) => {
     commentInput.current = e.target.value;
   });
@@ -76,21 +77,20 @@ const CardDetailPage = () => {
     }
   };
 
-  // const receivedUser = getSpecificUser(receiver).then();
   return (
     <PageTemplate>
-      {console.log(isLoading)}
       {!isLoading && (
         <CardDetail
-          onClick={onClick}
           authorName={props.author.fullName}
+          authorId={props.author._id}
           receiverName={receivedUser.fullName}
+          receiverId={receivedUser._id}
           comments={props.comments}
           labelItems={props.labels}
           PraiseReason={props.content}
-          authorOnClick={onClick}
           onChangeInput={onChangeInput}
           onSubmitInput={onSubmitInput}
+          onClickLike={onClickLike}
         />
       )}
     </PageTemplate>
