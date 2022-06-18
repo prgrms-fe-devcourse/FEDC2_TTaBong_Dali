@@ -7,6 +7,7 @@ import { getSpecificUser } from '../../apis/users';
 import DummyData from '../../assets/data/dummyData';
 import CardDetail from '../../feature/Cards/CardDetail';
 import PageTemplate from '../PageTemplate';
+
 // authorName = '',
 // receiverName = '',
 // comments = [],
@@ -34,7 +35,8 @@ const CardDetailPage = () => {
     const getPosts = async () => {
       setLoading(true);
       const post = await getSpecificPost(id);
-      const { author, title, likes, comments, _id } = post;
+      const { author, title, likes, comments, _id } =
+        post || DummyData.Posts[0];
       const { type, receiver, content, labels = [] } = JSON.parse(title);
       const isLike = likeToggle(likes, ''); // 접속한 유저의 id 값 넣기
       setProps({
@@ -49,7 +51,8 @@ const CardDetailPage = () => {
         labels,
         isLike,
       });
-      setReceivedUser(await getSpecificUser(receiver));
+
+      setReceivedUser((await getSpecificUser(receiver)) || DummyData.Users[0]);
       setLoading(false);
     };
     getPosts();

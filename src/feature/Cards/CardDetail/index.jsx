@@ -24,6 +24,7 @@ const CardDetail = ({
   labelItems = [],
   onChangeInput,
   onSubmitInput,
+  onClickLike,
 }) => {
   return (
     <Card width={342} height={624}>
@@ -44,7 +45,9 @@ const CardDetail = ({
         <S.InfoContainer>
           <LabelList labelItems={labelItems} />
           <S.LikeContainer>
-            <img src={likes} alt="공감" width="28px" height="28px" />
+            <S.LikeEventWrapper onClick={onClickLike}>
+              <img src={likes} alt="공감" width="28px" height="28px" />
+            </S.LikeEventWrapper>
             <S.CountSpan>맞 따봉 {likeCount}개</S.CountSpan>
           </S.LikeContainer>
         </S.InfoContainer>
@@ -70,6 +73,7 @@ CardDetail.propTypes = {
   likeCount: PropTypes.string,
   PraiseReason: PropTypes.string.isRequired,
   labelItems: PropTypes.string.isRequired,
+  onClickLike: PropTypes.func,
 };
 
 export default CardDetail;
