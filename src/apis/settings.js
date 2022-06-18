@@ -21,11 +21,6 @@ export const putInfo = async (JWTtoken, fullName = '', username = '') => {
   return null;
 };
 
-putInfo.propTypes = {
-  fullName: Proptypes.string.isRequired,
-  username: Proptypes.string.isRequired,
-};
-
 // 내 계정 비밀번호를 변경합니다.
 export const putPassword = async (JWTtoken, password = '') => {
   try {
@@ -35,16 +30,10 @@ export const putPassword = async (JWTtoken, password = '') => {
       },
       password,
     });
-
-    if (newPassword.statusText === 'OK') {
-      return newPassword;
-    }
+    console.log(newPassword);
+    return newPassword;
   } catch (e) {
     console.error(e);
   }
   return null;
-};
-
-putPassword.propTypes = {
-  password: Proptypes.string.isRequired,
 };

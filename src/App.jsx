@@ -10,6 +10,7 @@ import {
   SearchPage,
   TTaBongPage,
   UserProfilePage,
+  ProfileEditPage,
 } from './pages';
 import NotFoundPage from './pages/NotFound';
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/TTaBong/*" element={<TTaBongPage />} />
         <Route path="/search/*" element={<SearchPage />} />
         <Route path="/userProfile/*" element={<UserProfilePage />} />
+        <Route path="/profileEdit/*" element={<ProfileEditPage />} />
         <Route path="/error/*" element={<NotFoundPage />} />
         <Route path="/*" element={<Navigate to="/mainFeed" />} />
       </Routes>

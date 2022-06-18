@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseCardContainer from '.';
-import PageTemplate from '../../pages/PageTemplate';
+import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import theme from '../../commons/style/themes';
 
 export default {

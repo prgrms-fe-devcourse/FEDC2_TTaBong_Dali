@@ -1,7 +1,7 @@
 // import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+// import './index.css';
 import { css } from '@emotion/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
