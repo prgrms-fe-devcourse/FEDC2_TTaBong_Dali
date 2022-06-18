@@ -13,6 +13,6 @@ export default Button;
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  type: PropTypes.string.isRequired, // 지우기
-  version: PropTypes.string.isRequired, // 지우기
+  type: PropTypes.string,
+  version: PropTypes.string,
 };

@@ -14,8 +14,11 @@ const ProfileEditForm = ({ onSubmit, defaultValue, ...styles }) => {
       password: '',
       passwordConfirm: '',
     },
-    onSubmit: (password) => {
-      onSubmit('jwt', password);
+    onSubmit: ({ password }) => {
+      onSubmit(
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYWFlZTk0ZTNmNTUyNzQ1MTBjYTA0MyIsImVtYWlsIjoid29vamVycnkzQG5hdmVyLmNvbSJ9LCJpYXQiOjE2NTU1NTYyODV9.TlplSWMIcaWwpDkH9YntxtJUsJdZKUoybf3SZHylxkc',
+        password,
+      );
     },
     validate: ({ password, passwordConfirm }) => {
       const errors = {};

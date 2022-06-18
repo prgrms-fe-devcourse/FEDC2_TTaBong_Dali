@@ -22,8 +22,9 @@ export const putInfo = async (JWTtoken, fullName = '', username = '') => {
 };
 
 // 내 계정 비밀번호를 변경합니다.
-export const putPassword = async (JWTtoken, password = '') => {
+export const putPassword = async (JWTtoken, password) => {
   try {
+    console.log(JWTtoken, password);
     const newPassword = await axios.put(`/settings/update-password`, {
       headers: {
         Authorization: `bearer ${JWTtoken}`,
