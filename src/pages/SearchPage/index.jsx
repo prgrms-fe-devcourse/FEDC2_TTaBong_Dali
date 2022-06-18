@@ -11,6 +11,7 @@ import {
 import DummyData from '../../assets/data/dummyData';
 import MainCard from '../../feature/Cards/MainCard';
 import UserInfoItem from '../../components/UserInfoItem';
+import Constants from '../../commons/constants';
 
 const SearchPage = () => {
   const [currentActive, setCurrentActive] = useTab();
@@ -26,8 +27,8 @@ const SearchPage = () => {
   useEffect(() => {
     const fetchInitialData = async () => {
       const users = await getAllUsers(20);
-      const testChannel = await getSpecificChannel('Test');
-      const posts = await getChannelPosts(testChannel._id);
+      const channel = await getSpecificChannel(Constants.CHANNE_NAME);
+      const posts = await getChannelPosts(channel._id);
 
       setItems({ users, posts });
     };
@@ -37,21 +38,15 @@ const SearchPage = () => {
 
   const handleTabItemClick = (index) => {
     setCurrentActive(index);
-
-    console.log(items);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { users, posts } = items;
-    const keyword = e.target.search.value;
 
-    const searched =
-      currentActive === 0
-        ? users.filter((user) => user.fullName.startsWith(keyword))
-        : posts.filter((post) =>
-            JSON.parse(post.title).content.includes(keyword),
-          );
+    const keyword = e.target.search.value;
+    if (keyword.length < 2) return;
+
+    const { users, posts } = items;
 
     const searchedUsers = users.filter((user) =>
       user.fullName.startsWith(keyword),
