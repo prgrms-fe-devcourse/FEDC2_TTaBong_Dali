@@ -30,5 +30,7 @@ export const ContentSection = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 74px;
-  line-height: 2rem;
+
+  /* 이것 때문에 카드 밖으로 내용이 뛰쳐 나가서 임시로 주석 처리하였습니다. /*
+  /* line-height: 2rem; */
 `;
