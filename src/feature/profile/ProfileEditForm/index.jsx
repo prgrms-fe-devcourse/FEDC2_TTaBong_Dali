@@ -14,11 +14,14 @@ const ProfileEditForm = ({ onSubmit, defaultValue, ...styles }) => {
       password: '',
       passwordConfirm: '',
     },
-    onSubmit: ({ password }) => {
-      onSubmit(
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYWFlZTk0ZTNmNTUyNzQ1MTBjYTA0MyIsImVtYWlsIjoid29vamVycnkzQG5hdmVyLmNvbSJ9LCJpYXQiOjE2NTU1NTYyODV9.TlplSWMIcaWwpDkH9YntxtJUsJdZKUoybf3SZHylxkc',
+    onSubmit: async ({ password }) => {
+      const response = await onSubmit(
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYWFlZTk0ZTNmNTUyNzQ1MTBjYTA0MyIsImVtYWlsIjoid29vamVycnkzQG5hdmVyLmNvbSJ9LCJpYXQiOjE2NTU1NTg3NzJ9.FilLBV8W7l3OH-kWxIIJ4JBFLBjXFRSh_xoHMzLsJKg', // 임시 토큰
         password,
       );
+      if (response === 'Password updated successfully.') {
+        alert('비밀번호가 성공적으로 변경됐습니다.');
+      }
     },
     validate: ({ password, passwordConfirm }) => {
       const errors = {};
