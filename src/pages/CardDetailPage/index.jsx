@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { postComments } from '../../apis/comments';
 import { getSpecificPost } from '../../apis/posts';
 import { getSpecificUser } from '../../apis/users';
 import DummyData from '../../assets/data/dummyData';
@@ -13,56 +14,85 @@ import PageTemplate from '../PageTemplate';
 // PraiseReason = '',
 // labelItems = [],
 
-const test = (func) => {
-  useEffect(() => {
-    const tesat = async () => {
-      const test = await func(useParams().id);
-    };
-
-    tesat();
-  }, []);
-};
+// 먼저 비동기로 값을 가져 오고 그다음 값을 넣기
 
 const CardDetailPage = () => {
-  const { author, title, likes, comments } = DummyData.Posts[0];
-  const { type, receiver, content, labels = [] } = JSON.parse(title);
   const navigator = useNavigate();
-  const [input, SetInput] = useState('');
-  test(getSpecificPost);
-  // useEffect(() => {
-  //   getSpecificPost(useParams().id).then((a) => console.log(a));
-  // }, []);
+  const { id } = useParams();
+  const commentInput = useRef('');
+  const [isLoading, setLoading] = useState(true);
+  const [receivedUser, setReceivedUser] = useState({});
+
+  const [props, setProps] = useState({
+    // author,
+    // title,
+    // likes,
+    // comments,
+    // _id,
+    // type,
+    // receiver,
+    // content,
+    // labels,
+  });
+
+  useEffect(() => {
+    const getPosts = async () => {
+      setLoading(true);
+      const data2 = await getSpecificPost(id);
+      const { author, title, likes, comments, _id } = data2;
+      const { type, receiver, content, labels = [] } = JSON.parse(title);
+      setProps({
+        author,
+        title,
+        likes,
+        comments,
+        _id,
+        type,
+        receiver,
+        content,
+        labels,
+      });
+      setReceivedUser(await getSpecificUser(receiver));
+      setLoading(false);
+    };
+
+    getPosts();
+  }, []);
 
   const onClick = (id) => {
-    console.log('tesaat');
     console.log(navigator('/mainfeed'));
   };
 
   const onChangeInput = useCallback((e) => {
-    console.log(e.target.value);
-    SetInput(e.target.value);
+    commentInput.current = e.target.value;
   });
 
-  const onSubmitInput = (e) => {
+  const onSubmitInput = async (e) => {
     e.preventDefault();
-    console.log(e.target);
+    const test = await postComments('', props._id, commentInput.current);
+    if (!test) {
+      alert('로그인이 필요합니다');
+      navigator('/mainfeed');
+    }
   };
 
-  const receivedUser = DummyData.Users[0];
   // const receivedUser = getSpecificUser(receiver).then();
   return (
     <PageTemplate>
-      <CardDetail
-        onClick={onClick}
-        authorName={author.fullName}
-        receiverName={receivedUser.fullName}
-        comments={comments}
-        labelItems={labels}
-        PraiseReason={content}
-        authorOnClick={onClick}
-        onChangeInput={onChangeInput}
-        onSubmitInput={onSubmitInput}
-      />
+      {console.log(isLoading)}
+      {!isLoading && (
+        <CardDetail
+          onClick={onClick}
+          authorName={props.author.fullName}
+          receiverName={receivedUser.fullName}
+          comments={props.comments}
+          labelItems={props.labels}
+          PraiseReason={props.content}
+          authorOnClick={onClick}
+          onChangeInput={onChangeInput}
+          onSubmitInput={onSubmitInput}
+        />
+      )}
     </PageTemplate>
   );
 };

@@ -12,7 +12,9 @@ import InputForm from '../../../components/InputForm';
 
 const CardDetail = ({
   authorName = '',
+  authorImg,
   receiverName = '',
+  receiverImg,
   comments = [],
   img = '',
   likeCount = 0,

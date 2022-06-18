@@ -6,18 +6,24 @@ import Avatar from '../../../components/Avatar';
 
 const TTaBongerAndTTaBonged = ({
   authorName,
+  authorImg,
   receiverName,
+  receiverImg,
   authorOnClick,
   receiverOnClick,
 }) => {
   return (
     <S.TTaBongsContainer>
-      <Avatar avatarName={authorName} onClick={authorOnClick} />
+      <Avatar avatarName={authorName} onClick={authorOnClick} authorImg />
       <S.TTaBongedContainer>
         <S.TTaBongIconWrapper>
           <img src={TB} alt="따봉" width="40px" height="40px" />
         </S.TTaBongIconWrapper>
-        <Avatar avatarName={receiverName} onClick={receiverOnClick} />
+        <Avatar
+          avatarName={receiverName}
+          onClick={receiverOnClick}
+          receiverImg
+        />
       </S.TTaBongedContainer>
     </S.TTaBongsContainer>
   );
