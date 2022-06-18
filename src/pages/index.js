@@ -5,7 +5,7 @@ export { default as SearchPage } from './SearchPage';
 export { default as UserProfilePage } from './UserProfilePage';
 
 export { default as LoginPage } from './LoginPage';
-export { default as SignupPage } from './SignupPage';
+export { default as RegisterPage } from './RegisterPage';
 
 export { default as CardDetailPage } from './CardDetailPage';
 

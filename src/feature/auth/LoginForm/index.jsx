@@ -12,8 +12,8 @@ const LoginForm = ({ onSubmit }) => {
       email: '',
       password: '',
     },
-    onSubmit: () => {
-      console.log('submit!');
+    onSubmit: ({ email, password }) => {
+      onSubmit(email, password);
     },
     validate: ({ email, password }) => {
       const errors = {};
