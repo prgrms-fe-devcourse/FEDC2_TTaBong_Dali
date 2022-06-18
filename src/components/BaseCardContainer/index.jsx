@@ -13,6 +13,7 @@ const BaseCardContainer = ({
   borderRadius = `${theme.borderRadius.rounded}`,
   overflow,
 }) => {
+  console.log(overflow);
   return (
     <S.Container
       opacity={opacityType}

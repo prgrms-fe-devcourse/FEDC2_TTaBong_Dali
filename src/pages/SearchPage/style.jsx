@@ -34,3 +34,7 @@ export const TabWrapper = styled(ContentWrapper)`
 export const BaseCardWrapper = styled(ContentWrapper)`
   height: ${getPxToRem(450)};
 `;
+
+export const MainCardWrapper = styled.div`
+  margin-bottom: ${getPxToRem(18)};
+`;

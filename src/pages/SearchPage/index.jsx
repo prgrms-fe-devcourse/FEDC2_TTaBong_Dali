@@ -9,6 +9,7 @@ import {
   getSpecificChannel,
 } from '../../apis/index';
 import DummyData from '../../assets/data/dummyData';
+import MainCard from '../../feature/Cards/MainCard';
 
 const SearchPage = () => {
   const [currentActive, setCurrentActive] = useTab();
@@ -32,7 +33,6 @@ const SearchPage = () => {
 
   const handleTabItemClick = (index) => {
     setCurrentActive(index);
-    console.log(items);
   };
 
   const handleSubmit = async (e) => {
@@ -73,10 +73,14 @@ const SearchPage = () => {
           </Tab>
         </S.TabWrapper>
         <S.BaseCardWrapper>
-          <BaseCardContainer>
+          <BaseCardContainer overflow>
             {currentActive === 0
               ? searched.map((item) => <p key={item._id}>{item.fullName}</p>)
-              : searched.map((item) => <p key={item._id}>{item.title}</p>)}
+              : searched.map((item) => (
+                  <S.MainCardWrapper>
+                    <MainCard post={item} />
+                  </S.MainCardWrapper>
+                ))}
           </BaseCardContainer>
         </S.BaseCardWrapper>
       </S.SearchPageContainer>
