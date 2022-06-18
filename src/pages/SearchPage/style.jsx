@@ -35,6 +35,6 @@ export const BaseCardWrapper = styled(ContentWrapper)`
   height: ${getPxToRem(450)};
 `;
 
-export const MainCardWrapper = styled.div`
+export const ItemWrapper = styled.div`
   margin-bottom: ${getPxToRem(18)};
 `;

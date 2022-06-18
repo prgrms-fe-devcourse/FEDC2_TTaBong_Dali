@@ -10,6 +10,7 @@ import {
 } from '../../apis/index';
 import DummyData from '../../assets/data/dummyData';
 import MainCard from '../../feature/Cards/MainCard';
+import UserInfoItem from '../../components/UserInfoItem';
 
 const SearchPage = () => {
   const [currentActive, setCurrentActive] = useTab();
@@ -33,6 +34,7 @@ const SearchPage = () => {
 
   const handleTabItemClick = (index) => {
     setCurrentActive(index);
+    console.log(items);
   };
 
   const handleSubmit = async (e) => {
@@ -73,13 +75,20 @@ const SearchPage = () => {
           </Tab>
         </S.TabWrapper>
         <S.BaseCardWrapper>
-          <BaseCardContainer overflow>
+          <BaseCardContainer overflow="auto">
             {currentActive === 0
-              ? searched.map((item) => <p key={item._id}>{item.fullName}</p>)
+              ? searched.map((item) => (
+                  <S.ItemWrapper key={item._id}>
+                    <UserInfoItem
+                      userName={item.fullName}
+                      TTaBongCount={item.posts.length}
+                    />
+                  </S.ItemWrapper>
+                ))
               : searched.map((item) => (
-                  <S.MainCardWrapper>
+                  <S.ItemWrapper key={item._id}>
                     <MainCard post={item} />
-                  </S.MainCardWrapper>
+                  </S.ItemWrapper>
                 ))}
           </BaseCardContainer>
         </S.BaseCardWrapper>

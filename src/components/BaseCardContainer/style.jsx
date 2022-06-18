@@ -15,7 +15,7 @@ export const Container = styled.div`
   border-radius: ${({ borderRadius }) => borderRadius};
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 
-  overflow: ${({ overflow }) => (overflow ? 'auto' : '')};
+  overflow: ${({ overflow }) => overflow || ''};
 `;
 
 export const ContentSection = styled.div`
