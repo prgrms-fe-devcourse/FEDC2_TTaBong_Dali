@@ -2,19 +2,12 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { postComments } from '../../apis/comments';
 import { deleteLike, postLike } from '../../apis/like';
+import { postNotifications } from '../../apis/notifications';
 import { getSpecificPost } from '../../apis/posts';
 import { getSpecificUser } from '../../apis/users';
 import DummyData from '../../assets/data/dummyData';
 import CardDetail from '../../feature/Cards/CardDetail';
 import PageTemplate from '../PageTemplate';
-
-// authorName = '',
-// receiverName = '',
-// comments = [],
-// img = '',
-// likeCount = 0,
-// PraiseReason = '',
-// labelItems = [],
 
 // like 버튼
 // 포스트의 likes와 유저의 Likes를 구분해서
@@ -63,19 +56,23 @@ const CardDetailPage = () => {
     if (props.isLike) {
       await deleteLike('', props._id);
     } else {
-      await postLike('', props._id);
+      const like = await postLike('', props._id);
+      postNotifications('', 'LIKE', like._id);
     }
   };
+
   const onChangeInput = useCallback((e) => {
     commentInput.current = e.target.value;
   });
 
   const onSubmitInput = async (e) => {
     e.preventDefault();
-    const test = await postComments('', props._id, commentInput.current);
-    if (!test) {
+    const comment = await postComments('', props._id, commentInput.current);
+    if (!comment) {
       alert('로그인이 필요합니다');
       navigator('/mainfeed');
+    } else {
+      postNotifications('', 'COMMENT', comment._id);
     }
   };
 
