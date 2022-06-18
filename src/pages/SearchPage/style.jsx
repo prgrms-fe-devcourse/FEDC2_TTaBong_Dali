@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import InputForm from '../../components/InputForm';
 import { getPxToRem } from '../../utils/getPxToRem';
 
 export const SearchPageContainer = styled.div`
@@ -22,6 +23,11 @@ export const InputWrapper = styled(ContentWrapper)`
   justify-content: center;
   align-items: center;
 `;
+
+export const SearchInputForm = styled(InputForm)`
+  background-color: ${({ theme }) => theme.colors.white};
+`;
+
 export const TabWrapper = styled(ContentWrapper)`
   height: ${getPxToRem(45)};
 `;
