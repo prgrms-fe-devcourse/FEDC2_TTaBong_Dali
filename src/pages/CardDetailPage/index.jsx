@@ -59,12 +59,11 @@ const CardDetailPage = () => {
   }, []);
 
   const onClickLike = async () => {
-    console.log('object');
     // 먼저 접속한 유저의 jwt 토큰을 가져오고 없으면 로그인 페이지로 이동
     if (props.isLike) {
-      await deleteLike('', props.id);
+      await deleteLike('', props._id);
     } else {
-      await postLike('', props.id);
+      await postLike('', props._id);
     }
   };
   const onChangeInput = useCallback((e) => {
