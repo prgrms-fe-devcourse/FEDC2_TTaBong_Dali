@@ -4,17 +4,39 @@ import apiClient from './api';
 const USERS = `/users`;
 
 // 사용자 목록을 불러옵니다.
-export const getAllUsers = async (offset = 0, limit = 10) => {
-  const allUsers = await apiClient.get(
+export const getUserList = async (offset = 0, limit = 10) => {
+  const userList = await apiClient.get(
     `${USERS}/get-users?offset=${offset}&limit=${limit}`,
   );
 
-  return allUsers;
+  return userList;
 };
 
-getAllUsers.propTypes = {
+getUserList.propTypes = {
   offset: Proptypes.number,
   limit: Proptypes.number,
+};
+
+// 모든 사용자 목록을 불러옵니다.
+export const getAllUsers = async () => {
+  const allUserList = [];
+
+  let offset = 0;
+  const limit = 10;
+  const TEMP_OFFSET_LIMIT = 100;
+  while (offset < TEMP_OFFSET_LIMIT) {
+    // eslint-disable-next-line no-await-in-loop
+    const userList = await apiClient.get(
+      `${USERS}/get-users?offset=${offset}&limit=${limit}`,
+    );
+
+    if (userList.length === 0) break;
+
+    allUserList.push(...userList);
+    offset += limit;
+  }
+
+  return allUserList;
 };
 
 // 현재 접속 중인 사용자 목록을 불러옵니다.
