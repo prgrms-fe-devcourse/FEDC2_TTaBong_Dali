@@ -12,16 +12,16 @@ import InputForm from '../../../components/InputForm';
 
 const CardDetail = ({
   authorName = '',
+  authorId = '',
   authorImg,
   receiverName = '',
+  receiverId = '',
   receiverImg,
   comments = [],
   img = '',
   likeCount = 0,
   PraiseReason = '',
   labelItems = [],
-  authorOnClick,
-  receiverOnClick,
   onChangeInput,
   onSubmitInput,
 }) => {
@@ -29,9 +29,9 @@ const CardDetail = ({
     <Card width={342} height={624}>
       <TTaBongerAndTTaBonged
         authorName={authorName}
+        authorId={authorId}
         receiverName={receiverName}
-        authorOnClick={authorOnClick}
-        receiverOnClick={receiverOnClick}
+        receiverId={receiverId}
       />
       <S.MainSection>
         <S.ContentContainer>
@@ -62,14 +62,14 @@ const CardDetail = ({
 
 CardDetail.propTypes = {
   authorName: PropTypes.string.isRequired,
+  authorId: PropTypes.string.isRequired,
   receiverName: PropTypes.string.isRequired,
+  receiverId: PropTypes.string.isRequired,
   comments: PropTypes.array,
   img: PropTypes.string,
   likeCount: PropTypes.string,
   PraiseReason: PropTypes.string.isRequired,
   labelItems: PropTypes.string.isRequired,
-  authorOnClick: PropTypes.func,
-  receiverOnClick: PropTypes.func,
 };
 
 export default CardDetail;

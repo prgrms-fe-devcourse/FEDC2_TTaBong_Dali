@@ -1,29 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import TB from '../../../assets/ttabong_card.svg';
 import Avatar from '../../../components/Avatar';
 
 const TTaBongerAndTTaBonged = ({
   authorName,
+  authorId,
   authorImg,
   receiverName,
   receiverImg,
-  authorOnClick,
-  receiverOnClick,
+  receiverId,
 }) => {
+  const authorPath = `/test/${authorId}`;
+  const receiverPath = `/test/${receiverId}`;
+  console.log(authorId);
   return (
     <S.TTaBongsContainer>
-      <Avatar avatarName={authorName} onClick={authorOnClick} authorImg />
+      <S.StyledLink to={authorPath}>
+        <Avatar avatarName={authorName} authorImg />
+      </S.StyledLink>
       <S.TTaBongedContainer>
         <S.TTaBongIconWrapper>
           <img src={TB} alt="따봉" width="40px" height="40px" />
         </S.TTaBongIconWrapper>
-        <Avatar
-          avatarName={receiverName}
-          onClick={receiverOnClick}
-          receiverImg
-        />
+        <S.StyledLink to={receiverPath} receiverId>
+          <Avatar avatarName={receiverName} receiverImg />
+        </S.StyledLink>
       </S.TTaBongedContainer>
     </S.TTaBongsContainer>
   );
