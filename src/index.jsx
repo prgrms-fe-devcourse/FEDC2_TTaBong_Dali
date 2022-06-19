@@ -1,40 +1,14 @@
 // import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import { css } from '@emotion/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
-
-const style = css`
-  color: hotpink;
-`;
-
-function SomeComponent({ children }) {
-  return (
-    <div css={style}>
-      Some hotpink text.
-      {children}
-    </div>
-  );
-}
-
-const anotherStyle = css({
-  textDecoration: 'underline',
-});
-
-function AnotherComponent() {
-  return <div css={anotherStyle}>Some text with an underline.</div>;
-}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
     <React.StrictMode>
-      <SomeComponent>
-        <AnotherComponent />
-        <App />
-      </SomeComponent>
+      <App />
     </React.StrictMode>
   </Router>,
 );

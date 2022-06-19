@@ -8,31 +8,21 @@ import Image from '../../../components/Image';
 import likes from '../../../assets/sympathy_ttabong.svg';
 import Divider from '../../../components/Divider';
 import CommentList from '../CommentList';
-import InputForm from '../../../components/InputForm';
 
 const CardDetail = ({
   authorName = '',
-  authorId = '',
-  authorImg,
   receiverName = '',
-  receiverId = '',
-  receiverImg,
   comments = [],
   img = '',
   likeCount = 0,
   PraiseReason = '',
   labelItems = [],
-  onChangeInput,
-  onSubmitInput,
-  onClickLike,
 }) => {
   return (
-    <Card width={342} height={624}>
+    <Card width={342} height={614}>
       <TTaBongerAndTTaBonged
         authorName={authorName}
-        authorId={authorId}
         receiverName={receiverName}
-        receiverId={receiverId}
       />
       <S.MainSection>
         <S.ContentContainer>
@@ -45,19 +35,12 @@ const CardDetail = ({
         <S.InfoContainer>
           <LabelList labelItems={labelItems} />
           <S.LikeContainer>
-            <S.LikeEventWrapper onClick={onClickLike}>
-              <img src={likes} alt="공감" width="28px" height="28px" />
-            </S.LikeEventWrapper>
+            <img src={likes} alt="공감" width="28px" height="28px" />
             <S.CountSpan>맞 따봉 {likeCount}개</S.CountSpan>
           </S.LikeContainer>
         </S.InfoContainer>
         <Divider size={320} />
-        <CommentList height={170} comments={comments} />
-        <InputForm
-          version="comment"
-          onChange={onChangeInput}
-          onSubmit={onSubmitInput}
-        />
+        <CommentList comments={comments} />
       </S.MainSection>
     </Card>
   );
@@ -65,15 +48,12 @@ const CardDetail = ({
 
 CardDetail.propTypes = {
   authorName: PropTypes.string.isRequired,
-  authorId: PropTypes.string.isRequired,
   receiverName: PropTypes.string.isRequired,
-  receiverId: PropTypes.string.isRequired,
   comments: PropTypes.array,
   img: PropTypes.string,
   likeCount: PropTypes.string,
   PraiseReason: PropTypes.string.isRequired,
   labelItems: PropTypes.string.isRequired,
-  onClickLike: PropTypes.func,
 };
 
 export default CardDetail;
