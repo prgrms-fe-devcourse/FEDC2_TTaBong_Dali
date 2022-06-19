@@ -1,13 +1,21 @@
 import styled from '@emotion/styled';
+import theme from '../../commons/style/themes';
+import { getHexToRgb } from '../../utils/getHexToRgb';
 
 export const ModalContainer = styled.div`
+  width: 100%;
+  height: 100%;
+
   display: ${({ isModalOn }) => (isModalOn ? 'block' : 'none')};
 `;
 
 export const BackgroundContainer = styled.div`
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: ${({ backgroundColor, backgroundOpacity }) =>
+    `rgba(${getHexToRgb(theme.colors[backgroundColor || 'black'])}, ${
+      backgroundOpacity === 0 ? 0 : backgroundOpacity || 1
+    })`};
   position: fixed;
 
   display: flex;

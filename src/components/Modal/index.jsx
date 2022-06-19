@@ -32,10 +32,16 @@ const Modal = ({
   isModalOn,
   backgroundRef,
   handleCloseModal,
+  ...styles
 }) => {
   return (
     <S.ModalContainer isModalOn={isModalOn}>
-      <S.BackgroundContainer onClick={handleCloseModal} ref={backgroundRef}>
+      <S.BackgroundContainer
+        onClick={handleCloseModal}
+        ref={backgroundRef}
+        backgroundColor={styles.backgroundColor}
+        backgroundOpacity={styles.backgroundOpacity}
+      >
         <S.ContentContainer width={width} height={height}>
           {children}
         </S.ContentContainer>
