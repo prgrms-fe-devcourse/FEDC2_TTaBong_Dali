@@ -31,6 +31,7 @@ const SearchPage = () => {
       const posts = await getChannelPosts(channel._id);
 
       setItems({ users, posts });
+      setSearched({ users, posts });
     };
 
     fetchInitialData();
