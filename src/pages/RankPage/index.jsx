@@ -10,12 +10,15 @@ import { getAllUsers, getChannelPosts } from '../../apis/index';
 import { TabItem } from '../../components/Tab';
 
 const RankPage = () => {
+  const TTABONG = 'TTaBongCount';
+  const COIN = 'coinCount';
+
   const [users, setUsers] = useState([
     {
       fullName: undefined,
     },
   ]);
-  const [goods, setGoods] = useState('TTaBongCount');
+  const [goods, setGoods] = useState(TTABONG);
 
   const sortGoods = (goods) => {
     setUsers(
@@ -30,14 +33,9 @@ const RankPage = () => {
     );
   };
 
-  const clickTTaBongKing = () => {
-    setGoods('TTaBongCount');
-    sortGoods('TTaBongCount');
-  };
-
-  const clickCoinKing = () => {
-    setGoods('coinCount');
-    sortGoods('coinCount');
+  const onClickTab = (type) => {
+    setGoods(type);
+    sortGoods(type);
   };
 
   // users = [{id, 이름, 따봉카운트, 코인카운트},...]
@@ -56,7 +54,7 @@ const RankPage = () => {
       for (let i = 0; i < allUserInfo.length; i += 1) {
         const { _id, coinCount } = allUserInfo[i];
         if (receiver === _id) {
-          const count = type === 'TTaBongCount' ? coinCount + 1 : coinCount + 2;
+          const count = type === TTABONG ? coinCount + 1 : coinCount + 2;
           allUserInfo[i].coinCount = count;
           break;
         }
@@ -75,33 +73,32 @@ const RankPage = () => {
     <PageTemplate page="rank">
       <S.RankPageContainer>
         <S.TabContainer>
-          <TabItem active={goods === 'TTaBongCount'} onClick={clickTTaBongKing}>
+          <TabItem
+            active={goods === TTABONG}
+            onClick={() => onClickTab(TTABONG)}
+          >
             따봉왕
           </TabItem>
-          <TabItem active={goods === 'coinCount'} onClick={clickCoinKing}>
+          <TabItem active={goods === COIN} onClick={() => onClickTab(COIN)}>
             코인왕
           </TabItem>
         </S.TabContainer>
         {/* height를 rem으로 줌 */}
-        <BaseCardContainer height={34} opacityType="0.7">
+        <BaseCardContainer height={34} opacityType={0.7}>
           <RankFirstInfo
             userName={users[0].fullName}
-            TTaBongCount={goods === 'TTaBongCount' ? users[0].TTaBongCount : -1}
-            coinCount={goods === 'coinCount' ? users[0].coinCount : -1}
+            TTaBongCount={goods === TTABONG ? users[0][TTABONG] : -1}
+            coinCount={goods === COIN ? users[0][COIN] : -1}
           />
           <S.RankList>
-            {users.map((user, i) => {
-              if (i === 0) return null; // 랭크 1등 null
-
+            {users.slice(1).map((user, i) => {
               return (
                 <UserInfoItem
-                  rank={i + 1}
+                  rank={i + 2}
                   key={user._id}
                   userName={user.fullName}
-                  TTaBongCount={
-                    goods === 'TTaBongCount' ? user.TTaBongCount : -1
-                  }
-                  coinCount={goods === 'coinCount' ? user.coinCount : -1}
+                  TTaBongCount={goods === TTABONG ? user[TTABONG] : -1}
+                  coinCount={goods === COIN ? user[COIN] : -1}
                 />
               );
             })}
