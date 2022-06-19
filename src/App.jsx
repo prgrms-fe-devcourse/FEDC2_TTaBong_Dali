@@ -14,23 +14,26 @@ import {
   RegisterPage,
 } from './pages';
 import NotFoundPage from './pages/NotFound';
+import UserProvider from './contexts/UserProvider';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Routes>
-        <Route path="/mainFeed/*" element={<MainFeedPage />} />
-        <Route path="/cardDetail/*" element={<CardDetailPage />} />
-        <Route path="/rank/*" element={<RankPage />} />
-        <Route path="/TTaBong/*" element={<TTaBongPage />} />
-        <Route path="/search/*" element={<SearchPage />} />
-        <Route path="/userProfile/*" element={<UserProfilePage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="/error/*" element={<NotFoundPage />} />
-        <Route path="/*" element={<Navigate to="/mainFeed" />} />
-      </Routes>
+      <UserProvider>
+        <Routes>
+          <Route path="/mainFeed/*" element={<MainFeedPage />} />
+          <Route path="/cardDetail/*" element={<CardDetailPage />} />
+          <Route path="/rank/*" element={<RankPage />} />
+          <Route path="/TTaBong/*" element={<TTaBongPage />} />
+          <Route path="/search/*" element={<SearchPage />} />
+          <Route path="/userProfile/*" element={<UserProfilePage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="/error/*" element={<NotFoundPage />} />
+          <Route path="/*" element={<Navigate to="/mainFeed" />} />
+        </Routes>
+      </UserProvider>
     </ThemeProvider>
   );
 }
