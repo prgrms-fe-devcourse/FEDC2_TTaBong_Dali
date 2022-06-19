@@ -82,8 +82,7 @@ const RankPage = () => {
             코인왕
           </TabItem>
         </S.TabContainer>
-        {/* height를 rem으로 줌 @todo basecardcontainer props 변경으로 바꿔야됨 */}
-        <BaseCardContainer height={34} opacityType={0.7}>
+        <BaseCardContainer height={600} opacityType={0.7}>
           <RankFirstInfo
             userName={users[0].fullName}
             TTaBongCount={goods === TTABONG ? users[0][TTABONG] : -1}

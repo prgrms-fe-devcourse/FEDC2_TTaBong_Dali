@@ -11,5 +11,4 @@ export default Logo;
 
 Logo.propTypes = {
   type: PropTypes.string,
-  type: PropTypes.string,
 };
