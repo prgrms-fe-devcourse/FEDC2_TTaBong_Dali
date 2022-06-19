@@ -57,7 +57,7 @@ const CardDetailPage = () => {
       await deleteLike('', props._id);
     } else {
       const like = await postLike('', props._id);
-      postNotifications('', 'LIKE', like._id);
+      postNotifications('', 'LIKE', like._id, '');
     }
   };
 
@@ -72,7 +72,7 @@ const CardDetailPage = () => {
       alert('로그인이 필요합니다');
       navigator('/mainfeed');
     } else {
-      postNotifications('', 'COMMENT', comment._id);
+      postNotifications('', 'COMMENT', comment._id, ''); // 로그인한 user Id 필요
     }
   };
 
