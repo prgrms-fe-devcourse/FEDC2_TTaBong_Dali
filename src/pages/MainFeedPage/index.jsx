@@ -7,16 +7,25 @@ import MainCard from '../../feature/Cards/MainCard';
 
 import DummyData from '../../assets/data/dummyData';
 import { useScrollDown } from '../../hooks/useScrollDown';
+import { getChannelPosts } from '../../apis/index';
 
 const MainFeedPage = () => {
-  const { Posts, Users } = DummyData;
+  const { Posts } = DummyData;
   const [posts, setPosts] = useState([]);
 
   const [ref, isScrollDown] = useScrollDown();
 
-  // 후에 axios를 통해 Channel을 거쳐 post를 받아오는 작업 필요.
+  const testAPI = async () => {
+    const channelAPI = await getChannelPosts('62a19123d1b81239d875d20d');
+    return channelAPI;
+  };
+
   useEffect(() => {
-    setPosts(Posts);
+    const testCall = async () => {
+      const channelAPI = await testAPI();
+      setPosts(channelAPI || Posts);
+    };
+    testCall();
   }, []);
 
   return (
@@ -26,29 +35,11 @@ const MainFeedPage = () => {
         className={!isScrollDown ? 'bannerShown' : null}
       >
         <Banner isScrollDown={isScrollDown} />
-        {posts.map((post) => {
-          const { likes, comments, title, author } = post;
-          const { type, receiver, content } = JSON.parse(title);
-          const { fullName } = author;
-
-          const receiverName = Users.map((user) => {
-            return user._id === receiver ? user.fullName : null;
-          });
-
-          return (
-            <Link to="/cardDetail" className="mainCard">
-              <MainCard
-                authorName={fullName}
-                receiverName={receiverName}
-                commenCount={comments.length}
-                likeCount={likes.length}
-                likeReason={content}
-                // 라벨 타입은 일단 임시로 하드코딩 해 두었습니다...!!
-                labelTypes={['warm', 'moved', 'praise']}
-              />
-            </Link>
-          );
-        })}
+        {posts.map((post) => (
+          <S.MainCardWrapper key={post._id}>
+            <MainCard post={post} />
+          </S.MainCardWrapper>
+        ))}
       </S.MainFeedPageContainer>
     </PageTemplate>
   );

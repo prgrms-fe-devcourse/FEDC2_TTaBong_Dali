@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import MainCard from '.';
 
 export default {
@@ -31,5 +32,9 @@ export default {
   },
 };
 export const Default = (args) => {
-  return <MainCard {...args} />;
+  return (
+    <Router>
+      <MainCard {...args} />
+    </Router>
+  );
 };
