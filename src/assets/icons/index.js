@@ -8,6 +8,7 @@ import searchLine from './icon_search_line.svg';
 import userLine from './icon_user_line.svg';
 import TTaBongWhite from './TTaBong_white.svg';
 import alarmLine from './icon_alarm_line.svg';
+import checkWhite from './icon_check_white.svg';
 
 const IconList = {
   listFill,
@@ -20,6 +21,7 @@ const IconList = {
   userLine,
   TTaBongWhite,
   alarmLine,
+  checkWhite,
 };
 
 export default IconList;
