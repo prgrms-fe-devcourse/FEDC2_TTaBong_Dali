@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { number } from 'prop-types';
 
 export const Card = styled.div`
   width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};

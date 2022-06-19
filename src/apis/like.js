@@ -30,14 +30,14 @@ postLike.propTypes = {
 // delete인데 왜 response를 Like를 반환하지?
 export const deleteLike = async (JWTtoken, id) => {
   try {
-    const likes = await apiClient.delete(`/likes/delete`, {
+    const like = await apiClient.delete(`/likes/delete`, {
       headers: {
         Authorization: `bearer ${JWTtoken}`,
       },
       id,
     });
-    if (likes.statusText === 'OK') {
-      return likes;
+    if (like.statusText === 'OK') {
+      return like;
     }
   } catch (e) {
     console.error(e);

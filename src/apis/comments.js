@@ -2,10 +2,11 @@ import axios from 'axios';
 import Proptypes from 'prop-types';
 import apiClient from './api';
 
-// 특정 포스트에 좋아요합니다.
+// 특정 포스트에 댓글을 작성합니다
+
 export const postComments = async (JWTtoken, postId, comment = '') => {
   try {
-    const comments = await apiClient.post(`/comments/create`, {
+    const comment = await apiClient.post(`/comments/create`, {
       headers: {
         Authorization: `bearer ${JWTtoken}`,
       },
@@ -13,8 +14,8 @@ export const postComments = async (JWTtoken, postId, comment = '') => {
       comment,
     });
 
-    if (comments.statusText === 'OK') {
-      return comments;
+    if (comment.statusText === 'OK') {
+      return comment;
     }
   } catch (e) {
     console.error(e);

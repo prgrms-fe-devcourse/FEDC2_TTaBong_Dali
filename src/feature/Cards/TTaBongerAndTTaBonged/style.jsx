@@ -17,16 +17,3 @@ export const TTaBongedContainer = styled.div`
   display: flex;
   align-items: center;
 `;
-
-export const StyledLink = styled(Link)`
-  cursor: pointer;
-  text-decoration: none;
-  &:focus,
-  &:hover,
-  &:visited,
-  &:link,
-  &:active {
-    text-decoration: none;
-    color: inherit;
-  }
-`;
