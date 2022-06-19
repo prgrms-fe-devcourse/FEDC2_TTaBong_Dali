@@ -5,6 +5,7 @@ import Banner from '../../feature/pageTemplate/Banner';
 import MainCard from '../../feature/Cards/MainCard';
 
 import DummyData from '../../assets/data/dummyData';
+import { getChannelPosts } from '../../apis/index';
 import { useScrollDown } from '../../hooks/useScrollDown';
 
 const MainFeedPage = () => {
@@ -13,9 +14,17 @@ const MainFeedPage = () => {
 
   const [ref, isScrollDown] = useScrollDown();
 
-  // 후에 axios를 통해 Channel을 거쳐 post를 받아오는 작업 필요.
+  const testAPI = async () => {
+    const channelAPI = await getChannelPosts('62a19123d1b81239d875d20d');
+    return channelAPI;
+  };
+
   useEffect(() => {
-    setPosts(Posts);
+    const testCall = async () => {
+      const channelAPI = await testAPI();
+      setPosts(channelAPI || Posts);
+    };
+    testCall();
   }, []);
 
   return (
