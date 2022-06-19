@@ -41,8 +41,7 @@ const RankPage = () => {
   // users = [{id, 이름, 따봉카운트, 코인카운트},...]
   const sortUsers = async () => {
     const allUsers = await getAllUsers();
-    const channelPosts = await getChannelPosts('62a19123d1b81239d875d20d');
-
+    const channelPosts = await getChannelPosts('62a19123d1b81239d875d20d'); // @todo 전역에서 test channel id 설정하면 들고와서 다시 설정
     const allUserInfo = allUsers.map(({ fullName, _id, posts }) => {
       return { _id, fullName, TTaBongCount: posts.length, coinCount: 0 };
     });
@@ -83,7 +82,7 @@ const RankPage = () => {
             코인왕
           </TabItem>
         </S.TabContainer>
-        {/* height를 rem으로 줌 */}
+        {/* height를 rem으로 줌 @todo basecardcontainer props 변경으로 바꿔야됨 */}
         <BaseCardContainer height={34} opacityType={0.7}>
           <RankFirstInfo
             userName={users[0].fullName}
@@ -103,7 +102,7 @@ const RankPage = () => {
               );
             })}
           </S.RankList>
-          {/* 사용자가 로그인 했다면 보여줘야함 */}
+          {/* @todo 사용자가 로그인 했다면 보여줘야함 */}
           <S.MyRankWrapper>
             <UserInfoItem rank={5} TTaBongCount={3} userName="사용자" />
           </S.MyRankWrapper>
