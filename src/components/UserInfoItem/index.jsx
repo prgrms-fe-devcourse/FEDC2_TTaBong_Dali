@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import Avatar from '../Avatar';
+import CheckIcon from '../../feature/praise/CheckIcon';
 
 const UserInfoItem = ({
   rank,
@@ -9,6 +10,7 @@ const UserInfoItem = ({
   userName,
   coinCount = -1,
   TTaBongCount = -1,
+  useCheck,
 }) => {
   const navigate = useNavigate();
 
@@ -41,6 +43,7 @@ const UserInfoItem = ({
             <S.CountSpan>{TTaBongCount}</S.CountSpan>
           </S.CountWrapper>
         )}
+        {useCheck && <CheckIcon />}
       </S.CountContainer>
     </S.UserInfoItemContanier>
   );

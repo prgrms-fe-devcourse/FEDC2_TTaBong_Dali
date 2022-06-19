@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import UserInfoItem from '.';
 
 export default {
@@ -21,8 +22,16 @@ export default {
       defaultValue: -1,
       control: 'number',
     },
+    useCheck: {
+      defaultValue: false,
+      control: 'boolean',
+    },
   },
 };
 export const Default = (args) => {
-  return <UserInfoItem {...args} />;
+  return (
+    <Router>
+      <UserInfoItem {...args} />
+    </Router>
+  );
 };

@@ -68,7 +68,7 @@ const TTaBongModal = ({ modalProps }) => {
         <S.UserInfoItemContainer>
           {searched.map((user) => (
             <S.UserInfoItemWrapper>
-              <UserInfoItem userName={user.fullName} />
+              <UserInfoItem userName={user.fullName} useCheck />
             </S.UserInfoItemWrapper>
           ))}
         </S.UserInfoItemContainer>
