@@ -5,7 +5,7 @@ import apiClient from './api';
 // 나의 알림 목록을 불러옵니다.
 export const getNotifications = async (JWTtoken) => {
   try {
-    const notifications = await axios.get(`/notifications`, {
+    const notifications = await apiClient.get(`/notifications`, {
       headers: {
         Authorization: `bearer ${JWTtoken}`,
       },

@@ -15,6 +15,7 @@ import {
 } from './pages';
 import NotFoundPage from './pages/NotFound';
 import TestApiComponent from './feature/TestApiComponent';
+import AlarmPage from './pages/AlarmPage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/TTaBong/*" element={<TTaBongPage />} />
         <Route path="/search/*" element={<SearchPage />} />
         <Route path="/userProfile/*" element={<UserProfilePage />} />
+        <Route path="/alarm/*" element={<AlarmPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="/error/*" element={<NotFoundPage />} />
