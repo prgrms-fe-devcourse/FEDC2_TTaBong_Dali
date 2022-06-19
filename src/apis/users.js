@@ -12,11 +12,6 @@ export const getAllUsers = async (offset = 0, limit = 10) => {
   return allUsers;
 };
 
-getAllUsers.propTypes = {
-  offset: Proptypes.number,
-  limit: Proptypes.number,
-};
-
 // 현재 접속 중인 사용자 목록을 불러옵니다.
 export const getOnlineUsers = async () => {
   const onlineUsers = await apiClient.get(`${USERS}/online-users`);
