@@ -24,7 +24,7 @@ const MainCard = ({ post }) => {
     updatedAt,
   } = post;
 
-  const { type, receiver, content, labels } = JSON.parse(title.trim());
+  const { type, receiver, content, labelItems } = JSON.parse(title.trim());
 
   const navigate = useNavigate();
   const handleClick = () => navigate(`/cardDetail/${author._id}`);
@@ -44,7 +44,7 @@ const MainCard = ({ post }) => {
             <S.PraiseContent>{content}</S.PraiseContent>
           </S.PraiseContainer>
           <S.InfoContainer>
-            <LabelList labelItems={labels} />
+            <LabelList labelItems={labelItems} />
             <S.LikeContainer>
               <S.CountNumContainer>
                 <S.CountSpan>댓글 수 {comments.length}개</S.CountSpan>

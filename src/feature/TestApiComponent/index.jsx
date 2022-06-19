@@ -160,7 +160,7 @@ function TestApiComponent() {
         fullName: receiver.fullName,
       },
       content: postInput,
-      labels: ['warm', 'moved'],
+      labelItems: ['warm', 'moved'],
     });
 
     const newPost = await await createPost(curUser.token, channel._id, title);
