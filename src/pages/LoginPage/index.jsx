@@ -7,6 +7,7 @@ import { useAuthContext } from '../../contexts/UserProvider';
 
 const LoginPage = () => {
   const { dispatch } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleLogin = async (email, password) => {
     const { user, token } = await loginUser(email, password);
@@ -22,7 +23,9 @@ const LoginPage = () => {
       },
     );
 
-    // 라우팅
+    if (token) {
+      navigate(-1, { replace: true }); // registerPage에서 오면 ..?
+    }
   };
 
   return (

@@ -18,6 +18,7 @@ export const registerUser = async (email, fullName, password) => {
     fullName,
     password,
   });
+  // console.log(user, token);
 
   return { user, token };
 };
