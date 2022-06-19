@@ -1,55 +1,51 @@
-// import Proptypes from 'prop-types';
+import Proptypes from 'prop-types';
 import apiClient from './api';
-import { LOGIN, SIGNUP, LOGOUT } from '../commons/constants/apis';
-import { setCookie } from '../utils/cookies';
+
+const LOGIN = '/login';
+const LOGOUT = '/logout';
+const SIGNUP = '/signup';
 
 // 사용자가 이메일과 비밀번호로 서비스에 로그인합니다.
-export const loginUser = async (email, password) => {
+export const logIn = async (email = '', password = '') => {
   const { user, token } = await apiClient.post(`${LOGIN}`, {
     email,
     password,
-  });
-  console.log({ user, token });
-
-  setCookie('userToken', token, {
-    path: '/',
-    maxAge: 60 * 60 * 9, // 9시간
   });
 
   return { user, token };
 };
 
-// logIn.propTypes = {
-//   email: Proptypes.string.isRequired,
-//   password: Proptypes.string.isRequired,
-// };
+logIn.propTypes = {
+  email: Proptypes.string.isRequired,
+  password: Proptypes.string.isRequired,
+};
 
 // 사용자가 이메일과 비밀번호로 서비스에 가입합니다.
-export const registerUser = async (email, fullName, password) => {
+export const signUp = async (email, fullName, password) => {
   const { user, token } = await apiClient.post(`${SIGNUP}`, {
     email,
     fullName,
     password,
   });
-  console.log({ user, token });
 
   return { user, token };
 };
 
-// signUp.propTypes = {
-//   email: Proptypes.string.isRequired,
-//   fullName: Proptypes.string.isRequired,
-//   password: Proptypes.string.isRequired,
-// };
+signUp.propTypes = {
+  email: Proptypes.string.isRequired,
+  fullName: Proptypes.string.isRequired,
+  password: Proptypes.string.isRequired,
+};
 
 // 사용자가 로그아웃 합니다.
 // TO BE IMPLEMENTED : 뭘 구현해야 할 지 모르겠음
-export const logoutUser = async () => {
+export const logOut = async () => {
   const data = await apiClient.post(`${LOGOUT}`);
 };
 
 // 사용자가 인증이 되었는지 확인합니다.
-export const checkIsAuthUser = async (JWTtoken) => {
+// 일단 구현해놓긴 했는데 무슨 용도로 쓰는 것인지 모르겠습니다...!
+export const getAuthUser = async (JWTtoken) => {
   const user = await apiClient.get(`/auth-user`, {
     headers: {
       Authorization: `bearer ${JWTtoken}`,
@@ -59,6 +55,6 @@ export const checkIsAuthUser = async (JWTtoken) => {
   return user;
 };
 
-// getAuthUser.propTypes = {
-//   JWTtoken: Proptypes.string.isRequired,
-// };
+getAuthUser.propTypes = {
+  JWTtoken: Proptypes.string.isRequired,
+};

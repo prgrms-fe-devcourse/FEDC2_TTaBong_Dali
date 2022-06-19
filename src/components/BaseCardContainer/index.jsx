@@ -7,11 +7,10 @@ const BaseCardContainer = ({
   children,
   width = '100%',
   height = '100%',
-  padding = [2, 1, 0, 1],
+  padding = [2, 1, 2, 1],
   opacityType = theme.opacity.visible,
   backgroundColor = `${theme.colors.white}`,
   borderRadius = `${theme.borderRadius.rounded}`,
-  overflow,
 }) => {
   return (
     <S.Container
@@ -21,7 +20,6 @@ const BaseCardContainer = ({
       padding={padding}
       backgroundColor={backgroundColor}
       borderRadius={borderRadius}
-      overflow={overflow}
     >
       <S.ContentSection>{children}</S.ContentSection>
     </S.Container>

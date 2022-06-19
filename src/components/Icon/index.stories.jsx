@@ -18,7 +18,6 @@ export default {
           'searchLine',
           'userFill',
           'userLine',
-          'alarmLine',
         ],
       },
       defaultValue: 'listFill',

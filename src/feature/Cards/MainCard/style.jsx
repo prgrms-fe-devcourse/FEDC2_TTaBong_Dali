@@ -1,8 +1,12 @@
 import styled from '@emotion/styled';
 
-export const MainCardContainer = styled.div`
-  width: 100%;
-  height: 100%;
+export const BackgroundCard = styled.div`
+  width: 358px;
+  height: 204px;
+  background-color: ${(props) => props.theme.colors.white};
+  border-radius: 30px;
+  padding-top: 16px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 `;
 
 export const SecondSection = styled.section`

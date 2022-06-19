@@ -2,19 +2,18 @@ import styled from '@emotion/styled';
 
 export const BannerContainer = styled.div`
   position: fixed;
-  z-index: 2000;
+  z-index: 0;
   left: 0%;
   right: 0%;
-  top: 0;
-  height: 116px;
-  padding-top: 58px;
+  top: 58px;
+  height: 58px;
   display: flex;
   justify-content: space-around;
   background-color: ${(props) => props.theme.colors.skyblue[0]};
   border-radius: 0px 0px 30px 30px;
 
   &.hide {
-    animation: down 0.4s ease-out;
+    animation: down 0.4s ease;
     @keyframes down {
       0% {
         transform: translateY(0px);
@@ -26,7 +25,7 @@ export const BannerContainer = styled.div`
   }
 
   &.show {
-    animation: up 0.4s ease-out;
+    animation: up 0.4s ease;
     @keyframes up {
       0% {
         transform: translateY(-100px);

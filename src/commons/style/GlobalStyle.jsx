@@ -11,7 +11,6 @@ function GlobalStyle() {
           box-sizing: border-box;
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
-          font-family: Noto Sans KR, Nanum Gothic, sans-serif;
         }
         input {
           -webkit-appearance: none;

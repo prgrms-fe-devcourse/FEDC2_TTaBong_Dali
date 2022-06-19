@@ -1,26 +1,24 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import useRafState from './useRafState';
 
 export const useScroll = () => {
   const [offset, setOffset] = useRafState({ x: 0, y: 0 });
-  const ref = useRef(null);
   useEffect(() => {
-    const element = ref.current;
-    if (!element) return null;
-
     const handleScroll = () => {
       setOffset({
-        x: ref.current.scrollLeft,
-        y: ref.current.scrollTop,
+        x: window.scrollX,
+        y: window.pageYOffset,
       });
     };
 
-    element.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-    return () => element.removeEventListener('scroll', handleScroll);
-  }, [ref, setOffset]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [setOffset]);
 
-  return [ref, offset];
+  return [offset];
 };
 
 export default useScroll;

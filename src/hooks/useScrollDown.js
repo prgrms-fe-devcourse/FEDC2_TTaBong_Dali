@@ -3,7 +3,7 @@ import { useScroll } from './useScroll';
 
 export const useScrollDown = () => {
   const [prevOffsetY, setOffsetY] = useState(0);
-  const [ref, offset] = useScroll();
+  const [offset] = useScroll();
 
   const [scrollDown, setScrollDown] = useState(false);
   useEffect(() => {
@@ -17,5 +17,5 @@ export const useScrollDown = () => {
     }
   }, [offset]);
 
-  return [ref, scrollDown];
+  return scrollDown;
 };

@@ -1,12 +1,10 @@
 import styled from '@emotion/styled';
 import { getHexToRgb } from '../../utils/getHexToRgb';
-import { getPxToRem } from '../../utils/getPxToRem';
 
 export const Container = styled.div`
-  width: ${({ width }) =>
-    typeof width === 'number' ? `${getPxToRem(width)}` : width};
+  width: ${({ width }) => (typeof width === 'number' ? `${width}rem` : width)};
   height: ${({ height }) =>
-    typeof height === 'number' ? `${getPxToRem(height)}` : height};
+    typeof height === 'number' ? `${height}rem` : height};
 
   padding: ${({ padding }) => padding.map((pad) => `${pad}rem`).join(' ')};
   background-color: ${({ backgroundColor, opacity }) =>
@@ -14,10 +12,9 @@ export const Container = styled.div`
 
   border-radius: ${({ borderRadius }) => borderRadius};
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-
-  overflow: ${({ overflow }) => overflow || ''};
 `;
 
 export const ContentSection = styled.div`
   height: 100%;
+  overflow: auto;
 `;

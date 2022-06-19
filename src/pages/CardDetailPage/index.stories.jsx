@@ -1,17 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import MainFeedPage from './index';
+import CardDetailPage from '.';
 
+// 'mainFeed', 'ranking', 'search', 'user'
 export default {
-  title: 'Pages/MainFeedPage',
-  component: MainFeedPage,
+  title: 'Pages/CardDetailPage',
+  component: CardDetailPage,
   argTypes: {},
 };
 
 export const Default = (args) => {
   return (
     <Router>
-      <MainFeedPage {...args} />;
+      <CardDetailPage {...args} />
     </Router>
   );
 };

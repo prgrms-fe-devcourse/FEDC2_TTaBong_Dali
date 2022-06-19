@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import * as S from './style';
 
-const Logo = ({ type = 'white', ...styles }) => (
-  <S.Logo type={type} {...styles}>
+const Logo = ({ type = 'white', ...props }) => (
+  <S.Logo type={type} {...props}>
     TTA BONG
   </S.Logo>
 );
@@ -10,6 +10,5 @@ const Logo = ({ type = 'white', ...styles }) => (
 export default Logo;
 
 Logo.propTypes = {
-  type: PropTypes.string,
   type: PropTypes.string,
 };

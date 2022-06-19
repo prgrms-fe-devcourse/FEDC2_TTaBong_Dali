@@ -38,6 +38,7 @@ const InputForm = ({
             type={type}
             version={version}
             placeholder={placeholder}
+            onChange={onChange}
           />
         </S.InputBox>
         <S.ButtonBox>
@@ -50,7 +51,12 @@ const InputForm = ({
     return (
       <S.SearchContainer onSubmit={onSubmit} {...props}>
         <S.InputBox>
-          <S.Input name={name} type={type} placeholder={placeholder} />
+          <S.Input
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            onChange={onChange}
+          />
         </S.InputBox>
         <S.ButtonBox>
           <S.SearchButton type="submit" src={searchIconBlue} alt="검색" />
@@ -111,10 +117,10 @@ const InputForm = ({
 export default InputForm;
 
 InputForm.propTypes = {
-  name: PropTypes.string,
-  type: PropTypes.string,
-  version: PropTypes.string,
-  inputType: PropTypes.string,
-  placeholder: PropTypes.string,
-  errors: PropTypes.object,
+  name: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
+  type: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
+  version: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
+  inputType: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
+  placeholder: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
+  errors: PropTypes.object.isRequired, // lint적용되면 isRequired 제거
 };

@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import Avatar from '../Avatar';
 
@@ -10,13 +9,8 @@ const UserInfoItem = ({
   coinCount = -1,
   TTaBongCount = -1,
 }) => {
-  const navigate = useNavigate();
-
-  // 나중에 userId로 바꿀 예정
-  const handleClick = () => navigate(`/userProfile/${userName}`);
-
   return (
-    <S.UserInfoItemContanier onClick={handleClick}>
+    <S.UserInfoItemContanier>
       <S.RankerContainer>
         {rank && (
           <S.RankContainer rank={rank}>
