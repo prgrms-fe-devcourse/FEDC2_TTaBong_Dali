@@ -53,7 +53,7 @@ const RankPage = () => {
       for (let i = 0; i < allUserInfo.length; i += 1) {
         const { _id, coinCount } = allUserInfo[i];
         if (receiver === _id) {
-          const count = type === TTABONG ? coinCount + 1 : coinCount + 2;
+          const count = type === 'TTaBong' ? coinCount + 1 : coinCount + 2;
           allUserInfo[i].coinCount = count;
           break;
         }
