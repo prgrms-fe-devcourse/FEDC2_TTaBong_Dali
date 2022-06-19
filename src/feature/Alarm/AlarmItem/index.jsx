@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import Avatar from '../../../components/Avatar';
+import { getNotificationsSeen } from '../../../apis';
 
 const AlarmItem = ({
   type = 'like',
@@ -22,8 +23,9 @@ const AlarmItem = ({
     navigator(`/userProfile/${authorId}`);
   };
 
-  const onClickAlarm = () => {
+  const onClickAlarm = async () => {
     navigator(`/cardDetail/${postId}`);
+    getNotificationsSeen(''); // jwt 토큰 넣어야함
   };
 
   return (
