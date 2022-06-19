@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as S from './style';
-import BottomBar from '../../feature/BottomBar';
-import Header from '../../feature/Header';
+import BottomBar from '../BottomBar';
+import Header from '../Header';
 
 const PageTemplate = ({ children, page }) => {
   return (

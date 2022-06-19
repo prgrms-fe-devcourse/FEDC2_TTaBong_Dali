@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as S from './style';
-import Icon from '../../components/Icon';
+import Icon from '../../../components/Icon';
 
 // page props로 'mainFeed', 'rank', 'search', 'user'가 들어온다고 가정하겠습니다.
 const BottomBar = ({ page }) => {

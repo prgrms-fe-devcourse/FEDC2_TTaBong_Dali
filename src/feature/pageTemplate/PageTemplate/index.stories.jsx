@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import PageTemplate from '.';
 
 // 'mainFeed', 'ranking', 'search', 'user'
@@ -16,9 +15,5 @@ export default {
 };
 
 export const Default = (args) => {
-  return (
-    <Router>
-      <PageTemplate {...args} />
-    </Router>
-  );
+  return <PageTemplate {...args} />;
 };

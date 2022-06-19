@@ -1,11 +1,10 @@
 import axios from 'axios';
 import Proptypes from 'prop-types';
-import apiClient from './api';
 
 // 나의 알림 목록을 불러옵니다.
 export const getNotifications = async (JWTtoken) => {
   try {
-    const notifications = await apiClient.get(`/notifications`, {
+    const notifications = await axios.get(`/notifications`, {
       headers: {
         Authorization: `bearer ${JWTtoken}`,
       },
@@ -27,7 +26,7 @@ getNotifications.propTypes = {
 // 나에게 온 알림을 읽음처리 합니다.
 export const getNotificationsSeen = async (JWTtoken) => {
   try {
-    const notificationsSeen = await apiClient.get(`/notifications/seen`, {
+    const notificationsSeen = await axios.get(`/notifications/seen`, {
       headers: {
         Authorization: `bearer ${JWTtoken}`,
       },
@@ -56,7 +55,7 @@ export const postNotifications = async (
   postId = null,
 ) => {
   try {
-    const notification = await apiClient.post(`/notifications/create`, {
+    const notification = await axios.post(`/notifications/create`, {
       headers: {
         Authorization: `bearer ${JWTtoken}`,
       },

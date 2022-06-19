@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import Logo from '../../components/Logo';
+import Logo from '../../../components/Logo';
 
 export const Header = styled.div`
   position: fixed;
@@ -7,13 +7,12 @@ export const Header = styled.div`
   right: 0%;
   top: 0%;
   height: 58px;
-  z-index: 1;
+  z-index: 3000;
   display: flex;
   justify-content: space-between;
   transition: border-radius 0.3s;
   background-color: ${({ theme }) => theme.colors.skyblue[0]};
-  border-radius: ${({ isScrollDown }) =>
-    isScrollDown ? '0px 0px 30px 30px' : '0px'};
+  border-radius: 0px 0px 30px 30px;
 `;
 
 export const AvatarContainer = styled.div`
