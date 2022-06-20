@@ -56,19 +56,20 @@ export const postNotifications = async (
   postId = null,
 ) => {
   try {
-    const notification = await apiClient.post(`/notifications/create`, {
-      headers: {
-        Authorization: `bearer ${JWTtoken}`,
+    const notification = await apiClient.post(
+      `/notifications/create`,
+      { notificationType, postId, userId, notificationTypeId: id },
+      {
+        headers: {
+          Authorization: `bearer ${JWTtoken}`,
+        },
+
+        // COMMENT일 경우엔 댓글 id
+        // FOLLOW일 경우엔 팔로우 id
+        // LIKE일 경우엔 좋아요 id
+        // MESSAGE일 경우엔 메시지 id
       },
-      notificationType,
-      postId,
-      userId,
-      notificationTypeId: id,
-      // COMMENT일 경우엔 댓글 id
-      // FOLLOW일 경우엔 팔로우 id
-      // LIKE일 경우엔 좋아요 id
-      // MESSAGE일 경우엔 메시지 id
-    });
+    );
 
     if (notification.statusText === 'OK') {
       return notification;
