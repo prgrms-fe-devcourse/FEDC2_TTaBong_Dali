@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
 import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import UserInfoItem from '../../components/UserInfoItem';
@@ -23,13 +21,17 @@ const RankPage = () => {
 
   const sortGoods = (goods, res = users) => {
     setUsers(
-      res.sort((pre, cur) => {
-        if (pre[goods] < cur[goods]) return 1;
-        if (pre[goods] > cur[goods]) return -1;
-        if (pre._id > cur._id) return 1;
-        if (pre._id < cur._id) return -1;
-        return 0;
-      }),
+      res
+        .sort((pre, cur) => {
+          if (pre[goods] < cur[goods]) return 1;
+          if (pre[goods] > cur[goods]) return -1;
+          if (pre._id > cur._id) return 1;
+          if (pre._id < cur._id) return -1;
+          return 0;
+        })
+        .map((user, i) => {
+          return { ...user, rank: i + 1 };
+        }),
     );
   };
 
@@ -89,10 +91,10 @@ const RankPage = () => {
             coinCount={goods === COIN ? users[0][COIN] : -1}
           />
           <S.RankList>
-            {users.slice(1).map((user, i) => {
+            {users.slice(1).map((user) => {
               return (
                 <UserInfoItem
-                  rank={i + 2}
+                  rank={user.rank}
                   key={user._id}
                   userName={user.fullName}
                   TTaBongCount={goods === TTABONG ? user[TTABONG] : -1}
