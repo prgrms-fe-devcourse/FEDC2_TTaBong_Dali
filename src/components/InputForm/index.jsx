@@ -22,7 +22,7 @@ const InputForm = ({
     if (defaultValue) {
       setInput(defaultValue);
     }
-  }, []);
+  }, [defaultValue]);
 
   const [input, setInput] = useState('');
 

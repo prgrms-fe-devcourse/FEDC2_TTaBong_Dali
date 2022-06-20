@@ -1,28 +1,24 @@
 import PropTypes from 'prop-types';
 import * as S from './style';
 import useForm from '../../../hooks/useForm';
+import { useAuthContext } from '../../../contexts/UserProvider';
 import {
   PASSWORD_ISNILL_ERROR,
   PASSWORDCONFIRM_ISNILL_ERROR,
   PASSWORD_UNEQUAL_ERROR,
 } from '../../../commons/constants/error';
-import { PASSWORD_UPDATE_SUCCESS } from '../../../commons/constants/string';
 
-const ProfileEditForm = ({ onSubmit, defaultValue, ...styles }) => {
+const ProfileEditForm = ({ onSubmit, ...styles }) => {
+  const { user } = useAuthContext();
+
   const { isLoading, errors, handleChange, handleSubmit, removeAll } = useForm({
     initialValues: {
-      userName: defaultValue.userName,
+      userName: user.userName,
       password: '',
       passwordConfirm: '',
     },
     onSubmit: async ({ password }) => {
-      const response = await onSubmit(
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYWFlZTk0ZTNmNTUyNzQ1MTBjYTA0MyIsImVtYWlsIjoid29vamVycnkzQG5hdmVyLmNvbSJ9LCJpYXQiOjE2NTU1NTg3NzJ9.FilLBV8W7l3OH-kWxIIJ4JBFLBjXFRSh_xoHMzLsJKg', // 임시 토큰
-        password,
-      );
-      if (response === 'Password updated successfully.') {
-        alert(PASSWORD_UPDATE_SUCCESS);
-      }
+      await onSubmit(user.token, password);
     },
     validate: ({ password, passwordConfirm }) => {
       const errors = {};
@@ -47,7 +43,7 @@ const ProfileEditForm = ({ onSubmit, defaultValue, ...styles }) => {
             onChange={handleChange}
             errors={errors}
             removeAll={removeAll}
-            defaultValue={defaultValue.userName}
+            defaultValue={user.userName}
             disabled
           />
           <S.EditInput

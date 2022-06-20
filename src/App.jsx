@@ -34,7 +34,10 @@ function App() {
           />
           <Route path="/search/*" element={<SearchPage />} />
           <Route path="/userProfile/*" element={<UserProfilePage />} />
-          <Route path="/profileEdit/*" element={<ProfileEditPage />} />
+          <Route
+            path="/profileEdit/*"
+            element={<ProtectedRoute Component={ProfileEditPage} />}
+          />
           <Route path="/login" element={<AuthRoute Component={LoginPage} />} />
           <Route
             path="/register"
