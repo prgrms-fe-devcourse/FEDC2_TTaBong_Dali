@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
 import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import Banner from '../../feature/pageTemplate/Banner';
