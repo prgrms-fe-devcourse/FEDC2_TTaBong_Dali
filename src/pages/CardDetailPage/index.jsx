@@ -21,6 +21,7 @@ const CardDetailPage = () => {
   const { user } = useAuthContext();
   const { id } = useParams();
   const commentInput = useRef('');
+  const inputRef = useRef(null);
   const [isLoading, setLoading] = useState(true);
   const [receivedUser, setReceivedUser] = useState({});
   const [props, setProps] = useState({});
@@ -61,24 +62,39 @@ const CardDetailPage = () => {
       await deleteLike('', props._id);
       setProps({ ...props, isLike: false });
     } else {
-      const like = await postLike('', props._id);
-      postNotifications('', 'LIKE', '', like._id, props._id);
+      const like = await postLike(user.token, props._id);
+      postNotifications(user.token, 'LIKE', user.userId, like._id, props._id);
       setProps({ ...props, likes: props.likes.push(like), isLike: true });
     }
   };
 
   const onChangeInput = useCallback((e) => {
+    if (e.target.value.length <= 1) inputRef.current = e.target;
     commentInput.current = e.target.value;
   });
 
   const onSubmitInput = async (e) => {
     e.preventDefault();
+    console.log(user);
     if (!user.isAuth) {
       alert('로그인이 필요합니다');
       navigator('/login');
     } else {
-      const comment = await postComments('', props._id, commentInput.current);
-      postNotifications('', 'COMMENT', '', comment._id, props._id); // 로그인한 user Id 필요
+      const comment = await postComments(
+        user.token,
+        props._id,
+        commentInput.current,
+      );
+      if (comment) props.comments.push(comment);
+      inputRef.current.value = '';
+      setProps({ ...props, comments: props.comments });
+      postNotifications(
+        user.token,
+        'COMMENT',
+        user.userId,
+        comment._id,
+        props._id,
+      ); // 로그인한 user Id 필요
     }
   };
 
