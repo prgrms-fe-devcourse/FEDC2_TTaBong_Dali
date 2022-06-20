@@ -9,7 +9,7 @@ import theme from '../../../commons/style/themes';
 import useForm from '../../../hooks/useForm';
 import { getAllUsers, searchUser } from '../../../apis';
 
-const TTaBongModal = ({ modalProps }) => {
+const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
   const {
     isModalOn,
     setIsModalOn,
@@ -49,11 +49,13 @@ const TTaBongModal = ({ modalProps }) => {
   const handleUserCheck = (e, userId) => {
     e.preventDefault();
 
-    setUsers(
-      [...users].map((user) =>
-        user._id !== userId ? user : { ...user, checked: !user.checked },
-      ),
+    const newUsers = users.map((user) =>
+      user._id !== userId ? user : { ...user, checked: !user.checked },
     );
+
+    setUsers(newUsers);
+
+    setCheckedUsers(newUsers.filter((user) => user.checked));
   };
 
   return (
