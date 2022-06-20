@@ -4,7 +4,7 @@ import TTaBongModal from '.';
 import { useModal } from '../../../components/Modal';
 
 export default {
-  title: 'Feature/praise/TTaBongModal',
+  title: 'Feature/ttabong/TTaBongModal',
   component: TTaBongModal,
   argTypes: {},
 };
