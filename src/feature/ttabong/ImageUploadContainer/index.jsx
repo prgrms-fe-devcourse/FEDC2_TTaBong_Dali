@@ -3,9 +3,7 @@ import * as S from './style';
 import Icon from '../../../components/Icon';
 import Image from '../../../components/Image';
 
-const ImageUploadContainer = () => {
-  const [imageSrc, setImageSrc] = useState('');
-
+const ImageUploadContainer = ({ imageSrc, setImageSrc }) => {
   // Input 추가하면 ImageSrc 추가
   const onChangeInput = (event) => {
     const reader = new FileReader();

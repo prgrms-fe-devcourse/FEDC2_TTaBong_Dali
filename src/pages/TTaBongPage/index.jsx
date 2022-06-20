@@ -17,6 +17,13 @@ import theme from '../../commons/style/themes';
 const TTaBongPage = () => {
   const modalProps = useModal();
   const [checkedUsers, setCheckedUsers] = useState([]);
+  const [reason, setReason] = useState('');
+  const [imageSrc, setImageSrc] = useState('');
+  const [labelItems, setLabelItems] = useState({
+    praise: '',
+    moved: '',
+    warm: '',
+  });
 
   return (
     <PageTemplate>
@@ -41,13 +48,13 @@ const TTaBongPage = () => {
         </S.BePraisedContainer>
         <Divider size={308} />
         <S.PraiseReasonContainer>
-          <ReasonContainer />
+          <ReasonContainer reason={reason} setReason={setReason} />
         </S.PraiseReasonContainer>
         <S.ImageUploaderContainer>
-          <ImageUploadContainer />
+          <ImageUploadContainer imageSrc={imageSrc} setImageSrc={setImageSrc} />
         </S.ImageUploaderContainer>
         <S.LabelListContainer>
-          <LabelList />
+          <LabelList labelItems={labelItems} setLabelItems={setLabelItems} />
         </S.LabelListContainer>
         <S.PraiseButtonContainer>
           <Button version="yellow" width="100%">
