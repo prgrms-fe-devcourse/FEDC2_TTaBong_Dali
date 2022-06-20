@@ -26,9 +26,8 @@ const RankPage = () => {
       users.sort((pre, cur) => {
         if (pre[goods] < cur[goods]) return 1;
         if (pre[goods] > cur[goods]) return -1;
-        // 갯수가 같은 경우 id 우선 (먼저 만든 사람 우선)
-        if (pre._id < cur._id) return 1;
-        if (pre._id > cur._id) return -1;
+        if (pre._id > cur._id) return 1;
+        if (pre._id < cur._id) return -1;
         return 0;
       }),
     );
