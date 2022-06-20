@@ -46,6 +46,7 @@ const InputForm = ({
             type={type}
             version={version}
             placeholder={placeholder}
+            onChange={onChange}
           />
         </S.InputBox>
         <S.ButtonBox>
