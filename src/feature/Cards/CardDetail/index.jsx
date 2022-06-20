@@ -52,7 +52,7 @@ const CardDetail = ({
           </S.LikeContainer>
         </S.InfoContainer>
         <Divider size={320} />
-        <CommentList height={170} comments={comments} />
+        <CommentList height={200} comments={comments} />
         <InputForm
           version="comment"
           onChange={onChangeInput}

@@ -7,11 +7,9 @@ import { getSpecificPost } from '../../apis/posts';
 import { getSpecificUser } from '../../apis/users';
 import DummyData from '../../assets/data/dummyData';
 import CardDetail from '../../feature/Cards/CardDetail';
-import PageTemplate from '../PageTemplate';
-
+import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 // like 버튼
 // 포스트의 likes와 유저의 Likes를 구분해서
-
 const likeToggle = (likes, userId) => {
   return !!likes.filter((like) => like.user === userId).length;
 };
@@ -28,6 +26,7 @@ const CardDetailPage = () => {
     const getPosts = async () => {
       setLoading(true);
       const post = await getSpecificPost(id);
+      console.log(post);
       const { author, title, likes, comments, _id } =
         post || DummyData.Posts[0];
       const { type, receiver, content, labels = [] } = JSON.parse(title);
