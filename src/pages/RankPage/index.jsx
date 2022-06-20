@@ -7,32 +7,32 @@ import RankFirstInfo from '../../feature/rank/RankFirstInfo';
 import { getAllUsers, getChannelPosts } from '../../apis/index';
 import { TabItem } from '../../components/Tab';
 import Constants from '../../commons/constants/index';
+import { useAuthContext } from '../../contexts/UserProvider';
 
 const RankPage = () => {
   const TTABONG = 'TTaBongCount';
   const COIN = 'coinCount';
 
-  const [users, setUsers] = useState([
-    {
-      fullName: '',
-    },
-  ]);
+  const { authUser } = useAuthContext();
+  const [currentUser, setCurrentUser] = useState({});
+  const [users, setUsers] = useState([{}]);
   const [goods, setGoods] = useState(TTABONG);
 
   const sortGoods = (goods, res = users) => {
-    setUsers(
-      res
-        .sort((pre, cur) => {
-          if (pre[goods] < cur[goods]) return 1;
-          if (pre[goods] > cur[goods]) return -1;
-          if (pre._id > cur._id) return 1;
-          if (pre._id < cur._id) return -1;
-          return 0;
-        })
-        .map((user, i) => {
-          return { ...user, rank: i + 1 };
-        }),
-    );
+    const sortedRank = res
+      .sort((pre, cur) => {
+        if (pre[goods] < cur[goods]) return 1;
+        if (pre[goods] > cur[goods]) return -1;
+        if (pre._id > cur._id) return 1;
+        if (pre._id < cur._id) return -1;
+        return 0;
+      })
+      .map((user, i) => {
+        return { ...user, rank: i + 1 };
+      });
+
+    setUsers(sortedRank);
+    setCurrentUser(sortedRank.filter(({ _id }) => _id === authUser.userId)[0]);
   };
 
   const onClickTab = (type) => {
@@ -68,7 +68,7 @@ const RankPage = () => {
       sortGoods(goods, sortedUsers);
     };
     fetchData();
-  }, []);
+  }, [authUser]);
 
   return (
     <PageTemplate page="rank">
@@ -90,7 +90,7 @@ const RankPage = () => {
             TTaBongCount={goods === TTABONG ? users[0][TTABONG] : -1}
             coinCount={goods === COIN ? users[0][COIN] : -1}
           />
-          <S.RankList>
+          <S.RankList isAuth={authUser.isAuth}>
             {users.slice(1).map((user) => {
               return (
                 <UserInfoItem
@@ -103,10 +103,16 @@ const RankPage = () => {
               );
             })}
           </S.RankList>
-          {/* @todo 사용자가 로그인 했다면 보여줘야함 */}
-          <S.MyRankWrapper>
-            <UserInfoItem rank={5} TTaBongCount={3} userName="사용자" />
-          </S.MyRankWrapper>
+          {authUser.isAuth && currentUser && (
+            <S.MyRankWrapper>
+              <UserInfoItem
+                rank={currentUser.rank}
+                TTaBongCount={goods === TTABONG ? currentUser[TTABONG] : -1}
+                coinCount={goods === COIN ? currentUser[COIN] : -1}
+                userName={currentUser.fullName}
+              />
+            </S.MyRankWrapper>
+          )}
         </BaseCardContainer>
       </S.RankPageContainer>
     </PageTemplate>

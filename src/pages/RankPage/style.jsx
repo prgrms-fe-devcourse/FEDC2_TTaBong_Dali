@@ -27,7 +27,8 @@ export const RankList = styled.ul`
   margin: 16px 0;
   padding: 8px 0;
   gap: 8px;
-  max-height: ${getPxToRem(255)};
+  max-height: ${({ isAuth }) =>
+    isAuth ? `${getPxToRem(260)}` : `${getPxToRem(320)}`};
 `;
 
 export const MyRankWrapper = styled.div`
