@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import BaseCardContainer from '.';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import theme from '../../commons/style/themes';
@@ -44,32 +45,34 @@ export function Default(args) {
 
 export function Template(args) {
   return (
-    <PageTemplate>
-      <BaseCardContainer {...args}>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-        <p>hello world</p>
-      </BaseCardContainer>
-    </PageTemplate>
+    <Router>
+      <PageTemplate>
+        <BaseCardContainer {...args}>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+          <p>hello world</p>
+        </BaseCardContainer>
+      </PageTemplate>
+    </Router>
   );
 }

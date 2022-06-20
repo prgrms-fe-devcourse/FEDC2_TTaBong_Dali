@@ -11,8 +11,11 @@ import {
   TTaBongPage,
   UserProfilePage,
   ProfileEditPage,
+  LoginPage,
+  RegisterPage,
 } from './pages';
 import NotFoundPage from './pages/NotFound';
+import TestApiComponent from './feature/TestApiComponent';
 
 function App() {
   return (
@@ -26,7 +29,10 @@ function App() {
         <Route path="/search/*" element={<SearchPage />} />
         <Route path="/userProfile/*" element={<UserProfilePage />} />
         <Route path="/profileEdit/*" element={<ProfileEditPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
         <Route path="/error/*" element={<NotFoundPage />} />
+        <Route path="/api/*" element={<TestApiComponent />} />
         <Route path="/*" element={<Navigate to="/mainFeed" />} />
       </Routes>
     </ThemeProvider>

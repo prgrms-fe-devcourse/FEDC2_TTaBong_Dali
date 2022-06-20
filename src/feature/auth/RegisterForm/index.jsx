@@ -15,8 +15,9 @@ const RegisterForm = ({ onSubmit }) => {
       password: '',
       passwordConfirm: '',
     },
-    onSubmit: () => {
-      console.log('submit!');
+    onSubmit: async ({ email, userName, password }) => {
+      // console.log(email, userName, password);
+      await onSubmit(email, userName, password);
     },
     validate: ({ userName, email, password, passwordConfirm }) => {
       const errors = {};
@@ -63,7 +64,7 @@ const RegisterForm = ({ onSubmit }) => {
         removeAll={removeAll}
       />
       <S.RegisterButton type="submit" version="yellow">
-        LOG IN
+        SIGN UP
       </S.RegisterButton>
       <S.Nav>메인화면으로 가기</S.Nav>
     </S.RegisterForm>

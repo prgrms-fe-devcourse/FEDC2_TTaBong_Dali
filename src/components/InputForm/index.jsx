@@ -124,8 +124,8 @@ const InputForm = ({
 export default InputForm;
 
 InputForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  type: PropTypes.string,
   version: PropTypes.string,
   inputType: PropTypes.string,
   placeholder: PropTypes.string,
