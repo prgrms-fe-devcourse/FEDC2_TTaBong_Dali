@@ -55,6 +55,7 @@ const ProfileEditForm = ({ onSubmit, defaultValue, ...styles }) => {
             name="password"
             placeholder="대문자, 특수문자 포함 8자 이상"
             inputType="비밀번호"
+            type="password"
             onChange={handleChange}
             errors={errors}
             removeAll={removeAll}
@@ -64,6 +65,7 @@ const ProfileEditForm = ({ onSubmit, defaultValue, ...styles }) => {
             name="passwordConfirm"
             placeholder="대문자, 특수문자 포함 8자 이상"
             inputType="비밀번호 확인"
+            type="password"
             onChange={handleChange}
             errors={errors}
             removeAll={removeAll}
