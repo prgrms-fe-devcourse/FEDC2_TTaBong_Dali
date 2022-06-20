@@ -8,8 +8,12 @@ export const getDayString = (diffTime, createdTime) => {
     dayString += `${countHours} 시간`;
   } else {
     const date = new Date(createdTime);
-    dayString += `${date.getMonth()}월 `;
-    dayString += `${date.getDay()}일 `;
+    console.log(createdTime);
+    console.log(date);
+    console.log(date.getMonth());
+
+    dayString += `${date.getMonth() + 1}월 `;
+    dayString += `${date.getDate()}일 `;
     dayString += `${date.getHours()}:${date.getMinutes()} `;
   }
 
