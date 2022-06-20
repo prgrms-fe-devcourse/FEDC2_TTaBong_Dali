@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { getPxToRem } from '../../utils/getPxToRem';
 
 const warmLabelStyle = ({ theme }) => css`
   background: linear-gradient(
@@ -25,9 +26,14 @@ const praiseLabelStyle = ({ theme }) => css`
   );
 `;
 
+const defaultLabelStyle = ({ theme }) => css`
+  color: ${theme.colors.gray[0]};
+  background: ${theme.colors.white};
+`;
+
 export const StyledLabel = styled.div`
-  width: 40px;
-  height: 20px;
+  width: ${getPxToRem(40)};
+  height: ${getPxToRem(20)};
   border-radius: 12px;
   color: ${(props) => props.theme.colors.white};
   display: flex;
@@ -46,7 +52,7 @@ export const StyledLabel = styled.div`
       case 'praise':
         return praiseLabelStyle;
       default:
-        return praiseLabelStyle;
+        return defaultLabelStyle;
     }
   }};
 `;
