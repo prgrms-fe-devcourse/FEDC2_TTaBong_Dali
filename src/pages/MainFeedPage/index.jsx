@@ -21,7 +21,6 @@ const MainFeedPage = () => {
 
   const getNextPosts = () => {
     setLoading(true);
-    console.log('start loading');
     getChannelPosts(CHANNEL_ID, offset, 5)
       .then((response) => {
         if (response === []) {
@@ -36,7 +35,6 @@ const MainFeedPage = () => {
         setOffset(offset + 5);
       });
     setLoading(false);
-    console.log('end loading');
   };
 
   const onIntersect = async (entries, observer) => {
@@ -60,7 +58,6 @@ const MainFeedPage = () => {
         threshold: 0.3,
       });
       observer.observe(target);
-      console.log('observe is done');
     }
     return () => observer && observer.disconnect();
   }, [target]);
@@ -73,7 +70,6 @@ const MainFeedPage = () => {
     getPosts();
   }, []);
 
-  // 아래 ==는 되고 ===는 안되어서 일단 ==로 했습니다.
   return (
     <PageTemplate page="mainFeed">
       <S.MainFeedPageContainer
