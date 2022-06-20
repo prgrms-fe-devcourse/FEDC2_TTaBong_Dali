@@ -13,7 +13,11 @@ import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 // like 버튼
 // 포스트의 likes와 유저의 Likes를 구분해서
 const likeToggle = (likes, userId) => {
-  return !!likes.filter((like) => like.user === userId).length;
+  return !!getLiked(likes, userId).length;
+};
+
+const getLiked = (likes, userId) => {
+  return likes.filter((like) => like.user === userId);
 };
 
 const CardDetailPage = () => {
@@ -46,12 +50,18 @@ const CardDetailPage = () => {
         labels,
         isLike,
       });
-
       setReceivedUser((await getSpecificUser(receiver)) || DummyData.Users[0]);
       setLoading(false);
     };
     getPosts();
   }, []);
+
+  useEffect(() => {
+    if (user.isAuth && !isLoading) {
+      const isLike = likeToggle(props.likes, user.userId); // 접속한 유저의 id 값 넣기
+      setProps({ ...props, isLike });
+    }
+  }, [user, isLoading]);
 
   const onClickLike = async () => {
     // 먼저 접속한 유저의 jwt 토큰을 가져오고 없으면 로그인 페이지로 이동
@@ -59,12 +69,15 @@ const CardDetailPage = () => {
       alert('로그인이 필요합니다');
       navigator('/login');
     } else if (props.isLike) {
-      await deleteLike('', props._id);
-      setProps({ ...props, isLike: false });
+      const targetLikeId = getLiked(props.likes, user.userId)[0]._id;
+      const deletedLike = await deleteLike(user.token, targetLikeId);
+      props.likes = props.likes.filter((like) => like._id !== deletedLike._id);
+      setProps({ ...props, isLike: false, likes: props.likes });
     } else {
       const like = await postLike(user.token, props._id);
+      props.likes.push(like);
       postNotifications(user.token, 'LIKE', user.userId, like._id, props._id);
-      setProps({ ...props, likes: props.likes.push(like), isLike: true });
+      setProps({ ...props, likes: props.likes, isLike: true });
     }
   };
 
@@ -75,7 +88,6 @@ const CardDetailPage = () => {
 
   const onSubmitInput = async (e) => {
     e.preventDefault();
-    console.log(user);
     if (!user.isAuth) {
       alert('로그인이 필요합니다');
       navigator('/login');
@@ -113,6 +125,7 @@ const CardDetailPage = () => {
           onChangeInput={onChangeInput}
           onSubmitInput={onSubmitInput}
           onClickLike={onClickLike}
+          isLike={props.isLike}
         />
       )}
     </PageTemplate>

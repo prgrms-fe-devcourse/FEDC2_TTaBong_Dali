@@ -19,6 +19,7 @@ const CardDetail = ({
   receiverImg,
   comments = [],
   img = '',
+  isLike = false,
   likeCount = 0,
   PraiseReason = '',
   labelItems = [],
@@ -46,7 +47,11 @@ const CardDetail = ({
           <LabelList labelItems={labelItems} />
           <S.LikeContainer>
             <S.LikeEventWrapper onClick={onClickLike}>
-              <img src={likes} alt="공감" width="28px" height="28px" />
+              {!isLike ? (
+                <img src={likes} alt="공감" width="28px" height="28px" />
+              ) : (
+                <div>tset</div>
+              )}
             </S.LikeEventWrapper>
             <S.CountSpan>맞 따봉 {likeCount}개</S.CountSpan>
           </S.LikeContainer>
