@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import Avatar from '../Avatar';
-import CheckIcon from '../../feature/praise/CheckIcon';
+import CheckIcon from '../../feature/ttabong/CheckIcon';
 
 const UserInfoItem = ({
   rank,

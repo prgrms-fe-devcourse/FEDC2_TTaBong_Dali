@@ -2,7 +2,7 @@ import React from 'react';
 import CheckIcon from '.';
 
 export default {
-  title: 'Feature/praise/CheckIcon',
+  title: 'Feature/ttabong/CheckIcon',
   component: CheckIcon,
   argTypes: {},
 };
