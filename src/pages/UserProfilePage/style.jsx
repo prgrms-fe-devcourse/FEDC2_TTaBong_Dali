@@ -85,3 +85,17 @@ export const CoinCountWrapper = styled.div`
     font-weight: 700;
   }
 `;
+
+export const TapWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+export const ProfileCardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  gap: 1rem;
+`;
