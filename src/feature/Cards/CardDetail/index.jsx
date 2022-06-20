@@ -50,7 +50,7 @@ const CardDetail = ({
               {!isLike ? (
                 <img src={likes} alt="공감" width="28px" height="28px" />
               ) : (
-                <div>tset</div>
+                <div>따봉완료 아이콘</div>
               )}
             </S.LikeEventWrapper>
             <S.CountSpan>맞 따봉 {likeCount}개</S.CountSpan>
