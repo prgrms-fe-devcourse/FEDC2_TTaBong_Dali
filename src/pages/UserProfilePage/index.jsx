@@ -19,9 +19,13 @@ const UserProfilePage = () => {
   const [praiseCardActive, setPraiseCardActive] = useState(true);
 
   const [target, setTarget] = useState(null);
+  const [targetCoin, setTargetCoin] = useState(null);
+
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
+  const [offsetCoin, setOffsetCoin] = useState(0);
   const [praisePosts, setPraisePosts] = useState([]);
+  const [coinedPosts, setCoinedPosts] = useState([]);
   const { id } = useParams;
 
   const CHANNEL_ID = '62a19123d1b81239d875d20d';
@@ -66,24 +70,38 @@ const UserProfilePage = () => {
   const getNextPosts = () => {
     setLoading(true);
     console.log('start loading');
-    getChannelPosts(CHANNEL_ID, offset, 5)
+    getChannelPosts(CHANNEL_ID, offsetCoin, 5)
       .then((response) => {
         if (response === []) {
           console.log('no more cards to load');
           return;
         }
         console.log(response);
-        const newPosts = [...praisePosts, ...response];
-        setPraisePosts(newPosts || DummyData.Posts);
+        const newPosts = [...coinedPosts, ...response];
+        setCoinedPosts(newPosts || DummyData.Posts);
       })
       .then(() => {
-        setOffset(offset + 5);
+        setOffsetCoin(offset + 5);
       });
     setLoading(false);
     console.log('end loading');
   };
 
   const onIntersect = async (entries, observer) => {
+    if (praisePosts.length !== offset) {
+      console.log('no more cards to load');
+      return;
+    }
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !loading) {
+        observer.unobserve(entry.target);
+        getNextPraisingPost();
+        observer.observe(entry.target);
+      }
+    });
+  };
+
+  const onIntersectForCoin = async (entries, observer) => {
     if (praisePosts.length !== offset) {
       console.log('no more cards to load');
       return;
@@ -109,12 +127,30 @@ const UserProfilePage = () => {
     return () => observer && observer.disconnect();
   }, [target]);
 
+  useEffect(() => {
+    let observer;
+    if (targetCoin) {
+      observer = new IntersectionObserver(onIntersectForCoin, {
+        threshold: 0.3,
+      });
+      observer.observe(targetCoin);
+      console.log('observe is done');
+    }
+    return () => observer && observer.disconnect();
+  }, [targetCoin]);
+
   // 최초 랜더링
   useEffect(() => {
     const getPosts = () => {
       getNextPraisingPost();
+      // getNextPosts();
     };
-    getPosts();
+    const getPosts2 = () => {
+      // getNextPraisingPost();
+      getNextPosts();
+    };
+    // getPosts();
+    getPosts2();
   }, []);
 
   return (
@@ -173,7 +209,19 @@ const UserProfilePage = () => {
             ))}
           </>
         ) : (
-          <h1>test</h1>
+          <>
+            {coinedPosts.map((post, idx) => (
+              <S.ProfileCardWrapper>
+                {praisePosts.length - 1 === idx ? (
+                  <S.InfinityScrollCardWrapper ref={setTargetCoin}>
+                    <ProfileCard post={post} key={post._id} />
+                  </S.InfinityScrollCardWrapper>
+                ) : (
+                  <ProfileCard post={post} key={post._id} />
+                )}
+              </S.ProfileCardWrapper>
+            ))}
+          </>
         )}
       </BaseCardContainer>
     </PageTemplate>
