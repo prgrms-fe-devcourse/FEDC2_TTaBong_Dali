@@ -99,3 +99,7 @@ export const ProfileCardWrapper = styled.div`
   padding: 1rem 0;
   gap: 1rem;
 `;
+
+export const InfinityScrollCardWrapper = styled.div`
+  width: 100%;
+`;

@@ -9,7 +9,7 @@ export const ContentRightWrapper = styled.article`
   margin-left: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   position: relative;
 `;
 

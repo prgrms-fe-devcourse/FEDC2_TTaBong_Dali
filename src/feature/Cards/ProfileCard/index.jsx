@@ -6,14 +6,14 @@ import Label from '../../../components/Label';
 import LabelList from '../LabelList';
 import BaseCardContainer from '../../../components/BaseCardContainer';
 
-const ProfileCard = (post) => {
+const ProfileCard = ({ post }) => {
   const { _id, title, author } = post;
   const { type = '', receiver = '이름', content = '내용' } = JSON.parse(title);
 
   return (
-    <BaseCardContainer padding={[1, 1, 1, 1]} height="6rem">
+    <BaseCardContainer padding={[1, 1, 1, 1]} height="8rem" max-width="10rem">
       <S.ContentWrapper>
-        <Avatar size={50} authorName="namename" />
+        <Avatar size={50} avatarName={author.fullName} />
         <S.ContentRightWrapper>
           <S.Title>칭찬 사유</S.Title>
           <S.Content>{content}</S.Content>
