@@ -2,9 +2,9 @@ import { Navigate } from 'react-router-dom';
 import { useAuthContext } from '../contexts/UserProvider';
 
 const AuthRoute = ({ Component }) => {
-  const { user } = useAuthContext();
+  const { authUser } = useAuthContext();
 
-  return user.isAuth ? <Navigate to="/" /> : <Component />;
+  return authUser.isAuth ? <Navigate to="/" /> : <Component />;
 };
 
 export default AuthRoute;

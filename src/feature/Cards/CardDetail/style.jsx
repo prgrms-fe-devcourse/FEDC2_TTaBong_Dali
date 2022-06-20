@@ -46,7 +46,18 @@ export const LikeContainer = styled.div`
   margin-top: 16px;
 `;
 
+export const LikeEventWrapper = styled.div`
+  margin: 0;
+  padding: 0;
+  height: 28px;
+`;
+
 export const CountSpan = styled.span`
   margin-top: 8px;
   font-size: 8px;
+`;
+
+export const CommentInputWrapper = styled.div`
+  position: fixed;
+  bottom: 0;
 `;

@@ -26,7 +26,7 @@ function App() {
       <UserProvider>
         <Routes>
           <Route path="/mainFeed/*" element={<MainFeedPage />} />
-          <Route path="/cardDetail/*" element={<CardDetailPage />} />
+          <Route path="/cardDetail/:id" element={<CardDetailPage />} />
           <Route path="/rank/*" element={<RankPage />} />
           <Route
             path="/TTaBong/*"
