@@ -31,7 +31,7 @@ const userReducer = (_, action) => {
       return {
         isAuth: true,
         userName: action.userName,
-        userId: '',
+        userId: action.userId,
         token: action.token,
       };
     case 'LOGOUT_USER':
@@ -47,7 +47,7 @@ const userReducer = (_, action) => {
 };
 
 const UserProvider = ({ children }) => {
-  const [user, dispatch] = useReducer(userReducer, initialUserState);
+  const [authUser, dispatch] = useReducer(userReducer, initialUserState);
 
   useEffect(() => {
     const { userName, userId, token } = getCookie('user') || initialUserState;
@@ -62,8 +62,8 @@ const UserProvider = ({ children }) => {
   }, []);
 
   const UserContextProviderValue = useMemo(
-    () => ({ user, dispatch }),
-    [user, dispatch],
+    () => ({ authUser, dispatch }),
+    [authUser, dispatch],
   );
 
   return (
