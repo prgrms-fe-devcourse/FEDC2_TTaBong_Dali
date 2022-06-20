@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
 import { useNavigate } from 'react-router-dom';
+import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import BaseCardContainer from '../../components/BaseCardContainer';
 import AlarmSection from '../../feature/Alarm/AlarmSection';
@@ -14,11 +14,12 @@ const AlarmPage = () => {
   const [notSeenAlarms, setNonSeenAlarms] = useState([]);
   const [seenAlarms, setSeenAlarms] = useState([]);
   const navigation = useNavigate();
+
   useEffect(() => {
     const getAlarms = async () => {
       setLoading(true);
-      const alarms = await getNotifications(''); // jwt 값 할당해야함
-      // const alarms = [{}]; // jwt 값 할당해야함
+      // const alarms = await getNotifications(''); // jwt 값 할당해야함
+      const alarms = [{}]; // jwt 값 할당해야함
 
       if (!alarms) {
         alert('로그인을 해주세요');
@@ -36,13 +37,22 @@ const AlarmPage = () => {
     getAlarms();
   }, []);
 
+  const onClickPrevBtn = () => {
+    navigation(-1);
+  };
+
   return (
     <PageTemplate>
       {!isLoading ? (
-        <BaseCardContainer>
-          <AlarmSection title="읽지 않음" alarms={notSeenAlarms} />
-          <AlarmSection title="읽음" alarms={seenAlarms} />
-        </BaseCardContainer>
+        <S.CardWrapperForSlide>
+          <BaseCardContainer>
+            <S.AlarmPageContainer>
+              <S.PrevButton onClick={onClickPrevBtn}>&gt; 접기</S.PrevButton>
+              <AlarmSection title="읽지 않음" alarms={notSeenAlarms} />
+              <AlarmSection title="읽음" alarms={seenAlarms} />
+            </S.AlarmPageContainer>
+          </BaseCardContainer>
+        </S.CardWrapperForSlide>
       ) : (
         <NotFoundPage />
       )}

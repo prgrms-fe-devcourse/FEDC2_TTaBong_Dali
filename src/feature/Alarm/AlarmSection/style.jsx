@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const AlarmSection = styled.section`
-  margin: 0 1.5rem;
   margin-bottom: 2rem;
 `;
 
