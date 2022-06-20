@@ -15,6 +15,7 @@ import {
 } from './pages';
 import NotFoundPage from './pages/NotFound';
 import UserProvider from './contexts/UserProvider';
+import { AuthRoute, ProtectedRoute } from './routes';
 
 function App() {
   return (
@@ -25,11 +26,17 @@ function App() {
           <Route path="/mainFeed/*" element={<MainFeedPage />} />
           <Route path="/cardDetail/*" element={<CardDetailPage />} />
           <Route path="/rank/*" element={<RankPage />} />
-          <Route path="/TTaBong/*" element={<TTaBongPage />} />
+          <Route
+            path="/TTaBong/*"
+            element={<ProtectedRoute Component={TTaBongPage} />}
+          />
           <Route path="/search/*" element={<SearchPage />} />
           <Route path="/userProfile/*" element={<UserProfilePage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
+          <Route path="/login" element={<AuthRoute Component={LoginPage} />} />
+          <Route
+            path="/register"
+            element={<AuthRoute Component={RegisterPage} />}
+          />
           <Route path="/error/*" element={<NotFoundPage />} />
           <Route path="/*" element={<Navigate to="/mainFeed" />} />
         </Routes>

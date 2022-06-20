@@ -47,7 +47,12 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const { userName, token } = getCookie('user') || initialUserState;
-    dispatch({ type: 'CHECK_USER', isAuth: true, userName, token });
+    dispatch({
+      type: 'CHECK_USER',
+      isAuth: !!token,
+      userName,
+      token,
+    });
   }, []);
 
   const UserContextProviderValue = useMemo(
