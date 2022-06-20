@@ -19,14 +19,14 @@ const TTaBongModal = ({ modalProps }) => {
   } = modalProps;
 
   const [users, setUsers] = useState([]);
-  const [searched, setSearched] = useState([]);
 
   useEffect(async () => {
     const fetchAllUsers = async () => {
       const allUsers = await getAllUsers(0, 100);
 
-      setUsers(allUsers);
-      setSearched(allUsers);
+      setUsers(
+        allUsers.map((user) => ({ ...user, searched: true, checked: false })),
+      );
     };
 
     fetchAllUsers();
@@ -37,11 +37,23 @@ const TTaBongModal = ({ modalProps }) => {
 
     const keyword = e.target.search.value;
 
-    const searchedUsers = users.filter((user) =>
-      user.fullName.startsWith(keyword),
+    setUsers(
+      users.map((user) =>
+        user.fullName.startsWith(keyword)
+          ? { ...user, searched: true }
+          : { ...user, searched: false },
+      ),
     );
+  };
 
-    setSearched(searchedUsers);
+  const handleUserCheck = (e, userId) => {
+    e.preventDefault();
+
+    setUsers(
+      [...users].map((user) =>
+        user._id !== userId ? user : { ...user, checked: !user.checked },
+      ),
+    );
   };
 
   return (
@@ -66,11 +78,20 @@ const TTaBongModal = ({ modalProps }) => {
           width="285px"
         />
         <S.UserInfoItemContainer>
-          {searched.map((user) => (
-            <S.UserInfoItemWrapper>
-              <UserInfoItem userName={user.fullName} useCheck />
-            </S.UserInfoItemWrapper>
-          ))}
+          {users
+            .filter((user) => user.searched)
+            .map((user) => (
+              <S.UserInfoItemWrapper
+                key={user._id}
+                onClick={(e) => handleUserCheck(e, user._id)}
+              >
+                <UserInfoItem
+                  userName={user.fullName}
+                  useCheck
+                  checked={user.checked}
+                />
+              </S.UserInfoItemWrapper>
+            ))}
         </S.UserInfoItemContainer>
       </BaseCardContainer>
     </Modal>

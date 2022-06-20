@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 import * as S from './style';
 import Icon from '../../../components/Icon';
 
-const CheckIcon = ({ onClick = () => {} }) => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleClick = () => {
-    setIsChecked(!isChecked);
-    onClick();
-  };
+const CheckIcon = ({ checked }) => {
+  const [isChecked, setIsChecked] = checked
+    ? [checked, () => {}]
+    : useState(false);
 
   return (
-    <S.CheckIconWrapper onClick={handleClick}>
+    <S.CheckIconWrapper onClick={() => setIsChecked(!isChecked)}>
       {isChecked ? (
         <S.CheckedBox>
           <Icon name="checkWhite" alt="checked-icon" size="100%" />
@@ -24,8 +21,6 @@ const CheckIcon = ({ onClick = () => {} }) => {
   );
 };
 
-CheckIcon.propTypes = {
-  onClick: PropTypes.func,
-};
+CheckIcon.propTypes = {};
 
 export default CheckIcon;
