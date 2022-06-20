@@ -10,6 +10,7 @@ import {
   SearchPage,
   TTaBongPage,
   UserProfilePage,
+  ProfileEditPage,
   LoginPage,
   RegisterPage,
 } from './pages';

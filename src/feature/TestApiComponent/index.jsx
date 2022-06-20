@@ -5,17 +5,17 @@ import {
   getAllChannels,
   getAllUsers,
   getAuthorPosts,
-  getAuthUser,
+  checkIsAuthUser,
   getChannelPosts,
   getConversations,
   getMessages,
   getSpecificChannel,
   getSpecificPost,
   getSpecificUser,
-  logIn,
+  loginUser,
   postMessage,
   putPost,
-  signUp,
+  registerUser,
 } from '../../apis';
 import MainCard from '../Cards/MainCard';
 
@@ -71,7 +71,10 @@ function TestApiComponent() {
   };
 
   const handleLogInClick = async (e) => {
-    const { user, token } = await logIn(authInput.email, authInput.password);
+    const { user, token } = await loginUser(
+      authInput.email,
+      authInput.password,
+    );
 
     if (!user) return;
 
@@ -80,7 +83,7 @@ function TestApiComponent() {
   };
 
   const handleSignUpClick = async (e) => {
-    const { user, token } = await signUp(
+    const { user, token } = await registerUser(
       authInput.email,
       authInput.fullName,
       authInput.password,
@@ -96,7 +99,7 @@ function TestApiComponent() {
   const handleIsAuthedClick = async () => {
     if (!curUser) return;
 
-    const user = await getAuthUser(curUser.token);
+    const user = await checkIsAuthUser(curUser.token);
     console.log(user);
   };
 

@@ -35,7 +35,6 @@ export const SearchContainer = styled.form`
   border-radius: 34px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 24px;
-  // font-size 추후 변경 필요
 `;
 
 export const CommentContainer = styled.form`
@@ -54,9 +53,8 @@ export const EditContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   width: 292px;
-  height: 77px;
+  height: 80px;
   border: 0;
   border-radius: 20px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -103,14 +101,16 @@ export const RemoveButton = styled.img`
 `;
 
 export const InputTypeLabel = styled.label`
-  height: 20px;
+  height: 22px;
   font-size: 12px;
   font-weight: bold;
   padding-left: ${({ version }) => version === 'edit' && '16px'};
 `;
 
 export const Errors = styled.div`
-  margin-top: 4px;
+  margin-top: ${({ version }) => version === 'auth' && '4px'};
+  //margin-top: 4px;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.red};
+  padding-left: ${({ version }) => version === 'edit' && '16px'};
 `;
