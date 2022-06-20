@@ -43,7 +43,7 @@ export const StyledButton = styled.button`
   box-sizing: border-box;
   font-size: 20px;
   padding: 5px;
-  width: 305px;
+  width: ${({ width }) => width || '305px'};
   height: 59px;
   ${({ version }) => {
     switch (version) {
