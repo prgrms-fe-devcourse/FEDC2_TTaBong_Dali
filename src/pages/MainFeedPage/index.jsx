@@ -24,24 +24,26 @@ const MainFeedPage = () => {
     console.log('start loading');
     getChannelPosts(CHANNEL_ID, offset, 5)
       .then((response) => {
-        if (!response) return null;
+        if (response === []) {
+          console.log('no more cards to load');
+          return;
+        }
         console.log(response);
         const newPosts = [...posts, ...response];
-        console.log('post + response', newPosts);
         setPosts(newPosts || Posts);
       })
       .then(() => {
         setOffset(offset + 5);
-        console.log('setOffset : ', offset);
       });
     setLoading(false);
     console.log('end loading');
   };
 
   const onIntersect = async (entries, observer) => {
-    console.log('안녕하신가');
-    console.log('posts.length, offset', posts.length, offset);
-    if (posts.length !== offset) return;
+    if (posts.length !== offset) {
+      console.log('no more cards to load');
+      return;
+    }
     entries.forEach((entry) => {
       if (entry.isIntersecting && !loading) {
         observer.unobserve(entry.target);
