@@ -8,11 +8,11 @@ import BaseCardContainer from '../../components/BaseCardContainer';
 import RankFirstInfo from '../../feature/rank/RankFirstInfo';
 import { getAllUsers, getChannelPosts } from '../../apis/index';
 import { TabItem } from '../../components/Tab';
+import Constants from '../../commons/constants/index';
 
 const RankPage = () => {
   const TTABONG = 'TTaBongCount';
   const COIN = 'coinCount';
-  const TEST_CHANNEL_ID = '62a19123d1b81239d875d20d';
 
   const [users, setUsers] = useState([
     {
@@ -42,7 +42,7 @@ const RankPage = () => {
   // users = [{id, 이름, 따봉카운트, 코인카운트},...]
   const sortUsers = async () => {
     const allUsers = await getAllUsers();
-    const channelPosts = await getChannelPosts(TEST_CHANNEL_ID); // @todo 전역에서 test channel id 설정하면 들고와서 다시 설정
+    const channelPosts = await getChannelPosts(Constants.TEST_CHANNEL_ID); // @todo 전역에서 test channel id 설정하면 들고와서 다시 설정
     const allUserInfo = allUsers.map(({ fullName, _id, posts }) => {
       return { _id, fullName, TTaBongCount: posts.length, coinCount: 0 };
     });
