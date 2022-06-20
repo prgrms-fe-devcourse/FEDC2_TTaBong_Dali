@@ -8,7 +8,11 @@ export default {
     type: {
       defaultValue: 'warm',
       control: { type: 'radio' },
-      options: ['warm', 'moved', 'praise'],
+      options: ['warm', 'moved', 'praise', ''],
+    },
+    children: {
+      defaultValue: '',
+      control: { type: 'text' },
     },
   },
 };
