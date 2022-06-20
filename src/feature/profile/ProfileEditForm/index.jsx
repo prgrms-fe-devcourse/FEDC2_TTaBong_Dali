@@ -6,6 +6,7 @@ import {
   PASSWORDCONFIRM_ISNILL_ERROR,
   PASSWORD_UNEQUAL_ERROR,
 } from '../../../commons/constants/error';
+import { PASSWORD_UPDATE_SUCCESS } from '../../../commons/constants/string';
 
 const ProfileEditForm = ({ onSubmit, defaultValue, ...styles }) => {
   const { isLoading, errors, handleChange, handleSubmit, removeAll } = useForm({
@@ -20,7 +21,7 @@ const ProfileEditForm = ({ onSubmit, defaultValue, ...styles }) => {
         password,
       );
       if (response === 'Password updated successfully.') {
-        alert('비밀번호가 성공적으로 변경됐습니다.');
+        alert(PASSWORD_UPDATE_SUCCESS);
       }
     },
     validate: ({ password, passwordConfirm }) => {
