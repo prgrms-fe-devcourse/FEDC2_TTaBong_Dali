@@ -21,6 +21,10 @@ const GlobalStyle = () => {
         input[type='text']:disabled {
           background-color: #fff;
         }
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
       `}
     />
   );

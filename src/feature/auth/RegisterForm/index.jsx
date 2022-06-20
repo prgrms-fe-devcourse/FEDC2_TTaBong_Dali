@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import useForm from '../../../hooks/useForm';
 import {
@@ -16,7 +17,6 @@ const RegisterForm = ({ onSubmit }) => {
       passwordConfirm: '',
     },
     onSubmit: async ({ email, userName, password }) => {
-      // console.log(email, userName, password);
       await onSubmit(email, userName, password);
     },
     validate: ({ userName, email, password, passwordConfirm }) => {
@@ -66,7 +66,9 @@ const RegisterForm = ({ onSubmit }) => {
       <S.RegisterButton type="submit" version="yellow">
         SIGN UP
       </S.RegisterButton>
-      <S.Nav>메인화면으로 가기</S.Nav>
+      <Link to="/">
+        <S.Nav>메인화면으로 가기</S.Nav>
+      </Link>
     </S.RegisterForm>
   );
 };
