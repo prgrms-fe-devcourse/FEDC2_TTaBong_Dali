@@ -16,14 +16,14 @@ const RankPage = () => {
 
   const [users, setUsers] = useState([
     {
-      fullName: undefined,
+      fullName: '',
     },
   ]);
   const [goods, setGoods] = useState(TTABONG);
 
-  const sortGoods = (goods) => {
+  const sortGoods = (goods, res = users) => {
     setUsers(
-      users.sort((pre, cur) => {
+      res.sort((pre, cur) => {
         if (pre[goods] < cur[goods]) return 1;
         if (pre[goods] > cur[goods]) return -1;
         if (pre._id > cur._id) return 1;
@@ -38,10 +38,9 @@ const RankPage = () => {
     sortGoods(type);
   };
 
-  // users = [{id, 이름, 따봉카운트, 코인카운트},...]
   const sortUsers = async () => {
     const allUsers = await getAllUsers();
-    const channelPosts = await getChannelPosts(Constants.TEST_CHANNEL_ID); // @todo 전역에서 test channel id 설정하면 들고와서 다시 설정
+    const channelPosts = await getChannelPosts(Constants.TEST_CHANNEL_ID);
     const allUserInfo = allUsers.map(({ fullName, _id, posts }) => {
       return { _id, fullName, TTaBongCount: posts.length, coinCount: 0 };
     });
@@ -49,7 +48,6 @@ const RankPage = () => {
     channelPosts.forEach(({ title }) => {
       const { type, receiver } = JSON.parse(title);
 
-      // 아이디와 receiver가 같다면 해당 id 가진 객체에서 coinCount를 올려준다.
       for (let i = 0; i < allUserInfo.length; i += 1) {
         const { _id, coinCount } = allUserInfo[i];
         if (receiver === _id) {
@@ -59,13 +57,15 @@ const RankPage = () => {
         }
       }
     });
-    setUsers(allUserInfo);
+    return allUserInfo;
   };
 
-  // 마운트 할 때는 따봉왕 정렬
   useEffect(() => {
-    sortUsers();
-    sortGoods(goods);
+    const fetchData = async () => {
+      const sortedUsers = await sortUsers();
+      sortGoods(goods, sortedUsers);
+    };
+    fetchData();
   }, []);
 
   return (
