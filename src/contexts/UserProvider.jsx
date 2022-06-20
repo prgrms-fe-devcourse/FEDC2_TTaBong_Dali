@@ -51,7 +51,7 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const { userName, userId, token } = getCookie('user') || initialUserState;
-    console.log(getCookie('user'));
+
     dispatch({
       type: 'CHECK_USER',
       isAuth: !!token,
