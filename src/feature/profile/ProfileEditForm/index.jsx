@@ -9,16 +9,16 @@ import {
 } from '../../../commons/constants/error';
 
 const ProfileEditForm = ({ onSubmit, ...styles }) => {
-  const { user } = useAuthContext();
+  const { authUser } = useAuthContext();
 
   const { isLoading, errors, handleChange, handleSubmit, removeAll } = useForm({
     initialValues: {
-      userName: user.userName,
+      userName: authUser.userName,
       password: '',
       passwordConfirm: '',
     },
     onSubmit: async ({ password }) => {
-      await onSubmit(user.token, password);
+      await onSubmit(authUser.token, password);
     },
     validate: ({ password, passwordConfirm }) => {
       const errors = {};
@@ -43,7 +43,7 @@ const ProfileEditForm = ({ onSubmit, ...styles }) => {
             onChange={handleChange}
             errors={errors}
             removeAll={removeAll}
-            defaultValue={user.userName}
+            defaultValue={authUser.userName}
             disabled
           />
           <S.EditInput
