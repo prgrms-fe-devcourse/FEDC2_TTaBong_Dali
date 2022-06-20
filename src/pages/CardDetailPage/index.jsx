@@ -29,7 +29,6 @@ const CardDetailPage = () => {
     const getPosts = async () => {
       setLoading(true);
       const post = await getSpecificPost(id);
-      console.log(user);
       const { author, title, likes, comments, _id } =
         post || DummyData.Posts[0];
       const { type, receiver, content, labels = [] } = JSON.parse(title);
