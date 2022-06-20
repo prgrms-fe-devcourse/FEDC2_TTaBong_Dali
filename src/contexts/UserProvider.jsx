@@ -14,6 +14,7 @@ export const useAuthContext = () => useContext(UserContext);
 const initialUserState = {
   isAuth: false,
   userName: '',
+  userId: '',
   token: '',
 };
 
@@ -23,18 +24,21 @@ const userReducer = (_, action) => {
       return {
         isAuth: action.isAuth,
         userName: action.userName,
+        userId: action.userId,
         token: action.token,
       };
     case 'LOGIN_USER':
       return {
         isAuth: true,
         userName: action.userName,
+        userId: '',
         token: action.token,
       };
     case 'LOGOUT_USER':
       return {
         isAuth: false,
         userName: '',
+        userId: '',
         token: '',
       };
     default:
@@ -46,10 +50,12 @@ const UserProvider = ({ children }) => {
   const [user, dispatch] = useReducer(userReducer, initialUserState);
 
   useEffect(() => {
-    const { userName, token } = getCookie('user') || initialUserState;
+    const { userName, userId, token } = getCookie('user') || initialUserState;
+    console.log(getCookie('user'));
     dispatch({
       type: 'CHECK_USER',
       isAuth: !!token,
+      userId,
       userName,
       token,
     });

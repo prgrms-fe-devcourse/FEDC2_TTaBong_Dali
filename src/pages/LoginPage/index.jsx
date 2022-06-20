@@ -12,11 +12,16 @@ const LoginPage = () => {
   const handleLogin = async (email, password) => {
     const { user, token } = await loginUser(email, password);
 
-    await dispatch({ type: 'LOGIN_USER', userName: user.fullName, token });
+    await dispatch({
+      type: 'LOGIN_USER',
+      userName: user.fullName,
+      userId: user._id,
+      token,
+    });
 
     setCookie(
       'user',
-      { userName: user.fullName, token },
+      { userName: user.fullName, userId: user._id, token },
       {
         path: '/',
         maxAge: 60 * 60 * 9, // 9시간
