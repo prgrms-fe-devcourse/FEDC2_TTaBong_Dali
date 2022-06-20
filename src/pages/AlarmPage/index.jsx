@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
@@ -59,7 +58,5 @@ const AlarmPage = () => {
     </PageTemplate>
   );
 };
-
-AlarmPage.propTypes = {};
 
 export default AlarmPage;

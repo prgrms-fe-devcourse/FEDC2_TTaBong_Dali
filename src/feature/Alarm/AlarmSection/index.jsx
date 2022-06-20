@@ -4,7 +4,7 @@ import * as S from './style';
 import Divider from '../../../components/Divider';
 import AlarmItem from '../AlarmItem';
 
-const AlarmSection = ({ title = 'ㅅㄷㄴㅅ', alarms = [] }) => {
+const AlarmSection = ({ title = '읽음', alarms = [] }) => {
   return (
     <S.AlarmSection>
       <S.Title>{title}</S.Title>
@@ -18,8 +18,7 @@ const AlarmSection = ({ title = 'ㅅㄷㄴㅅ', alarms = [] }) => {
             <AlarmItem
               key={alarm._id}
               type={type}
-              author={alarm.author.fullName}
-              authorId={alarm.author._id}
+              author={alarm.author}
               postId={alarm.post}
               commentContent={alarm.comment.comment}
             />
@@ -30,6 +29,9 @@ const AlarmSection = ({ title = 'ㅅㄷㄴㅅ', alarms = [] }) => {
   );
 };
 
-AlarmSection.propTypes = {};
+AlarmSection.propTypes = {
+  title: PropTypes.string,
+  alarms: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default AlarmSection;

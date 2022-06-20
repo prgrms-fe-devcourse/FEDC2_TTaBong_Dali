@@ -5,13 +5,7 @@ import * as S from './style';
 import Avatar from '../../../components/Avatar';
 import { getNotificationsSeen } from '../../../apis';
 
-const AlarmItem = ({
-  type = 'like',
-  author = '나',
-  authorId = '',
-  commentContent = '',
-  postId = '',
-}) => {
+const AlarmItem = ({ type = 'like', author, commentContent, postId = '' }) => {
   const navigator = useNavigate();
 
   const alarmTypes = {
@@ -20,7 +14,7 @@ const AlarmItem = ({
   };
 
   const onClickAvatar = () => {
-    navigator(`/userProfile/${authorId}`);
+    navigator(`/userProfile/${author._id}`);
   };
 
   const onClickAlarm = async () => {
@@ -33,7 +27,7 @@ const AlarmItem = ({
       <Avatar onClick={onClickAvatar} size={42} />
       <S.AlarmContent onClick={onClickAlarm}>
         <S.AlarmTitle>
-          <S.BoldAuthor>{author}</S.BoldAuthor> 님이 {alarmTypes[type]}
+          <S.BoldAuthor>{author.fullName}</S.BoldAuthor> 님이 {alarmTypes[type]}
         </S.AlarmTitle>
         <S.AlarmComment>{commentContent && commentContent}</S.AlarmComment>
       </S.AlarmContent>
@@ -41,6 +35,11 @@ const AlarmItem = ({
   );
 };
 
-AlarmItem.propTypes = {};
+AlarmItem.propTypes = {
+  type: PropTypes.string,
+  author: PropTypes.object,
+  commentContent: PropTypes.string,
+  postId: PropTypes.string,
+};
 
 export default AlarmItem;
