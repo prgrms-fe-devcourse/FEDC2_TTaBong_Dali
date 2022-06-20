@@ -10,12 +10,14 @@ import {
   SearchPage,
   TTaBongPage,
   UserProfilePage,
+  ProfileEditPage,
   LoginPage,
   RegisterPage,
 } from './pages';
 import NotFoundPage from './pages/NotFound';
 import UserProvider from './contexts/UserProvider';
 import { AuthRoute, ProtectedRoute } from './routes';
+import TestApiComponent from './feature/TestApiComponent';
 
 function App() {
   return (
@@ -32,12 +34,14 @@ function App() {
           />
           <Route path="/search/*" element={<SearchPage />} />
           <Route path="/userProfile/*" element={<UserProfilePage />} />
+          <Route path="/profileEdit/*" element={<ProfileEditPage />} />
           <Route path="/login" element={<AuthRoute Component={LoginPage} />} />
           <Route
             path="/register"
             element={<AuthRoute Component={RegisterPage} />}
           />
           <Route path="/error/*" element={<NotFoundPage />} />
+          <Route path="/api/*" element={<TestApiComponent />} />
           <Route path="/*" element={<Navigate to="/mainFeed" />} />
         </Routes>
       </UserProvider>
