@@ -103,3 +103,5 @@ export const ProfileCardWrapper = styled.div`
 export const InfinityScrollCardWrapper = styled.div`
   width: 100%;
 `;
+
+export const ProfileCardBox = styled.div``;

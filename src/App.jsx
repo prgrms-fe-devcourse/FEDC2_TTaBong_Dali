@@ -25,7 +25,7 @@ function App() {
         <Route path="/rank/*" element={<RankPage />} />
         <Route path="/TTaBong/*" element={<TTaBongPage />} />
         <Route path="/search/*" element={<SearchPage />} />
-        <Route path="/userProfile/*" element={<UserProfilePage />} />
+        <Route path="/userProfile/:id" element={<UserProfilePage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="/error/*" element={<NotFoundPage />} />

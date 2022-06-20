@@ -158,17 +158,23 @@ const UserProfilePage = () => {
             칭찬받은카드
           </TabItem>
         </S.TapWrapper>
-        {praisePosts.map((post, idx) => (
-          <S.ProfileCardWrapper>
-            {praisePosts.length - 1 === idx ? (
-              <S.InfinityScrollCardWrapper ref={setTarget}>
-                <ProfileCard post={post} key={post._id} />
-              </S.InfinityScrollCardWrapper>
-            ) : (
-              <ProfileCard post={post} key={post._id} />
-            )}
-          </S.ProfileCardWrapper>
-        ))}
+        {praiseCardActive ? (
+          <>
+            {praisePosts.map((post, idx) => (
+              <S.ProfileCardWrapper>
+                {praisePosts.length - 1 === idx ? (
+                  <S.InfinityScrollCardWrapper ref={setTarget}>
+                    <ProfileCard post={post} key={post._id} />
+                  </S.InfinityScrollCardWrapper>
+                ) : (
+                  <ProfileCard post={post} key={post._id} />
+                )}
+              </S.ProfileCardWrapper>
+            ))}
+          </>
+        ) : (
+          <h1>test</h1>
+        )}
       </BaseCardContainer>
     </PageTemplate>
   );
