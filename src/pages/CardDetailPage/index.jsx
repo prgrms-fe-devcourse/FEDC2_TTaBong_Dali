@@ -6,8 +6,10 @@ import { postNotifications } from '../../apis/notifications';
 import { getSpecificPost } from '../../apis/posts';
 import { getSpecificUser } from '../../apis/users';
 import DummyData from '../../assets/data/dummyData';
+import { useAuthContext } from '../../contexts/UserProvider';
 import CardDetail from '../../feature/Cards/CardDetail';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
+
 // like 버튼
 // 포스트의 likes와 유저의 Likes를 구분해서
 const likeToggle = (likes, userId) => {
@@ -16,6 +18,7 @@ const likeToggle = (likes, userId) => {
 
 const CardDetailPage = () => {
   const navigator = useNavigate();
+  const { user } = useAuthContext();
   const { id } = useParams();
   const commentInput = useRef('');
   const [isLoading, setLoading] = useState(true);
@@ -26,11 +29,11 @@ const CardDetailPage = () => {
     const getPosts = async () => {
       setLoading(true);
       const post = await getSpecificPost(id);
-      console.log(post);
+      console.log(user);
       const { author, title, likes, comments, _id } =
         post || DummyData.Posts[0];
       const { type, receiver, content, labels = [] } = JSON.parse(title);
-      const isLike = likeToggle(likes, ''); // 접속한 유저의 id 값 넣기
+      const isLike = likeToggle(likes, user.userId); // 접속한 유저의 id 값 넣기
       setProps({
         author,
         title,
@@ -52,11 +55,16 @@ const CardDetailPage = () => {
 
   const onClickLike = async () => {
     // 먼저 접속한 유저의 jwt 토큰을 가져오고 없으면 로그인 페이지로 이동
-    if (props.isLike) {
+    if (!user.isAuth) {
+      alert('로그인이 필요합니다');
+      navigator('/login');
+    } else if (props.isLike) {
       await deleteLike('', props._id);
+      setProps({ ...props, isLike: false });
     } else {
       const like = await postLike('', props._id);
       postNotifications('', 'LIKE', '', like._id, props._id);
+      setProps({ ...props, likes: props.likes.push(like), isLike: true });
     }
   };
 
@@ -66,11 +74,11 @@ const CardDetailPage = () => {
 
   const onSubmitInput = async (e) => {
     e.preventDefault();
-    const comment = await postComments('', props._id, commentInput.current);
-    if (!comment) {
+    if (!user.isAuth) {
       alert('로그인이 필요합니다');
-      navigator('/mainfeed');
+      navigator('/login');
     } else {
+      const comment = await postComments('', props._id, commentInput.current);
       postNotifications('', 'COMMENT', '', comment._id, props._id); // 로그인한 user Id 필요
     }
   };
@@ -84,6 +92,7 @@ const CardDetailPage = () => {
           receiverName={receivedUser.fullName}
           receiverId={receivedUser._id}
           comments={props.comments}
+          likeCount={props.likes.length}
           labelItems={props.labels}
           PraiseReason={props.content}
           onChangeInput={onChangeInput}
