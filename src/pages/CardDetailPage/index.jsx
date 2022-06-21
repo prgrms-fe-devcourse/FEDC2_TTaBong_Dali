@@ -31,14 +31,12 @@ const CardDetailPage = () => {
     const getPosts = async () => {
       setLoading(true);
       const post = await getSpecificPost(id);
-      console.log(post);
       const { author, title, likes, comments, _id } =
         post || DummyData.Posts[0];
       const { type, receiver, content, labels } = JSON.parse(title);
       const labelArr = Object.values(labels).filter(
         (label) => label.length > 0,
       );
-      console.log(JSON.parse(title));
       const isLike = likeToggle(likes, authUser.userId); // 접속한 유저의 id 값 넣기
       setProps({
         author,
@@ -52,18 +50,10 @@ const CardDetailPage = () => {
         labels: labelArr,
         isLike,
       });
-      // setReceivedUser((await getSpecificUser(receiver._id)) || DummyData.Users[0]);
       setLoading(false);
     };
     getPosts();
-  }, []);
-
-  useEffect(() => {
-    if (authUser.isAuth && !isLoading) {
-      const isLike = likeToggle(props.likes, authUser.userId); // 접속한 유저의 id 값 넣기
-      setProps({ ...props, isLike });
-    }
-  }, [authUser, isLoading]);
+  }, [authUser]);
 
   const onClickLike = async () => {
     // 먼저 접속한 유저의 jwt 토큰을 가져오고 없으면 로그인 페이지로 이동

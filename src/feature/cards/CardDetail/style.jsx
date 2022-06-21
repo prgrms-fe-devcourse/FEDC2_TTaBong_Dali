@@ -64,13 +64,14 @@ export const CommentInputWrapper = styled.div`
   bottom: 0;
 `;
 
-export const StyleIconTB = styled(Icon)`
+export const StyleIconWrapper = styled.div`
   transform: rotate(-20deg);
-  animation: TB 0.4s ease;
-  @keyframes TB {
+  animation: TB2 0.8s ease;
+  @keyframes TB2 {
     0% {
       transform: rotate(0deg);
     }
+
     100% {
       transform: rotate(-380deg);
     }
