@@ -8,9 +8,12 @@ import UserInfoItem from '../../../components/UserInfoItem';
 import theme from '../../../commons/style/themes';
 import useForm from '../../../hooks/useForm';
 import { getAllUsers, searchUser } from '../../../apis';
+import { useAuthContext } from '../../../contexts/UserProvider';
 
 const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
   const { isModalOn, backgroundRef, handleCloseModal } = modalProps;
+
+  const { authUser } = useAuthContext();
 
   const [users, setUsers] = useState([]);
 
@@ -19,7 +22,9 @@ const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
       const allUsers = await getAllUsers(0, 100);
 
       setUsers(
-        allUsers.map((user) => ({ ...user, searched: true, checked: false })),
+        allUsers
+          .filter((user) => user._id !== authUser.userId)
+          .map((user) => ({ ...user, searched: true, checked: false })),
       );
     };
 
