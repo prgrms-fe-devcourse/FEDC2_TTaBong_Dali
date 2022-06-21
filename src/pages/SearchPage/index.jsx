@@ -9,7 +9,7 @@ import {
   getSpecificChannel,
 } from '../../apis/index';
 import DummyData from '../../assets/data/dummyData';
-import MainCard from '../../feature/Cards/MainCard';
+import MainCard from '../../feature/cards/MainCard';
 import UserInfoItem from '../../components/UserInfoItem';
 import Constants from '../../commons/constants';
 

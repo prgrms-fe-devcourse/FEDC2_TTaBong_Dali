@@ -10,7 +10,7 @@ const AlarmItem = ({ type = 'like', alarm }) => {
 
   const alarmTypes = {
     like: '맞따봉을 남겼습니다',
-    comment: '댓글을 남겼습니다',
+    comment: '댓글을 남겼습니다.',
   };
 
   const onClickAvatar = () => {
