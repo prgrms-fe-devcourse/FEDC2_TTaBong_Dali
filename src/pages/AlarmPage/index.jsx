@@ -5,39 +5,45 @@ import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import BaseCardContainer from '../../components/BaseCardContainer';
 import AlarmSection from '../../feature/alarm/AlarmSection';
 import { getNotifications } from '../../apis';
-import NotFoundPage from '../NotFound';
+import { useAuthContext } from '../../contexts/UserProvider';
 
 const AlarmPage = () => {
   // 로그인이 되었는지 먼저 확인
   const [isLoading, setLoading] = useState(true);
   const [notSeenAlarms, setNonSeenAlarms] = useState([]);
   const [seenAlarms, setSeenAlarms] = useState([]);
-  const navigation = useNavigate();
-
+  const { authUser } = useAuthContext();
+  const navigator = useNavigate();
   useEffect(() => {
     const getAlarms = async () => {
-      setLoading(true);
-      // const alarms = await getNotifications(''); // jwt 값 할당해야함
-      const alarms = [{}]; // jwt 값 할당해야함
+      if (authUser.isAuth) {
+        setLoading(true);
+        console.log(authUser);
+        const alarms = await getNotifications(authUser.token); // jwt 값 할당해야함
+        // const alarms = [{}]; // jwt 값 할당해야함
+        console.log(alarms);
+        //   if (!alarms) {
+        //     alert('로그인을 해주세요');
+        //     navigator('/login');
+        //   } else {
+        //     const seen = alarms.filter((alarm) => alarm.seen === true);
+        //     setSeenAlarms(seen);
+        //     const notSeen = alarms.filter((alarm) => alarm.seen === false);
+        //     setNonSeenAlarms(notSeen);
 
-      if (!alarms) {
-        alert('로그인을 해주세요');
-        navigation('/login');
-      } else {
-        const seen = alarms.filter((alarm) => alarm.seen === true);
-        setSeenAlarms(seen);
-        const notSeen = alarms.filter((alarm) => alarm.seen === false);
-        setNonSeenAlarms(notSeen);
-
-        setLoading(false);
+        //     setLoading(false);
+        //   }
+        // } else {
+        //   alert('로그인을 해주세요');
+        //   navigator('/login');
       }
     };
 
     getAlarms();
-  }, []);
+  }, [authUser]);
 
   const onClickPrevBtn = () => {
-    navigation(-1);
+    navigator(-1);
   };
 
   return (
@@ -53,7 +59,7 @@ const AlarmPage = () => {
           </BaseCardContainer>
         </S.CardWrapperForSlide>
       ) : (
-        <NotFoundPage />
+        <div />
       )}
     </PageTemplate>
   );

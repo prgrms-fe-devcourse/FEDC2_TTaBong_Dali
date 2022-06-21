@@ -4,20 +4,13 @@ import apiClient from './api';
 
 // 나의 알림 목록을 불러옵니다.
 export const getNotifications = async (JWTtoken) => {
-  try {
-    const notifications = await apiClient.get(`/notifications`, {
-      headers: {
-        Authorization: `bearer ${JWTtoken}`,
-      },
-    });
+  const notifications = await apiClient.get(`/notifications`, {
+    headers: {
+      Authorization: `Bearer ${JWTtoken}`,
+    },
+  });
 
-    if (notifications.statusText === 'OK') {
-      return notifications;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+  return notifications;
 };
 
 getNotifications.propTypes = {
