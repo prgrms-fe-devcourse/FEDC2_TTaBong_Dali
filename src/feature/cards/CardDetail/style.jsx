@@ -66,8 +66,8 @@ export const CommentInputWrapper = styled.div`
 
 export const StyleIconWrapper = styled.div`
   transform: rotate(-20deg);
-  animation: TB2 0.8s ease;
-  @keyframes TB2 {
+  animation: TBLike 0.8s ease;
+  @keyframes TBLike {
     0% {
       transform: rotate(0deg);
     }

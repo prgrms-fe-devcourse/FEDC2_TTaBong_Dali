@@ -26,6 +26,7 @@ const CardDetail = ({
   onChangeInput,
   onSubmitInput,
   onClickLike,
+  type,
 }) => {
   return (
     <Card width={342} height={624}>
@@ -34,6 +35,7 @@ const CardDetail = ({
         authorId={authorId}
         receiverName={receiverName}
         receiverId={receiverId}
+        type={type}
       />
       <S.MainSection>
         <S.ContentContainer>

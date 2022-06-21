@@ -87,9 +87,12 @@ const CardDetailPage = () => {
 
   const onSubmitInput = async (e) => {
     e.preventDefault();
+
     if (!authUser.isAuth) {
       alert('로그인이 필요합니다');
       navigator('/login');
+    } else if (commentInput.current.length < 1) {
+      alert('댓글에 값을 입력해주세요');
     } else {
       const comment = await postComments(
         authUser.token,
@@ -98,6 +101,7 @@ const CardDetailPage = () => {
       );
       if (comment) props.comments.push(comment);
       inputRef.current.value = '';
+      commentInput.current = '';
       setProps({ ...props, comments: props.comments });
       postNotifications(
         authUser.token,
@@ -126,6 +130,7 @@ const CardDetailPage = () => {
           onClickLike={onClickLike}
           isLike={props.isLike}
           img={props.image}
+          type={props.type}
         />
       )}
     </PageTemplate>
