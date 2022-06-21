@@ -13,6 +13,7 @@ import Divider from '../../components/Divider';
 import Button from '../../components/Button';
 import Avatar from '../../components/Avatar';
 import theme from '../../commons/style/themes';
+import { createPost, getSpecificChannel } from '../../apis';
 
 const TTaBongPage = () => {
   const modalProps = useModal();
@@ -24,6 +25,35 @@ const TTaBongPage = () => {
     moved: '',
     warm: '',
   });
+
+  const TEMP_TOKEN =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYWFlZTk0ZTNmNTUyNzQ1MTBjYTA0MyIsImVtYWlsIjoid29vamVycnkzQG5hdmVyLmNvbSJ9LCJpYXQiOjE2NTU1NTg3NzJ9.FilLBV8W7l3OH-kWxIIJ4JBFLBjXFRSh_xoHMzLsJKg';
+  const TEMP_CHANNEL_NAME = 'Test';
+
+  const handleCreatePost = async () => {
+    const channel = await getSpecificChannel(TEMP_CHANNEL_NAME);
+
+    // recevier array????????????????
+    const postTitle = JSON.stringify({
+      type: 'TTaBong',
+      receiver: {
+        _id: checkedUsers[0]._id,
+        fullName: checkedUsers[0].fullName,
+      },
+      content: reason,
+      labels: labelItems,
+    });
+
+    const createdPost = await createPost(
+      TEMP_TOKEN,
+      channel._id,
+      postTitle,
+      imageSrc,
+    );
+
+    console.log('post created');
+    console.log(createdPost);
+  };
 
   return (
     <PageTemplate page="TTaBong">
@@ -62,7 +92,7 @@ const TTaBongPage = () => {
           <LabelList labelItems={labelItems} setLabelItems={setLabelItems} />
         </S.LabelListContainer>
         <S.PraiseButtonContainer>
-          <Button version="yellow" width="100%">
+          <Button version="yellow" width="100%" onClick={handleCreatePost}>
             칭찬하기
           </Button>
         </S.PraiseButtonContainer>
