@@ -18,7 +18,7 @@ const Avatar = ({
         src={src}
         alt="프로필 사진"
       />
-      {avatarName && <S.AvatarName>{avatarName}</S.AvatarName>}
+      {avatarName && <S.AvatarName {...props}>{avatarName}</S.AvatarName>}
     </S.AvatarWrapper>
   );
 };
