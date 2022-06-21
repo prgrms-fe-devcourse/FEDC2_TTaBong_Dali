@@ -50,10 +50,12 @@ export const CoinKingAvatarWrapper = styled.div`
 `;
 
 export const PlacedLogo = styled(Logo)`
+  cursor: pointer;
   margin-right: 8px;
 `;
 
 export const IconWrapper = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   margin-right: 16px;

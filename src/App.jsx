@@ -14,11 +14,11 @@ import {
   LoginPage,
   RegisterPage,
   NotFoundPage,
+  AlarmPage,
 } from './pages';
 import UserProvider from './contexts/UserProvider';
 import { AuthRoute, ProtectedRoute } from './routes';
 import TestApiComponent from './feature/TestApiComponent';
-import AlarmPage from './pages/AlarmPage';
 
 function App() {
   return (
@@ -33,13 +33,16 @@ function App() {
             path="/TTaBong/*"
             element={<ProtectedRoute Component={TTaBongPage} />}
           />
-          <Route path="/search/*" element={<SearchPage />} />
-          <Route path="/userProfile/:id" element={<UserProfilePage />} />
-          <Route path="/alarm/*" element={<AlarmPage />} />
           <Route
             path="/profileEdit/*"
             element={<ProtectedRoute Component={ProfileEditPage} />}
           />
+          <Route
+            path="/alarm/*"
+            element={<ProtectedRoute Component={AlarmPage} />}
+          />
+          <Route path="/search/*" element={<SearchPage />} />
+          <Route path="/userProfile/:id" element={<UserProfilePage />} />
           <Route path="/login" element={<AuthRoute Component={LoginPage} />} />
           <Route
             path="/register"
