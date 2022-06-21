@@ -14,7 +14,6 @@ import fileLine from './icon_file_line.svg';
 import deleteLine from './icon_delete_line.svg';
 import likesLine from './sympathy_ttabong.svg';
 
-
 const IconList = {
   listFill,
   rankFill,

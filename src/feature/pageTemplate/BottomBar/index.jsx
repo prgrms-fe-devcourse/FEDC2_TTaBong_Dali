@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as S from './style';
 import Icon from '../../../components/Icon';
+import { useAuthContext } from '../../../contexts/UserProvider';
 
-// page props로 'mainFeed', 'rank', 'search', 'user'가 들어온다고 가정하겠습니다.
 const BottomBar = ({ page }) => {
+  const { authUser } = useAuthContext();
+  const { isAuth, userId } = authUser;
+
   return (
     <S.BottomBarContainer>
       <S.IconContainer>
@@ -34,12 +37,21 @@ const BottomBar = ({ page }) => {
             alt="검색 아이콘"
           />
         </Link>
-        <Link to="/userProfile">
-          <Icon
-            name={page === 'user' ? 'userFill' : 'userLine'}
-            alt="유저 아이콘"
-          />
-        </Link>
+        {isAuth ? (
+          <Link to={`/userProfile/${userId}`}>
+            <Icon
+              name={page === 'user' ? 'userFill' : 'userLine'}
+              alt="유저 아이콘"
+            />
+          </Link>
+        ) : (
+          <Link to="/login">
+            <Icon
+              name={page === 'user' ? 'userFill' : 'userLine'}
+              alt="유저 아이콘"
+            />
+          </Link>
+        )}
       </S.IconContainer>
     </S.BottomBarContainer>
   );
