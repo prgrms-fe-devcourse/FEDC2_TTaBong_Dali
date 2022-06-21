@@ -30,8 +30,26 @@ const SearchPage = () => {
       const channel = await getSpecificChannel(Constants.CHANNE_NAME);
       const posts = await getChannelPosts(channel._id);
 
-      setItems({ users, posts });
-      setSearched({ users, posts });
+      const coinUsers = users.map((user) => {
+        const receivedPosts = posts
+          .map((post) => JSON.parse(post.title))
+          .filter(({ receiver }) => receiver._id === user._id);
+
+        const TTaBongedPosts = receivedPosts.filter(
+          ({ type }) => type === 'TTaBong',
+        );
+
+        const BigTTaBongedPosts = receivedPosts.filter(
+          ({ type }) => type === 'BigTTaBong',
+        );
+
+        const coinCount = TTaBongedPosts.length + BigTTaBongedPosts.length * 2;
+
+        return { ...user, coinCount };
+      });
+
+      setItems({ users: coinUsers, posts });
+      setSearched({ users: coinUsers, posts });
     };
 
     fetchInitialData();
@@ -88,6 +106,7 @@ const SearchPage = () => {
                     <UserInfoItem
                       userName={user.fullName}
                       TTaBongCount={user.posts.length}
+                      coinCount={user.coinCount}
                     />
                   </S.ItemWrapper>
                 ))
