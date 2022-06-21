@@ -19,6 +19,7 @@ export default {
           'userFill',
           'userLine',
           'alarmLine',
+          'logout',
         ],
       },
       defaultValue: 'listFill',

@@ -34,7 +34,7 @@ function App() {
             element={<ProtectedRoute Component={TTaBongPage} />}
           />
           <Route path="/search/*" element={<SearchPage />} />
-          <Route path="/userProfile/*" element={<UserProfilePage />} />
+          <Route path="/userProfile/:id" element={<UserProfilePage />} />
           <Route path="/alarm/*" element={<AlarmPage />} />
           <Route
             path="/profileEdit/*"
