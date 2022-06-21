@@ -18,7 +18,7 @@ const CardDetail = ({
   receiverId = '',
   receiverImg,
   comments = [],
-  img = '',
+  img,
   isLike = false,
   likeCount = 0,
   PraiseReason = '',
@@ -41,7 +41,7 @@ const CardDetail = ({
             <S.PraiseReasonWrapper>칭찬사유</S.PraiseReasonWrapper>
             <S.PraiseContentWrapper>{PraiseReason}</S.PraiseContentWrapper>
           </S.PraiseContainer>
-          {img && <Image src={img} width={136} height={136} />}
+          {img && <Image src={img} width={136} height={136} alt="그림" />}
         </S.ContentContainer>
         <S.InfoContainer>
           <LabelList labelItems={labelItems} />
@@ -77,7 +77,7 @@ CardDetail.propTypes = {
   receiverId: PropTypes.string.isRequired,
   comments: PropTypes.array,
   img: PropTypes.string,
-  likeCount: PropTypes.string,
+  likeCount: PropTypes.number,
   PraiseReason: PropTypes.string.isRequired,
   labelItems: PropTypes.string.isRequired,
   onClickLike: PropTypes.func,

@@ -31,7 +31,7 @@ const CardDetailPage = () => {
     const getPosts = async () => {
       setLoading(true);
       const post = await getSpecificPost(id);
-      const { author, title, likes, comments, _id } =
+      const { author, title, likes, comments, _id, image } =
         post || DummyData.Posts[0];
       const { type, receiver, content, labels } = JSON.parse(title);
       const labelArr = Object.values(labels).filter(
@@ -49,6 +49,7 @@ const CardDetailPage = () => {
         content,
         labels: labelArr,
         isLike,
+        image,
       });
       setLoading(false);
     };
@@ -124,6 +125,7 @@ const CardDetailPage = () => {
           onSubmitInput={onSubmitInput}
           onClickLike={onClickLike}
           isLike={props.isLike}
+          img={props.image}
         />
       )}
     </PageTemplate>

@@ -19,9 +19,10 @@ const MainFeedPage = () => {
   const CHANNEL_ID = '62a19123d1b81239d875d20d';
   const LIMIT_NUM = 10;
 
-  const getNextPosts = () => {
+  const getNextPosts = async () => {
     setLoading(true);
-    getChannelPosts(CHANNEL_ID, offset, LIMIT_NUM)
+    console.log('2');
+    await getChannelPosts(CHANNEL_ID, offset, LIMIT_NUM)
       .then((response) => {
         if (response === []) {
           console.log('no more cards to load');
@@ -51,7 +52,9 @@ const MainFeedPage = () => {
     entries.forEach((entry) => {
       if (entry.isIntersecting && !loading) {
         observer.unobserve(entry.target);
+
         getNextPosts();
+        setTarget(null);
         observer.observe(entry.target);
       }
     });
