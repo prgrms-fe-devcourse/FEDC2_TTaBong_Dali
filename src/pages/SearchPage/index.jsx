@@ -93,7 +93,7 @@ const SearchPage = () => {
                 ))
               : searched.posts.map((post) => (
                   <S.ItemWrapper>
-                    <MainCard post={post} />
+                    <MainCard post={post} width="100%" />
                   </S.ItemWrapper>
                 ))}
           </BaseCardContainer>
