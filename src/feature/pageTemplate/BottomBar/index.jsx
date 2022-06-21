@@ -9,7 +9,7 @@ const BottomBar = ({ page }) => {
   return (
     <S.BottomBarContainer>
       <S.IconContainer>
-        <Link to="/main">
+        <Link to="/">
           <Icon
             name={page === 'mainFeed' ? 'listFill' : 'listLine'}
             alt="리스트 아이콘"
