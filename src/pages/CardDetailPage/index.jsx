@@ -6,6 +6,7 @@ import { postNotifications } from '../../apis/notifications';
 import { getSpecificPost } from '../../apis/posts';
 import { getSpecificUser } from '../../apis/users';
 import DummyData from '../../assets/data/dummyData';
+import Spinner from '../../components/Spinner';
 import { useAuthContext } from '../../contexts/UserProvider';
 import CardDetail from '../../feature/cards/CardDetail';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
@@ -115,7 +116,7 @@ const CardDetailPage = () => {
 
   return (
     <PageTemplate>
-      {!isLoading && (
+      {!isLoading ? (
         <CardDetail
           authorName={props.author.fullName}
           authorId={props.author._id}
@@ -132,6 +133,8 @@ const CardDetailPage = () => {
           img={props.image}
           type={props.type}
         />
+      ) : (
+        <Spinner />
       )}
     </PageTemplate>
   );
