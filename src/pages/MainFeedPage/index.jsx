@@ -21,7 +21,6 @@ const MainFeedPage = () => {
 
   const getNextPosts = async () => {
     setLoading(true);
-    console.log('2');
     await getChannelPosts(CHANNEL_ID, offset, LIMIT_NUM)
       .then((response) => {
         if (response === []) {
