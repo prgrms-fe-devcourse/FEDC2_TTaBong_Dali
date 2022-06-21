@@ -44,16 +44,9 @@ const UserProfilePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  let profilePage;
-
-  // 100개를 쏴서 다져와서렌더링 100개 내꺼다
-  // 10개씩 렌더링을 무한스크롤, 무한스크롤 할때에는 offset 과 Page를 state에 할당
-  // 그리고 내가 받은 칭찬 카드를 필터 하고 나서 그걸 State에 넣어보는걳은..?
-
   const getUser = async () => {
     const userList = await getAllUsers();
     const thisIsUser = userList.find((user) => user._id === id);
-    console.log(thisIsUser);
     setPageUserInfo(thisIsUser);
   };
 
@@ -94,8 +87,6 @@ const UserProfilePage = () => {
     return () => observer && observer.disconnect();
   }, [praisingTarget]);
 
-  // =======================================
-
   const getNextPraisedPosts = () => {
     setLoading(true);
     getChannelPosts(CHANNEL_ID, praisedOffset).then((response) => {
@@ -109,8 +100,6 @@ const UserProfilePage = () => {
 
       const newPosts = [...praisedPosts, ...filteredResponse];
       setPraisedPosts(newPosts);
-      // setPraisedOffset(praisedOffset + 100);
-      // if (newPosts.length < 1) getNextPraisedPosts();
     });
     setLoading(false);
   };
