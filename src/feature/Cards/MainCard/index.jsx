@@ -27,7 +27,7 @@ const MainCard = ({ post }) => {
   const { type, receiver, content, labelItems } = JSON.parse(title.trim());
 
   const navigate = useNavigate();
-  const handleClick = () => navigate(`/cardDetail/${author._id}`);
+  const handleClick = () => navigate(`/cardDetail/${postId}`);
 
   // label이 없는경우를 대비해 default는 빈배열로 일단 처리
   return (
