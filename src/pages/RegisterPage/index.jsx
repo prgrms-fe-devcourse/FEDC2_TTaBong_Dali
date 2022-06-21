@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import RegisterForm from '../../feature/auth/RegisterForm';
 import { registerUser } from '../../apis/auth';
+import { REGISTER_ERROR } from '../../commons/constants/error';
+import { REGISTER_SUCCESS } from '../../commons/constants/string';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -10,8 +12,10 @@ const RegisterPage = () => {
     const { token } = await registerUser(email, fullName, password);
 
     if (token) {
-      alert('회원가입이 성공적으로 완료되었습니다.');
+      alert(REGISTER_SUCCESS);
       navigate('/login');
+    } else {
+      alert(REGISTER_ERROR);
     }
   };
 

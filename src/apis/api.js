@@ -28,6 +28,7 @@ apiClient.interceptors.response.use(
   },
   function (error) {
     console.error(error);
+    return error.response.data;
   },
 );
 

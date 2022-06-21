@@ -4,6 +4,7 @@ import LoginForm from '../../feature/auth/LoginForm';
 import { loginUser } from '../../apis/auth';
 import { setCookie } from '../../utils/cookies';
 import { useAuthContext } from '../../contexts/UserProvider';
+import { LOGIN_ERROR } from '../../commons/constants/error';
 
 const LoginPage = () => {
   const { dispatch } = useAuthContext();
@@ -11,6 +12,10 @@ const LoginPage = () => {
 
   const handleLogin = async (email, password) => {
     const { user, token } = await loginUser(email, password);
+    if (!user) {
+      alert(LOGIN_ERROR);
+      return;
+    }
 
     await dispatch({
       type: 'LOGIN_USER',

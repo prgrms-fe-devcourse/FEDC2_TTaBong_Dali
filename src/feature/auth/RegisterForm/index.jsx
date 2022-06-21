@@ -6,6 +6,7 @@ import {
   USERNAME_ISNILL_ERRROR,
   ID_ISNILL_ERROR,
   PASSWORD_ISNILL_ERROR,
+  PASSWORD_UNEQUAL_ERROR,
 } from '../../../commons/constants/error';
 
 const RegisterForm = ({ onSubmit }) => {
@@ -25,6 +26,8 @@ const RegisterForm = ({ onSubmit }) => {
       if (!email) errors.email = ID_ISNILL_ERROR;
       if (!password) errors.password = PASSWORD_ISNILL_ERROR;
       if (!passwordConfirm) errors.passwordConfirm = PASSWORD_ISNILL_ERROR;
+      if (password !== passwordConfirm)
+        errors.passwordConfirm = PASSWORD_UNEQUAL_ERROR;
       return errors;
     },
   });
