@@ -5,6 +5,7 @@ export const AvatarWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const AvatarImg = styled.img`

@@ -49,6 +49,7 @@ const MainFeedPage = () => {
     await entries.forEach((entry) => {
       if (entry.isIntersecting && !loading) {
         observer.unobserve(entry.target);
+
         getNextPosts();
         setTarget(null);
         observer.observe(entry.target);

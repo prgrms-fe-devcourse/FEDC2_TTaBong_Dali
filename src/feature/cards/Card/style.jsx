@@ -11,4 +11,15 @@ export const Card = styled.div`
   padding-top: 16px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   overflow: hidden;
+
+  animation: cardUp 0.1s ease;
+  @keyframes cardUp {
+    0% {
+      transform: scale(0.5);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
 `;

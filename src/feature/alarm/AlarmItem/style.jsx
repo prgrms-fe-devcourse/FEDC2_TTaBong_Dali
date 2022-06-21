@@ -16,6 +16,7 @@ export const AlarmContent = styled.div`
 
 export const AlarmTitle = styled.span`
   font-size: 0.75rem;
+  overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;

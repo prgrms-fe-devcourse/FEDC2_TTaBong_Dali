@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Icon from '../../../components/Icon';
 
 export const MainSection = styled.div`
   margin: 0 16px;
@@ -50,6 +51,7 @@ export const LikeEventWrapper = styled.div`
   margin: 0;
   padding: 0;
   height: 28px;
+  cursor: pointer;
 `;
 
 export const CountSpan = styled.span`
@@ -60,4 +62,18 @@ export const CountSpan = styled.span`
 export const CommentInputWrapper = styled.div`
   position: fixed;
   bottom: 0;
+`;
+
+export const StyleIconWrapper = styled.div`
+  transform: rotate(-20deg);
+  animation: TBLike 0.8s ease;
+  @keyframes TBLike {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(-380deg);
+    }
+  }
 `;
