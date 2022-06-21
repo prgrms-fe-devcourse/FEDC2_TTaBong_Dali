@@ -56,7 +56,7 @@ export const postNotifications = async (
   postId = null,
 ) => {
   try {
-    const notification = await axios.post(`/notifications/create`, {
+    const notification = await apiClient.post(`/notifications/create`, {
       headers: {
         Authorization: `bearer ${JWTtoken}`,
       },

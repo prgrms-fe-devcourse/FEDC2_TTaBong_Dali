@@ -10,10 +10,13 @@ import {
   SearchPage,
   TTaBongPage,
   UserProfilePage,
+  ProfileEditPage,
   LoginPage,
   RegisterPage,
 } from './pages';
 import NotFoundPage from './pages/NotFound';
+import UserProvider from './contexts/UserProvider';
+import { AuthRoute, ProtectedRoute } from './routes';
 import TestApiComponent from './feature/TestApiComponent';
 import AlarmPage from './pages/AlarmPage';
 
@@ -21,20 +24,32 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Routes>
-        <Route path="/mainFeed/*" element={<MainFeedPage />} />
-        <Route path="/cardDetail/*" element={<CardDetailPage />} />
-        <Route path="/rank/*" element={<RankPage />} />
-        <Route path="/TTaBong/*" element={<TTaBongPage />} />
-        <Route path="/search/*" element={<SearchPage />} />
-        <Route path="/userProfile/*" element={<UserProfilePage />} />
-        <Route path="/alarm/*" element={<AlarmPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="/error/*" element={<NotFoundPage />} />
-        <Route path="/api/*" element={<TestApiComponent />} />
-        <Route path="/*" element={<Navigate to="/mainFeed" />} />
-      </Routes>
+      <UserProvider>
+        <Routes>
+          <Route path="/mainFeed/*" element={<MainFeedPage />} />
+          <Route path="/cardDetail/:id" element={<CardDetailPage />} />
+          <Route path="/rank/*" element={<RankPage />} />
+          <Route
+            path="/TTaBong/*"
+            element={<ProtectedRoute Component={TTaBongPage} />}
+          />
+          <Route path="/search/*" element={<SearchPage />} />
+          <Route path="/userProfile/*" element={<UserProfilePage />} />
+          <Route path="/alarm/*" element={<AlarmPage />} />
+          <Route
+            path="/profileEdit/*"
+            element={<ProtectedRoute Component={ProfileEditPage} />}
+          />
+          <Route path="/login" element={<AuthRoute Component={LoginPage} />} />
+          <Route
+            path="/register"
+            element={<AuthRoute Component={RegisterPage} />}
+          />
+          <Route path="/error/*" element={<NotFoundPage />} />
+          <Route path="/api/*" element={<TestApiComponent />} />
+          <Route path="/*" element={<Navigate to="/mainFeed" />} />
+        </Routes>
+      </UserProvider>
     </ThemeProvider>
   );
 }
