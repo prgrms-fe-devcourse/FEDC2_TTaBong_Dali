@@ -39,21 +39,13 @@ getAuthorPosts.propTypes = {
 };
 
 // 특정 채널에 포스트를 작성합니다.
-export const createPost = async (
-  JWTtoken,
-  channelId,
-  title = '',
-  image = null,
-) => {
-  const newPost = await apiClient.post(
-    `${END_POINT}/create`,
-    { channelId, title, image },
-    {
-      headers: {
-        Authorization: `bearer ${JWTtoken}`,
-      },
+export const createPost = async (JWTtoken, formData) => {
+  const newPost = await apiClient.post(`${END_POINT}/create`, formData, {
+    headers: {
+      Authorization: `bearer ${JWTtoken}`,
+      'Content-Type': 'multipart/form-data',
     },
-  );
+  });
 
   return newPost;
 };
