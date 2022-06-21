@@ -31,8 +31,32 @@ const TTaBongPage = () => {
   });
   const { authUser } = useAuthContext();
 
+  const validationError = {
+    emptyBePraised: '따봉 대상자가 없습니다.',
+    emptyReason: '따봉 사유가 없습니다.',
+    emptyLabels: '따봉 라벨이 없습니다.',
+    lackReason: '따봉 사유를 10글자 이상 기입해 주세요.',
+  };
+
   const handleCreatePost = async () => {
     const channel = await getSpecificChannel(Constants.CHANNE_NAME);
+
+    if (!checkedUsers) {
+      alert(validationError.emptyBePraised);
+      return;
+    }
+    if (!reason) {
+      alert(validationError.emptyReason);
+      return;
+    }
+    if (!labelItems) {
+      alert(validationError.emptyReason);
+      return;
+    }
+    if (reason.length < 10) {
+      alert(validationError.lackReason);
+      return;
+    }
 
     const postTitles = checkedUsers.map((user) =>
       JSON.stringify({
@@ -59,7 +83,7 @@ const TTaBongPage = () => {
         setCheckedUsers={setCheckedUsers}
         modalProps={modalProps}
       />
-      <BaseCardContainer>
+      <BaseCardContainer padding={[1, 1, 1, 1]}>
         <S.PraisePageContainer>
           <S.BePraisedContainer onClick={modalProps.handleOpenModal}>
             <S.BePraisedLabelWrapper>칭찬 대상자</S.BePraisedLabelWrapper>
@@ -76,7 +100,7 @@ const TTaBongPage = () => {
           <ImageUploadContainer imageSrc={imageSrc} setImageSrc={setImageSrc} />
           <LabelList labelItems={labelItems} setLabelItems={setLabelItems} />
           <Button version="yellow" width="100%" onClick={handleCreatePost}>
-            칭찬하기
+            따봉!
           </Button>
         </S.PraisePageContainer>
       </BaseCardContainer>
