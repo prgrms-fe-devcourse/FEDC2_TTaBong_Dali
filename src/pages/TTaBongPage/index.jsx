@@ -46,7 +46,11 @@ const TTaBongPage = () => {
       }),
     );
     postTitles.forEach((post) => {
-      createPost(authUser.token, channel._id, post, imageSrc);
+      const formData = new FormData();
+      formData.append('title', post);
+      formData.append('image', imageSrc);
+      formData.append('channelId', channel._id);
+      createPost(authUser.token, formData);
     });
 
     navigator('/');

@@ -4,15 +4,19 @@ import Icon from '../../../components/Icon';
 import Image from '../../../components/Image';
 
 const ImageUploadContainer = ({ imageSrc, setImageSrc }) => {
+  const [imgSrc, setImgSrc] = useState('');
+
   // Input 추가하면 ImageSrc 추가
   const onChangeInput = (event) => {
+    setImageSrc(event.target.files[0]);
+
     const reader = new FileReader();
     if (event.target.files[0]) {
       reader.readAsDataURL(event.target.files[0]);
     }
     reader.onloadend = () => {
       const resultImage = reader.result;
-      setImageSrc(resultImage);
+      setImgSrc(resultImage);
     };
   };
 
@@ -26,10 +30,10 @@ const ImageUploadContainer = ({ imageSrc, setImageSrc }) => {
     <S.ImageUploadForm>
       <S.FileLabel for="fileInput">
         {/* 이미지 파일이 있을 때 이미지와 삭제 버튼 */}
-        {imageSrc ? (
+        {imgSrc ? (
           <S.ImageUploadBox>
             <Image
-              src={imageSrc}
+              src={imgSrc}
               mode="contain"
               alt="따봉 사유 이미지"
               height={140}
