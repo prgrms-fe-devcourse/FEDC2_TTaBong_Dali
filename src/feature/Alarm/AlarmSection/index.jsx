@@ -18,9 +18,10 @@ const AlarmSection = ({ title = '읽음', alarms = [] }) => {
             <AlarmItem
               key={alarm._id}
               type={type}
+              alarm={alarm}
               author={alarm.author}
               postId={alarm.post}
-              commentContent={alarm.comment.comment}
+              commentContent={type === 'comment' ? alarm.comment.comment : null}
             />
           );
         })}

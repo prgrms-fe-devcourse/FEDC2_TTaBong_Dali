@@ -5,7 +5,7 @@ import * as S from './style';
 import Avatar from '../../../components/Avatar';
 import { getNotificationsSeen } from '../../../apis';
 
-const AlarmItem = ({ type = 'like', author, commentContent, postId = '' }) => {
+const AlarmItem = ({ type = 'like', alarm }) => {
   const navigator = useNavigate();
 
   const alarmTypes = {
@@ -14,11 +14,11 @@ const AlarmItem = ({ type = 'like', author, commentContent, postId = '' }) => {
   };
 
   const onClickAvatar = () => {
-    navigator(`/userProfile/${author._id}`);
+    navigator(`/userProfile/${alarm.author._id}`);
   };
 
   const onClickAlarm = async () => {
-    navigator(`/cardDetail/${postId}`);
+    navigator(`/cardDetail/${alarm.post}`);
     getNotificationsSeen(''); // jwt 토큰 넣어야함
   };
 
@@ -27,9 +27,12 @@ const AlarmItem = ({ type = 'like', author, commentContent, postId = '' }) => {
       <Avatar onClick={onClickAvatar} size={42} />
       <S.AlarmContent onClick={onClickAlarm}>
         <S.AlarmTitle>
-          <S.BoldAuthor>{author.fullName}</S.BoldAuthor> 님이 {alarmTypes[type]}
+          <S.BoldAuthor>{alarm.author.fullName}</S.BoldAuthor> 님이
+          {alarmTypes[type]}
         </S.AlarmTitle>
-        <S.AlarmComment>{commentContent && commentContent}</S.AlarmComment>
+        <S.AlarmComment>
+          {type === 'comment' && alarm.comment.comment}
+        </S.AlarmComment>
       </S.AlarmContent>
     </S.AlarmItem>
   );

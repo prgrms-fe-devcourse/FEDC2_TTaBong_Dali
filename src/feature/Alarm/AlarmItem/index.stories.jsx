@@ -9,8 +9,14 @@ export default {
     type: {
       defaultValue: 'like',
     },
-    author: { defaultValue: '나' },
-    commentContent: { defaultValue: '' },
+    alarm: {
+      defaultValue: {
+        author: '나',
+        comment: {
+          comment: '',
+        },
+      },
+    },
   },
 };
 
@@ -33,6 +39,12 @@ Comment.argTypes = {
   type: {
     defaultValue: 'comment',
   },
-  author: { defaultValue: '나' },
-  commentContent: { defaultValue: '칭찬이 즐거워' },
+  alarm: {
+    defaultValue: {
+      author: '나',
+      comment: {
+        comment: '칭찬이 즐거워',
+      },
+    },
+  },
 };

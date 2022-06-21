@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import BaseCardContainer from '../../components/BaseCardContainer';
-import AlarmSection from '../../feature/Alarm/AlarmSection';
+import AlarmSection from '../../feature/alarm/AlarmSection';
 import { getNotifications } from '../../apis';
 import NotFoundPage from '../NotFound';
 
