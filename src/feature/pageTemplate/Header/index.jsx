@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Avatar from '../../../components/Avatar';
 import Icon from '../../../components/Icon';
@@ -18,12 +18,16 @@ const Header = ({ isScrollDown = false, isAlarm = false }) => {
           <Avatar size={30} />
         </S.CoinKingAvatarWrapper>
       </S.AvatarContainer>
-      <S.PlacedLogo />
-      <S.IconWrapper>
-        <Badge dot={isAlarm}>
-          <Icon name="alarmLine" alt="알람 아이콘" />
-        </Badge>
-      </S.IconWrapper>
+      <Link to="/">
+        <S.PlacedLogo />
+      </Link>
+      <Link to="/alarm">
+        <S.IconWrapper>
+          <Badge dot={isAlarm}>
+            <Icon name="alarmLine" alt="알람 아이콘" />
+          </Badge>
+        </S.IconWrapper>
+      </Link>
     </S.Header>
   );
 };

@@ -3,7 +3,6 @@ import { useAuthContext } from '../contexts/UserProvider';
 
 const ProtectedRoute = ({ Component }) => {
   const { authUser } = useAuthContext();
-  console.log(authUser.isAuth);
 
   return authUser.isAuth ? <Component /> : <Navigate to="/login" />;
 };
