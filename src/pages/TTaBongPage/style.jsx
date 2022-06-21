@@ -3,11 +3,12 @@ import theme from '../../commons/style/themes';
 import { getPxToRem } from '../../utils/getPxToRem';
 
 export const PraisePageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-
-  gap: 16px;
+  justify-content: space-between;
 `;
 
 export const BePraisedContainer = styled.div`

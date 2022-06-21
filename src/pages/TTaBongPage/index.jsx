@@ -102,6 +102,9 @@ const TTaBongPage = () => {
           <Button version="yellow" width="100%" onClick={handleCreatePost}>
             따봉!
           </Button>
+          <Button version="" width="100%" onClick={handleCreatePost}>
+            빅따봉!
+          </Button>
         </S.PraisePageContainer>
       </BaseCardContainer>
     </PageTemplate>

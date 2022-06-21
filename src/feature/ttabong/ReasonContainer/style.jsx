@@ -3,7 +3,7 @@ import { getPxToRem } from '../../../utils/getPxToRem';
 
 export const StyledTextarea = styled.textarea`
   width: 100%;
-  height: ${getPxToRem(150)};
+  height: ${getPxToRem(120)};
 
   padding: 8px;
   border: 2px solid ${({ theme }) => theme.colors.yellow[0]};
