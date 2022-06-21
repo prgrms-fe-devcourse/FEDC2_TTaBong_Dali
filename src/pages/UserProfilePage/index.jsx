@@ -6,7 +6,7 @@ import BaseCardContainer from '../../components/BaseCardContainer';
 import Avatar from '../../components/Avatar';
 import Button from '../../components/Button';
 import Divider from '../../components/Divider/index';
-import ProfileCard from '../../feature/Cards/ProfileCard';
+import ProfileCard from '../../feature/cards/ProfileCard';
 import Icon from '../../components/Icon';
 import { TabItem } from '../../components/Tab';
 import DummyData from '../../assets/data/dummyData';
