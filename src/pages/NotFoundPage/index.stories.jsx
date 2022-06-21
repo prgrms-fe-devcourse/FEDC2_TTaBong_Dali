@@ -11,7 +11,7 @@ export default {
 export const Default = (args) => {
   return (
     <Router>
-      <NotFoundPage {...args} />;
+      <NotFoundPage {...args} />
     </Router>
   );
 };
