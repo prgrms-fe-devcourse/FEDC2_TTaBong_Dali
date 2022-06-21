@@ -5,17 +5,72 @@ import Banner from '../../feature/pageTemplate/Banner';
 import MainCard from '../../feature/Cards/MainCard';
 
 import DummyData from '../../assets/data/dummyData';
+import { getChannelPosts } from '../../apis/index';
 import { useScrollDown } from '../../hooks/useScrollDown';
 
 const MainFeedPage = () => {
-  const { Posts } = DummyData;
   const [posts, setPosts] = useState([]);
+  const [target, setTarget] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
 
   const [ref, isScrollDown] = useScrollDown();
 
-  // 후에 axios를 통해 Channel을 거쳐 post를 받아오는 작업 필요.
+  const CHANNEL_ID = '62a19123d1b81239d875d20d';
+  const LIMIT_NUM = 10;
+
+  const getNextPosts = () => {
+    setLoading(true);
+    getChannelPosts(CHANNEL_ID, offset, LIMIT_NUM)
+      .then((response) => {
+        if (response === []) {
+          console.log('no more cards to load');
+          return;
+        }
+        const newPosts = [...posts, ...response];
+        if (newPosts === []) {
+          alert(
+            '현재 서버에 카드가 하나도 없는 관계로 더미데이터를 불러옵니다.',
+          );
+          setPosts(DummyData.Posts);
+          return;
+        }
+        setPosts(newPosts);
+      })
+      .then(() => {
+        setOffset(offset + LIMIT_NUM);
+      });
+    setLoading(false);
+  };
+
+  const onIntersect = async (entries, observer) => {
+    if (posts.length !== offset) {
+      console.log('no more cards to load');
+      return;
+    }
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !loading) {
+        observer.unobserve(entry.target);
+        getNextPosts();
+        observer.observe(entry.target);
+      }
+    });
+  };
+
   useEffect(() => {
-    setPosts(Posts);
+    let observer;
+    if (target) {
+      observer = new IntersectionObserver(onIntersect, {
+        threshold: 0.3,
+      });
+      observer.observe(target);
+    }
+    return () => observer && observer.disconnect();
+  }, [target]);
+
+  // 최초 랜더링
+  useEffect(() => {
+    getNextPosts();
   }, []);
 
   return (
@@ -25,9 +80,15 @@ const MainFeedPage = () => {
         className={!isScrollDown ? 'bannerShown' : null}
       >
         <Banner isScrollDown={isScrollDown} />
-        {posts.map((post) => (
+        {posts.map((post, idx) => (
           <S.MainCardWrapper key={post._id}>
-            <MainCard post={post} />
+            {posts.length - 1 === idx ? (
+              <div ref={setTarget}>
+                <MainCard post={post} />
+              </div>
+            ) : (
+              <MainCard post={post} />
+            )}
           </S.MainCardWrapper>
         ))}
       </S.MainFeedPageContainer>
