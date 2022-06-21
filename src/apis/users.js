@@ -32,27 +32,15 @@ getSpecificUser.propTypes = {
 
 // TE BOE IMPLEMENTED
 // 나의 프로필 이미지를 변경합니다.
-export const postProfileImg = async (
-  JWTtoken = '',
-  isCover = false,
-  image = '',
-) => {
-  try {
-    const profileImg = await apiClient.post(`${USERS}/upload-photo`, {
-      headers: {
-        Authorization: `bearer ${JWTtoken}`,
-      },
-      isCover,
-      image,
-    });
+export const postProfileImg = async (JWTtoken, formData) => {
+  const profileImg = await apiClient.post(`${USERS}/upload-photo`, formData, {
+    headers: {
+      Authorization: `bearer ${JWTtoken}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 
-    if (profileImg.statusText === 'OK') {
-      return profileImg;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+  return profileImg;
 };
 
 postProfileImg.propTypes = {

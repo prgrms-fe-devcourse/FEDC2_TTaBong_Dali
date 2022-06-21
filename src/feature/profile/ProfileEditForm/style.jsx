@@ -29,6 +29,6 @@ export const EditInput = styled(InputForm)`
 `;
 
 export const ProfileEditButton = styled(Button)`
-  margin-top: 140px;
+  margin-top: 16px;
   font-weight: 700;
 `;

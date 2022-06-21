@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import * as S from './style';
 import useForm from '../../../hooks/useForm';
 import { useAuthContext } from '../../../contexts/UserProvider';
@@ -7,9 +8,11 @@ import {
   PASSWORDCONFIRM_ISNILL_ERROR,
   PASSWORD_UNEQUAL_ERROR,
 } from '../../../commons/constants/error';
+import ImageUploadContainer from '../../ttabong/ImageUploadContainer';
 
 const ProfileEditForm = ({ onSubmit, ...styles }) => {
   const { authUser } = useAuthContext();
+  const [profileImgSrc, setProfileImgSrc] = useState('');
 
   const { isLoading, errors, handleChange, handleSubmit, removeAll } = useForm({
     initialValues: {
@@ -18,7 +21,8 @@ const ProfileEditForm = ({ onSubmit, ...styles }) => {
       passwordConfirm: '',
     },
     onSubmit: async ({ password }) => {
-      await onSubmit(authUser.token, password);
+      console.log(profileImgSrc);
+      await onSubmit(authUser.token, password, profileImgSrc);
     },
     validate: ({ password, passwordConfirm }) => {
       const errors = {};
@@ -66,6 +70,7 @@ const ProfileEditForm = ({ onSubmit, ...styles }) => {
             errors={errors}
             removeAll={removeAll}
           />
+          <ImageUploadContainer setImageSrc={setProfileImgSrc} />
           <S.ProfileEditButton type="submit">프로필 변경</S.ProfileEditButton>
         </S.CenterWrapper>
       </S.ProfileEditForm>
