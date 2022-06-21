@@ -94,7 +94,7 @@ const TTaBongPage = () => {
       <BaseCardContainer padding={[1, 1, 1, 1]}>
         <S.PraisePageContainer>
           <S.BePraisedContainer onClick={modalProps.handleOpenModal}>
-            <S.BePraisedLabelWrapper>칭찬 대상자</S.BePraisedLabelWrapper>
+            <S.BePraisedLabelWrapper>따봉 대상자</S.BePraisedLabelWrapper>
             <S.BePraisedAvatarContainer>
               {checkedUsers.map((user) => (
                 <S.BePraisedAvatarWrapper key={user._id}>
