@@ -12,6 +12,7 @@ import DummyData from '../../assets/data/dummyData';
 import MainCard from '../../feature/cards/MainCard';
 import UserInfoItem from '../../components/UserInfoItem';
 import Constants from '../../commons/constants';
+import Spinner from '../../components/Spinner';
 
 const SearchPage = () => {
   const [currentActive, setCurrentActive] = useTab();
@@ -23,9 +24,11 @@ const SearchPage = () => {
     users: [],
     posts: [],
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchInitialData = async () => {
+      setLoading(true);
       const users = await getAllUsers();
       const channel = await getSpecificChannel(Constants.CHANNE_NAME);
       const posts = await getChannelPosts(channel._id);
@@ -50,6 +53,7 @@ const SearchPage = () => {
 
       setItems({ users: coinUsers, posts });
       setSearched({ users: coinUsers, posts });
+      setLoading(false);
     };
 
     fetchInitialData();
@@ -78,46 +82,50 @@ const SearchPage = () => {
 
   return (
     <PageTemaplte page="search">
-      <S.SearchPageContainer>
-        <S.InputWrapper>
-          <S.SearchInputForm
-            name="search"
-            version="search"
-            placeholder={`검색할 ${
-              currentActive === 0 ? '사용자 이름' : '칭찬 내용'
-            }을 입력하세요`}
-            onSubmit={handleSubmit}
-          />
-        </S.InputWrapper>
-        <S.TabWrapper>
-          <Tab
-            currentActive={currentActive}
-            handleTabItemClick={handleTabItemClick}
-          >
-            <TabItem>사용자</TabItem>
-            <TabItem>칭찬카드</TabItem>
-          </Tab>
-        </S.TabWrapper>
-        <S.BaseCardWrapper>
-          <BaseCardContainer overflow="auto">
-            {currentActive === 0
-              ? searched.users.map((user) => (
-                  <S.ItemWrapper>
-                    <UserInfoItem
-                      userName={user.fullName}
-                      TTaBongCount={user.posts.length}
-                      coinCount={user.coinCount}
-                    />
-                  </S.ItemWrapper>
-                ))
-              : searched.posts.map((post) => (
-                  <S.ItemWrapper>
-                    <MainCard post={post} width="100%" />
-                  </S.ItemWrapper>
-                ))}
-          </BaseCardContainer>
-        </S.BaseCardWrapper>
-      </S.SearchPageContainer>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <S.SearchPageContainer>
+          <S.InputWrapper>
+            <S.SearchInputForm
+              name="search"
+              version="search"
+              placeholder={`검색할 ${
+                currentActive === 0 ? '사용자 이름' : '칭찬 내용'
+              }을 입력하세요`}
+              onSubmit={handleSubmit}
+            />
+          </S.InputWrapper>
+          <S.TabWrapper>
+            <Tab
+              currentActive={currentActive}
+              handleTabItemClick={handleTabItemClick}
+            >
+              <TabItem>사용자</TabItem>
+              <TabItem>칭찬카드</TabItem>
+            </Tab>
+          </S.TabWrapper>
+          <S.BaseCardWrapper>
+            <BaseCardContainer overflow="auto">
+              {currentActive === 0
+                ? searched.users.map((user) => (
+                    <S.ItemWrapper>
+                      <UserInfoItem
+                        userName={user.fullName}
+                        TTaBongCount={user.posts.length}
+                        coinCount={user.coinCount}
+                      />
+                    </S.ItemWrapper>
+                  ))
+                : searched.posts.map((post) => (
+                    <S.ItemWrapper>
+                      <MainCard post={post} width="100%" />
+                    </S.ItemWrapper>
+                  ))}
+            </BaseCardContainer>
+          </S.BaseCardWrapper>
+        </S.SearchPageContainer>
+      )}
     </PageTemaplte>
   );
 };
