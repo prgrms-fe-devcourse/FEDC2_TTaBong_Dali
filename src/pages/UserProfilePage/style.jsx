@@ -28,6 +28,9 @@ export const ProfileInfoContainer = styled.div`
     top: 0.3rem;
     right: 0;
   }
+  .hidden {
+    display: none;
+  }
 `;
 
 export const InfoLeftContainer = styled.div`
@@ -36,14 +39,9 @@ export const InfoLeftContainer = styled.div`
 `;
 
 export const InfoName = styled.div`
+  margin: 0.5rem 0 2rem 0;
   font-size: 1.2rem;
   font-weight: 700;
-`;
-
-export const InfoId = styled.div`
-  font-weight: 700;
-  color: ${(props) => props.theme.colors.darkgray[2]};
-  margin-bottom: 1rem;
 `;
 
 export const InfoRightContainer = styled.div`

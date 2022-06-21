@@ -59,8 +59,6 @@ const UserProvider = ({ children }) => {
       userName,
       token,
     });
-    console.log(getCookie('user'));
-    console.log(!!token);
   }, []);
 
   const UserContextProviderValue = useMemo(

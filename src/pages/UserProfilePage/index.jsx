@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import BaseCardContainer from '../../components/BaseCardContainer';
@@ -10,8 +10,14 @@ import ProfileCard from '../../feature/cards/ProfileCard';
 import Icon from '../../components/Icon';
 import { TabItem } from '../../components/Tab';
 import { getChannelPosts, getAuthorPosts } from '../../apis/index';
+import { getAllUsers } from '../../apis/users';
+import { useAuthContext } from '../../contexts/UserProvider';
+import { removeCookie } from '../../utils/cookies';
 
 const UserProfilePage = () => {
+  const { authUser, dispatch } = useAuthContext();
+  const [pageUserInfo, setPageUserInfo] = useState({});
+
   const [praisingCardActive, setPraisingCardActive] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -36,26 +42,29 @@ const UserProfilePage = () => {
   };
 
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  let profilePage;
 
   // 100개를 쏴서 다져와서렌더링 100개 내꺼다
   // 10개씩 렌더링을 무한스크롤, 무한스크롤 할때에는 offset 과 Page를 state에 할당
   // 그리고 내가 받은 칭찬 카드를 필터 하고 나서 그걸 State에 넣어보는걳은..?
-  // 이제 해야할 것 :
-  // 1. 칭찬받은 카드 불러오는 로직 구현하기.
-  // 2. praiseCardActive값에 따라 칭찬카드/칭찬받은카드 페이지 보여주기
-  // 3. 현재 로그인된 유저 아이디와 url의 아이디를 비교하여 프로필편집, 로그아웃 아이콘 보여주기
-  // 4. 15분까지 기깔나게 쉬기
 
-  //
+  const getUser = async () => {
+    const userList = await getAllUsers();
+    const thisIsUser = userList.find((user) => user._id === id);
+    console.log(thisIsUser);
+    setPageUserInfo(thisIsUser);
+  };
+
   const getNextPraisingPosts = () => {
     setLoading(true);
-    getAuthorPosts(id, praisingOffset, PRAISING_LIMIT).then((response) => {
+    getAuthorPosts(id, praisingOffset).then((response) => {
       if (response === []) {
         return;
       }
       const newPosts = [...praisingPosts, ...response];
       setPraisingPosts(newPosts);
-      setPraisingOffset(praisingOffset + 5);
     });
     setLoading(false);
   };
@@ -68,6 +77,7 @@ const UserProfilePage = () => {
       if (entry.isIntersecting && !loading) {
         observer.unobserve(entry.target);
         getNextPraisingPosts();
+        setPraisingTarget(null);
         observer.observe(entry.target);
       }
     });
@@ -88,7 +98,7 @@ const UserProfilePage = () => {
 
   const getNextPraisedPosts = () => {
     setLoading(true);
-    getChannelPosts(CHANNEL_ID, praisedOffset, 100).then((response) => {
+    getChannelPosts(CHANNEL_ID, praisedOffset).then((response) => {
       if (response === []) {
         return;
       }
@@ -99,7 +109,7 @@ const UserProfilePage = () => {
 
       const newPosts = [...praisedPosts, ...filteredResponse];
       setPraisedPosts(newPosts);
-      setPraisedOffset(praisedOffset + 100);
+      // setPraisedOffset(praisedOffset + 100);
       // if (newPosts.length < 1) getNextPraisedPosts();
     });
     setLoading(false);
@@ -113,9 +123,18 @@ const UserProfilePage = () => {
       if (entry.isIntersecting && !loading) {
         observer.unobserve(entry.target);
         getNextPraisedPosts();
+        setPraisedTarget(null);
         observer.observe(entry.target);
       }
     });
+  };
+
+  const handleLogOut = () => {
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      removeCookie('user');
+      dispatch({ type: 'LOGOUT_USER' });
+      navigate('/');
+    }
   };
 
   useEffect(() => {
@@ -131,8 +150,9 @@ const UserProfilePage = () => {
 
   // 최초 랜더링
   useEffect(() => {
-    // getNextPraisingPosts();
+    getNextPraisingPosts();
     getNextPraisedPosts();
+    getUser();
   }, []);
 
   return (
@@ -141,27 +161,43 @@ const UserProfilePage = () => {
         <S.ProfilePageContainer>
           <S.ProfileInfoContainer>
             <S.InfoLeftContainer>
-              <S.InfoName>사용자 이름</S.InfoName>
-              <S.InfoId>userId</S.InfoId>
+              <S.InfoName>
+                {pageUserInfo.fullName && pageUserInfo.fullName}
+              </S.InfoName>
               <Avatar size={60} />
             </S.InfoLeftContainer>
             <S.InfoRightContainer>
               <S.CountInfoWrapper>
                 <S.PraiseCountWrapper>
-                  <div className="num">8</div>
+                  <div className="num">{praisingPosts.length}</div>
                   <div>칭찬 횟수</div>
                 </S.PraiseCountWrapper>
                 <S.CoinCountWrapper>
-                  <div className="num">12</div>
+                  <div className="num">{praisedPosts.length}</div>
                   <div>코인 개수</div>
                 </S.CoinCountWrapper>
               </S.CountInfoWrapper>
-              <Button version="lightgrayOutlined" className="button">
-                프로필 편집
-              </Button>
+              <Link to="/profileEdit">
+                {authUser.userId === pageUserInfo._id && (
+                  <Button
+                    type="button"
+                    version="lightgrayOutlined"
+                    className="button"
+                  >
+                    프로필 편집
+                  </Button>
+                )}
+              </Link>
             </S.InfoRightContainer>
             <Divider className="divider" />
-            <Icon name="logout" size={10} className="logoutIcon" />
+            {authUser.userId === pageUserInfo._id && (
+              <Icon
+                name="logout"
+                size={15}
+                className="logoutIcon"
+                onClick={handleLogOut}
+              />
+            )}
           </S.ProfileInfoContainer>
           <S.TapWrapper>
             <TabItem
