@@ -7,6 +7,7 @@ import AlarmSection from '../../feature/alarm/AlarmSection';
 import { getNotifications } from '../../apis';
 import { useAuthContext } from '../../contexts/UserProvider';
 
+
 const AlarmPage = () => {
   // 로그인이 되었는지 먼저 확인
   const [isLoading, setLoading] = useState(true);
