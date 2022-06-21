@@ -28,7 +28,7 @@ export const SearchContainer = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 360px;
+  width: ${({ width }) => width || '360px'};
   height: 69px;
   padding: 0 40px;
   border: 0;
