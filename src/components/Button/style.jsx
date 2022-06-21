@@ -33,6 +33,12 @@ const skyblueOutlinedButtonStyle = ({ theme }) => css`
   color: ${theme.colors.gray[0]};
 `;
 
+const lightgrayOutlinedButtonStyle = ({ theme }) => css`
+  border: 3px solid ${theme.colors.gray[0]};
+  background-color: ${theme.colors.white};
+  color: ${theme.colors.gray[0]};
+`;
+
 export const StyledButton = styled.button`
   cursor: pointer;
   appearance: none;
@@ -47,6 +53,8 @@ export const StyledButton = styled.button`
   height: 59px;
   ${({ version }) => {
     switch (version) {
+      case 'lightgrayOutlined':
+        return lightgrayOutlinedButtonStyle;
       case 'yellow':
         return yellowButtonStyle;
       case 'yellowOutlined':

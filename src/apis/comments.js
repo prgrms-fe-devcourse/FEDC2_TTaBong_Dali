@@ -4,7 +4,6 @@ import apiClient from './api';
 
 // 특정 포스트에 좋아요합니다.
 export const postComments = async (JWTtoken, postId, comment = '') => {
-  console.log(JWTtoken);
   const commentRespond = await apiClient.post(
     `/comments/create`,
     {

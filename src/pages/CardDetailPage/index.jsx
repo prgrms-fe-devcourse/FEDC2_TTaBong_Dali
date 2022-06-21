@@ -7,7 +7,7 @@ import { getSpecificPost } from '../../apis/posts';
 import { getSpecificUser } from '../../apis/users';
 import DummyData from '../../assets/data/dummyData';
 import { useAuthContext } from '../../contexts/UserProvider';
-import CardDetail from '../../feature/Cards/CardDetail';
+import CardDetail from '../../feature/cards/CardDetail';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 
 const getLiked = (likes, userId) => {
@@ -20,22 +20,26 @@ const likeToggle = (likes, userId) => {
 
 const CardDetailPage = () => {
   const navigator = useNavigate();
-  const { user } = useAuthContext();
+  const { authUser } = useAuthContext();
   const { id } = useParams();
   const commentInput = useRef('');
   const inputRef = useRef(null);
   const [isLoading, setLoading] = useState(true);
   const [receivedUser, setReceivedUser] = useState({});
   const [props, setProps] = useState({});
-
   useEffect(() => {
     const getPosts = async () => {
       setLoading(true);
       const post = await getSpecificPost(id);
+      console.log(post);
       const { author, title, likes, comments, _id } =
         post || DummyData.Posts[0];
-      const { type, receiver, content, labels = [] } = JSON.parse(title);
-      const isLike = likeToggle(likes, user.userId); // 접속한 유저의 id 값 넣기
+      const { type, receiver, content, labels } = JSON.parse(title);
+      const labelArr = Object.values(labels).filter(
+        (label) => label.length > 0,
+      );
+      console.log(JSON.parse(title));
+      const isLike = likeToggle(likes, authUser.userId); // 접속한 유저의 id 값 넣기
       setProps({
         author,
         title,
@@ -45,36 +49,42 @@ const CardDetailPage = () => {
         type,
         receiver,
         content,
-        labels,
+        labels: labelArr,
         isLike,
       });
-      setReceivedUser((await getSpecificUser(receiver)) || DummyData.Users[0]);
+      // setReceivedUser((await getSpecificUser(receiver._id)) || DummyData.Users[0]);
       setLoading(false);
     };
     getPosts();
   }, []);
 
   useEffect(() => {
-    if (user.isAuth && !isLoading) {
-      const isLike = likeToggle(props.likes, user.userId); // 접속한 유저의 id 값 넣기
+    if (authUser.isAuth && !isLoading) {
+      const isLike = likeToggle(props.likes, authUser.userId); // 접속한 유저의 id 값 넣기
       setProps({ ...props, isLike });
     }
-  }, [user, isLoading]);
+  }, [authUser, isLoading]);
 
   const onClickLike = async () => {
     // 먼저 접속한 유저의 jwt 토큰을 가져오고 없으면 로그인 페이지로 이동
-    if (!user.isAuth) {
+    if (!authUser.isAuth) {
       alert('로그인이 필요합니다');
       navigator('/login');
     } else if (props.isLike) {
-      const targetLikeId = getLiked(props.likes, user.userId)[0]._id;
-      const deletedLike = await deleteLike(user.token, targetLikeId);
+      const targetLikeId = getLiked(props.likes, authUser.userId)[0]._id;
+      const deletedLike = await deleteLike(authUser.token, targetLikeId);
       props.likes = props.likes.filter((like) => like._id !== deletedLike._id);
       setProps({ ...props, isLike: false, likes: props.likes });
     } else {
-      const like = await postLike(user.token, props._id);
+      const like = await postLike(authUser.token, props._id);
       props.likes.push(like);
-      postNotifications(user.token, 'LIKE', user.userId, like._id, props._id);
+      postNotifications(
+        authUser.token,
+        'LIKE',
+        props.author._id,
+        like._id,
+        props._id,
+      );
       setProps({ ...props, likes: props.likes, isLike: true });
     }
   };
@@ -86,12 +96,12 @@ const CardDetailPage = () => {
 
   const onSubmitInput = async (e) => {
     e.preventDefault();
-    if (!user.isAuth) {
+    if (!authUser.isAuth) {
       alert('로그인이 필요합니다');
       navigator('/login');
     } else {
       const comment = await postComments(
-        user.token,
+        authUser.token,
         props._id,
         commentInput.current,
       );
@@ -99,9 +109,9 @@ const CardDetailPage = () => {
       inputRef.current.value = '';
       setProps({ ...props, comments: props.comments });
       postNotifications(
-        user.token,
+        authUser.token,
         'COMMENT',
-        user.userId,
+        props.author._id,
         comment._id,
         props._id,
       ); // 로그인한 user Id 필요
@@ -114,8 +124,8 @@ const CardDetailPage = () => {
         <CardDetail
           authorName={props.author.fullName}
           authorId={props.author._id}
-          receiverName={receivedUser.fullName}
-          receiverId={receivedUser._id}
+          receiverName={props.receiver.fullName}
+          receiverId={props.receiver._id}
           comments={props.comments}
           likeCount={props.likes.length}
           labelItems={props.labels}

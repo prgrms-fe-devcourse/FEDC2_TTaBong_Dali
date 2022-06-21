@@ -4,6 +4,7 @@ import theme from '../../commons/style/themes';
 export const CardWrapperForSlide = styled.div`
   width: 100%;
   height: 100%;
+  overflow: scroll;
 
   animation: slide 0.4s ease-out;
 
