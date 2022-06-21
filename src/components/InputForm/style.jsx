@@ -79,7 +79,7 @@ export const SearchButton = styled.img`
   cursor: pointer;
 `;
 
-export const CommentButton = styled.div`
+export const CommentButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,6 +87,9 @@ export const CommentButton = styled.div`
   height: 12px;
   font-size: 12px;
   font-weight: bold;
+  border: none;
+  outline: none;
+  background-color: inherit;
   color: ${({ theme }) => theme.colors.skyblue[0]};
   cursor: pointer;
 `;
