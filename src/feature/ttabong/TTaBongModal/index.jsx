@@ -77,7 +77,7 @@ const TTaBongModal = ({ setCheckedUsers, modalProps }) => {
           name="search"
           placeholder="search..."
           onSubmit={handleSearchSubmit}
-          width="285px"
+          width="100%"
         />
         <S.UserInfoItemContainer>
           {users
@@ -91,6 +91,7 @@ const TTaBongModal = ({ setCheckedUsers, modalProps }) => {
                   userName={user.fullName}
                   useCheck
                   checked={user.checked}
+                  useNav={false}
                 />
               </S.UserInfoItemWrapper>
             ))}
