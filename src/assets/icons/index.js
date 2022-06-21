@@ -13,6 +13,7 @@ import checkWhite from './icon_check_white.svg';
 import fileLine from './icon_file_line.svg';
 import deleteLine from './icon_delete_line.svg';
 import likesLine from './sympathy_ttabong.svg';
+import TB from './ttabong_card.svg';
 
 const IconList = {
   listFill,
@@ -30,6 +31,7 @@ const IconList = {
   fileLine,
   deleteLine,
   likesLine,
+  TB,
 };
 
 export default IconList;
