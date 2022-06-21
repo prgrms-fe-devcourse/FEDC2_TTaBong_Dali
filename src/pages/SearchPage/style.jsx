@@ -36,5 +36,9 @@ export const BaseCardWrapper = styled(ContentWrapper)`
 `;
 
 export const ItemWrapper = styled.div`
+  width: 100%;
   margin-bottom: ${getPxToRem(18)};
+
+  display: flex;
+  justify-content: center;
 `;
