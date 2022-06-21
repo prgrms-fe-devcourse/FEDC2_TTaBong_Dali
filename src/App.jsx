@@ -13,8 +13,8 @@ import {
   ProfileEditPage,
   LoginPage,
   RegisterPage,
+  NotFoundPage,
 } from './pages';
-import NotFoundPage from './pages/NotFound';
 import UserProvider from './contexts/UserProvider';
 import { AuthRoute, ProtectedRoute } from './routes';
 import TestApiComponent from './feature/TestApiComponent';
@@ -25,7 +25,7 @@ function App() {
       <GlobalStyle />
       <UserProvider>
         <Routes>
-          <Route path="/mainFeed/*" element={<MainFeedPage />} />
+          <Route path="/" element={<MainFeedPage />} />
           <Route path="/cardDetail/:id" element={<CardDetailPage />} />
           <Route path="/rank/*" element={<RankPage />} />
           <Route
@@ -42,7 +42,7 @@ function App() {
           />
           <Route path="/error/*" element={<NotFoundPage />} />
           <Route path="/api/*" element={<TestApiComponent />} />
-          <Route path="/*" element={<Navigate to="/mainFeed" />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </UserProvider>
     </ThemeProvider>
