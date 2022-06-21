@@ -7,6 +7,7 @@ import {
   ID_ISNILL_ERROR,
   PASSWORD_ISNILL_ERROR,
   PASSWORD_UNEQUAL_ERROR,
+  USERNAME_LEN_ERROR,
 } from '../../../commons/constants/error';
 
 const RegisterForm = ({ onSubmit }) => {
@@ -22,6 +23,7 @@ const RegisterForm = ({ onSubmit }) => {
     },
     validate: ({ userName, email, password, passwordConfirm }) => {
       const errors = {};
+      if (userName.length > 7) errors.userName = USERNAME_LEN_ERROR;
       if (!userName) errors.userName = USERNAME_ISNILL_ERRROR;
       if (!email) errors.email = ID_ISNILL_ERROR;
       if (!password) errors.password = PASSWORD_ISNILL_ERROR;
@@ -45,7 +47,7 @@ const RegisterForm = ({ onSubmit }) => {
       <S.RegisterInput
         name="email"
         type="email"
-        inputType="아이디"
+        inputType="이메일"
         onChange={handleChange}
         errors={errors}
         removeAll={removeAll}

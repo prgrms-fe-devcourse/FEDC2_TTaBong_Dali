@@ -29,7 +29,7 @@ const LoginForm = ({ onSubmit }) => {
       <S.LoginInput
         name="email"
         type="email"
-        inputType="아이디"
+        inputType="이메일"
         onChange={handleChange}
         errors={errors}
         removeAll={removeAll}
