@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
 import InputForm from '../../../components/InputForm';
 
-export const SearchInputFormContainer = styled.div``;
+export const SearchInputFormContainer = styled.div`
+  width: 100%;
+`;
 
 export const UserInfoItemContainer = styled.div`
   width: 100%;

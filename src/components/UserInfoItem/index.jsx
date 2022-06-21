@@ -12,6 +12,7 @@ const UserInfoItem = ({
   TTaBongCount = -1,
   useCheck,
   checked = false,
+  useNav = true,
 }) => {
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ const UserInfoItem = ({
   const handleClick = () => navigate(`/userProfile/${userName}`);
 
   return (
-    <S.UserInfoItemContanier onClick={handleClick}>
+    <S.UserInfoItemContanier onClick={useNav ? handleClick : () => {}}>
       <S.RankerContainer>
         {rank && (
           <S.RankContainer rank={rank}>

@@ -9,7 +9,7 @@ import theme from '../../../commons/style/themes';
 import useForm from '../../../hooks/useForm';
 import { getAllUsers, searchUser } from '../../../apis';
 
-const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
+const TTaBongModal = ({ setCheckedUsers, modalProps }) => {
   const {
     isModalOn,
     setIsModalOn,
@@ -20,7 +20,7 @@ const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
 
   const [users, setUsers] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
     const fetchAllUsers = async () => {
       const allUsers = await getAllUsers(0, 100);
 
@@ -77,7 +77,7 @@ const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
           name="search"
           placeholder="search..."
           onSubmit={handleSearchSubmit}
-          width="285px"
+          width="100%"
         />
         <S.UserInfoItemContainer>
           {users
@@ -91,6 +91,7 @@ const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
                   userName={user.fullName}
                   useCheck
                   checked={user.checked}
+                  useNav={false}
                 />
               </S.UserInfoItemWrapper>
             ))}
