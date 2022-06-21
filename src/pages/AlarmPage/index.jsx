@@ -5,7 +5,7 @@ import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import BaseCardContainer from '../../components/BaseCardContainer';
 import AlarmSection from '../../feature/alarm/AlarmSection';
 import { getNotifications } from '../../apis';
-import NotFoundPage from '../NotFound';
+import NotFoundPage from '../NotFoundPage';
 
 const AlarmPage = () => {
   // 로그인이 되었는지 먼저 확인
