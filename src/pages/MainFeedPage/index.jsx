@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import Banner from '../../feature/pageTemplate/Banner';
-import MainCard from '../../feature/Cards/MainCard';
+import MainCard from '../../feature/cards/MainCard';
 
 import DummyData from '../../assets/data/dummyData';
 import { getChannelPosts } from '../../apis/index';

@@ -17,7 +17,7 @@ import {
   putPost,
   registerUser,
 } from '../../apis';
-import MainCard from '../Cards/MainCard';
+import MainCard from '../cards/MainCard';
 
 function TestApiComponent() {
   const [channel, setChannel] = useState({});

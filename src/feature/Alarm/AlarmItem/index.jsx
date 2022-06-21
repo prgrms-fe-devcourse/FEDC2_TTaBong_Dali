@@ -41,8 +41,6 @@ const AlarmItem = ({ type = 'like', alarm }) => {
 AlarmItem.propTypes = {
   type: PropTypes.string,
   author: PropTypes.object,
-  commentContent: PropTypes.string,
-  postId: PropTypes.string,
 };
 
 export default AlarmItem;

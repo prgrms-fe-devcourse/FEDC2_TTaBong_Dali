@@ -65,7 +65,7 @@ createPost.propTypes = {
 // 특정 포스트의 정보를 불러옵니다. !의문점: 불러오는 건데 왜 post일까? 불러오는 거라 네이밍을 get으로함
 export const getSpecificPost = async (postId) => {
   const specificPost = await apiClient.get(`${END_POINT}/${postId}`);
-
+  console.log(specificPost);
   return specificPost;
 };
 
