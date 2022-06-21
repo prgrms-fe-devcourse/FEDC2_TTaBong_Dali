@@ -17,7 +17,7 @@ export const NavContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
   color: ${({ theme }) => theme.colors.darkgray[2]};
 `;
 
@@ -28,7 +28,7 @@ export const Nav = styled.nav`
 `;
 
 export const NavDivider = styled.div`
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 `;
 
 export const LoginButton = styled(Button)`

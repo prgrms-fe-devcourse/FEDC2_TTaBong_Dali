@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import useForm from '../../../hooks/useForm';
 import {
@@ -42,14 +43,17 @@ const LoginForm = ({ onSubmit }) => {
         removeAll={removeAll}
       />
       <S.NavContainer>
-        <S.Nav>아이디 / 비밀번호 찾기</S.Nav>
+        <Link to="/">
+          <S.Nav>메인화면으로 가기</S.Nav>
+        </Link>
         <S.NavDivider>|</S.NavDivider>
-        <S.Nav>회원가입</S.Nav>
+        <Link to="/register">
+          <S.Nav>회원가입</S.Nav>
+        </Link>
       </S.NavContainer>
       <S.LoginButton type="submit" version="yellow">
         LOG IN
       </S.LoginButton>
-      <S.Nav>메인화면으로 가기</S.Nav>
     </S.LoginForm>
   );
 };

@@ -13,6 +13,14 @@ export const RegisterInput = styled(InputForm)`
   margin-bottom: 22px;
 `;
 
+export const NavContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  color: ${({ theme }) => theme.colors.darkgray[2]};
+`;
+
 export const Nav = styled.nav`
   color: ${({ theme }) => theme.colors.darkgray[2]};
   font-size: 12px;
