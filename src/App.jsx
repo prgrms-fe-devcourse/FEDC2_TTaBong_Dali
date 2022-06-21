@@ -18,6 +18,7 @@ import NotFoundPage from './pages/NotFound';
 import UserProvider from './contexts/UserProvider';
 import { AuthRoute, ProtectedRoute } from './routes';
 import TestApiComponent from './feature/TestApiComponent';
+import AlarmPage from './pages/AlarmPage';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           />
           <Route path="/search/*" element={<SearchPage />} />
           <Route path="/userProfile/*" element={<UserProfilePage />} />
+          <Route path="/alarm/*" element={<AlarmPage />} />
           <Route
             path="/profileEdit/*"
             element={<ProtectedRoute Component={ProfileEditPage} />}
