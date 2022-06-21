@@ -42,6 +42,7 @@ const TTaBongPage = () => {
       emptyReason: '따봉 사유가 없습니다.',
       emptyLabels: '따봉 라벨이 없습니다.',
       lackReason: '따봉 사유를 10글자 이상 기입해 주세요.',
+      toomuchBePraised: '빅따봉은 1명만 가능합니다.',
     };
 
     if (!checkedUsers) {
@@ -58,6 +59,10 @@ const TTaBongPage = () => {
     }
     if (reason.length < 10) {
       alert(validationError.lackReason);
+      return;
+    }
+    if (type === BigTTaBong && checkedUsers.length > 1) {
+      alert(validationError.toomuchBePraised);
       return;
     }
 
