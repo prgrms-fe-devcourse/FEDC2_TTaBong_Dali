@@ -10,6 +10,7 @@ import TTaBongWhite from './TTaBong_white.svg';
 import alarmLine from './icon_alarm_line.svg';
 import fileLine from './icon_file_line.svg';
 import deleteLine from './icon_delete_line.svg';
+import likesLine from './sympathy_ttabong.svg';
 
 const IconList = {
   listFill,
@@ -24,6 +25,7 @@ const IconList = {
   alarmLine,
   fileLine,
   deleteLine,
+  likesLine,
 };
 
 export default IconList;

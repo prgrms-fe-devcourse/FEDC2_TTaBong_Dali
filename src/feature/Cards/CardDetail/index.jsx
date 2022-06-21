@@ -5,10 +5,10 @@ import Card from '../Card';
 import TTaBongerAndTTaBonged from '../TTaBongerAndTTaBonged';
 import LabelList from '../LabelList';
 import Image from '../../../components/Image';
-import likes from '../../../assets/sympathy_ttabong.svg';
 import Divider from '../../../components/Divider';
 import CommentList from '../CommentList';
 import InputForm from '../../../components/InputForm';
+import Icon from '../../../components/Icon';
 
 const CardDetail = ({
   authorName = '',
@@ -48,7 +48,7 @@ const CardDetail = ({
           <S.LikeContainer>
             <S.LikeEventWrapper onClick={onClickLike}>
               {!isLike ? (
-                <img src={likes} alt="공감" width="28px" height="28px" />
+                <Icon name="likesLine" alt="공감" size={14} />
               ) : (
                 <div>따봉완료 아이콘</div>
               )}

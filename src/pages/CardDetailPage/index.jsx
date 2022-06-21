@@ -10,14 +10,12 @@ import { useAuthContext } from '../../contexts/UserProvider';
 import CardDetail from '../../feature/Cards/CardDetail';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 
-// like 버튼
-// 포스트의 likes와 유저의 Likes를 구분해서
-const likeToggle = (likes, userId) => {
-  return !!getLiked(likes, userId).length;
-};
-
 const getLiked = (likes, userId) => {
   return likes.filter((like) => like.user === userId);
+};
+
+const likeToggle = (likes, userId) => {
+  return !!getLiked(likes, userId).length;
 };
 
 const CardDetailPage = () => {
