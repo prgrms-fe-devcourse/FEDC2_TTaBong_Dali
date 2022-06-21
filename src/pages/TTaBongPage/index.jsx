@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ThemeContext } from '@emotion/react';
+import { useNavigate } from 'react-router-dom';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import * as S from './style';
 import { useModal } from '../../components/Modal';
@@ -12,12 +12,14 @@ import {
 import Divider from '../../components/Divider';
 import Button from '../../components/Button';
 import Avatar from '../../components/Avatar';
-import theme from '../../commons/style/themes';
-import { createPost } from '../../apis';
+import { createPost, getSpecificChannel } from '../../apis';
 import { useAuthContext } from '../../contexts/UserProvider';
 import Constants from '../../commons/constants/index';
+import BaseCardContainer from '../../components/BaseCardContainer';
 
 const TTaBongPage = () => {
+  const navigator = useNavigate();
+
   const modalProps = useModal();
   const [checkedUsers, setCheckedUsers] = useState([]);
   const [reason, setReason] = useState('');
@@ -29,7 +31,9 @@ const TTaBongPage = () => {
   });
   const { authUser } = useAuthContext();
 
-  const handleCreatePost = () => {
+  const handleCreatePost = async () => {
+    const channel = await getSpecificChannel(Constants.CHANNE_NAME);
+
     const postTitles = checkedUsers.map((user) =>
       JSON.stringify({
         type: 'TTaBong',
@@ -41,10 +45,11 @@ const TTaBongPage = () => {
         labels: labelItems,
       }),
     );
+    postTitles.forEach((post) => {
+      createPost(authUser.token, channel._id, post, imageSrc);
+    });
 
-    postTitles.forEach((post) =>
-      createPost(authUser.token, Constants.TEST_CHANNEL_ID, post, imageSrc),
-    );
+    navigator('/');
   };
 
   return (
@@ -54,41 +59,27 @@ const TTaBongPage = () => {
         setCheckedUsers={setCheckedUsers}
         modalProps={modalProps}
       />
-      <S.PraisePageContainer>
-        <S.BePraisedContainer onClick={modalProps.handleOpenModal}>
-          <S.BePraisedLabelWrapper>칭찬 대상자</S.BePraisedLabelWrapper>
-          <S.BePraisedCard
-            width="100%"
-            height={80}
-            backgroundColor={theme.colors.yellow[1]}
-            borderRadius="11px"
-            padding={[1, 0.5, 0, 0.5]}
-          >
+      <BaseCardContainer>
+        <S.PraisePageContainer>
+          <S.BePraisedContainer onClick={modalProps.handleOpenModal}>
+            <S.BePraisedLabelWrapper>칭찬 대상자</S.BePraisedLabelWrapper>
             <S.BePraisedAvatarContainer>
               {checkedUsers.map((user) => (
-                <S.BePrasedAvatarWrapper key={user._id}>
+                <S.BePraisedAvatarWrapper key={user._id}>
                   <Avatar size={30} avatarName={user.fullName} ellipsis />
-                </S.BePrasedAvatarWrapper>
+                </S.BePraisedAvatarWrapper>
               ))}
             </S.BePraisedAvatarContainer>
-          </S.BePraisedCard>
-        </S.BePraisedContainer>
-        <Divider size={308} />
-        <S.PraiseReasonContainer>
+          </S.BePraisedContainer>
+          <Divider />
           <ReasonContainer reason={reason} setReason={setReason} />
-        </S.PraiseReasonContainer>
-        <S.ImageUploaderContainer>
           <ImageUploadContainer imageSrc={imageSrc} setImageSrc={setImageSrc} />
-        </S.ImageUploaderContainer>
-        <S.LabelListContainer>
           <LabelList labelItems={labelItems} setLabelItems={setLabelItems} />
-        </S.LabelListContainer>
-        <S.PraiseButtonContainer>
           <Button version="yellow" width="100%" onClick={handleCreatePost}>
             칭찬하기
           </Button>
-        </S.PraiseButtonContainer>
-      </S.PraisePageContainer>
+        </S.PraisePageContainer>
+      </BaseCardContainer>
     </PageTemplate>
   );
 };
