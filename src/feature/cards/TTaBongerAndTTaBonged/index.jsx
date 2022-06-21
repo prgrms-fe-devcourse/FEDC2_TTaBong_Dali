@@ -35,7 +35,7 @@ const TTaBongerAndTTaBonged = ({
 
 TTaBongerAndTTaBonged.propTypes = {
   authorName: PropTypes.string.isRequired,
-  receiverName: PropTypes.string.isRequired,
+  receiverName: PropTypes.string,
 };
 
 export default TTaBongerAndTTaBonged;
