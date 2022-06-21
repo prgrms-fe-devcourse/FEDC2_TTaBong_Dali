@@ -38,6 +38,7 @@ const CardDetailPage = () => {
       const labelArr = Object.values(labels).filter(
         (label) => label.length > 0,
       );
+      console.log(JSON.parse(title));
       const isLike = likeToggle(likes, authUser.userId); // 접속한 유저의 id 값 넣기
       setProps({
         author,
@@ -80,7 +81,7 @@ const CardDetailPage = () => {
       postNotifications(
         authUser.token,
         'LIKE',
-        authUser.userId,
+        props.author._id,
         like._id,
         props._id,
       );
@@ -110,7 +111,7 @@ const CardDetailPage = () => {
       postNotifications(
         authUser.token,
         'COMMENT',
-        authUser.userId,
+        props.author._id,
         comment._id,
         props._id,
       ); // 로그인한 user Id 필요

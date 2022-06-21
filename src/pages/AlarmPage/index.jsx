@@ -16,27 +16,16 @@ const AlarmPage = () => {
   const navigator = useNavigate();
   useEffect(() => {
     const getAlarms = async () => {
-      if (authUser.isAuth) {
-        setLoading(true);
-        console.log(authUser);
-        const alarms = await getNotifications(authUser.token); // jwt 값 할당해야함
-        // const alarms = [{}]; // jwt 값 할당해야함
-        console.log(alarms);
-        //   if (!alarms) {
-        //     alert('로그인을 해주세요');
-        //     navigator('/login');
-        //   } else {
-        //     const seen = alarms.filter((alarm) => alarm.seen === true);
-        //     setSeenAlarms(seen);
-        //     const notSeen = alarms.filter((alarm) => alarm.seen === false);
-        //     setNonSeenAlarms(notSeen);
+      setLoading(true);
+      console.log(authUser);
+      const alarms = await getNotifications(authUser.token); // jwt 값 할당해야함
 
-        //     setLoading(false);
-        //   }
-        // } else {
-        //   alert('로그인을 해주세요');
-        //   navigator('/login');
-      }
+      const seen = alarms.filter((alarm) => alarm.seen === true);
+      setSeenAlarms(seen);
+      const notSeen = alarms.filter((alarm) => alarm.seen === false);
+      setNonSeenAlarms(notSeen);
+
+      setLoading(false);
     };
 
     getAlarms();
@@ -50,7 +39,7 @@ const AlarmPage = () => {
     <PageTemplate>
       {!isLoading ? (
         <S.CardWrapperForSlide>
-          <BaseCardContainer>
+          <BaseCardContainer overflow="scroll">
             <S.AlarmPageContainer>
               <S.PrevButton onClick={onClickPrevBtn}>&gt; 접기</S.PrevButton>
               <AlarmSection title="읽지 않음" alarms={notSeenAlarms} />

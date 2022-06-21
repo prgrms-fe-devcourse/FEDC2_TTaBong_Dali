@@ -19,20 +19,18 @@ getNotifications.propTypes = {
 
 // 나에게 온 알림을 읽음처리 합니다.
 export const getNotificationsSeen = async (JWTtoken) => {
-  try {
-    const notificationsSeen = await apiClient.get(`/notifications/seen`, {
+  console.log('object');
+  const notificationsSeen = await apiClient.put(
+    `/notifications/seen`,
+    {},
+    {
       headers: {
-        Authorization: `bearer ${JWTtoken}`,
+        Authorization: `Bearer ${JWTtoken}`,
       },
-    });
+    },
+  );
 
-    if (notificationsSeen.statusText === 'OK') {
-      return notificationsSeen;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+  return notificationsSeen;
 };
 
 getNotificationsSeen.propTypes = {
