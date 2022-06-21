@@ -45,7 +45,6 @@ const SearchPage = () => {
     e.preventDefault();
 
     const keyword = e.target.search.value;
-    if (keyword.length < 2) return;
 
     const { users, posts } = items;
 
