@@ -9,7 +9,6 @@ import { getChannelPosts } from '../../apis/index';
 import { useScrollDown } from '../../hooks/useScrollDown';
 
 const MainFeedPage = () => {
-  const { Posts } = DummyData;
   const [posts, setPosts] = useState([]);
   const [target, setTarget] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -18,21 +17,21 @@ const MainFeedPage = () => {
   const [ref, isScrollDown] = useScrollDown();
 
   const CHANNEL_ID = '62a19123d1b81239d875d20d';
+  const LIMIT_NUM = 10;
 
   const getNextPosts = () => {
     setLoading(true);
-    getChannelPosts(CHANNEL_ID, offset, 5)
+    getChannelPosts(CHANNEL_ID, offset, LIMIT_NUM)
       .then((response) => {
         if (response === []) {
           console.log('no more cards to load');
           return;
         }
-        console.log(response);
         const newPosts = [...posts, ...response];
-        setPosts(newPosts || Posts);
+        setPosts(newPosts || DummyData.Posts);
       })
       .then(() => {
-        setOffset(offset + 5);
+        setOffset(offset + LIMIT_NUM);
       });
     setLoading(false);
   };
@@ -64,10 +63,7 @@ const MainFeedPage = () => {
 
   // 최초 랜더링
   useEffect(() => {
-    const getPosts = () => {
-      getNextPosts();
-    };
-    getPosts();
+    getNextPosts();
   }, []);
 
   return (
