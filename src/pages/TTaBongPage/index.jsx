@@ -18,6 +18,10 @@ import Constants from '../../commons/constants/index';
 import BaseCardContainer from '../../components/BaseCardContainer';
 
 const TTaBongPage = () => {
+  const { TTaBong, BigTTaBong } = Constants;
+
+  const { authUser } = useAuthContext();
+
   const navigator = useNavigate();
 
   const modalProps = useModal();
@@ -29,17 +33,16 @@ const TTaBongPage = () => {
     moved: '',
     warm: '',
   });
-  const { authUser } = useAuthContext();
 
-  const validationError = {
-    emptyBePraised: '따봉 대상자가 없습니다.',
-    emptyReason: '따봉 사유가 없습니다.',
-    emptyLabels: '따봉 라벨이 없습니다.',
-    lackReason: '따봉 사유를 10글자 이상 기입해 주세요.',
-  };
-
-  const handleCreatePost = async () => {
+  const handleCreatePost = async (type) => {
     const channel = await getSpecificChannel(Constants.CHANNE_NAME);
+
+    const validationError = {
+      emptyBePraised: '따봉 대상자가 없습니다.',
+      emptyReason: '따봉 사유가 없습니다.',
+      emptyLabels: '따봉 라벨이 없습니다.',
+      lackReason: '따봉 사유를 10글자 이상 기입해 주세요.',
+    };
 
     if (!checkedUsers) {
       alert(validationError.emptyBePraised);
@@ -60,7 +63,7 @@ const TTaBongPage = () => {
 
     const postTitles = checkedUsers.map((user) =>
       JSON.stringify({
-        type: 'TTaBong',
+        type,
         receiver: {
           _id: user._id,
           fullName: user.fullName,
@@ -99,10 +102,18 @@ const TTaBongPage = () => {
           <ReasonContainer reason={reason} setReason={setReason} />
           <ImageUploadContainer imageSrc={imageSrc} setImageSrc={setImageSrc} />
           <LabelList labelItems={labelItems} setLabelItems={setLabelItems} />
-          <Button version="yellow" width="100%" onClick={handleCreatePost}>
+          <Button
+            version="yellowOutlined"
+            width="100%"
+            onClick={() => handleCreatePost(TTaBong)}
+          >
             따봉!
           </Button>
-          <Button version="" width="100%" onClick={handleCreatePost}>
+          <Button
+            version="yellow"
+            width="100%"
+            onClick={() => handleCreatePost(BigTTaBong)}
+          >
             빅따봉!
           </Button>
         </S.PraisePageContainer>
