@@ -91,12 +91,12 @@ const UserProfilePage = () => {
 
   return (
     <PageTemplate>
-      <BaseCardContainer opacityType={0.7} padding={[2, 1, 2, 1]}>
-        {loading ? (
-          <S.SpinnerWrapper>
-            <Spinner />
-          </S.SpinnerWrapper>
-        ) : (
+      {loading ? (
+        <S.SpinnerWrapper>
+          <Spinner />
+        </S.SpinnerWrapper>
+      ) : (
+        <BaseCardContainer opacityType={0.7} padding={[2, 1, 2, 1]}>
           <S.ProfilePageContainer>
             <S.ProfileInfoContainer>
               <S.InfoLeftContainer>
@@ -194,8 +194,8 @@ const UserProfilePage = () => {
               )}
             </S.ProfileCardContainer>
           </S.ProfilePageContainer>
-        )}
-      </BaseCardContainer>
+        </BaseCardContainer>
+      )}
     </PageTemplate>
   );
 };
