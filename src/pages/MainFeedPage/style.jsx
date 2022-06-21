@@ -21,3 +21,8 @@ export const MainFeedPageContainer = styled.div`
 export const MainCardWrapper = styled.div`
   margin-bottom: ${getPxToRem(18)};
 `;
+
+export const Announce = styled.div`
+  color: ${(props) => props.theme.colors.white};
+  font-weight: 400;
+`;

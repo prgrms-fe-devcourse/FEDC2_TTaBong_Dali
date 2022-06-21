@@ -17,14 +17,13 @@ const MainFeedPage = () => {
   const [ref, isScrollDown] = useScrollDown();
 
   const CHANNEL_ID = '62a19123d1b81239d875d20d';
-  const LIMIT_NUM = 2;
+  const LIMIT_NUM = 10;
 
   const getNextPosts = async () => {
     setLoading(true);
     await getChannelPosts(CHANNEL_ID, offset, LIMIT_NUM)
       .then((response) => {
         if (response === []) {
-          console.log('no more cards to load');
           return;
         }
         const newPosts = [...posts, ...response];
@@ -45,7 +44,6 @@ const MainFeedPage = () => {
 
   const onIntersect = async (entries, observer) => {
     if (posts.length !== offset) {
-      console.log('no more cards to load');
       return;
     }
     await entries.forEach((entry) => {
@@ -92,6 +90,7 @@ const MainFeedPage = () => {
             )}
           </S.MainCardWrapper>
         ))}
+        <S.Announce>모든 카드를 불러왔습니다</S.Announce>
       </S.MainFeedPageContainer>
     </PageTemplate>
   );
