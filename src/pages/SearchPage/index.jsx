@@ -26,7 +26,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     const fetchInitialData = async () => {
-      const users = await getAllUsers(20);
+      const users = await getAllUsers();
       const channel = await getSpecificChannel(Constants.CHANNE_NAME);
       const posts = await getChannelPosts(channel._id);
 

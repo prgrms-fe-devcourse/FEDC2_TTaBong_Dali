@@ -22,7 +22,7 @@ const TTaBongModal = ({ setCheckedUsers, modalProps }) => {
 
   useEffect(() => {
     const fetchAllUsers = async () => {
-      const allUsers = await getAllUsers(0, 100);
+      const allUsers = await getAllUsers();
 
       setUsers(
         allUsers.map((user) => ({ ...user, searched: true, checked: false })),
