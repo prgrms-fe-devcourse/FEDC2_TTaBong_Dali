@@ -52,6 +52,10 @@ const CardDetailPage = () => {
         isLike,
         image,
       });
+
+      const receiverUser = await getSpecificUser(receiver._id);
+      setReceivedUser(receiverUser);
+
       setLoading(false);
     };
     getPosts();
@@ -118,10 +122,12 @@ const CardDetailPage = () => {
     <PageTemplate>
       {!isLoading ? (
         <CardDetail
+          author={props.author}
           authorName={props.author.fullName}
           authorId={props.author._id}
-          receiverName={props.receiver.fullName}
-          receiverId={props.receiver._id}
+          receiverName={receivedUser.fullName}
+          receiverId={receivedUser._id}
+          receiver={receivedUser}
           comments={props.comments}
           likeCount={props.likes.length}
           labelItems={props.labels}

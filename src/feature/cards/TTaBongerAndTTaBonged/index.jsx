@@ -9,8 +9,10 @@ import Avatar from '../../../components/Avatar';
 const TTaBongerAndTTaBonged = ({
   authorName,
   authorId,
+  author,
   receiverName,
   receiverId,
+  receiver,
   type,
 }) => {
   const navigator = useNavigate();
@@ -24,7 +26,11 @@ const TTaBongerAndTTaBonged = ({
   };
   return (
     <S.TTaBongsContainer>
-      <Avatar onClick={onClickTTaBoner} avatarName={authorName} />
+      <Avatar
+        onClick={onClickTTaBoner}
+        avatarName={authorName}
+        src={author.image || undefined}
+      />
       <S.TTaBongedContainer>
         <S.TTaBongIconWrapper className={type === 'BigTTaBong' && 'Big'}>
           <img
@@ -34,7 +40,12 @@ const TTaBongerAndTTaBonged = ({
             height="40px"
           />
         </S.TTaBongIconWrapper>
-        <Avatar onClick={onClickTTaBoned} avatarName={receiverName} />
+        {/* {console.log(receiver)} */}
+        <Avatar
+          onClick={onClickTTaBoned}
+          avatarName={receiverName}
+          src={receiver.image || undefined}
+        />
       </S.TTaBongedContainer>
     </S.TTaBongsContainer>
   );

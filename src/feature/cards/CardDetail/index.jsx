@@ -13,12 +13,13 @@ import Icon from '../../../components/Icon';
 const CardDetail = ({
   authorName = '',
   authorId = '',
-  authorImg,
+  author,
   receiverName = '',
   receiverId = '',
   receiverImg,
   comments = [],
   img,
+  receiver,
   isLike = false,
   likeCount = 0,
   PraiseReason = '',
@@ -28,11 +29,14 @@ const CardDetail = ({
   onClickLike,
   type,
 }) => {
+  console.log(receiver);
   return (
     <Card width={342} height={624}>
       <TTaBongerAndTTaBonged
         authorName={authorName}
         authorId={authorId}
+        author={author}
+        receiver={receiver}
         receiverName={receiverName}
         receiverId={receiverId}
         type={type}
