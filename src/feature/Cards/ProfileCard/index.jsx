@@ -12,7 +12,7 @@ const ProfileCard = ({ post }) => {
     type = '',
     receiver = '이름',
     content = '내용',
-    labels,
+    labels = [],
   } = JSON.parse(title);
 
   const labelArr = Object.values(labels).filter((label) => label.length > 0);

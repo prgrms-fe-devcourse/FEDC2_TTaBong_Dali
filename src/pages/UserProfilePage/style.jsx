@@ -1,5 +1,13 @@
 import styled from '@emotion/styled';
 
+export const ProfilePageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const ProfileInfoContainer = styled.div`
   width: 100%;
   height: 9.5rem;
@@ -7,6 +15,7 @@ export const ProfileInfoContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
+  flex-shrink: 0;
 
   .divider {
     position: absolute;
@@ -34,8 +43,7 @@ export const InfoName = styled.div`
 export const InfoId = styled.div`
   font-weight: 700;
   color: ${(props) => props.theme.colors.darkgray[2]};
-  position: relative;
-  top: -0.5rem;
+  margin-bottom: 1rem;
 `;
 
 export const InfoRightContainer = styled.div`
@@ -90,6 +98,14 @@ export const TapWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  flex-shrink: 0;
+`;
+
+export const ProfileCardContainer = styled.div`
+  width: 100%;
+  flex-grow: 1;
+
+  overflow: auto;
 `;
 
 export const ProfileCardWrapper = styled.div`
@@ -105,3 +121,9 @@ export const InfinityScrollCardWrapper = styled.div`
 `;
 
 export const ProfileCardBox = styled.div``;
+
+export const Announcement = styled.div`
+  margin-top: 1rem;
+  text-align: center;
+  color: ${(props) => props.theme.colors.gray[0]};
+`;
