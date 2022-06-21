@@ -4,7 +4,7 @@ import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import { putPassword } from '../../apis/settings';
 import { PASSWORD_UPDATE_SUCCESS } from '../../commons/constants/string';
 
-const ProfileEdigPage = () => {
+const ProfileEditPage = () => {
   const navigate = useNavigate();
 
   const handleChangePassword = async (token, password) => {
@@ -24,4 +24,4 @@ const ProfileEdigPage = () => {
   );
 };
 
-export default ProfileEdigPage;
+export default ProfileEditPage;
