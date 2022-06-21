@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+export const SpinnerWrapper = styled.div`
+  position: fixed;
+  left: 45vw;
+  top: 42vh;
+`;
+
 export const ProfilePageContainer = styled.div`
   width: 100%;
   height: 100%;
