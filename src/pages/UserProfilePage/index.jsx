@@ -67,6 +67,7 @@ const UserProfilePage = () => {
     console.log('end loading');
   };
 
+  // 왜 안되지?
   const getNextPosts = () => {
     setLoading(true);
     console.log('start loading');
@@ -142,7 +143,7 @@ const UserProfilePage = () => {
   // 최초 랜더링
   useEffect(() => {
     const getPosts = () => {
-      getNextPraisingPost();
+      // getNextPraisingPost();
       // getNextPosts();
     };
     const getPosts2 = () => {
@@ -196,10 +197,11 @@ const UserProfilePage = () => {
         </S.TapWrapper>
         {praiseCardActive ? (
           <>
-            {praisePosts.map((post, idx) => (
+            {coinedPosts.map((post, idx) => (
               <S.ProfileCardWrapper>
+                {console.log('post._id', post._id)}
                 {praisePosts.length - 1 === idx ? (
-                  <S.InfinityScrollCardWrapper ref={setTarget}>
+                  <S.InfinityScrollCardWrapper ref={setTargetCoin}>
                     <ProfileCard post={post} key={post._id} />
                   </S.InfinityScrollCardWrapper>
                 ) : (
@@ -210,10 +212,10 @@ const UserProfilePage = () => {
           </>
         ) : (
           <>
-            {coinedPosts.map((post, idx) => (
+            {praisePosts.map((post, idx) => (
               <S.ProfileCardWrapper>
                 {praisePosts.length - 1 === idx ? (
-                  <S.InfinityScrollCardWrapper ref={setTargetCoin}>
+                  <S.InfinityScrollCardWrapper ref={setTarget}>
                     <ProfileCard post={post} key={post._id} />
                   </S.InfinityScrollCardWrapper>
                 ) : (
