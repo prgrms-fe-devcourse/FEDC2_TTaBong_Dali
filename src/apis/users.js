@@ -4,17 +4,12 @@ import apiClient from './api';
 const USERS = `/users`;
 
 // 사용자 목록을 불러옵니다.
-export const getAllUsers = async (offset = 0, limit = 10) => {
+export const getAllUsers = async (offset = 0, limit = 100) => {
   const allUsers = await apiClient.get(
     `${USERS}/get-users?offset=${offset}&limit=${limit}`,
   );
 
   return allUsers;
-};
-
-getAllUsers.propTypes = {
-  offset: Proptypes.number,
-  limit: Proptypes.number,
 };
 
 // 현재 접속 중인 사용자 목록을 불러옵니다.

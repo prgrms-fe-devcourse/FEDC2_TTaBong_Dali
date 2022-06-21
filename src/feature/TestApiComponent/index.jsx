@@ -5,18 +5,19 @@ import {
   getAllChannels,
   getAllUsers,
   getAuthorPosts,
-  getAuthUser,
+  checkIsAuthUser,
   getChannelPosts,
   getConversations,
   getMessages,
   getSpecificChannel,
   getSpecificPost,
   getSpecificUser,
-  logIn,
+  loginUser,
   postMessage,
   putPost,
-  signUp,
+  registerUser,
 } from '../../apis';
+import MainCard from '../cards/MainCard';
 
 function TestApiComponent() {
   const [channel, setChannel] = useState({});
@@ -70,7 +71,10 @@ function TestApiComponent() {
   };
 
   const handleLogInClick = async (e) => {
-    const { user, token } = await logIn(authInput.email, authInput.password);
+    const { user, token } = await loginUser(
+      authInput.email,
+      authInput.password,
+    );
 
     if (!user) return;
 
@@ -79,7 +83,7 @@ function TestApiComponent() {
   };
 
   const handleSignUpClick = async (e) => {
-    const { user, token } = await signUp(
+    const { user, token } = await registerUser(
       authInput.email,
       authInput.fullName,
       authInput.password,
@@ -95,7 +99,7 @@ function TestApiComponent() {
   const handleIsAuthedClick = async () => {
     if (!curUser) return;
 
-    const user = await getAuthUser(curUser.token);
+    const user = await checkIsAuthUser(curUser.token);
     console.log(user);
   };
 
@@ -154,8 +158,12 @@ function TestApiComponent() {
 
     const title = JSON.stringify({
       type,
-      receiver: receiver._id,
+      receiver: {
+        _id: receiver._id,
+        fullName: receiver.fullName,
+      },
       content: postInput,
+      labelItems: ['warm', 'moved'],
     });
 
     const newPost = await await createPost(curUser.token, channel._id, title);
@@ -362,6 +370,7 @@ function TestApiComponent() {
               </button>
             </p>
             {post.title}
+            <MainCard post={post} />
           </p>
         ))}
       </p>

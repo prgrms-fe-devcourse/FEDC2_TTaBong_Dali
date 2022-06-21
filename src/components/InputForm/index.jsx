@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import * as S from './style';
 import removeIcon from '../../assets/icon_remove.svg';
@@ -14,8 +14,16 @@ const InputForm = ({
   onChange,
   removeAll,
   errors,
+  defaultValue,
+  disabled,
   ...props
 }) => {
+  useEffect(() => {
+    if (defaultValue) {
+      setInput(defaultValue);
+    }
+  }, [defaultValue]);
+
   const [input, setInput] = useState('');
 
   const onChangeInput = (e) => {
@@ -38,6 +46,7 @@ const InputForm = ({
             type={type}
             version={version}
             placeholder={placeholder}
+            onChange={onChange}
           />
         </S.InputBox>
         <S.ButtonBox>
@@ -70,16 +79,21 @@ const InputForm = ({
             placeholder={placeholder}
             value={input}
             onChange={onChangeInput}
+            disabled={disabled}
           />
-          <S.ButtonBox>
-            <S.RemoveButton
-              src={removeIcon}
-              alt="지우기"
-              onClick={() => removeAllInput(name)}
-            />
-          </S.ButtonBox>
+          {!disabled && (
+            <S.ButtonBox>
+              <S.RemoveButton
+                src={removeIcon}
+                alt="지우기"
+                onClick={() => removeAllInput(name)}
+              />
+            </S.ButtonBox>
+          )}
         </S.InputBox>
-        {name && errors[name] && <S.Errors>{errors[name]}</S.Errors>}
+        {name && errors[name] && (
+          <S.Errors version={version}>{errors[name]}</S.Errors>
+        )}
       </S.EditContainer>
     );
   }
@@ -111,10 +125,12 @@ const InputForm = ({
 export default InputForm;
 
 InputForm.propTypes = {
-  name: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
-  type: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
-  version: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
-  inputType: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
-  placeholder: PropTypes.string.isRequired, // lint적용되면 isRequired 제거
-  errors: PropTypes.object.isRequired, // lint적용되면 isRequired 제거
+  name: PropTypes.string,
+  type: PropTypes.string,
+  version: PropTypes.string,
+  inputType: PropTypes.string,
+  placeholder: PropTypes.string,
+  errors: PropTypes.object,
+  defaultValue: PropTypes.object,
+  disabled: PropTypes.bool,
 };

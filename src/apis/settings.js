@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Proptypes from 'prop-types';
+import apiClient from './api';
 
 // 나의 정보를 변경합니다.
 export const putInfo = async (JWTtoken, fullName = '', username = '') => {
@@ -21,30 +21,23 @@ export const putInfo = async (JWTtoken, fullName = '', username = '') => {
   return null;
 };
 
-putInfo.propTypes = {
-  fullName: Proptypes.string.isRequired,
-  username: Proptypes.string.isRequired,
-};
-
 // 내 계정 비밀번호를 변경합니다.
-export const putPassword = async (JWTtoken, password = '') => {
+export const putPassword = async (JWTtoken, password) => {
   try {
-    const newPassword = await axios.put(`/settings/update-password`, {
-      headers: {
-        Authorization: `bearer ${JWTtoken}`,
+    console.log(JWTtoken, password);
+    const newPassword = await apiClient.put(
+      `/settings/update-password`,
+      { password },
+      {
+        headers: {
+          Authorization: `bearer ${JWTtoken}`,
+        },
       },
-      password,
-    });
-
-    if (newPassword.statusText === 'OK') {
-      return newPassword;
-    }
+    );
+    console.log(newPassword);
+    return newPassword;
   } catch (e) {
     console.error(e);
   }
   return null;
-};
-
-putPassword.propTypes = {
-  password: Proptypes.string.isRequired,
 };

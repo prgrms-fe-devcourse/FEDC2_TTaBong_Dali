@@ -38,7 +38,7 @@ const RankFirstInfo = ({
 
 RankFirstInfo.propTypes = {
   avatarImg: PropTypes.string,
-  userName: PropTypes.string.isRequired,
+  userName: PropTypes.string,
   coinCount: PropTypes.number,
   TTaBongCount: PropTypes.number,
 };

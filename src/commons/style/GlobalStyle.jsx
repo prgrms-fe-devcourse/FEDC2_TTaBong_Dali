@@ -1,7 +1,7 @@
 import { Global, css } from '@emotion/react';
 import reset from 'emotion-reset';
 
-function GlobalStyle() {
+const GlobalStyle = () => {
   return (
     <Global
       styles={css`
@@ -18,9 +18,16 @@ function GlobalStyle() {
           -moz-appearance: none;
           appearance: none;
         }
+        input[type='text']:disabled {
+          background-color: #fff;
+        }
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
       `}
     />
   );
-}
+};
 
 export default GlobalStyle;

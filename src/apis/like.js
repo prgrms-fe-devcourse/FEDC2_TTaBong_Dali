@@ -1,23 +1,20 @@
 import axios from 'axios';
 import Proptypes from 'prop-types';
+import apiClient from './api';
 
 // 특정 포스트에 좋아요합니다.
 export const postLike = async (JWTtoken, postId) => {
-  try {
-    const like = await axios.post(`/likes/create`, {
+  const like = await apiClient.post(
+    `/likes/create`,
+    { postId },
+    {
       headers: {
-        Authorization: `bearer ${JWTtoken}`,
+        Authorization: `Bearer ${JWTtoken}`,
       },
-      postId,
-    });
+    },
+  );
 
-    if (like.statusText === 'OK') {
-      return like;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+  return like;
 };
 
 postLike.propTypes = {
@@ -28,20 +25,19 @@ postLike.propTypes = {
 // 특정 포스트에 좋아요한 것을 취소합니다.
 // delete인데 왜 response를 Like를 반환하지?
 export const deleteLike = async (JWTtoken, id) => {
-  try {
-    const likes = await axios.delete(`/likes/delete`, {
+  console.log(JWTtoken);
+  const like = await apiClient.delete(
+    `/likes/delete`,
+
+    {
       headers: {
-        Authorization: `bearer ${JWTtoken}`,
+        Authorization: `Bearer ${JWTtoken}`,
       },
-      id,
-    });
-    if (likes.statusText === 'OK') {
-      return likes;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+      data: { id },
+    },
+  );
+
+  return like;
 };
 
 deleteLike.propTypes = {

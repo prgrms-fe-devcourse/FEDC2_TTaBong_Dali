@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { getPxToRem } from '../../utils/getPxToRem';
 
 export const MainFeedPageContainer = styled.div`
   height: 100%;
@@ -15,4 +16,8 @@ export const MainFeedPageContainer = styled.div`
   &.bannerShown {
     margin-top: 3rem;
   }
+`;
+
+export const MainCardWrapper = styled.div`
+  margin-bottom: ${getPxToRem(18)};
 `;
