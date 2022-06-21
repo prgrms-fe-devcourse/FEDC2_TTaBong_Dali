@@ -9,7 +9,7 @@ import theme from '../../../commons/style/themes';
 import useForm from '../../../hooks/useForm';
 import { getAllUsers, searchUser } from '../../../apis';
 
-const TTaBongModal = ({ setCheckedUsers, modalProps }) => {
+const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
   const {
     isModalOn,
     setIsModalOn,
@@ -48,6 +48,9 @@ const TTaBongModal = ({ setCheckedUsers, modalProps }) => {
 
   const handleUserCheck = (e, userId) => {
     e.preventDefault();
+
+    // 5명까지만
+    if (checkedUsers.length > 5) return;
 
     const newUsers = users.map((user) =>
       user._id !== userId ? user : { ...user, checked: !user.checked },

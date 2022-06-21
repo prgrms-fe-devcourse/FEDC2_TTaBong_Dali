@@ -33,26 +33,21 @@ const TTaBongPage = () => {
   const handleCreatePost = async () => {
     const channel = await getSpecificChannel(TEMP_CHANNEL_NAME);
 
-    // recevier array????????????????
-    const postTitle = JSON.stringify({
-      type: 'TTaBong',
-      receiver: {
-        _id: checkedUsers[0]._id,
-        fullName: checkedUsers[0].fullName,
-      },
-      content: reason,
-      labels: labelItems,
-    });
-
-    const createdPost = await createPost(
-      TEMP_TOKEN,
-      channel._id,
-      postTitle,
-      imageSrc,
+    const postTitles = checkedUsers.map((user) =>
+      JSON.stringify({
+        type: 'TTaBong',
+        receiver: {
+          _id: user._id,
+          fullName: user.fullName,
+        },
+        content: reason,
+        labels: labelItems,
+      }),
     );
 
-    console.log('post created');
-    console.log(createdPost);
+    postTitles.forEach((post) =>
+      createPost(TEMP_TOKEN, channel._id, post, imageSrc),
+    );
   };
 
   return (
