@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import { getPxToRem } from '../../utils/getPxToRem';
 
 export const UserInfoItemContanier = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  width: 292px;
-  height: 55px;
+  width: ${getPxToRem(290)};
+  min-height: ${getPxToRem(56)};
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
   border-radius: 40px 17px 17px 40px;
@@ -87,6 +88,7 @@ export const UserNameWrapper = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
 `;
 
 export const CountContainer = styled.div`

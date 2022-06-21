@@ -25,7 +25,7 @@ export const RankList = styled.ul`
   overflow: auto;
 
   margin: 16px 0;
-  padding: 8px 0;
+  padding: 8px;
   gap: 8px;
   max-height: ${({ isAuth }) =>
     isAuth ? `${getPxToRem(260)}` : `${getPxToRem(320)}`};
