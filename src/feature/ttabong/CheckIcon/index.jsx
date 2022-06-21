@@ -4,9 +4,8 @@ import * as S from './style';
 import Icon from '../../../components/Icon';
 
 const CheckIcon = ({ checked }) => {
-  const [isChecked, setIsChecked] = checked
-    ? [checked, () => {}]
-    : useState(false);
+  const [isChecked, setIsChecked] =
+    typeof checked === 'boolean' ? [checked, () => {}] : useState(false);
 
   return (
     <S.CheckIconWrapper onClick={() => setIsChecked(!isChecked)}>

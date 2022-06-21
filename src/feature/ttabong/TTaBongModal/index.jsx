@@ -10,13 +10,7 @@ import useForm from '../../../hooks/useForm';
 import { getAllUsers, searchUser } from '../../../apis';
 
 const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
-  const {
-    isModalOn,
-    setIsModalOn,
-    backgroundRef,
-    handleOpenModal,
-    handleCloseModal,
-  } = modalProps;
+  const { isModalOn, backgroundRef, handleCloseModal } = modalProps;
 
   const [users, setUsers] = useState([]);
 
@@ -47,18 +41,19 @@ const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
   };
 
   const handleUserCheck = (e, userId) => {
-    e.preventDefault();
-
-    // 5명까지만
-    if (checkedUsers.length > 5) return;
+    e.preventDefault(); // 5명까지만
 
     const newUsers = users.map((user) =>
       user._id !== userId ? user : { ...user, checked: !user.checked },
     );
 
+    const newCheckdUsers = newUsers.filter((user) => user.checked);
+
+    if (newCheckdUsers.length > 5) return;
+
     setUsers(newUsers);
 
-    setCheckedUsers(newUsers.filter((user) => user.checked));
+    setCheckedUsers(newCheckdUsers);
   };
 
   return (
