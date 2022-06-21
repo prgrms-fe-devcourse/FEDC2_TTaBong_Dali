@@ -13,7 +13,9 @@ import Divider from '../../components/Divider';
 import Button from '../../components/Button';
 import Avatar from '../../components/Avatar';
 import theme from '../../commons/style/themes';
-import { createPost, getSpecificChannel } from '../../apis';
+import { createPost } from '../../apis';
+import { useAuthContext } from '../../contexts/UserProvider';
+import Constants from '../../commons/constants/index';
 
 const TTaBongPage = () => {
   const modalProps = useModal();
@@ -25,14 +27,9 @@ const TTaBongPage = () => {
     moved: '',
     warm: '',
   });
+  const { authUser } = useAuthContext();
 
-  const TEMP_TOKEN =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYWFlZTk0ZTNmNTUyNzQ1MTBjYTA0MyIsImVtYWlsIjoid29vamVycnkzQG5hdmVyLmNvbSJ9LCJpYXQiOjE2NTU1NTg3NzJ9.FilLBV8W7l3OH-kWxIIJ4JBFLBjXFRSh_xoHMzLsJKg';
-  const TEMP_CHANNEL_NAME = 'Test';
-
-  const handleCreatePost = async () => {
-    const channel = await getSpecificChannel(TEMP_CHANNEL_NAME);
-
+  const handleCreatePost = () => {
     const postTitles = checkedUsers.map((user) =>
       JSON.stringify({
         type: 'TTaBong',
@@ -46,7 +43,7 @@ const TTaBongPage = () => {
     );
 
     postTitles.forEach((post) =>
-      createPost(TEMP_TOKEN, channel._id, post, imageSrc),
+      createPost(authUser.token, Constants.TEST_CHANNEL_ID, post, imageSrc),
     );
   };
 
