@@ -26,25 +26,30 @@ const TTaBongPage = () => {
   });
 
   return (
-    <PageTemplate>
+    <PageTemplate page="TTaBong">
       <TTaBongModal
         checkedUsers={checkedUsers}
         setCheckedUsers={setCheckedUsers}
         modalProps={modalProps}
       />
       <S.PraisePageContainer>
-        <S.BePraisedContainer>
+        <S.BePraisedContainer onClick={modalProps.handleOpenModal}>
           <S.BePraisedLabelWrapper>칭찬 대상자</S.BePraisedLabelWrapper>
-          <S.BePraised
+          <S.BePraisedCard
             width="100%"
-            height={46}
+            height={80}
             backgroundColor={theme.colors.yellow[1]}
             borderRadius="11px"
+            padding={[1, 0.5, 0, 0.5]}
           >
-            {checkedUsers.map((user) => (
-              <Avatar avatarName={user.fullName} />
-            ))}
-          </S.BePraised>
+            <S.BePraisedAvatarContainer>
+              {checkedUsers.map((user) => (
+                <S.BePrasedAvatarWrapper key={user._id}>
+                  <Avatar size={30} avatarName={user.fullName} ellipsis />
+                </S.BePrasedAvatarWrapper>
+              ))}
+            </S.BePraisedAvatarContainer>
+          </S.BePraisedCard>
         </S.BePraisedContainer>
         <Divider size={308} />
         <S.PraiseReasonContainer>
