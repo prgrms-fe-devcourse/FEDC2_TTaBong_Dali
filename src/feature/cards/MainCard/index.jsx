@@ -10,7 +10,7 @@ import LabelList from '../LabelList';
 import Divider from '../../../components/Divider';
 import BaseCardContainer from '../../../components/BaseCardContainer';
 
-const MainCard = ({ post }) => {
+const MainCard = ({ post, ...props }) => {
   const {
     _id: postId,
     image,
@@ -24,6 +24,8 @@ const MainCard = ({ post }) => {
     updatedAt,
   } = post;
 
+  const { width } = props;
+
   const { type, receiver, content, labelItems } = JSON.parse(title.trim());
 
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ const MainCard = ({ post }) => {
 
   // label이 없는경우를 대비해 default는 빈배열로 일단 처리
   return (
-    <BaseCardContainer width={358} height={204}>
+    <BaseCardContainer width={width || 358} height={204}>
       <S.MainCardContainer onClick={handleClick}>
         <TTaBongerAndTTaBonged
           authorName={author.fullName}

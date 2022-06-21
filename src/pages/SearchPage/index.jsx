@@ -26,7 +26,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     const fetchInitialData = async () => {
-      const users = await getAllUsers(20);
+      const users = await getAllUsers();
       const channel = await getSpecificChannel(Constants.CHANNE_NAME);
       const posts = await getChannelPosts(channel._id);
 
@@ -41,12 +41,7 @@ const SearchPage = () => {
     setCurrentActive(index);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const keyword = e.target.search.value;
-    if (keyword.length < 2) return;
-
+  const handleSubmit = (keyword) => {
     const { users, posts } = items;
 
     const searchedUsers = users.filter((user) =>
@@ -73,7 +68,7 @@ const SearchPage = () => {
             placeholder={`검색할 ${
               currentActive === 0 ? '사용자 이름' : '칭찬 내용'
             }을 입력하세요`}
-            onSubmit={(e) => handleSubmit(e)}
+            onSubmit={handleSubmit}
           />
         </S.InputWrapper>
         <S.TabWrapper>
@@ -98,7 +93,7 @@ const SearchPage = () => {
                 ))
               : searched.posts.map((post) => (
                   <S.ItemWrapper>
-                    <MainCard post={post} />
+                    <MainCard post={post} width="100%" />
                   </S.ItemWrapper>
                 ))}
           </BaseCardContainer>

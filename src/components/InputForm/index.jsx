@@ -18,13 +18,13 @@ const InputForm = ({
   disabled,
   ...props
 }) => {
+  const [input, setInput] = useState('');
+
   useEffect(() => {
     if (defaultValue) {
       setInput(defaultValue);
     }
   }, [defaultValue]);
-
-  const [input, setInput] = useState('');
 
   const onChangeInput = (e) => {
     setInput(e.target.value);
@@ -34,6 +34,12 @@ const InputForm = ({
   const removeAllInput = () => {
     setInput('');
     removeAll(name);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+
+    onSubmit(input);
   };
 
   if (version === 'comment') {
@@ -57,12 +63,23 @@ const InputForm = ({
   }
   if (version === 'search') {
     return (
-      <S.SearchContainer onSubmit={onSubmit} {...props}>
+      <S.SearchContainer onSubmit={handleSearchSubmit} {...props}>
         <S.InputBox>
-          <S.Input name={name} type={type} placeholder={placeholder} />
+          <S.Input
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
         </S.InputBox>
         <S.ButtonBox>
-          <S.SearchButton type="submit" src={searchIconBlue} alt="검색" />
+          <S.SearchButton
+            type="submit"
+            src={searchIconBlue}
+            alt="검색"
+            onClick={handleSearchSubmit}
+          />
         </S.ButtonBox>
       </S.SearchContainer>
     );
