@@ -4,20 +4,13 @@ import apiClient from './api';
 
 // 나의 알림 목록을 불러옵니다.
 export const getNotifications = async (JWTtoken) => {
-  try {
-    const notifications = await apiClient.get(`/notifications`, {
-      headers: {
-        Authorization: `bearer ${JWTtoken}`,
-      },
-    });
+  const notifications = await apiClient.get(`/notifications`, {
+    headers: {
+      Authorization: `Bearer ${JWTtoken}`,
+    },
+  });
 
-    if (notifications.statusText === 'OK') {
-      return notifications;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+  return notifications;
 };
 
 getNotifications.propTypes = {
@@ -26,20 +19,18 @@ getNotifications.propTypes = {
 
 // 나에게 온 알림을 읽음처리 합니다.
 export const getNotificationsSeen = async (JWTtoken) => {
-  try {
-    const notificationsSeen = await apiClient.get(`/notifications/seen`, {
+  console.log('object');
+  const notificationsSeen = await apiClient.put(
+    `/notifications/seen`,
+    {},
+    {
       headers: {
-        Authorization: `bearer ${JWTtoken}`,
+        Authorization: `Bearer ${JWTtoken}`,
       },
-    });
+    },
+  );
 
-    if (notificationsSeen.statusText === 'OK') {
-      return notificationsSeen;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+  return notificationsSeen;
 };
 
 getNotificationsSeen.propTypes = {

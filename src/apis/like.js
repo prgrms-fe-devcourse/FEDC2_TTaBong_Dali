@@ -25,7 +25,6 @@ postLike.propTypes = {
 // 특정 포스트에 좋아요한 것을 취소합니다.
 // delete인데 왜 response를 Like를 반환하지?
 export const deleteLike = async (JWTtoken, id) => {
-  console.log(JWTtoken);
   const like = await apiClient.delete(
     `/likes/delete`,
 

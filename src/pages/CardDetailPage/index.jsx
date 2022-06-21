@@ -34,7 +34,11 @@ const CardDetailPage = () => {
       console.log(post);
       const { author, title, likes, comments, _id } =
         post || DummyData.Posts[0];
-      const { type, receiver, content, labels = [] } = JSON.parse(title);
+      const { type, receiver, content, labels } = JSON.parse(title);
+      const labelArr = Object.values(labels).filter(
+        (label) => label.length > 0,
+      );
+      console.log(JSON.parse(title));
       const isLike = likeToggle(likes, authUser.userId); // 접속한 유저의 id 값 넣기
       setProps({
         author,
@@ -45,10 +49,10 @@ const CardDetailPage = () => {
         type,
         receiver,
         content,
-        labels,
+        labels: labelArr,
         isLike,
       });
-      setReceivedUser((await getSpecificUser(receiver)) || DummyData.Users[0]);
+      // setReceivedUser((await getSpecificUser(receiver._id)) || DummyData.Users[0]);
       setLoading(false);
     };
     getPosts();
@@ -77,7 +81,7 @@ const CardDetailPage = () => {
       postNotifications(
         authUser.token,
         'LIKE',
-        authUser.userId,
+        props.author._id,
         like._id,
         props._id,
       );
@@ -107,7 +111,7 @@ const CardDetailPage = () => {
       postNotifications(
         authUser.token,
         'COMMENT',
-        authUser.userId,
+        props.author._id,
         comment._id,
         props._id,
       ); // 로그인한 user Id 필요
@@ -120,8 +124,8 @@ const CardDetailPage = () => {
         <CardDetail
           authorName={props.author.fullName}
           authorId={props.author._id}
-          receiverName={receivedUser.fullName}
-          receiverId={receivedUser._id}
+          receiverName={props.receiver.fullName}
+          receiverId={props.receiver._id}
           comments={props.comments}
           likeCount={props.likes.length}
           labelItems={props.labels}

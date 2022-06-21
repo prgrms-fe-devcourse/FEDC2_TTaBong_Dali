@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import Avatar from '../../../components/Avatar';
 import { getNotificationsSeen } from '../../../apis';
+import { useAuthContext } from '../../../contexts/UserProvider';
 
 const AlarmItem = ({ type = 'like', alarm }) => {
   const navigator = useNavigate();
+  const { authUser } = useAuthContext();
 
   const alarmTypes = {
     like: '맞따봉을 남겼습니다',
@@ -18,8 +20,9 @@ const AlarmItem = ({ type = 'like', alarm }) => {
   };
 
   const onClickAlarm = async () => {
+    getNotificationsSeen(authUser.token); // jwt 토큰 넣어야함
+
     navigator(`/cardDetail/${alarm.post}`);
-    getNotificationsSeen(''); // jwt 토큰 넣어야함
   };
 
   return (
