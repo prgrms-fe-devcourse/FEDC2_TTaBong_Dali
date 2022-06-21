@@ -8,7 +8,14 @@ import BaseCardContainer from '../../../components/BaseCardContainer';
 
 const ProfileCard = ({ post }) => {
   const { _id, title, author } = post;
-  const { type = '', receiver = '이름', content = '내용' } = JSON.parse(title);
+  const {
+    type = '',
+    receiver = '이름',
+    content = '내용',
+    labels = [],
+  } = JSON.parse(title);
+
+  const labelArr = Object.values(labels).filter((label) => label.length > 0);
 
   return (
     <BaseCardContainer padding={[1, 1, 1, 1]} height="8rem" max-width="10rem">
@@ -18,7 +25,7 @@ const ProfileCard = ({ post }) => {
           <S.Title>칭찬 사유</S.Title>
           <S.Content>{content}</S.Content>
           <S.LabelContainer>
-            <LabelList labelItems={['warm', 'moved', 'praise']} />
+            <LabelList labelItems={labelArr} />
           </S.LabelContainer>
         </S.ContentRightWrapper>
       </S.ContentWrapper>

@@ -5,9 +5,11 @@ const END_POINT = '/posts';
 
 // 특정 채널의 포스트 목록을 불러옵니다.
 // 프로그래머스 스쿨 API 문서와 다른 점: channels => channel (projects 슬랙 참조)
-export const getChannelPosts = async (channelId, offset = 0, limit = 10) => {
+export const getChannelPosts = async (channelId, offset, limit) => {
   const channelPosts = await apiClient.get(
-    `${END_POINT}/channel/${channelId}?offset=${offset}&limit=${limit}`,
+    `${END_POINT}/channel/${channelId}?offset=${offset}${
+      limit ? `&limit=${limit}` : ''
+    }`,
   );
 
   return channelPosts;
@@ -20,9 +22,11 @@ getChannelPosts.propTypes = {
 };
 
 // 특정 사용자의 포스트 목록을 불러옵니다.
-export const getAuthorPosts = async (authorId, offset = 0, limit = 10) => {
+export const getAuthorPosts = async (authorId, offset, limit) => {
   const authorPosts = await apiClient.get(
-    `${END_POINT}/author/${authorId}?offset=${offset}&limit=${limit}`,
+    `${END_POINT}/author/${authorId}?offset=${offset}${
+      limit ? `&limit=${limit}` : ''
+    }`,
   );
 
   return authorPosts;

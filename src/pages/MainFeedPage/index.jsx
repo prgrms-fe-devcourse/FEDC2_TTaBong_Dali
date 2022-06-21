@@ -17,11 +17,11 @@ const MainFeedPage = () => {
   const [ref, isScrollDown] = useScrollDown();
 
   const CHANNEL_ID = '62a19123d1b81239d875d20d';
-  const LIMIT_NUM = 10;
+  const LIMIT_NUM = 2;
 
-  const getNextPosts = () => {
+  const getNextPosts = async () => {
     setLoading(true);
-    getChannelPosts(CHANNEL_ID, offset, LIMIT_NUM)
+    await getChannelPosts(CHANNEL_ID, offset, LIMIT_NUM)
       .then((response) => {
         if (response === []) {
           console.log('no more cards to load');
@@ -48,10 +48,11 @@ const MainFeedPage = () => {
       console.log('no more cards to load');
       return;
     }
-    entries.forEach((entry) => {
+    await entries.forEach((entry) => {
       if (entry.isIntersecting && !loading) {
         observer.unobserve(entry.target);
         getNextPosts();
+        setTarget(null);
         observer.observe(entry.target);
       }
     });
