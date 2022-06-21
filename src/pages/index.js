@@ -10,4 +10,4 @@ export { default as RegisterPage } from './RegisterPage';
 
 export { default as CardDetailPage } from './CardDetailPage';
 
-export { default as NotFound } from './NotFound';
+export { default as NotFoundPage } from './NotFoundPage';
