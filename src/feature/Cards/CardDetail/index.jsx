@@ -5,10 +5,10 @@ import Card from '../Card';
 import TTaBongerAndTTaBonged from '../TTaBongerAndTTaBonged';
 import LabelList from '../LabelList';
 import Image from '../../../components/Image';
-import likes from '../../../assets/sympathy_ttabong.svg';
 import Divider from '../../../components/Divider';
 import CommentList from '../CommentList';
 import InputForm from '../../../components/InputForm';
+import Icon from '../../../components/Icon';
 
 const CardDetail = ({
   authorName = '',
@@ -19,6 +19,7 @@ const CardDetail = ({
   receiverImg,
   comments = [],
   img = '',
+  isLike = false,
   likeCount = 0,
   PraiseReason = '',
   labelItems = [],
@@ -46,7 +47,11 @@ const CardDetail = ({
           <LabelList labelItems={labelItems} />
           <S.LikeContainer>
             <S.LikeEventWrapper onClick={onClickLike}>
-              <img src={likes} alt="공감" width="28px" height="28px" />
+              {!isLike ? (
+                <Icon name="likesLine" alt="공감" size={14} />
+              ) : (
+                <div>따봉완료 아이콘</div>
+              )}
             </S.LikeEventWrapper>
             <S.CountSpan>맞 따봉 {likeCount}개</S.CountSpan>
           </S.LikeContainer>

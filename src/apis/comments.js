@@ -4,22 +4,20 @@ import apiClient from './api';
 
 // 특정 포스트에 좋아요합니다.
 export const postComments = async (JWTtoken, postId, comment = '') => {
-  try {
-    const comment = await apiClient.post(`/comments/create`, {
-      headers: {
-        Authorization: `bearer ${JWTtoken}`,
-      },
+  console.log(JWTtoken);
+  const commentRespond = await apiClient.post(
+    `/comments/create`,
+    {
       postId,
       comment,
-    });
-
-    if (comment.statusText === 'OK') {
-      return comment;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return null;
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${JWTtoken}`,
+      },
+    },
+  );
+  return commentRespond;
 };
 
 postComments.propTypes = {
