@@ -7,7 +7,6 @@ export const loginUser = async (email, password) => {
     email,
     password,
   });
-
   return { user, token };
 };
 
@@ -23,7 +22,6 @@ export const registerUser = async (email, fullName, password) => {
 };
 
 // 사용자가 로그아웃 합니다.
-// TO BE IMPLEMENTED : 뭘 구현해야 할 지 모르겠음
 export const logoutUser = async () => {
   const data = await apiClient.post(`${LOGOUT}`);
 };
