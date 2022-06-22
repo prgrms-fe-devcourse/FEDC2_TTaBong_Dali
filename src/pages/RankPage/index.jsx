@@ -76,55 +76,59 @@ const RankPage = () => {
 
   return (
     <PageTemplate page="rank">
-      <S.RankPageContainer>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <div>
-            <S.TabContainer>
-              <TabItem
-                active={goods === TTABONG}
-                onClick={() => onClickTab(TTABONG)}
-              >
-                따봉왕
-              </TabItem>
-              <TabItem active={goods === COIN} onClick={() => onClickTab(COIN)}>
-                코인왕
-              </TabItem>
-            </S.TabContainer>
-            <BaseCardContainer height={600} opacityType={0.7}>
-              <RankFirstInfo
-                userName={users[0].fullName}
-                TTaBongCount={goods === TTABONG ? users[0][TTABONG] : -1}
-                coinCount={goods === COIN ? users[0][COIN] : -1}
-              />
-              <S.RankList isAuth={authUser.isAuth}>
-                {users.slice(1).map((user) => {
-                  return (
+      {loading ? (
+        <Spinner />
+      ) : (
+        <S.RankPageContainer>
+          <S.TabContainer>
+            <TabItem
+              active={goods === TTABONG}
+              onClick={() => onClickTab(TTABONG)}
+            >
+              따봉왕
+            </TabItem>
+            <TabItem active={goods === COIN} onClick={() => onClickTab(COIN)}>
+              코인왕
+            </TabItem>
+          </S.TabContainer>
+          <S.BaseCardContainer>
+            <BaseCardContainer opacityType={0.7}>
+              <S.RankInfoContainer>
+                <RankFirstInfo
+                  userName={users[0].fullName}
+                  TTaBongCount={goods === TTABONG ? users[0][TTABONG] : -1}
+                  coinCount={goods === COIN ? users[0][COIN] : -1}
+                />
+                <S.RankList isAuth={authUser.isAuth}>
+                  {users.slice(1).map((user) => {
+                    return (
+                      <UserInfoItem
+                        rank={user.rank}
+                        key={user._id}
+                        userName={user.fullName}
+                        TTaBongCount={goods === TTABONG ? user[TTABONG] : -1}
+                        coinCount={goods === COIN ? user[COIN] : -1}
+                      />
+                    );
+                  })}
+                </S.RankList>
+                {authUser.isAuth && currentUser && (
+                  <S.MyRankWrapper>
                     <UserInfoItem
-                      rank={user.rank}
-                      key={user._id}
-                      userName={user.fullName}
-                      TTaBongCount={goods === TTABONG ? user[TTABONG] : -1}
-                      coinCount={goods === COIN ? user[COIN] : -1}
+                      rank={currentUser.rank}
+                      TTaBongCount={
+                        goods === TTABONG ? currentUser[TTABONG] : -1
+                      }
+                      coinCount={goods === COIN ? currentUser[COIN] : -1}
+                      userName={currentUser.fullName}
                     />
-                  );
-                })}
-              </S.RankList>
-              {authUser.isAuth && currentUser && (
-                <S.MyRankWrapper>
-                  <UserInfoItem
-                    rank={currentUser.rank}
-                    TTaBongCount={goods === TTABONG ? currentUser[TTABONG] : -1}
-                    coinCount={goods === COIN ? currentUser[COIN] : -1}
-                    userName={currentUser.fullName}
-                  />
-                </S.MyRankWrapper>
-              )}
+                  </S.MyRankWrapper>
+                )}
+              </S.RankInfoContainer>
             </BaseCardContainer>
-          </div>
-        )}
-      </S.RankPageContainer>
+          </S.BaseCardContainer>
+        </S.RankPageContainer>
+      )}
     </PageTemplate>
   );
 };
