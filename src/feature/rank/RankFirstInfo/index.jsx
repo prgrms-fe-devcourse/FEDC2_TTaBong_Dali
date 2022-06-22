@@ -2,12 +2,9 @@ import PropTypes from 'prop-types';
 import Avatar from '../../../components/Avatar';
 import * as S from './style';
 
-const RankFirstInfo = ({
-  avatarImg,
-  userName,
-  coinCount = -1,
-  TTaBongCount = -1,
-}) => {
+const RankFirstInfo = ({ user, coinCount = -1, TTaBongCount = -1 }) => {
+  const { _id: userId, fullName: userName, image: avatarImg } = user;
+
   return (
     <S.RankFirstContainer>
       <S.RankFirstWrapper>현재 1위</S.RankFirstWrapper>
@@ -37,8 +34,6 @@ const RankFirstInfo = ({
 };
 
 RankFirstInfo.propTypes = {
-  avatarImg: PropTypes.string,
-  userName: PropTypes.string,
   coinCount: PropTypes.number,
   TTaBongCount: PropTypes.number,
 };

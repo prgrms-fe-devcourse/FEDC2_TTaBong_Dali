@@ -102,7 +102,7 @@ const RankPage = () => {
             <BaseCardContainer opacityType={0.7}>
               <S.RankInfoContainer>
                 <RankFirstInfo
-                  userName={users[0].fullName}
+                  user={users[0]}
                   TTaBongCount={goods === TTABONG ? users[0][TTABONG] : -1}
                   coinCount={goods === COIN ? users[0][COIN] : -1}
                 />
