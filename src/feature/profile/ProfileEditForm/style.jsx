@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import InputForm from '../../../components/InputForm';
 import BaseCardContainer from '../../../components/BaseCardContainer';
 import Button from '../../../components/Button';
+import ImageUploadContainer from '../../../components/ImageUploadContainer';
 
 export const ProfileEditFormContainer = styled(BaseCardContainer)``;
 
@@ -30,5 +31,18 @@ export const EditInput = styled(InputForm)`
 
 export const ProfileEditButton = styled(Button)`
   margin-top: 16px;
+  font-weight: 700;
+`;
+
+export const ImageUploadContainerWrapper = styled.div`
+  width: 18.2rem;
+`;
+
+export const ProfileImageUploadContainer = styled(ImageUploadContainer)`
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.8rem 0.5rem;
   font-weight: 700;
 `;

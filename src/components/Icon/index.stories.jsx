@@ -20,6 +20,7 @@ export default {
           'userLine',
           'alarmLine',
           'logout',
+          'fileGray',
         ],
       },
       defaultValue: 'listFill',

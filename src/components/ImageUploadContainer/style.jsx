@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { getPxToRem } from '../../../utils/getPxToRem';
+import { getPxToRem } from '../../utils/getPxToRem';
 
 export const ImageUploadForm = styled.form`
   width: 100%;

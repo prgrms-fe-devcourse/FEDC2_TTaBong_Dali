@@ -15,6 +15,7 @@ import deleteLine from './icon_delete_line.svg';
 import likesLine from './sympathy_ttabong.svg';
 import TB from './ttabong_card.svg';
 import TBBig from './ttabong_card_big.svg';
+import fileGray from './icon_file_gray.svg';
 
 const IconList = {
   listFill,
@@ -30,6 +31,7 @@ const IconList = {
   logout,
   checkWhite,
   fileLine,
+  fileGray,
   deleteLine,
   likesLine,
   TB,

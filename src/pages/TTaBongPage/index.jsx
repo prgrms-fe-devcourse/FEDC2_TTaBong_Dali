@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import * as S from './style';
 import { useModal } from '../../components/Modal';
+import ImageUploadContainer from '../../components/ImageUploadContainer';
 import {
-  ImageUploadContainer,
   LabelList,
   ReasonContainer,
   TTaBongModal,

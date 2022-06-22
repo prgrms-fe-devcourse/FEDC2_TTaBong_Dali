@@ -8,7 +8,7 @@ import {
   PASSWORDCONFIRM_ISNILL_ERROR,
   PASSWORD_UNEQUAL_ERROR,
 } from '../../../commons/constants/error';
-import ImageUploadContainer from '../../ttabong/ImageUploadContainer';
+import ImageUploadContainer from '../../../components/ImageUploadContainer';
 
 const ProfileEditForm = ({ onSubmit, ...styles }) => {
   const { authUser } = useAuthContext();
@@ -70,7 +70,12 @@ const ProfileEditForm = ({ onSubmit, ...styles }) => {
             errors={errors}
             removeAll={removeAll}
           />
-          <ImageUploadContainer setImageSrc={setProfileImgSrc} />
+          <S.ImageUploadContainerWrapper>
+            <S.ProfileImageUploadContainer
+              setImageSrc={setProfileImgSrc}
+              iconName="fileGray"
+            />
+          </S.ImageUploadContainerWrapper>
           <S.ProfileEditButton type="submit">프로필 변경</S.ProfileEditButton>
         </S.CenterWrapper>
       </S.ProfileEditForm>
