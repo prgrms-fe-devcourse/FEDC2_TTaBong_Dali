@@ -3,7 +3,7 @@ import { getPxToRem } from '../../utils/getPxToRem';
 
 export const MainFeedPageContainer = styled.div`
   height: 100%;
-  width: 100%;
+  width: 110%;
   display: flex;
   flex-direction: column;
   align-items: center;

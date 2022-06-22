@@ -24,24 +24,29 @@ const likeToggle = (likes, userId) => {
 };
 
 const CardDetailPage = () => {
-  const navigator = useNavigate();
   const { authUser } = useAuthContext();
-  const { id } = useParams();
+
+  const { id: postId } = useParams();
+  const navigator = useNavigate();
+
   const commentInput = useRef('');
   const inputRef = useRef(null);
+
   const [isLoading, setLoading] = useState(true);
-  const [receivedUser, setReceivedUser] = useState({});
   const [props, setProps] = useState({});
+  const [receivedUser, setReceivedUser] = useState({});
+
   useEffect(() => {
     const getPosts = async () => {
       setLoading(true);
       const post = await getSpecificPost(id);
       const { author, title, likes, comments, _id, image } = post || {};
       const { type, receiver, content, labels } = JSON.parse(title);
+
       const labelArr = Object.values(labels || {}).filter(
         (label) => label.length > 0,
       );
-      const isLike = likeToggle(likes, authUser.userId); // 접속한 유저의 id 값 넣기
+      const isLike = likeToggle(likes, authUser.userId);
       setProps({
         author,
         title,
@@ -64,7 +69,6 @@ const CardDetailPage = () => {
   }, [authUser]);
 
   const onClickLike = async () => {
-    // 먼저 접속한 유저의 jwt 토큰을 가져오고 없으면 로그인 페이지로 이동
     if (!authUser.isAuth) {
       Toast.show(IS_NOT_AUTH_ERROR);
       navigator('/login');
@@ -125,10 +129,6 @@ const CardDetailPage = () => {
       {!isLoading ? (
         <CardDetail
           author={props.author}
-          authorName={props.author.fullName}
-          authorId={props.author._id}
-          receiverName={receivedUser.fullName}
-          receiverId={receivedUser._id}
           receiver={receivedUser}
           comments={props.comments}
           likeCount={props.likes.length}

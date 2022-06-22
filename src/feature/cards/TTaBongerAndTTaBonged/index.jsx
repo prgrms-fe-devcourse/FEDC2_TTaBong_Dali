@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import TB from '../../../assets/ttabong_card.svg';
 import BigTB from '../../../assets/ttabong_card_big.svg';
 import Avatar from '../../../components/Avatar';
+import { getSpecificUser } from '../../../apis';
 
-const TTaBongerAndTTaBonged = ({
-  authorName,
-  authorId,
-  author = { image: null },
-  receiverName,
-  receiverId,
-  receiver = { image: null },
-  type,
-  isMain = false,
-}) => {
+const TTaBongerAndTTaBonged = ({ author, receiver, type, isMain = false }) => {
+  const { fullName: authorName, _id: authorId, image: authorImage } = author;
+  const { _id: receiverId, fullName: receiverName } = receiver;
+  const [receiverImage, setReceiverImage] = useState(receiver.image);
+
+  const fetchReceiver = async () => {
+    const specificReceiver = await getSpecificUser(receiver._id);
+
+    setReceiverImage(specificReceiver.image);
+  };
+
+  useEffect(() => {
+    if (!receiverImage) {
+      fetchReceiver();
+    }
+  }, []);
+
   const navigator = useNavigate();
 
   const onClickTTaBoner = () => {
@@ -30,7 +38,7 @@ const TTaBongerAndTTaBonged = ({
       <Avatar
         onClick={!isMain ? onClickTTaBoner : null}
         avatarName={authorName}
-        src={author.image || undefined}
+        src={authorImage || undefined}
       />
       <S.TTaBongedContainer>
         <S.TTaBongIconWrapper className={type === 'BigTTaBong' && 'Big'}>
@@ -45,15 +53,13 @@ const TTaBongerAndTTaBonged = ({
         <Avatar
           onClick={!isMain ? onClickTTaBoned : null}
           avatarName={receiverName}
-          src={receiver.image || undefined}
+          src={receiverImage || undefined}
         />
       </S.TTaBongedContainer>
     </S.TTaBongsContainer>
   );
 };
 
-TTaBongerAndTTaBonged.propTypes = {
-  receiverName: PropTypes.string,
-};
+TTaBongerAndTTaBonged.propTypes = {};
 
 export default TTaBongerAndTTaBonged;

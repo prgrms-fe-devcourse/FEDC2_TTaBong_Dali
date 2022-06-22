@@ -161,9 +161,11 @@ const UserProfilePage = () => {
               {praisingCardActive ? (
                 <div>
                   {praisingPosts.map((post) => (
-                    <S.ProfileCardWrapper key={post._id}>
-                      <ProfileCard post={post} key={post._id} />
-                    </S.ProfileCardWrapper>
+                    <Link to={`/cardDetail/${post._id}`}>
+                      <S.ProfileCardWrapper key={post._id}>
+                        <ProfileCard post={post} key={post._id} />
+                      </S.ProfileCardWrapper>
+                    </Link>
                   ))}
                   <S.Announcement>
                     {praisingPosts.length === 0
@@ -174,9 +176,11 @@ const UserProfilePage = () => {
               ) : (
                 <div>
                   {praisedPosts.map((post) => (
-                    <S.ProfileCardWrapper key={post._id}>
-                      <ProfileCard post={post} key={post._id} />
-                    </S.ProfileCardWrapper>
+                    <Link to={`/cardDetail/${post._id}`}>
+                      <S.ProfileCardWrapper key={post._id}>
+                        <ProfileCard post={post} key={post._id} />
+                      </S.ProfileCardWrapper>
+                    </Link>
                   ))}
                   <S.Announcement>
                     {praisedPosts.length === 0
