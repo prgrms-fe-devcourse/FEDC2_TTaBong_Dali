@@ -4,17 +4,18 @@ import Avatar from '../../../components/Avatar';
 import Icon from '../../../components/Icon';
 import * as S from './style';
 import Badge from '../../../components/Badge';
+import AvatarBorder from '../../../components/AvatarBorder';
 
 const Header = ({ isScrollDown = false, isAlarm = false }) => {
   return (
     <S.Header isScrollDown={isScrollDown}>
       <S.AvatarContainer>
-        <S.TTaBongKingAvatarWrapper>
+        <AvatarBorder king="TTaBong">
           <Avatar size={30} />
-        </S.TTaBongKingAvatarWrapper>
-        <S.CoinKingAvatarWrapper>
+        </AvatarBorder>
+        <AvatarBorder king="coin">
           <Avatar size={30} />
-        </S.CoinKingAvatarWrapper>
+        </AvatarBorder>
       </S.AvatarContainer>
       <Link to="/">
         <S.PlacedLogo />
