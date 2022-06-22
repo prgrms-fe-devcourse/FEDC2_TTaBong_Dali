@@ -7,8 +7,9 @@ import BigTB from '../../../assets/ttabong_card_big.svg';
 import Avatar from '../../../components/Avatar';
 
 const TTaBongerAndTTaBonged = ({
+  authorName,
   authorId,
-  author,
+  author = { image: null },
   receiverName,
   receiverId,
   receiver = { image: null },
@@ -27,7 +28,7 @@ const TTaBongerAndTTaBonged = ({
     <S.TTaBongsContainer>
       <Avatar
         onClick={onClickTTaBoner}
-        avatarName={author.fullName}
+        avatarName={authorName}
         src={author.image || undefined}
       />
       <S.TTaBongedContainer>
