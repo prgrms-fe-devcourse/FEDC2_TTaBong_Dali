@@ -12,6 +12,7 @@ export const UserInfoItemContanier = styled.div`
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
   border-radius: 40px 17px 17px 40px;
+  cursor: pointer;
 `;
 
 export const RankerContainer = styled.div`

@@ -9,6 +9,7 @@ export const PraisePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 12px;
 `;
 
 export const BePraisedContainer = styled.div`
@@ -34,6 +35,7 @@ export const BePraisedAvatarContainer = styled.div`
 
   background-color: ${({ theme }) => theme.colors.yellow[1]};
   border-radius: 12px;
+  cursor: pointer;
 `;
 
 export const BePraisedAvatarWrapper = styled.div`
