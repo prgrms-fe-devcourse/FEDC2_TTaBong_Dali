@@ -26,8 +26,10 @@ const MainCard = ({ post, ...props }) => {
 
   const { width } = props;
 
-  const { type, receiver, content, labelItems } = JSON.parse(title.trim());
-
+  const { type, receiver, content, labels } = JSON.parse(title.trim());
+  const labelItems = Object.values(labels || {}).filter(
+    (label) => label.length > 0,
+  );
   const navigate = useNavigate();
   const handleClick = () => navigate(`/cardDetail/${postId}`);
 
@@ -38,6 +40,7 @@ const MainCard = ({ post, ...props }) => {
         <TTaBongerAndTTaBonged
           authorName={author.fullName}
           receiverName={receiver.fullName}
+          type={type}
           isMain
         />
         <Divider size={300} />
