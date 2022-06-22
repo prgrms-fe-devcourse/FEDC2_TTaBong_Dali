@@ -38,8 +38,8 @@ const MainCard = ({ post, ...props }) => {
     <BaseCardContainer width={width || 358} height={204}>
       <S.MainCardContainer onClick={handleClick}>
         <TTaBongerAndTTaBonged
-          authorName={author.fullName}
-          receiverName={receiver.fullName}
+          author={author}
+          receiver={receiver}
           type={type}
           isMain
         />

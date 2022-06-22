@@ -11,12 +11,7 @@ import InputForm from '../../../components/InputForm';
 import Icon from '../../../components/Icon';
 
 const CardDetail = ({
-  authorName = '',
-  authorId = '',
   author,
-  receiverName = '',
-  receiverId = '',
-  receiverImg,
   comments = [],
   img,
   receiver,
@@ -32,15 +27,7 @@ const CardDetail = ({
   console.log(receiver);
   return (
     <Card width={342} height={624}>
-      <TTaBongerAndTTaBonged
-        authorName={authorName}
-        authorId={authorId}
-        author={author}
-        receiver={receiver}
-        receiverName={receiverName}
-        receiverId={receiverId}
-        type={type}
-      />
+      <TTaBongerAndTTaBonged author={author} receiver={receiver} type={type} />
       <S.MainSection>
         <S.ContentContainer>
           <S.PraiseContainer>
@@ -77,10 +64,6 @@ const CardDetail = ({
 };
 
 CardDetail.propTypes = {
-  authorName: PropTypes.string.isRequired,
-  authorId: PropTypes.string.isRequired,
-  receiverName: PropTypes.string.isRequired,
-  receiverId: PropTypes.string.isRequired,
   comments: PropTypes.array,
   img: PropTypes.string,
   likeCount: PropTypes.number,

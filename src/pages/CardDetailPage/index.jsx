@@ -25,21 +25,27 @@ const likeToggle = (likes, userId) => {
 };
 
 const CardDetailPage = () => {
-  const navigator = useNavigate();
   const { authUser } = useAuthContext();
-  const { id } = useParams();
+
+  const { id: postId } = useParams();
+  const navigator = useNavigate();
+
   const commentInput = useRef('');
   const inputRef = useRef(null);
+
   const [isLoading, setLoading] = useState(true);
-  const [receivedUser, setReceivedUser] = useState({});
   const [props, setProps] = useState({});
+  const [receivedUser, setReceivedUser] = useState({});
+
   useEffect(() => {
     const getPosts = async () => {
       setLoading(true);
-      const post = await getSpecificPost(id);
+
+      const post = await getSpecificPost(postId);
       const { author, title, likes, comments, _id, image } =
         post || DummyData.Posts[0];
       const { type, receiver, content, labels } = JSON.parse(title);
+
       const labelArr = Object.values(labels || {}).filter(
         (label) => label.length > 0,
       );
@@ -128,10 +134,6 @@ const CardDetailPage = () => {
       {!isLoading ? (
         <CardDetail
           author={props.author}
-          authorName={props.author.fullName}
-          authorId={props.author._id}
-          receiverName={receivedUser.fullName}
-          receiverId={receivedUser._id}
           receiver={receivedUser}
           comments={props.comments}
           likeCount={props.likes.length}
