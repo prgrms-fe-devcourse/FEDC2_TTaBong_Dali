@@ -5,7 +5,6 @@ import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import BaseCardContainer from '../../components/BaseCardContainer';
 import AlarmSection from '../../feature/alarm/AlarmSection';
 import { getNotifications } from '../../apis';
-import NotFoundPage from '../NotFoundPage';
 import { useAuthContext } from '../../contexts/UserProvider';
 
 const AlarmPage = () => {
@@ -18,8 +17,7 @@ const AlarmPage = () => {
   useEffect(() => {
     const getAlarms = async () => {
       setLoading(true);
-      console.log(authUser);
-      const alarms = await getNotifications(authUser.token); // jwt 값 할당해야함
+      const alarms = await getNotifications(authUser.token);
 
       const seen = alarms.filter((alarm) => alarm.seen === true);
       setSeenAlarms(seen);

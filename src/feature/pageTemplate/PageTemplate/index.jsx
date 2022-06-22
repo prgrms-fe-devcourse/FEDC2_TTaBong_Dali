@@ -15,7 +15,7 @@ const PageTemplate = ({ children, page }) => {
 };
 
 PageTemplate.propTypes = {
-  page: PropTypes.string.isRequired,
+  page: PropTypes.string,
 };
 
 export default PageTemplate;
