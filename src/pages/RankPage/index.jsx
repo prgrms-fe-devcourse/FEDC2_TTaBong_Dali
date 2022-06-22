@@ -111,7 +111,7 @@ const RankPage = () => {
                     <UserInfoItem
                       rank={user.rank}
                       key={user._id}
-                      userName={user.fullName}
+                      user={user}
                       TTaBongCount={goods === TTABONG ? user[TTABONG] : -1}
                       coinCount={goods === COIN ? user[COIN] : -1}
                     />
@@ -121,11 +121,11 @@ const RankPage = () => {
                   <S.MyRankWrapper>
                     <UserInfoItem
                       rank={currentUser.rank}
+                      user={currentUser}
                       TTaBongCount={
                         goods === TTABONG ? currentUser[TTABONG] : -1
                       }
                       coinCount={goods === COIN ? currentUser[COIN] : -1}
-                      userName={currentUser.fullName}
                     />
                   </S.MyRankWrapper>
                 )}
