@@ -19,43 +19,11 @@ import {
 import UserProvider from './contexts/UserProvider';
 import { AuthRoute, ProtectedRoute } from './routes';
 import TestApiComponent from './feature/TestApiComponent';
-import ChannelProvider, {
-  channelActionType,
-  useChannelContext,
-} from './contexts/ChannelProvider';
-import { getSpecificChannel } from './apis';
-import Constants from './commons/constants';
-import { setCookie } from './utils/cookies';
-import Spinner from './components/Spinner';
+import { useChannelContext } from './contexts/ChannelProvider';
 
 function App() {
-  const { channel, dispatch } = useChannelContext();
+  const { channel } = useChannelContext();
   const { channelId } = channel;
-
-  const handleGetChannel = async () => {
-    const { _id: channelId, name: channelName } = await getSpecificChannel(
-      Constants.CHANNEL_NAME,
-    );
-
-    await dispatch({
-      type: channelActionType.getChannel,
-      channelId,
-      channelName,
-    });
-
-    setCookie(
-      'channel',
-      { channelName, channelId },
-      {
-        path: '/',
-        maxAge: 60 * 60 * 9,
-      },
-    );
-  };
-
-  useEffect(() => {
-    handleGetChannel();
-  }, []);
 
   return (
     channelId && (

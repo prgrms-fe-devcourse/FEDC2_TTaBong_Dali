@@ -5,8 +5,8 @@ import {
   useReducer,
   useEffect,
 } from 'react';
-
-import { getCookie } from '../utils/cookies';
+import { getSpecificChannel } from '../apis';
+import Constants from '../commons/constants';
 
 const ChannelContext = createContext();
 export const useChannelContext = () => useContext(ChannelContext);
@@ -17,12 +17,12 @@ const initialChannelState = {
 };
 
 export const channelActionType = {
-  getChannel: 'GET_CHANNEL',
+  initChannel: 'INIT_CHANNEL',
 };
 
 const channelReducer = (_, action) => {
   switch (action.type) {
-    case channelActionType.getChannel:
+    case channelActionType.initChannel:
       return {
         channelName: action.channelName,
         channelId: action.channelId,
@@ -35,15 +35,28 @@ const channelReducer = (_, action) => {
 const ChannelProvider = ({ children }) => {
   const [channel, dispatch] = useReducer(channelReducer, initialChannelState);
 
+  const handleInitChannel = async () => {
+    const { _id: channelId, name: channelName } = await getSpecificChannel(
+      Constants.CHANNEL_NAME,
+    );
+
+    await dispatch({
+      type: channelActionType.initChannel,
+      channelId,
+      channelName,
+    });
+  };
+
   useEffect(() => {
-    const { channelName, channelId } =
-      getCookie('channel') || initialChannelState;
+    const { channelName, channelId } = initialChannelState;
 
     dispatch({
-      type: channelActionType.getChannel,
+      type: channelActionType.initChannel,
       channelName,
       channelId,
     });
+
+    handleInitChannel();
   }, []);
 
   const ChannelContextProviderValue = useMemo(
