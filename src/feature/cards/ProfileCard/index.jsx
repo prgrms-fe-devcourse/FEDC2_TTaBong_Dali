@@ -5,7 +5,6 @@ import LabelList from '../LabelList';
 import BaseCardContainer from '../../../components/BaseCardContainer';
 
 const ProfileCard = ({ post }) => {
-  console.log('불러와지나?')
   const { title, author } = post;
   const { content = '내용', labels = [] } = JSON.parse(title);
 
