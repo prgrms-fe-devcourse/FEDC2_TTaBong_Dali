@@ -4,7 +4,6 @@ import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import Banner from '../../feature/pageTemplate/Banner';
 import MainCard from '../../feature/cards/MainCard';
 
-import DummyData from '../../assets/data/dummyData';
 import { getChannelPosts } from '../../apis/index';
 import { useScrollDown } from '../../hooks/useScrollDown';
 import { useChannelContext } from '../../contexts/ChannelProvider';

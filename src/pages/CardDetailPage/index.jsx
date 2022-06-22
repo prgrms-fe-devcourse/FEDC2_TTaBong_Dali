@@ -5,7 +5,6 @@ import { deleteLike, postLike } from '../../apis/like';
 import { postNotifications } from '../../apis/notifications';
 import { getSpecificPost } from '../../apis/posts';
 import { getSpecificUser } from '../../apis/users';
-import DummyData from '../../assets/data/dummyData';
 import Spinner from '../../components/Spinner';
 import Toast from '../../components/Toast';
 import { useAuthContext } from '../../contexts/UserProvider';
@@ -37,8 +36,7 @@ const CardDetailPage = () => {
     const getPosts = async () => {
       setLoading(true);
       const post = await getSpecificPost(id);
-      const { author, title, likes, comments, _id, image } =
-        post || DummyData.Posts[0];
+      const { author, title, likes, comments, _id, image } = post || {};
       const { type, receiver, content, labels } = JSON.parse(title);
       const labelArr = Object.values(labels || {}).filter(
         (label) => label.length > 0,
@@ -58,7 +56,6 @@ const CardDetailPage = () => {
         image,
       });
       const receiverUser = await getSpecificUser(receiver._id);
-      // const receiverUser = DummyData.Users[0];
       setReceivedUser(receiverUser);
 
       setLoading(false);
