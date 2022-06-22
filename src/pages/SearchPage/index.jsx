@@ -3,18 +3,18 @@ import * as S from './style';
 import PageTemaplte from '../../feature/pageTemplate/PageTemplate';
 import { Tab, TabItem, useTab } from '../../components/Tab';
 import BaseCardContainer from '../../components/BaseCardContainer';
-import {
-  getAllUsers,
-  getChannelPosts,
-  getSpecificChannel,
-} from '../../apis/index';
+import { getAllUsers, getChannelPosts } from '../../apis/index';
 import DummyData from '../../assets/data/dummyData';
 import MainCard from '../../feature/cards/MainCard';
 import UserInfoItem from '../../components/UserInfoItem';
 import Constants from '../../commons/constants';
 import Spinner from '../../components/Spinner';
+import { useChannelContext } from '../../contexts/ChannelProvider';
 
 const SearchPage = () => {
+  const { channel } = useChannelContext();
+  const { channelName, channelId } = channel;
+
   const [currentActive, setCurrentActive] = useTab();
   const [items, setItems] = useState({
     users: [...DummyData.Users],
@@ -30,8 +30,7 @@ const SearchPage = () => {
     const fetchInitialData = async () => {
       setLoading(true);
       const users = await getAllUsers();
-      const channel = await getSpecificChannel(Constants.CHANNE_NAME);
-      const posts = await getChannelPosts(channel._id);
+      const posts = await getChannelPosts(channelId);
 
       const coinUsers = users.map((user) => {
         const receivedPosts = posts
@@ -109,7 +108,7 @@ const SearchPage = () => {
             <BaseCardContainer overflow="auto">
               {currentActive === 0
                 ? searched.users.map((user) => (
-                    <S.ItemWrapper>
+                    <S.ItemWrapper key={user._id}>
                       <UserInfoItem
                         userName={user.fullName}
                         TTaBongCount={user.posts.length}

@@ -54,7 +54,7 @@ const UserInfoItem = ({
 UserInfoItem.propTypes = {
   rank: PropTypes.number,
   avatarImg: PropTypes.string,
-  userName: PropTypes.string.isRequired,
+  userName: PropTypes.string,
   coinCount: PropTypes.number,
   TTaBongCount: PropTypes.number,
   // coinCount와 TTaBongCount 둘 중 하나 이상은 필수

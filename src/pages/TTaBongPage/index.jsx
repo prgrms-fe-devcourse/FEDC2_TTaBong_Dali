@@ -12,15 +12,18 @@ import {
 import Divider from '../../components/Divider';
 import Button from '../../components/Button';
 import Avatar from '../../components/Avatar';
-import { createPost, getSpecificChannel } from '../../apis';
+import { createPost } from '../../apis';
 import { useAuthContext } from '../../contexts/UserProvider';
 import Constants from '../../commons/constants/index';
 import BaseCardContainer from '../../components/BaseCardContainer';
+import { useChannelContext } from '../../contexts/ChannelProvider';
 
 const TTaBongPage = () => {
   const { TTaBong, BigTTaBong } = Constants;
 
   const { authUser } = useAuthContext();
+  const { channel } = useChannelContext();
+  const { channelId } = channel;
 
   const navigator = useNavigate();
 
@@ -35,8 +38,6 @@ const TTaBongPage = () => {
   });
 
   const handleCreatePost = async (type) => {
-    const channel = await getSpecificChannel(Constants.CHANNE_NAME);
-
     const validationError = {
       emptyBePraised: '따봉 대상자가 없습니다.',
       emptyReason: '따봉 사유가 없습니다.',
@@ -81,7 +82,7 @@ const TTaBongPage = () => {
       const formData = new FormData();
       formData.append('title', post);
       formData.append('image', imageSrc);
-      formData.append('channelId', channel._id);
+      formData.append('channelId', channelId);
       createPost(authUser.token, formData);
     });
 
