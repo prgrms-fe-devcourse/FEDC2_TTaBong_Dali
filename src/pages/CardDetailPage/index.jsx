@@ -53,8 +53,8 @@ const CardDetailPage = () => {
         image,
       });
       console.log(type);
-      // const receiverUser = await getSpecificUser(receiver._id);
-      const receiverUser = DummyData.Users[0];
+      const receiverUser = await getSpecificUser(receiver._id);
+      // const receiverUser = DummyData.Users[0];
       setReceivedUser(receiverUser);
 
       setLoading(false);

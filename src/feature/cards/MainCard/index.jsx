@@ -38,6 +38,7 @@ const MainCard = ({ post, ...props }) => {
         <TTaBongerAndTTaBonged
           authorName={author.fullName}
           receiverName={receiver.fullName}
+          isMain
         />
         <Divider size={300} />
         <S.SecondSection>
