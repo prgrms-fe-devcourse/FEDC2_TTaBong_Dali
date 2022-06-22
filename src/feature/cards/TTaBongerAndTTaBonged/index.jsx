@@ -14,6 +14,7 @@ const TTaBongerAndTTaBonged = ({
   receiverId,
   receiver = { image: null },
   type,
+  isMain = false,
 }) => {
   const navigator = useNavigate();
 
@@ -27,7 +28,7 @@ const TTaBongerAndTTaBonged = ({
   return (
     <S.TTaBongsContainer>
       <Avatar
-        onClick={onClickTTaBoner}
+        onClick={!isMain ? onClickTTaBoner : null}
         avatarName={authorName}
         src={author.image || undefined}
       />
@@ -42,7 +43,7 @@ const TTaBongerAndTTaBonged = ({
         </S.TTaBongIconWrapper>
         {/* {console.log(receiver)} */}
         <Avatar
-          onClick={onClickTTaBoned}
+          onClick={!isMain ? onClickTTaBoned : null}
           avatarName={receiverName}
           src={receiver.image || undefined}
         />
