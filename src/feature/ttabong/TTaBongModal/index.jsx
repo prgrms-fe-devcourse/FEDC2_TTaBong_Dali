@@ -91,7 +91,7 @@ const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
                 onClick={(e) => handleUserCheck(e, user._id)}
               >
                 <UserInfoItem
-                  userName={user.fullName}
+                  user={user}
                   useCheck
                   checked={user.checked}
                   useNav={false}

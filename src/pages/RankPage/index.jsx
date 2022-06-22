@@ -52,8 +52,8 @@ const RankPage = () => {
   const sortUsers = async () => {
     const allUsers = await getAllUsers();
     const channelPosts = await getChannelPosts(channelId);
-    const allUserInfo = allUsers.map(({ fullName, _id, posts }) => {
-      return { _id, fullName, TTaBongCount: posts.length, coinCount: 0 };
+    const allUserInfo = allUsers.map(({ image, fullName, _id, posts }) => {
+      return { _id, image, fullName, TTaBongCount: posts.length, coinCount: 0 };
     });
 
     channelPosts.forEach(({ title }) => {
@@ -102,7 +102,7 @@ const RankPage = () => {
             <BaseCardContainer opacityType={0.7}>
               <S.RankInfoContainer>
                 <RankFirstInfo
-                  userName={users[0].fullName}
+                  user={users[0]}
                   TTaBongCount={goods === TTABONG ? users[0][TTABONG] : -1}
                   coinCount={goods === COIN ? users[0][COIN] : -1}
                 />
@@ -111,7 +111,7 @@ const RankPage = () => {
                     <UserInfoItem
                       rank={user.rank}
                       key={user._id}
-                      userName={user.fullName}
+                      user={user}
                       TTaBongCount={goods === TTABONG ? user[TTABONG] : -1}
                       coinCount={goods === COIN ? user[COIN] : -1}
                     />
@@ -121,11 +121,11 @@ const RankPage = () => {
                   <S.MyRankWrapper>
                     <UserInfoItem
                       rank={currentUser.rank}
+                      user={currentUser}
                       TTaBongCount={
                         goods === TTABONG ? currentUser[TTABONG] : -1
                       }
                       coinCount={goods === COIN ? currentUser[COIN] : -1}
-                      userName={currentUser.fullName}
                     />
                   </S.MyRankWrapper>
                 )}

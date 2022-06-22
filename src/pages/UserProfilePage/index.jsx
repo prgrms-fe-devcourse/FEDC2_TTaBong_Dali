@@ -103,7 +103,7 @@ const UserProfilePage = () => {
                 <S.InfoName>
                   {pageUserInfo.fullName && pageUserInfo.fullName}
                 </S.InfoName>
-                <Avatar size={60} />
+                <Avatar size={60} src={pageUserInfo.image} />
               </S.InfoLeftContainer>
               <S.InfoRightContainer>
                 <S.CountInfoWrapper>

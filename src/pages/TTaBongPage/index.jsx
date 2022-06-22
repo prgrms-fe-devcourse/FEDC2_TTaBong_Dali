@@ -103,7 +103,12 @@ const TTaBongPage = () => {
             <S.BePraisedAvatarContainer>
               {checkedUsers.map((user) => (
                 <S.BePraisedAvatarWrapper key={user._id}>
-                  <Avatar size={30} avatarName={user.fullName} ellipsis />
+                  <Avatar
+                    size={30}
+                    avatarName={user.fullName}
+                    src={user.image}
+                    ellipsis
+                  />
                 </S.BePraisedAvatarWrapper>
               ))}
             </S.BePraisedAvatarContainer>

@@ -13,7 +13,7 @@ import { useChannelContext } from '../../contexts/ChannelProvider';
 
 const SearchPage = () => {
   const { channel } = useChannelContext();
-  const { channelName, channelId } = channel;
+  const { channelId } = channel;
 
   const [currentActive, setCurrentActive] = useTab();
   const [items, setItems] = useState({
@@ -110,7 +110,7 @@ const SearchPage = () => {
                 ? searched.users.map((user) => (
                     <S.ItemWrapper key={user._id}>
                       <UserInfoItem
-                        userName={user.fullName}
+                        user={user}
                         TTaBongCount={user.posts.length}
                         coinCount={user.coinCount}
                       />

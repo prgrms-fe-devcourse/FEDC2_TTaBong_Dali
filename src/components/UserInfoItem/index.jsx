@@ -6,18 +6,19 @@ import CheckIcon from '../../feature/ttabong/CheckIcon';
 
 const UserInfoItem = ({
   rank,
-  avatarImg,
-  userName,
+  user,
   coinCount = -1,
   TTaBongCount = -1,
   useCheck,
   checked = false,
   useNav = true,
 }) => {
+  const { _id: userId, fullName: userName, image: avatarImg } = user;
+
   const navigate = useNavigate();
 
   // 나중에 userId로 바꿀 예정
-  const handleClick = () => navigate(`/userProfile/${userName}`);
+  const handleClick = () => navigate(`/userProfile/${userId}`);
 
   return (
     <S.UserInfoItemContanier onClick={useNav ? handleClick : () => {}}>
@@ -53,8 +54,6 @@ const UserInfoItem = ({
 
 UserInfoItem.propTypes = {
   rank: PropTypes.number,
-  avatarImg: PropTypes.string,
-  userName: PropTypes.string,
   coinCount: PropTypes.number,
   TTaBongCount: PropTypes.number,
   // coinCount와 TTaBongCount 둘 중 하나 이상은 필수

@@ -1,17 +1,21 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import Avatar from '../../../components/Avatar';
 import * as S from './style';
 
-const RankFirstInfo = ({
-  avatarImg,
-  userName,
-  coinCount = -1,
-  TTaBongCount = -1,
-}) => {
+const RankFirstInfo = ({ user, coinCount = -1, TTaBongCount = -1 }) => {
+  const { _id: userId, fullName: userName, image: avatarImg } = user;
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/userProfile/${userId}`);
+  };
+
   return (
     <S.RankFirstContainer>
       <S.RankFirstWrapper>현재 1위</S.RankFirstWrapper>
-      <S.RankFirstInfoWrapper>
+      <S.RankFirstInfoWrapper onClick={handleClick}>
         <S.AvatarBox>
           {/* 왕관 이미지? */}
           <Avatar src={avatarImg} />
@@ -37,8 +41,6 @@ const RankFirstInfo = ({
 };
 
 RankFirstInfo.propTypes = {
-  avatarImg: PropTypes.string,
-  userName: PropTypes.string,
   coinCount: PropTypes.number,
   TTaBongCount: PropTypes.number,
 };
