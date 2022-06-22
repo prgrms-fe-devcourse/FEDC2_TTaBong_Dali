@@ -8,7 +8,7 @@ export const getAllUsers = async (offset = 0, limit = 100) => {
     `${USERS}/get-users?offset=${offset}&limit=${limit}`,
   );
 
-  return allUsers;
+  return allUsers.filter((user) => user.fullName !== 'Admin');
 };
 
 // 현재 접속 중인 사용자 목록을 불러옵니다.
