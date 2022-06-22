@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import Icon from '../../../components/Icon';
 
 export const MainSection = styled.div`
   margin: 0 16px;

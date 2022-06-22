@@ -52,12 +52,12 @@ const CardDetail = ({
           </S.LikeContainer>
         </S.InfoContainer>
         <Divider size={320} />
-        <CommentList height={200} comments={comments} />
         <InputForm
           version="comment"
           onChange={onChangeInput}
           onSubmit={onSubmitInput}
         />
+        <CommentList height={200} comments={comments} />
       </S.MainSection>
     </Card>
   );
