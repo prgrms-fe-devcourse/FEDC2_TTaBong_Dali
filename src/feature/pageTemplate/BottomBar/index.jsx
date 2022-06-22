@@ -16,18 +16,20 @@ const BottomBar = ({ page }) => {
           <Icon
             name={page === 'mainFeed' ? 'listFill' : 'listLine'}
             alt="리스트 아이콘"
+            size={18}
           />
         </Link>
         <Link to="/rank">
           <Icon
             name={page === 'rank' ? 'rankFill' : 'rankLine'}
             alt="랭킹 아이콘"
+            size={18}
           />
         </Link>
       </S.IconContainer>
       <S.TTaBongContainerBox>
         <Link to="/TTaBong">
-          <Icon name="TTaBongWhite" alt="따봉 아이콘" />
+          <Icon name="TTaBongWhite" alt="따봉 아이콘" size={18} />
         </Link>
       </S.TTaBongContainerBox>
       <S.IconContainer>
@@ -35,6 +37,7 @@ const BottomBar = ({ page }) => {
           <Icon
             name={page === 'search' ? 'searchFill' : 'searchLine'}
             alt="검색 아이콘"
+            size={18}
           />
         </Link>
         {isAuth ? (
@@ -42,6 +45,7 @@ const BottomBar = ({ page }) => {
             <Icon
               name={page === 'user' ? 'userFill' : 'userLine'}
               alt="유저 아이콘"
+              size={18}
             />
           </Link>
         ) : (
@@ -49,6 +53,7 @@ const BottomBar = ({ page }) => {
             <Icon
               name={page === 'user' ? 'userFill' : 'userLine'}
               alt="유저 아이콘"
+              size={18}
             />
           </Link>
         )}

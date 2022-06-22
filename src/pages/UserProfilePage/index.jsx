@@ -88,7 +88,7 @@ const UserProfilePage = () => {
   }, []);
 
   return (
-    <PageTemplate>
+    <PageTemplate page="user">
       {loading ? (
         <S.SpinnerWrapper>
           <Spinner />
