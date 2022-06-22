@@ -14,9 +14,13 @@ import { getAllUsers } from '../../apis/users';
 import { useAuthContext } from '../../contexts/UserProvider';
 import { removeCookie } from '../../utils/cookies';
 import Spinner from '../../components/Spinner';
+import { useChannelContext } from '../../contexts/ChannelProvider';
 
 const UserProfilePage = () => {
   const { authUser, dispatch } = useAuthContext();
+  const { channel } = useChannelContext();
+  const { channelId, channelName } = channel;
+
   const [pageUserInfo, setPageUserInfo] = useState({});
 
   const [praisingCardActive, setPraisingCardActive] = useState(true);
@@ -24,8 +28,6 @@ const UserProfilePage = () => {
 
   const [praisingPosts, setPraisingPosts] = useState([]);
   const [praisedPosts, setPraisedPosts] = useState([]);
-
-  const CHANNEL_ID = '62a19123d1b81239d875d20d';
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -63,7 +65,7 @@ const UserProfilePage = () => {
   };
 
   const getNextPraisedPosts = async () => {
-    await getChannelPosts(CHANNEL_ID, 0).then((response) => {
+    await getChannelPosts(channelId, 0).then((response) => {
       if (response === []) {
         return;
       }

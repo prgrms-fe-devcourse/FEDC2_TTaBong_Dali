@@ -30,6 +30,7 @@ import Spinner from './components/Spinner';
 
 function App() {
   const { channel, dispatch } = useChannelContext();
+  const { channelId } = channel;
 
   const handleGetChannel = async () => {
     const { _id: channelId, name: channelName } = await getSpecificChannel(
@@ -57,7 +58,7 @@ function App() {
   }, []);
 
   return (
-    channel.channelId && (
+    channelId && (
       <Routes>
         <Route path="/" element={<MainFeedPage />} />
         <Route path="/cardDetail/:id" element={<CardDetailPage />} />

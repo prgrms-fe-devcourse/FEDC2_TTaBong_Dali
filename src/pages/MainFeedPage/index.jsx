@@ -7,8 +7,12 @@ import MainCard from '../../feature/cards/MainCard';
 import DummyData from '../../assets/data/dummyData';
 import { getChannelPosts } from '../../apis/index';
 import { useScrollDown } from '../../hooks/useScrollDown';
+import { useChannelContext } from '../../contexts/ChannelProvider';
 
 const MainFeedPage = () => {
+  const { channel } = useChannelContext();
+  const { channelId, channelName } = channel;
+
   const [posts, setPosts] = useState([]);
   const [target, setTarget] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -16,12 +20,11 @@ const MainFeedPage = () => {
 
   const [ref, isScrollDown] = useScrollDown();
 
-  const CHANNEL_ID = '62a19123d1b81239d875d20d';
   const LIMIT_NUM = 10;
 
   const getNextPosts = async () => {
     setLoading(true);
-    await getChannelPosts(CHANNEL_ID, offset, LIMIT_NUM)
+    await getChannelPosts(channelId, offset, LIMIT_NUM)
       .then((response) => {
         if (response === []) {
           return;

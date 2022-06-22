@@ -9,12 +9,19 @@ import { getAllUsers, getChannelPosts } from '../../apis/index';
 import { TabItem } from '../../components/Tab';
 import Constants from '../../commons/constants/index';
 import { useAuthContext } from '../../contexts/UserProvider';
+import {
+  channelActionType,
+  useChannelContext,
+} from '../../contexts/ChannelProvider';
 
 const RankPage = () => {
   const TTABONG = 'TTaBongCount';
   const COIN = 'coinCount';
 
   const { authUser } = useAuthContext();
+  const { channel } = useChannelContext();
+  const { channelId } = channel;
+
   const [currentUser, setCurrentUser] = useState({});
   const [users, setUsers] = useState([{}]);
   const [goods, setGoods] = useState(TTABONG);
@@ -44,7 +51,7 @@ const RankPage = () => {
 
   const sortUsers = async () => {
     const allUsers = await getAllUsers();
-    const channelPosts = await getChannelPosts(Constants.TEST_CHANNEL_ID);
+    const channelPosts = await getChannelPosts(channelId);
     const allUserInfo = allUsers.map(({ fullName, _id, posts }) => {
       return { _id, fullName, TTaBongCount: posts.length, coinCount: 0 };
     });
@@ -100,17 +107,15 @@ const RankPage = () => {
                   coinCount={goods === COIN ? users[0][COIN] : -1}
                 />
                 <S.RankList isAuth={authUser.isAuth}>
-                  {users.slice(1).map((user) => {
-                    return (
-                      <UserInfoItem
-                        rank={user.rank}
-                        key={user._id}
-                        userName={user.fullName}
-                        TTaBongCount={goods === TTABONG ? user[TTABONG] : -1}
-                        coinCount={goods === COIN ? user[COIN] : -1}
-                      />
-                    );
-                  })}
+                  {users.slice(1).map((user) => (
+                    <UserInfoItem
+                      rank={user.rank}
+                      key={user._id}
+                      userName={user.fullName}
+                      TTaBongCount={goods === TTABONG ? user[TTABONG] : -1}
+                      coinCount={goods === COIN ? user[COIN] : -1}
+                    />
+                  ))}
                 </S.RankList>
                 {authUser.isAuth && currentUser && (
                   <S.MyRankWrapper>
