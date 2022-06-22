@@ -3,7 +3,7 @@ import * as S from './style';
 import Icon from '../Icon';
 import Image from '../Image';
 
-const ImageUploadContainer = ({ setImageSrc, iconName, ...styles }) => {
+const ImageUploadContainer = ({ setImageSrc, iconName, ...style }) => {
   const [imgSrc, setImgSrc] = useState('');
 
   // Input 추가하면 ImageSrc 추가
@@ -27,7 +27,7 @@ const ImageUploadContainer = ({ setImageSrc, iconName, ...styles }) => {
   };
 
   return (
-    <S.ImageUploadForm {...styles}>
+    <S.ImageUploadForm {...style}>
       <S.FileLabel htmlFor="fileInput">
         {/* 이미지 파일이 있을 때 이미지와 삭제 버튼 */}
         {imgSrc ? (

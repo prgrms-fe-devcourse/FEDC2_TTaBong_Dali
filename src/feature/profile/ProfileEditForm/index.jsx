@@ -71,7 +71,7 @@ const ProfileEditForm = ({ onSubmit, ...styles }) => {
             removeAll={removeAll}
           />
           <S.ImageUploadContainerWrapper>
-            <ImageUploadContainer
+            <S.ProfileImageUploadContainer
               setImageSrc={setProfileImgSrc}
               iconName="fileGray"
             />
