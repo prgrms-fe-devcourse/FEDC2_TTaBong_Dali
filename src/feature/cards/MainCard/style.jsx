@@ -52,7 +52,7 @@ export const InfoContainer = styled.div`
 export const LikeContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 16px;
+  margin-top: 0.5rem;
   overflow-x: auto;
   width: 100%;
 `;
