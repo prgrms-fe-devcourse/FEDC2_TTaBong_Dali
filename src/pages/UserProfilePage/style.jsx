@@ -36,6 +36,9 @@ export const ProfileInfoContainer = styled.div`
   }
 `;
 
+export const IconContainer = styled.span`
+  cursor: pointer;
+`;
 export const InfoLeftContainer = styled.div`
   width: 30%;
   min-width: 7rem;

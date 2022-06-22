@@ -128,12 +128,14 @@ const UserProfilePage = () => {
               </S.InfoRightContainer>
               <Divider className="divider" />
               {authUser.userId === pageUserInfo._id && (
-                <Icon
-                  name="logout"
-                  size={15}
-                  className="logoutIcon"
-                  onClick={handleLogOut}
-                />
+                <S.IconContainer>
+                  <Icon
+                    name="logout"
+                    size={15}
+                    className="logoutIcon"
+                    onClick={handleLogOut}
+                  />
+                </S.IconContainer>
               )}
             </S.ProfileInfoContainer>
             <S.TapWrapper>
