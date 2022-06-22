@@ -1,4 +1,3 @@
-import Proptypes from 'prop-types';
 import apiClient from './api';
 
 const USERS = `/users`;
@@ -26,10 +25,6 @@ export const getSpecificUser = async (id) => {
   return specificUser;
 };
 
-getSpecificUser.propTypes = {
-  id: Proptypes.string.isRequired,
-};
-
 // TE BOE IMPLEMENTED
 // 나의 프로필 이미지를 변경합니다.
 export const postProfileImg = async (JWTtoken, formData) => {
@@ -41,12 +36,6 @@ export const postProfileImg = async (JWTtoken, formData) => {
   });
 
   return profileImg;
-};
-
-postProfileImg.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
-  isCover: Proptypes.bool,
-  // image 받는 타입을 Binary로 받아야 하는데 어떻게?
 };
 
 // TE BOE IMPLEMENTED
@@ -71,9 +60,4 @@ export const postCoverImg = async (
     console.error(e);
   }
   return null;
-};
-
-postCoverImg.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
-  isCover: Proptypes.bool,
 };

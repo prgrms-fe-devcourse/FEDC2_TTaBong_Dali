@@ -62,7 +62,7 @@ const BottomBar = ({ page }) => {
   );
 };
 BottomBar.propTypes = {
-  page: PropTypes.string.isRequired,
+  page: PropTypes.string,
 };
 
 export default BottomBar;

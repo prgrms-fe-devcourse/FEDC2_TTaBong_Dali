@@ -1,5 +1,3 @@
-import axios from 'axios';
-import Proptypes from 'prop-types';
 import apiClient from './api';
 
 // 특정 포스트에 좋아요합니다.
@@ -17,11 +15,6 @@ export const postLike = async (JWTtoken, postId) => {
   return like;
 };
 
-postLike.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
-  postId: Proptypes.string.isRequired,
-};
-
 // 특정 포스트에 좋아요한 것을 취소합니다.
 // delete인데 왜 response를 Like를 반환하지?
 export const deleteLike = async (JWTtoken, id) => {
@@ -37,9 +30,4 @@ export const deleteLike = async (JWTtoken, id) => {
   );
 
   return like;
-};
-
-deleteLike.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
-  id: Proptypes.string.isRequired,
 };

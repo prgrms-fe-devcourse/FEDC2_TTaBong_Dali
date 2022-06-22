@@ -8,9 +8,9 @@ const LabelList = ({ labelItems = [] }) => {
     <S.LabelContainer>
       {labelItems.map((type, index) =>
         index === 0 ? (
-          <Label type={type} />
+          <Label key={Math.random()} type={type} />
         ) : (
-          <S.LabelWrapper>
+          <S.LabelWrapper key={Math.random()}>
             <Label type={type} />
           </S.LabelWrapper>
         ),

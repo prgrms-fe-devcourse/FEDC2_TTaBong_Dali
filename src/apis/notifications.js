@@ -1,5 +1,3 @@
-import axios from 'axios';
-import Proptypes from 'prop-types';
 import apiClient from './api';
 
 // 나의 알림 목록을 불러옵니다.
@@ -11,10 +9,6 @@ export const getNotifications = async (JWTtoken) => {
   });
 
   return notifications;
-};
-
-getNotifications.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
 };
 
 // 나에게 온 알림을 읽음처리 합니다.
@@ -31,10 +25,6 @@ export const getNotificationsSeen = async (JWTtoken) => {
   );
 
   return notificationsSeen;
-};
-
-getNotificationsSeen.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
 };
 
 // 상대방에게 알림을 보냅니다.
@@ -62,12 +52,4 @@ export const postNotifications = async (
   );
 
   return notification;
-};
-
-postNotifications.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
-  notificationType: Proptypes.oneOf(['COMMENT', 'FOLLOW', 'LIKE', 'MESSAGE']),
-  userId: Proptypes.string.isRequired,
-  postId: Proptypes.string,
-  id: Proptypes.string,
 };

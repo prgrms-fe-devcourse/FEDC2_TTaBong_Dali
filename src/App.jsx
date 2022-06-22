@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ThemeProvider } from '@emotion/react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import GlobalStyle from './commons/style/GlobalStyle';
-import theme from './commons/style/themes';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 import {
   CardDetailPage,
   MainFeedPage,
@@ -16,9 +13,7 @@ import {
   NotFoundPage,
   AlarmPage,
 } from './pages';
-import UserProvider from './contexts/UserProvider';
 import { AuthRoute, ProtectedRoute } from './routes';
-import TestApiComponent from './feature/TestApiComponent';
 import { useChannelContext } from './contexts/ChannelProvider';
 
 function App() {
@@ -51,7 +46,6 @@ function App() {
           element={<AuthRoute Component={RegisterPage} />}
         />
         <Route path="/error/*" element={<NotFoundPage />} />
-        <Route path="/api/*" element={<TestApiComponent />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     )

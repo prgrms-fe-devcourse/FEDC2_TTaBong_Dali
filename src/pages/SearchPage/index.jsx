@@ -4,10 +4,8 @@ import PageTemaplte from '../../feature/pageTemplate/PageTemplate';
 import { Tab, TabItem, useTab } from '../../components/Tab';
 import BaseCardContainer from '../../components/BaseCardContainer';
 import { getAllUsers, getChannelPosts } from '../../apis/index';
-import DummyData from '../../assets/data/dummyData';
 import MainCard from '../../feature/cards/MainCard';
 import UserInfoItem from '../../components/UserInfoItem';
-import Constants from '../../commons/constants';
 import Spinner from '../../components/Spinner';
 import { useChannelContext } from '../../contexts/ChannelProvider';
 
@@ -17,8 +15,8 @@ const SearchPage = () => {
 
   const [currentActive, setCurrentActive] = useTab();
   const [items, setItems] = useState({
-    users: [...DummyData.Users],
-    posts: [...DummyData.Posts],
+    users: [],
+    posts: [],
   });
   const [searched, setSearched] = useState({
     users: [],
@@ -117,7 +115,7 @@ const SearchPage = () => {
                     </S.ItemWrapper>
                   ))
                 : searched.posts.map((post) => (
-                    <S.ItemWrapper>
+                    <S.ItemWrapper key={post._id}>
                       <MainCard post={post} width="100%" />
                     </S.ItemWrapper>
                   ))}

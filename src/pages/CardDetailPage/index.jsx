@@ -5,7 +5,6 @@ import { deleteLike, postLike } from '../../apis/like';
 import { postNotifications } from '../../apis/notifications';
 import { getSpecificPost } from '../../apis/posts';
 import { getSpecificUser } from '../../apis/users';
-import DummyData from '../../assets/data/dummyData';
 import Spinner from '../../components/Spinner';
 import Toast from '../../components/Toast';
 import { useAuthContext } from '../../contexts/UserProvider';
@@ -40,16 +39,14 @@ const CardDetailPage = () => {
   useEffect(() => {
     const getPosts = async () => {
       setLoading(true);
-
-      const post = await getSpecificPost(postId);
-      const { author, title, likes, comments, _id, image } =
-        post || DummyData.Posts[0];
+      const post = await getSpecificPost(id);
+      const { author, title, likes, comments, _id, image } = post || {};
       const { type, receiver, content, labels } = JSON.parse(title);
 
       const labelArr = Object.values(labels || {}).filter(
         (label) => label.length > 0,
       );
-      const isLike = likeToggle(likes, authUser.userId); // 접속한 유저의 id 값 넣기
+      const isLike = likeToggle(likes, authUser.userId);
       setProps({
         author,
         title,
@@ -64,7 +61,6 @@ const CardDetailPage = () => {
         image,
       });
       const receiverUser = await getSpecificUser(receiver._id);
-      // const receiverUser = DummyData.Users[0];
       setReceivedUser(receiverUser);
 
       setLoading(false);
@@ -73,7 +69,6 @@ const CardDetailPage = () => {
   }, [authUser]);
 
   const onClickLike = async () => {
-    // 먼저 접속한 유저의 jwt 토큰을 가져오고 없으면 로그인 페이지로 이동
     if (!authUser.isAuth) {
       Toast.show(IS_NOT_AUTH_ERROR);
       navigator('/login');
