@@ -18,6 +18,8 @@ import { useAuthContext } from '../../contexts/UserProvider';
 import Constants from '../../commons/constants/index';
 import BaseCardContainer from '../../components/BaseCardContainer';
 import { useChannelContext } from '../../contexts/ChannelProvider';
+import BigTTaBongSvg from '../../assets/ttabong_card_big.svg';
+import TTaBongSvg from '../../assets/ttabong_card.svg';
 
 const TTaBongPage = () => {
   const { TTaBong, BigTTaBong } = Constants;
@@ -25,9 +27,7 @@ const TTaBongPage = () => {
   const { authUser } = useAuthContext();
   const { channel } = useChannelContext();
   const { channelId } = channel;
-
   const navigator = useNavigate();
-
   const modalProps = useModal();
   const [checkedUsers, setCheckedUsers] = useState([]);
   const [reason, setReason] = useState('');
@@ -37,6 +37,9 @@ const TTaBongPage = () => {
     moved: '',
     warm: '',
   });
+
+  const [TTaBongEffect, setTTaBongEffect] = useState(false);
+  const [TTaBongType, setTTaBongType] = useState(TTaBongSvg);
 
   const handleCreatePost = async (type) => {
     const validationError = {
@@ -87,7 +90,11 @@ const TTaBongPage = () => {
       createPost(authUser.token, formData);
     });
 
-    navigator('/');
+    setTTaBongEffect(true);
+    setTTaBongType(type === BigTTaBong ? BigTTaBongSvg : TTaBongSvg);
+    setTimeout(() => {
+      navigator('/');
+    }, 405);
   };
 
   return (
@@ -125,6 +132,12 @@ const TTaBongPage = () => {
           >
             따봉!
           </Button>
+          {TTaBongEffect && (
+            <S.TBEffect>
+              <img src={TTaBongType} alt="따봉" width="40px" height="40px" />
+            </S.TBEffect>
+          )}
+
           <Button
             version="yellow"
             width="100%"
