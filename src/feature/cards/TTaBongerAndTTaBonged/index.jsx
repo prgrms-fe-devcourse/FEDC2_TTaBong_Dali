@@ -18,7 +18,7 @@ const TTaBongerAndTTaBonged = ({
   const navigator = useNavigate();
 
   const onClickTTaBoner = () => {
-    navigator(`/userProfile/${author._id}`);
+    navigator(`/userProfile/${authorId}`);
   };
 
   const onClickTTaBoned = () => {
