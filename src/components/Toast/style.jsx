@@ -11,13 +11,13 @@ export const ToastContainer = styled.div`
 export const ItemContainer = styled.div`
   position: relative;
   display: flex;
-  width: 300px;
-  height: 70px;
+  width: 20rem;
+  height: 5rem;
   padding: 0 20px;
   align-items: center;
-  border-radius: 4px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-radius: 1rem;
+  border-top-left-radius: 0.2rem;
+  border-top-right-radius: 0.2rem;
   border: 1px solid #ccc;
   background-color: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -32,7 +32,7 @@ export const ItemContainer = styled.div`
   }
   @keyframes move {
     0% {
-      margin-top: 80px;
+      margin-top: 50px;
     }
     100% {
       margin-top: 0;
@@ -40,7 +40,10 @@ export const ItemContainer = styled.div`
   }
 `;
 
-export const Message = styled.div``;
+export const Message = styled.div`
+  margin-top: 0.2rem;
+  color: #828282;
+`;
 
 export const ProgressBar = styled.div`
   position: absolute;

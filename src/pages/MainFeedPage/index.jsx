@@ -3,8 +3,8 @@ import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import Banner from '../../feature/pageTemplate/Banner';
 import MainCard from '../../feature/cards/MainCard';
+import Spinner from '../../components/Spinner';
 
-import DummyData from '../../assets/data/dummyData';
 import { getChannelPosts } from '../../apis/index';
 import { useScrollDown } from '../../hooks/useScrollDown';
 import { useChannelContext } from '../../contexts/ChannelProvider';
@@ -19,6 +19,7 @@ const MainFeedPage = () => {
   const [offset, setOffset] = useState(0);
 
   const [ref, isScrollDown] = useScrollDown();
+  const [firstLoading, setFirstLoading] = useState(false);
 
   const LIMIT_NUM = 10;
 
@@ -66,29 +67,38 @@ const MainFeedPage = () => {
 
   // 최초 랜더링
   useEffect(() => {
-    getNextPosts();
+    const firstRender = async () => {
+      setFirstLoading(true);
+      await getNextPosts();
+      setFirstLoading(false);
+    };
+    firstRender();
   }, []);
 
   return (
     <PageTemplate page="mainFeed">
-      <S.MainFeedPageContainer
-        ref={ref}
-        className={!isScrollDown ? 'bannerShown' : null}
-      >
-        <Banner isScrollDown={isScrollDown} />
-        {posts.map((post, idx) => (
-          <S.MainCardWrapper key={post._id}>
-            {posts.length - 1 === idx ? (
-              <div ref={setTarget}>
-                <MainCard post={post} />
-              </div>
-            ) : (
-              <MainCard post={post} />
-            )}
-          </S.MainCardWrapper>
-        ))}
-        <S.Announce>모든 카드를 불러왔습니다</S.Announce>
-      </S.MainFeedPageContainer>
+      {firstLoading ? (
+        <Spinner />
+      ) : (
+        <S.MainFeedPageContainer
+          ref={ref}
+          className={!isScrollDown ? 'bannerShown' : null}
+        >
+          <Banner isScrollDown={isScrollDown} />
+          {posts.map((post, idx) => (
+            <S.MainCardWrapper key={post._id}>
+              {posts.length - 1 === idx ? (
+                <div ref={setTarget}>
+                  <MainCard width={335} post={post} />
+                </div>
+              ) : (
+                <MainCard width={335} post={post} />
+              )}
+            </S.MainCardWrapper>
+          ))}
+          <S.Announce>모든 카드를 불러왔습니다</S.Announce>
+        </S.MainFeedPageContainer>
+      )}
     </PageTemplate>
   );
 };
