@@ -7,7 +7,7 @@ export const BannerContainer = styled.div`
   left: 0;
   width: 100%;
   min-width: 23rem;
-  height: 7rem;
+  min-height: 7rem;
   padding-top: 3.6rem;
   padding-bottom: 0.5rem;
   display: flex;

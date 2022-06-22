@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import * as S from './style';
 import Avatar from '../../../components/Avatar';
+import AvatarBorder from '../../../components/AvatarBorder';
+
 // 이모션 변수 사용
 // 현재 문제는 윈도우에서 좌표값이 잡힘 배너는 위에만 박혀있어서 좌표값이 바뀌지 않음
 const Banner = ({ isScrollDown = false }) => {
@@ -27,8 +29,12 @@ const Banner = ({ isScrollDown = false }) => {
     <div>
       {show && (
         <S.BannerContainer className={isScrollDown ? 'hide' : 'show'}>
-          <Avatar size={45} />
-          <Avatar size={45} />
+          <AvatarBorder king="TTaBong">
+            <Avatar size={40} />
+          </AvatarBorder>
+          <AvatarBorder king="coin">
+            <Avatar size={40} />
+          </AvatarBorder>
         </S.BannerContainer>
       )}
     </div>
