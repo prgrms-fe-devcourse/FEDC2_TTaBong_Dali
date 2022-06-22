@@ -115,7 +115,7 @@ const SearchPage = () => {
                     </S.ItemWrapper>
                   ))
                 : searched.posts.map((post) => (
-                    <S.ItemWrapper>
+                    <S.ItemWrapper key={post._id}>
                       <MainCard post={post} width="100%" />
                     </S.ItemWrapper>
                   ))}
