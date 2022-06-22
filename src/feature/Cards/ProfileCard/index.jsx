@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import * as S from './style';
 import Avatar from '../../../components/Avatar';
-import Label from '../../../components/Label';
 import LabelList from '../LabelList';
 import BaseCardContainer from '../../../components/BaseCardContainer';
-import { getSpecificUser } from '../../../apis';
 
 const ProfileCard = ({ post }) => {
-  const { _id, title, author, image } = post;
-  const {
-    type = '',
-    receiver = '이름',
-    content = '내용',
-    labels = [],
-  } = JSON.parse(title);
+  const { title, author } = post;
+  const { content = '내용', labels = [] } = JSON.parse(title);
 
   const labelArr = Object.values(labels).filter((label) => label.length > 0);
 
@@ -39,7 +31,5 @@ const ProfileCard = ({ post }) => {
     </S.ProfileCardWrapper>
   );
 };
-
-ProfileCard.propTypes = {};
 
 export default ProfileCard;
