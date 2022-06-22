@@ -163,7 +163,7 @@ const UserProfilePage = () => {
                   {praisingPosts.map((post) => (
                     <Link to={`/cardDetail/${post._id}`}>
                       <S.ProfileCardWrapper key={post._id}>
-                        <ProfileCard post={post} key={post._id} />
+                        <ProfileCard post={post} />
                       </S.ProfileCardWrapper>
                     </Link>
                   ))}
@@ -178,7 +178,7 @@ const UserProfilePage = () => {
                   {praisedPosts.map((post) => (
                     <Link to={`/cardDetail/${post._id}`}>
                       <S.ProfileCardWrapper key={post._id}>
-                        <ProfileCard post={post} key={post._id} />
+                        <ProfileCard post={post} />
                       </S.ProfileCardWrapper>
                     </Link>
                   ))}
