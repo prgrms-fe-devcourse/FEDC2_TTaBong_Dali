@@ -23,6 +23,7 @@ export const PageTemplate = styled.div`
 
 export const ContentSection = styled.div`
   width: 100%;
+  max-width: 23rem;
   height: 1rem;
   display: flex;
   flex-direction: column;
