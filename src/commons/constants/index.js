@@ -4,7 +4,7 @@ const BigTTaBong = 'BigTTaBong';
 const LabelGood = 'LabelGood';
 const LabelThanks = 'LabelThank';
 
-const CHANNE_NAME = 'devCourse';
+const CHANNEL_NAME = 'devCourse';
 
 const Constants = {
   TTaBong,
@@ -13,7 +13,7 @@ const Constants = {
   LabelGood,
   LabelThanks,
 
-  CHANNE_NAME,
+  CHANNEL_NAME,
 };
 
 export default Constants;
