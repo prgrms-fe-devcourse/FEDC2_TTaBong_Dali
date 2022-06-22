@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import GlobalStyle from './commons/style/GlobalStyle';
@@ -19,47 +19,74 @@ import {
 import UserProvider from './contexts/UserProvider';
 import { AuthRoute, ProtectedRoute } from './routes';
 import TestApiComponent from './feature/TestApiComponent';
-import ChannelProvider from './contexts/ChannelProvider';
+import ChannelProvider, {
+  channelActionType,
+  useChannelContext,
+} from './contexts/ChannelProvider';
+import { getSpecificChannel } from './apis';
+import Constants from './commons/constants';
+import { setCookie } from './utils/cookies';
 
 function App() {
+  const { channel, dispatch } = useChannelContext();
+
+  const handleGetChannel = async () => {
+    const { _id: channelId, name: channelName } = await getSpecificChannel(
+      Constants.CHANNE_NAME,
+    );
+
+    console.log(channelId, channelName);
+
+    await dispatch({
+      type: channelActionType.getChannel,
+      channelId,
+      channelName,
+    });
+
+    console.log(channel);
+
+    setCookie(
+      'channel',
+      { channelName, channelId },
+      {
+        path: '/',
+        maxAge: 60 * 60 * 9,
+      },
+    );
+  };
+
+  useEffect(() => {
+    handleGetChannel();
+  }, []);
+
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <ChannelProvider>
-        <UserProvider>
-          <Routes>
-            <Route path="/" element={<MainFeedPage />} />
-            <Route path="/cardDetail/:id" element={<CardDetailPage />} />
-            <Route path="/rank/*" element={<RankPage />} />
-            <Route
-              path="/TTaBong/*"
-              element={<ProtectedRoute Component={TTaBongPage} />}
-            />
-            <Route
-              path="/profileEdit/*"
-              element={<ProtectedRoute Component={ProfileEditPage} />}
-            />
-            <Route
-              path="/alarm/*"
-              element={<ProtectedRoute Component={AlarmPage} />}
-            />
-            <Route path="/search/*" element={<SearchPage />} />
-            <Route path="/userProfile/:id" element={<UserProfilePage />} />
-            <Route
-              path="/login"
-              element={<AuthRoute Component={LoginPage} />}
-            />
-            <Route
-              path="/register"
-              element={<AuthRoute Component={RegisterPage} />}
-            />
-            <Route path="/error/*" element={<NotFoundPage />} />
-            <Route path="/api/*" element={<TestApiComponent />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </UserProvider>
-      </ChannelProvider>
-    </ThemeProvider>
+    <Routes>
+      <Route path="/" element={<MainFeedPage />} />
+      <Route path="/cardDetail/:id" element={<CardDetailPage />} />
+      <Route path="/rank/*" element={<RankPage />} />
+      <Route
+        path="/TTaBong/*"
+        element={<ProtectedRoute Component={TTaBongPage} />}
+      />
+      <Route
+        path="/profileEdit/*"
+        element={<ProtectedRoute Component={ProfileEditPage} />}
+      />
+      <Route
+        path="/alarm/*"
+        element={<ProtectedRoute Component={AlarmPage} />}
+      />
+      <Route path="/search/*" element={<SearchPage />} />
+      <Route path="/userProfile/:id" element={<UserProfilePage />} />
+      <Route path="/login" element={<AuthRoute Component={LoginPage} />} />
+      <Route
+        path="/register"
+        element={<AuthRoute Component={RegisterPage} />}
+      />
+      <Route path="/error/*" element={<NotFoundPage />} />
+      <Route path="/api/*" element={<TestApiComponent />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 

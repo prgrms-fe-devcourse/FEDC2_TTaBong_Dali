@@ -16,13 +16,13 @@ const initialChannelState = {
   channelId: '',
 };
 
-const actionType = {
+export const channelActionType = {
   getChannel: 'GET_CHANNEL',
 };
 
 const channelReducer = (_, action) => {
   switch (action.type) {
-    case actionType.getChannel:
+    case channelActionType.getChannel:
       return {
         channelName: action.channelName,
         channelId: action.channelId,
@@ -40,7 +40,7 @@ const ChannelProvider = ({ children }) => {
       getCookie('channel') || initialChannelState;
 
     dispatch({
-      type: actionType.getChannel,
+      type: channelActionType.getChannel,
       channelName,
       channelId,
     });
