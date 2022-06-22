@@ -6,3 +6,5 @@ export const PASSWORD_UNEQUAL_ERROR = '비밀번호가 같은지 확인해주세
 export const LOGIN_ERROR = '로그인에 실패했습니다.';
 export const REGISTER_ERROR = '회원가입에 실패했습니다.';
 export const USERNAME_LEN_ERROR = '이름은 7자 이내로 설정해주세요.';
+export const IS_NOT_AUTH_ERROR = '로그인이 필요합니다.';
+export const COMMENT_DATA_ERROR = '댓글에 값을 입력해주세요';

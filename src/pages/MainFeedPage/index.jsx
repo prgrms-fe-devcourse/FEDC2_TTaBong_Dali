@@ -30,13 +30,6 @@ const MainFeedPage = () => {
           return;
         }
         const newPosts = [...posts, ...response];
-        if (newPosts === []) {
-          alert(
-            '현재 서버에 카드가 하나도 없는 관계로 더미데이터를 불러옵니다.',
-          );
-          setPosts(DummyData.Posts);
-          return;
-        }
         setPosts(newPosts);
       })
       .then(() => {

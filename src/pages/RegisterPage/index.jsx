@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import RegisterForm from '../../feature/auth/RegisterForm';
+import Toast from '../../components/Toast';
 import { registerUser } from '../../apis/auth';
 import { REGISTER_ERROR } from '../../commons/constants/error';
 import { REGISTER_SUCCESS } from '../../commons/constants/string';
@@ -12,10 +13,10 @@ const RegisterPage = () => {
     const { token } = await registerUser(email, fullName, password);
 
     if (token) {
-      alert(REGISTER_SUCCESS);
+      Toast.show(REGISTER_SUCCESS);
       navigate('/login');
     } else {
-      alert(REGISTER_ERROR);
+      Toast.show(REGISTER_ERROR);
     }
   };
 

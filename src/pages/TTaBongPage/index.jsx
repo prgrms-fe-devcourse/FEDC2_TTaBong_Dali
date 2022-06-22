@@ -9,6 +9,7 @@ import {
   ReasonContainer,
   TTaBongModal,
 } from '../../feature/ttabong';
+import Toast from '../../components/Toast';
 import Divider from '../../components/Divider';
 import Button from '../../components/Button';
 import Avatar from '../../components/Avatar';
@@ -47,23 +48,23 @@ const TTaBongPage = () => {
     };
 
     if (!checkedUsers) {
-      alert(validationError.emptyBePraised);
+      Toast.show(validationError.emptyBePraised);
       return;
     }
     if (!reason) {
-      alert(validationError.emptyReason);
+      Toast.show(validationError.emptyReason);
       return;
     }
     if (!labelItems) {
-      alert(validationError.emptyReason);
+      Toast.show.show(validationError.emptyReason);
       return;
     }
     if (reason.length < 10) {
-      alert(validationError.lackReason);
+      Toast.show(validationError.lackReason);
       return;
     }
     if (type === BigTTaBong && checkedUsers.length > 1) {
-      alert(validationError.toomuchBePraised);
+      Toast.show(validationError.toomuchBePraised);
       return;
     }
 
