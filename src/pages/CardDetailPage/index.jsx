@@ -52,7 +52,6 @@ const CardDetailPage = () => {
         isLike,
         image,
       });
-      console.log(type);
       const receiverUser = await getSpecificUser(receiver._id);
       // const receiverUser = DummyData.Users[0];
       setReceivedUser(receiverUser);
@@ -115,7 +114,7 @@ const CardDetailPage = () => {
         props.author._id,
         comment._id,
         props._id,
-      ); // 로그인한 user Id 필요
+      );
     }
   };
 

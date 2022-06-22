@@ -5,7 +5,7 @@ import { getPxToRem } from '../../utils/getPxToRem';
 export const PraisePageContainer = styled.div`
   width: 100%;
   height: 100%;
-
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -43,4 +43,22 @@ export const BePraisedAvatarWrapper = styled.div`
 
   width: 64px;
   height: 64px;
+`;
+
+export const TBEffect = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  z-index: 10000;
+
+  animation: TBEffect 0.4s ease;
+  @keyframes TBEffect {
+    0% {
+      transform: scale(0.5);
+    }
+
+    100% {
+      transform: scale(5) rotate(-15deg);
+    }
+  }
 `;
