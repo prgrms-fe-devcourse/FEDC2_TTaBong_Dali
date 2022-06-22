@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import * as S from './style';
-import Icon from '../../../components/Icon';
-import Image from '../../../components/Image';
+import Icon from '../Icon';
+import Image from '../Image';
 
-const ImageUploadContainer = ({ imageSrc, setImageSrc }) => {
+const ImageUploadContainer = ({ setImageSrc, iconName, ...styles }) => {
   const [imgSrc, setImgSrc] = useState('');
 
   // Input 추가하면 ImageSrc 추가
@@ -27,8 +27,8 @@ const ImageUploadContainer = ({ imageSrc, setImageSrc }) => {
   };
 
   return (
-    <S.ImageUploadForm>
-      <S.FileLabel for="fileInput">
+    <S.ImageUploadForm {...styles}>
+      <S.FileLabel htmlFor="fileInput">
         {/* 이미지 파일이 있을 때 이미지와 삭제 버튼 */}
         {imgSrc ? (
           <S.ImageUploadBox>
@@ -47,7 +47,7 @@ const ImageUploadContainer = ({ imageSrc, setImageSrc }) => {
           <S.DefaultUploadContainer>
             <S.SpanWrapper>사진업로드</S.SpanWrapper>
             <S.FileIconWrapper>
-              <Icon name="fileLine" />
+              <Icon name={iconName || 'fileLine'} />
             </S.FileIconWrapper>
           </S.DefaultUploadContainer>
         )}

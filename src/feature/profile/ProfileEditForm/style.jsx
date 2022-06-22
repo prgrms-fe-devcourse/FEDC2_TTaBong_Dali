@@ -32,3 +32,7 @@ export const ProfileEditButton = styled(Button)`
   margin-top: 16px;
   font-weight: 700;
 `;
+
+export const ImageUploadContainerWrapper = styled.div`
+  width: 18rem;
+`;
