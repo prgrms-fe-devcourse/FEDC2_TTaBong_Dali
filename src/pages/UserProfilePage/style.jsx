@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+export const SpinnerWrapper = styled.div`
+  position: fixed;
+  left: 45vw;
+  top: 42vh;
+`;
+
 export const ProfilePageContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -28,11 +34,11 @@ export const ProfileInfoContainer = styled.div`
     top: 0.3rem;
     right: 0;
   }
-  .hidden {
-    display: none;
-  }
 `;
 
+export const IconContainer = styled.span`
+  cursor: pointer;
+`;
 export const InfoLeftContainer = styled.div`
   width: 30%;
   min-width: 7rem;
@@ -40,7 +46,7 @@ export const InfoLeftContainer = styled.div`
 
 export const InfoName = styled.div`
   margin: 0.5rem 0 2rem 0;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 700;
 `;
 
@@ -77,8 +83,10 @@ export const PraiseCountWrapper = styled.div`
   align-items: center;
 
   .num {
-    color: ${(props) => props.theme.colors.black};
+    color: ${(props) => props.theme.colors.skyblue};
+    font-size: 1.5rem;
     font-weight: 700;
+    margin-bottom: 0.5rem;
   }
 `;
 export const CoinCountWrapper = styled.div`
@@ -88,12 +96,15 @@ export const CoinCountWrapper = styled.div`
 
   .num {
     color: ${(props) => props.theme.colors.yellow[0]};
+    font-size: 1.5rem;
     font-weight: 700;
+    margin-bottom: 0.5rem;
   }
 `;
 
 export const TapWrapper = styled.div`
   width: 100%;
+  margin-top: 0.5rem;
   display: flex;
   justify-content: space-evenly;
   flex-shrink: 0;

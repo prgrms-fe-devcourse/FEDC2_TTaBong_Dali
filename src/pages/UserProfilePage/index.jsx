@@ -13,6 +13,7 @@ import { getChannelPosts, getAuthorPosts } from '../../apis/index';
 import { getAllUsers } from '../../apis/users';
 import { useAuthContext } from '../../contexts/UserProvider';
 import { removeCookie } from '../../utils/cookies';
+import Spinner from '../../components/Spinner';
 
 const UserProfilePage = () => {
   const { authUser, dispatch } = useAuthContext();
@@ -21,17 +22,13 @@ const UserProfilePage = () => {
   const [praisingCardActive, setPraisingCardActive] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const [praisingTarget, setPraisingTarget] = useState(null);
-  const [praisedTarget, setPraisedTarget] = useState(null);
-
-  const [praisingOffset, setPraisingOffset] = useState(0);
-  const [praisedOffset, setPraisedOffset] = useState(0);
-
   const [praisingPosts, setPraisingPosts] = useState([]);
   const [praisedPosts, setPraisedPosts] = useState([]);
 
   const CHANNEL_ID = '62a19123d1b81239d875d20d';
-  const PRAISING_LIMIT = 5;
+
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const onPraiseCardClick = () => {
     setPraisingCardActive(true);
@@ -39,83 +36,6 @@ const UserProfilePage = () => {
 
   const onPraisedCardClick = () => {
     setPraisingCardActive(false);
-  };
-
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  const getUser = async () => {
-    const userList = await getAllUsers();
-    const thisIsUser = userList.find((user) => user._id === id);
-    setPageUserInfo(thisIsUser);
-  };
-
-  const getNextPraisingPosts = () => {
-    setLoading(true);
-    getAuthorPosts(id, praisingOffset).then((response) => {
-      if (response === []) {
-        return;
-      }
-      const newPosts = [...praisingPosts, ...response];
-      setPraisingPosts(newPosts);
-    });
-    setLoading(false);
-  };
-
-  const onPraisingIntersect = async (entries, observer) => {
-    if (praisingPosts.length !== praisingOffset) {
-      return;
-    }
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && !loading) {
-        observer.unobserve(entry.target);
-        getNextPraisingPosts();
-        setPraisingTarget(null);
-        observer.observe(entry.target);
-      }
-    });
-  };
-
-  useEffect(() => {
-    let observer;
-    if (praisingTarget) {
-      observer = new IntersectionObserver(onPraisingIntersect, {
-        threshold: 0.3,
-      });
-      observer.observe(praisingTarget);
-    }
-    return () => observer && observer.disconnect();
-  }, [praisingTarget]);
-
-  const getNextPraisedPosts = () => {
-    setLoading(true);
-    getChannelPosts(CHANNEL_ID, praisedOffset).then((response) => {
-      if (response === []) {
-        return;
-      }
-
-      const filteredResponse = response.filter(
-        (post) => JSON.parse(post.title).receiver._id === id,
-      );
-
-      const newPosts = [...praisedPosts, ...filteredResponse];
-      setPraisedPosts(newPosts);
-    });
-    setLoading(false);
-  };
-
-  const onPraisedIntersect = async (entries, observer) => {
-    if (praisedPosts.length !== praisedOffset) {
-      return;
-    }
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && !loading) {
-        observer.unobserve(entry.target);
-        getNextPraisedPosts();
-        setPraisedTarget(null);
-        observer.observe(entry.target);
-      }
-    });
   };
 
   const handleLogOut = () => {
@@ -126,125 +46,144 @@ const UserProfilePage = () => {
     }
   };
 
-  useEffect(() => {
-    let observer;
-    if (praisedTarget) {
-      observer = new IntersectionObserver(onPraisedIntersect, {
-        threshold: 0.3,
-      });
-      observer.observe(praisedTarget);
-    }
-    return () => observer && observer.disconnect();
-  }, [praisedTarget]);
+  const getUser = async () => {
+    const userList = await getAllUsers();
+    const thisIsUser = userList.find((user) => user._id === id);
+    setPageUserInfo(thisIsUser);
+  };
 
-  // 최초 랜더링
+  const getNextPraisingPosts = async () => {
+    await getAuthorPosts(id, 0).then((response) => {
+      if (response === []) {
+        return;
+      }
+      const newPosts = [...praisingPosts, ...response];
+      setPraisingPosts(newPosts);
+    });
+  };
+
+  const getNextPraisedPosts = async () => {
+    await getChannelPosts(CHANNEL_ID, 0).then((response) => {
+      if (response === []) {
+        return;
+      }
+      const filteredResponse = response.filter(
+        (post) => JSON.parse(post.title).receiver._id === id,
+      );
+
+      const newPosts = [...praisedPosts, ...filteredResponse];
+      setPraisedPosts(newPosts);
+    });
+  };
+
   useEffect(() => {
-    getNextPraisingPosts();
-    getNextPraisedPosts();
-    getUser();
+    const render = async () => {
+      setLoading(true);
+      await getUser();
+      await getNextPraisingPosts();
+      await getNextPraisedPosts();
+      setLoading(false);
+    };
+    render();
   }, []);
 
   return (
-    <PageTemplate>
-      <BaseCardContainer opacityType={0.7} padding={[2, 1, 2, 1]}>
-        <S.ProfilePageContainer>
-          <S.ProfileInfoContainer>
-            <S.InfoLeftContainer>
-              <S.InfoName>
-                {pageUserInfo.fullName && pageUserInfo.fullName}
-              </S.InfoName>
-              <Avatar size={60} />
-            </S.InfoLeftContainer>
-            <S.InfoRightContainer>
-              <S.CountInfoWrapper>
-                <S.PraiseCountWrapper>
-                  <div className="num">{praisingPosts.length}</div>
-                  <div>칭찬 횟수</div>
-                </S.PraiseCountWrapper>
-                <S.CoinCountWrapper>
-                  <div className="num">{praisedPosts.length}</div>
-                  <div>코인 개수</div>
-                </S.CoinCountWrapper>
-              </S.CountInfoWrapper>
-              <Link to="/profileEdit">
-                {authUser.userId === pageUserInfo._id && (
-                  <Button
-                    type="button"
-                    version="lightgrayOutlined"
-                    className="button"
-                  >
-                    프로필 편집
-                  </Button>
-                )}
-              </Link>
-            </S.InfoRightContainer>
-            <Divider className="divider" />
-            {authUser.userId === pageUserInfo._id && (
-              <Icon
-                name="logout"
-                size={15}
-                className="logoutIcon"
-                onClick={handleLogOut}
-              />
-            )}
-          </S.ProfileInfoContainer>
-          <S.TapWrapper>
-            <TabItem
-              active={praisingCardActive === true}
-              onClick={onPraiseCardClick}
-            >
-              칭찬카드
-            </TabItem>
-            <TabItem
-              active={praisingCardActive !== true}
-              onClick={onPraisedCardClick}
-            >
-              칭찬받은카드
-            </TabItem>
-          </S.TapWrapper>
-          <S.ProfileCardContainer>
-            {praisingCardActive ? (
-              <div>
-                {praisingPosts.map((post, idx) => (
-                  <S.ProfileCardWrapper key={post._id}>
-                    {praisingPosts.length - 1 === idx ? (
-                      <S.InfinityScrollCardWrapper ref={setPraisingTarget}>
-                        <ProfileCard post={post} key={post._id} />
-                      </S.InfinityScrollCardWrapper>
-                    ) : (
+    <PageTemplate page="user">
+      {loading ? (
+        <S.SpinnerWrapper>
+          <Spinner />
+        </S.SpinnerWrapper>
+      ) : (
+        <BaseCardContainer opacityType={0.7} padding={[2, 1, 2, 1]}>
+          <S.ProfilePageContainer>
+            <S.ProfileInfoContainer>
+              <S.InfoLeftContainer>
+                <S.InfoName>
+                  {pageUserInfo.fullName && pageUserInfo.fullName}
+                </S.InfoName>
+                <Avatar size={60} />
+              </S.InfoLeftContainer>
+              <S.InfoRightContainer>
+                <S.CountInfoWrapper>
+                  <S.PraiseCountWrapper>
+                    <div className="num">{praisingPosts.length}</div>
+                    <div>칭찬 횟수</div>
+                  </S.PraiseCountWrapper>
+                  <S.CoinCountWrapper>
+                    <div className="num">{praisedPosts.length}</div>
+                    <div>코인 개수</div>
+                  </S.CoinCountWrapper>
+                </S.CountInfoWrapper>
+                <Link to="/profileEdit">
+                  {authUser.userId === pageUserInfo._id && (
+                    <Button
+                      type="button"
+                      version="lightgrayOutlined"
+                      className="button"
+                    >
+                      프로필 편집
+                    </Button>
+                  )}
+                </Link>
+              </S.InfoRightContainer>
+              <Divider className="divider" />
+              {authUser.userId === pageUserInfo._id && (
+                <S.IconContainer>
+                  <Icon
+                    name="logout"
+                    size={15}
+                    className="logoutIcon"
+                    onClick={handleLogOut}
+                  />
+                </S.IconContainer>
+              )}
+            </S.ProfileInfoContainer>
+            <S.TapWrapper>
+              <TabItem
+                active={praisingCardActive === true}
+                onClick={onPraiseCardClick}
+              >
+                칭찬카드
+              </TabItem>
+              <TabItem
+                active={praisingCardActive !== true}
+                onClick={onPraisedCardClick}
+              >
+                칭찬받은카드
+              </TabItem>
+            </S.TapWrapper>
+            <S.ProfileCardContainer>
+              {praisingCardActive ? (
+                <div>
+                  {praisingPosts.map((post) => (
+                    <S.ProfileCardWrapper key={post._id}>
                       <ProfileCard post={post} key={post._id} />
-                    )}
-                  </S.ProfileCardWrapper>
-                ))}
-                <S.Announcement>
-                  {praisingPosts.length === 0
-                    ? '카드가 없습니다'
-                    : '카드의 마지막입니다.'}
-                </S.Announcement>
-              </div>
-            ) : (
-              <div>
-                {praisedPosts.map((post, idx) => (
-                  <S.ProfileCardWrapper key={post._id}>
-                    {praisedPosts.length - 1 === idx ? (
-                      <S.InfinityScrollCardWrapper ref={setPraisedTarget}>
-                        <ProfileCard post={post} key={post._id} />
-                      </S.InfinityScrollCardWrapper>
-                    ) : (
+                    </S.ProfileCardWrapper>
+                  ))}
+                  <S.Announcement>
+                    {praisingPosts.length === 0
+                      ? '카드가 없습니다'
+                      : '카드의 마지막입니다.'}
+                  </S.Announcement>
+                </div>
+              ) : (
+                <div>
+                  {praisedPosts.map((post) => (
+                    <S.ProfileCardWrapper key={post._id}>
                       <ProfileCard post={post} key={post._id} />
-                    )}
-                  </S.ProfileCardWrapper>
-                ))}
-                <S.Announcement>
-                  {praisedPosts.length === 0
-                    ? '카드가 없습니다'
-                    : '카드의 마지막입니다.'}
-                </S.Announcement>
-              </div>
-            )}
-          </S.ProfileCardContainer>
-        </S.ProfilePageContainer>
-      </BaseCardContainer>
+                    </S.ProfileCardWrapper>
+                  ))}
+                  <S.Announcement>
+                    {praisedPosts.length === 0
+                      ? '카드가 없습니다'
+                      : '카드의 마지막입니다.'}
+                  </S.Announcement>
+                </div>
+              )}
+            </S.ProfileCardContainer>
+          </S.ProfilePageContainer>
+        </BaseCardContainer>
+      )}
     </PageTemplate>
   );
 };

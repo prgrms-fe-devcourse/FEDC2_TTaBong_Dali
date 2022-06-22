@@ -4,6 +4,7 @@ import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import UserInfoItem from '../../components/UserInfoItem';
 import BaseCardContainer from '../../components/BaseCardContainer';
 import RankFirstInfo from '../../feature/rank/RankFirstInfo';
+import Spinner from '../../components/Spinner';
 import { getAllUsers, getChannelPosts } from '../../apis/index';
 import { TabItem } from '../../components/Tab';
 import Constants from '../../commons/constants/index';
@@ -17,6 +18,7 @@ const RankPage = () => {
   const [currentUser, setCurrentUser] = useState({});
   const [users, setUsers] = useState([{}]);
   const [goods, setGoods] = useState(TTABONG);
+  const [loading, setLoading] = useState(false);
 
   const sortGoods = (goods, res = users) => {
     const sortedRank = res
@@ -64,57 +66,69 @@ const RankPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const sortedUsers = await sortUsers();
       sortGoods(goods, sortedUsers);
+      setLoading(false);
     };
     fetchData();
   }, [authUser]);
 
   return (
     <PageTemplate page="rank">
-      <S.RankPageContainer>
-        <S.TabContainer>
-          <TabItem
-            active={goods === TTABONG}
-            onClick={() => onClickTab(TTABONG)}
-          >
-            따봉왕
-          </TabItem>
-          <TabItem active={goods === COIN} onClick={() => onClickTab(COIN)}>
-            코인왕
-          </TabItem>
-        </S.TabContainer>
-        <BaseCardContainer height={600} opacityType={0.7}>
-          <RankFirstInfo
-            userName={users[0].fullName}
-            TTaBongCount={goods === TTABONG ? users[0][TTABONG] : -1}
-            coinCount={goods === COIN ? users[0][COIN] : -1}
-          />
-          <S.RankList isAuth={authUser.isAuth}>
-            {users.slice(1).map((user) => {
-              return (
-                <UserInfoItem
-                  rank={user.rank}
-                  key={user._id}
-                  userName={user.fullName}
-                  TTaBongCount={goods === TTABONG ? user[TTABONG] : -1}
-                  coinCount={goods === COIN ? user[COIN] : -1}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <S.RankPageContainer>
+          <S.TabContainer>
+            <TabItem
+              active={goods === TTABONG}
+              onClick={() => onClickTab(TTABONG)}
+            >
+              따봉왕
+            </TabItem>
+            <TabItem active={goods === COIN} onClick={() => onClickTab(COIN)}>
+              코인왕
+            </TabItem>
+          </S.TabContainer>
+          <S.BaseCardContainer>
+            <BaseCardContainer opacityType={0.7}>
+              <S.RankInfoContainer>
+                <RankFirstInfo
+                  userName={users[0].fullName}
+                  TTaBongCount={goods === TTABONG ? users[0][TTABONG] : -1}
+                  coinCount={goods === COIN ? users[0][COIN] : -1}
                 />
-              );
-            })}
-          </S.RankList>
-          {authUser.isAuth && currentUser && (
-            <S.MyRankWrapper>
-              <UserInfoItem
-                rank={currentUser.rank}
-                TTaBongCount={goods === TTABONG ? currentUser[TTABONG] : -1}
-                coinCount={goods === COIN ? currentUser[COIN] : -1}
-                userName={currentUser.fullName}
-              />
-            </S.MyRankWrapper>
-          )}
-        </BaseCardContainer>
-      </S.RankPageContainer>
+                <S.RankList isAuth={authUser.isAuth}>
+                  {users.slice(1).map((user) => {
+                    return (
+                      <UserInfoItem
+                        rank={user.rank}
+                        key={user._id}
+                        userName={user.fullName}
+                        TTaBongCount={goods === TTABONG ? user[TTABONG] : -1}
+                        coinCount={goods === COIN ? user[COIN] : -1}
+                      />
+                    );
+                  })}
+                </S.RankList>
+                {authUser.isAuth && currentUser && (
+                  <S.MyRankWrapper>
+                    <UserInfoItem
+                      rank={currentUser.rank}
+                      TTaBongCount={
+                        goods === TTABONG ? currentUser[TTABONG] : -1
+                      }
+                      coinCount={goods === COIN ? currentUser[COIN] : -1}
+                      userName={currentUser.fullName}
+                    />
+                  </S.MyRankWrapper>
+                )}
+              </S.RankInfoContainer>
+            </BaseCardContainer>
+          </S.BaseCardContainer>
+        </S.RankPageContainer>
+      )}
     </PageTemplate>
   );
 };

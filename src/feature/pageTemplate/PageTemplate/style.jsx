@@ -11,9 +11,11 @@ export const PageTemplate = styled.div`
   top: 0;
   left: 0;
 
-  width: 100vw;
+  width: 100%;
+  min-width: 22rem;
   height: 100%;
-  padding: 0 16px;
+  min-height: 40rem;
+  padding: 0 1rem;
 
   background-image: url(${pageTemplateBackgroundImage});
   background-repeat: no-repeat;
@@ -23,6 +25,7 @@ export const PageTemplate = styled.div`
 
 export const ContentSection = styled.div`
   width: 100%;
+  max-width: 23rem;
   height: 1rem;
   display: flex;
   flex-direction: column;

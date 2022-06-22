@@ -5,8 +5,6 @@ import Icon from '../../../components/Icon';
 import * as S from './style';
 import Badge from '../../../components/Badge';
 
-// 따봉왕, 코인왕 아바타 이미지 props로 받아야함
-
 const Header = ({ isScrollDown = false, isAlarm = false }) => {
   return (
     <S.Header isScrollDown={isScrollDown}>
@@ -24,7 +22,7 @@ const Header = ({ isScrollDown = false, isAlarm = false }) => {
       <Link to="/alarm">
         <S.IconWrapper>
           <Badge dot={isAlarm}>
-            <Icon name="alarmLine" alt="알람 아이콘" />
+            <Icon name="alarmLine" alt="알람 아이콘" size={18} />
           </Badge>
         </S.IconWrapper>
       </Link>

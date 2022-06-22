@@ -10,7 +10,7 @@ const skyBlueTabStyle = ({ theme }) => css`
 `;
 
 const skyblueOutlinedTabStyle = ({ theme }) => css`
-  border: 3px solid ${theme.colors.skyblue[0]};
+  border: 2px solid ${theme.colors.skyblue[0]};
   background-color: ${theme.colors.white};
   color: ${theme.colors.skyblue[0]};
 `;
