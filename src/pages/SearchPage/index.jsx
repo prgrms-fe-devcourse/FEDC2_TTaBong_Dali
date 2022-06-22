@@ -105,7 +105,7 @@ const SearchPage = () => {
             </Tab>
           </S.TabWrapper>
           <S.BaseCardWrapper>
-            <BaseCardContainer overflow="auto">
+            <BaseCardContainer overflow="auto" opacityType={0.7}>
               {currentActive === 0
                 ? searched.users.map((user) => (
                     <S.ItemWrapper key={user._id}>

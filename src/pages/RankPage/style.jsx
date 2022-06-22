@@ -4,12 +4,11 @@ import { getPxToRem } from '../../utils/getPxToRem';
 export const RankPageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
   min-width: 22rem;
   height: 100%;
-  min-height: 20rem;
+  min-height: 22rem;
 
   position: relative;
   gap: 16px;
@@ -24,7 +23,7 @@ export const TabContainer = styled.div`
 
 export const BaseCardContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 10rem;
   flex-grow: 1;
 `;
 

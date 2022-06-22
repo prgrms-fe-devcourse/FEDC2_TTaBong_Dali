@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const ProfileCardWrapper = styled.div`
+  width: 95%;
+`;
+
 export const ContentWrapper = styled.div`
   display: flex;
 `;
@@ -18,7 +22,8 @@ export const Title = styled.h1`
 `;
 
 export const Content = styled.div`
-  width: 10rem;
+  width: 12rem;
+  padding-top: 0.2rem;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -26,6 +31,7 @@ export const Content = styled.div`
 `;
 
 export const LabelContainer = styled.div`
+  display: inline-block;
   position: absolute;
   top: 0;
   right: 0;
