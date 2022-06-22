@@ -35,7 +35,7 @@ const CardDetailPage = () => {
       const { author, title, likes, comments, _id, image } =
         post || DummyData.Posts[0];
       const { type, receiver, content, labels } = JSON.parse(title);
-      const labelArr = Object.values(labels).filter(
+      const labelArr = Object.values(labels || {}).filter(
         (label) => label.length > 0,
       );
       const isLike = likeToggle(likes, authUser.userId); // 접속한 유저의 id 값 넣기
@@ -52,8 +52,9 @@ const CardDetailPage = () => {
         isLike,
         image,
       });
-
-      const receiverUser = await getSpecificUser(receiver._id);
+      console.log(type);
+      // const receiverUser = await getSpecificUser(receiver._id);
+      const receiverUser = DummyData.Users[0];
       setReceivedUser(receiverUser);
 
       setLoading(false);

@@ -7,18 +7,17 @@ import BigTB from '../../../assets/ttabong_card_big.svg';
 import Avatar from '../../../components/Avatar';
 
 const TTaBongerAndTTaBonged = ({
-  authorName,
   authorId,
   author,
   receiverName,
   receiverId,
-  receiver,
+  receiver = { image: null },
   type,
 }) => {
   const navigator = useNavigate();
 
   const onClickTTaBoner = () => {
-    navigator(`/userProfile/${authorId}`);
+    navigator(`/userProfile/${author._id}`);
   };
 
   const onClickTTaBoned = () => {
@@ -28,7 +27,7 @@ const TTaBongerAndTTaBonged = ({
     <S.TTaBongsContainer>
       <Avatar
         onClick={onClickTTaBoner}
-        avatarName={authorName}
+        avatarName={author.fullName}
         src={author.image || undefined}
       />
       <S.TTaBongedContainer>
@@ -52,7 +51,6 @@ const TTaBongerAndTTaBonged = ({
 };
 
 TTaBongerAndTTaBonged.propTypes = {
-  authorName: PropTypes.string.isRequired,
   receiverName: PropTypes.string,
 };
 
