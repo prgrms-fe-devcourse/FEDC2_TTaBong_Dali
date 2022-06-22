@@ -1,4 +1,3 @@
-import Proptypes from 'prop-types';
 import apiClient from './api';
 
 const END_POINT = '/posts';
@@ -15,12 +14,6 @@ export const getChannelPosts = async (channelId, offset, limit) => {
   return channelPosts;
 };
 
-getChannelPosts.propTypes = {
-  channelId: Proptypes.string.isRequired,
-  offset: Proptypes.number,
-  limit: Proptypes.number,
-};
-
 // 특정 사용자의 포스트 목록을 불러옵니다.
 export const getAuthorPosts = async (authorId, offset, limit) => {
   const authorPosts = await apiClient.get(
@@ -30,12 +23,6 @@ export const getAuthorPosts = async (authorId, offset, limit) => {
   );
 
   return authorPosts;
-};
-
-getAuthorPosts.propTypes = {
-  authorId: Proptypes.string.isRequired,
-  offset: Proptypes.number,
-  limit: Proptypes.number,
 };
 
 // 특정 채널에 포스트를 작성합니다.
@@ -50,22 +37,11 @@ export const createPost = async (JWTtoken, formData) => {
   return newPost;
 };
 
-createPost.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
-  channelId: Proptypes.string.isRequired,
-  title: Proptypes.string,
-  // image : Binary 형식
-};
-
 // api 명세서에는 post method라고 되어있는데 사실 get을 해야 되네요!
 // 특정 포스트의 정보를 불러옵니다. !의문점: 불러오는 건데 왜 post일까? 불러오는 거라 네이밍을 get으로함
 export const getSpecificPost = async (postId) => {
   const specificPost = await apiClient.get(`${END_POINT}/${postId}`);
   return specificPost;
-};
-
-getSpecificPost.propTypes = {
-  postId: Proptypes.string.isRequired,
 };
 
 // 내가 작성한 포스트를 수정합니다.
@@ -96,15 +72,6 @@ export const putPost = async (
   return res;
 };
 
-putPost.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
-  postId: Proptypes.string.isRequired,
-  channelId: Proptypes.string.isRequired,
-  title: Proptypes.string,
-  // image : Binary 어떻게?
-  imagePublicId: Proptypes.string,
-};
-
 // 내가 작성한 포스트를 삭제합니다.
 export const deletePost = async (JWTtoken, id) => {
   const res = await apiClient.delete(`${END_POINT}/delete`, {
@@ -117,9 +84,4 @@ export const deletePost = async (JWTtoken, id) => {
   });
 
   return res;
-};
-
-deletePost.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
-  id: Proptypes.string.isRequired,
 };

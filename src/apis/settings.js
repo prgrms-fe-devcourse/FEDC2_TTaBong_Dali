@@ -34,7 +34,6 @@ export const putPassword = async (JWTtoken, password) => {
         },
       },
     );
-    console.log(newPassword);
     return newPassword;
   } catch (e) {
     console.error(e);

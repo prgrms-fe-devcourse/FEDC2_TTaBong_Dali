@@ -1,5 +1,3 @@
-import axios from 'axios';
-import Proptypes from 'prop-types';
 import apiClient from './api';
 
 // 특정 포스트에 좋아요합니다.
@@ -19,12 +17,6 @@ export const postComments = async (JWTtoken, postId, comment = '') => {
   return commentRespond;
 };
 
-postComments.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
-  postId: Proptypes.string.isRequired,
-  comment: Proptypes.string,
-};
-
 // 특정 포스트에 작성한 내 댓글을 삭제합니다.
 // delete인데 왜 response를 Comment를 반환하지?
 export const deleteComments = async (JWTtoken, id) => {
@@ -42,9 +34,4 @@ export const deleteComments = async (JWTtoken, id) => {
     console.error(e);
   }
   return null;
-};
-
-deleteComments.propTypes = {
-  JWTtoken: Proptypes.string.isRequired,
-  id: Proptypes.string.isRequired,
 };

@@ -1,4 +1,3 @@
-import Proptypes from 'prop-types';
 import apiClient from './api';
 
 const CHANNELS = '/channels';
@@ -15,8 +14,4 @@ export const getSpecificChannel = async (channelName) => {
   const specificChannel = await apiClient.get(`${CHANNELS}/${channelName}`);
 
   return specificChannel;
-};
-
-getSpecificChannel.propTypes = {
-  channelName: Proptypes.string.isRequired,
 };
