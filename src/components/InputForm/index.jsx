@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import * as S from './style';
 import removeIcon from '../../assets/icon_remove.svg';
 import searchIconBlue from '../../assets/icon_search_blue.svg';
+import { useAuthContext } from '../../contexts/UserProvider';
+import { getSpecificUser } from '../../apis';
 
 const InputForm = ({
   name = '',
@@ -19,13 +21,24 @@ const InputForm = ({
   ...props
 }) => {
   const [input, setInput] = useState('');
+  const { authUser } = useAuthContext();
+  const [avatarImg, setAvatarImg] = useState('');
+
+  const handleAvatarImg = async () => {
+    const res = await getSpecificUser(authUser.userId);
+    return res.image;
+  };
 
   useEffect(() => {
     if (defaultValue) {
       setInput(defaultValue);
     }
   }, [defaultValue]);
-
+  useEffect(() => {
+    if (authUser.isAuth) {
+      handleAvatarImg().then((image) => setAvatarImg(image));
+    }
+  }, []);
   const onChangeInput = (e) => {
     setInput(e.target.value);
     onChange(e);
@@ -45,7 +58,7 @@ const InputForm = ({
   if (version === 'comment') {
     return (
       <S.CommentContainer onSubmit={onSubmit} {...props}>
-        <S.PlacedAvatar size="30" />
+        <S.PlacedAvatar size="30" src={avatarImg} />
         <S.InputBox version={version}>
           <S.Input
             name={name}

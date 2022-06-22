@@ -39,7 +39,7 @@ const CardDetailPage = () => {
   useEffect(() => {
     const getPosts = async () => {
       setLoading(true);
-      const post = await getSpecificPost(id);
+      const post = await getSpecificPost(postId);
       const { author, title, likes, comments, _id, image } = post || {};
       const { type, receiver, content, labels } = JSON.parse(title);
 
