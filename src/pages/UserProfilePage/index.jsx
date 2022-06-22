@@ -26,7 +26,9 @@ const UserProfilePage = () => {
   const [praisedPosts, setPraisedPosts] = useState([]);
 
   const CHANNEL_ID = '62a19123d1b81239d875d20d';
-  const PRAISING_LIMIT = 5;
+
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const onPraiseCardClick = () => {
     setPraisingCardActive(true);
@@ -35,9 +37,6 @@ const UserProfilePage = () => {
   const onPraisedCardClick = () => {
     setPraisingCardActive(false);
   };
-
-  const { id } = useParams();
-  const navigate = useNavigate();
 
   const handleLogOut = () => {
     if (window.confirm('로그아웃 하시겠습니까?')) {
@@ -77,7 +76,6 @@ const UserProfilePage = () => {
     });
   };
 
-  // 최초 랜더링
   useEffect(() => {
     const render = async () => {
       setLoading(true);
@@ -155,15 +153,9 @@ const UserProfilePage = () => {
             <S.ProfileCardContainer>
               {praisingCardActive ? (
                 <div>
-                  {praisingPosts.map((post, idx) => (
+                  {praisingPosts.map((post) => (
                     <S.ProfileCardWrapper key={post._id}>
-                      {praisingPosts.length - 1 === idx ? (
-                        <S.InfinityScrollCardWrapper>
-                          <ProfileCard post={post} key={post._id} />
-                        </S.InfinityScrollCardWrapper>
-                      ) : (
-                        <ProfileCard post={post} key={post._id} />
-                      )}
+                      <ProfileCard post={post} key={post._id} />
                     </S.ProfileCardWrapper>
                   ))}
                   <S.Announcement>
@@ -174,15 +166,9 @@ const UserProfilePage = () => {
                 </div>
               ) : (
                 <div>
-                  {praisedPosts.map((post, idx) => (
+                  {praisedPosts.map((post) => (
                     <S.ProfileCardWrapper key={post._id}>
-                      {praisedPosts.length - 1 === idx ? (
-                        <S.InfinityScrollCardWrapper>
-                          <ProfileCard post={post} key={post._id} />
-                        </S.InfinityScrollCardWrapper>
-                      ) : (
-                        <ProfileCard post={post} key={post._id} />
-                      )}
+                      <ProfileCard post={post} key={post._id} />
                     </S.ProfileCardWrapper>
                   ))}
                   <S.Announcement>
