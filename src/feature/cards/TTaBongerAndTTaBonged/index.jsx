@@ -8,6 +8,7 @@ import Avatar from '../../../components/Avatar';
 import { getSpecificUser } from '../../../apis';
 
 const TTaBongerAndTTaBonged = ({ author, receiver, type, isMain = false }) => {
+  // refactor
   const { fullName: authorName, _id: authorId, image: authorImage } = author;
   const { _id: receiverId, fullName: receiverName } = receiver;
   const [receiverImage, setReceiverImage] = useState(receiver.image);
