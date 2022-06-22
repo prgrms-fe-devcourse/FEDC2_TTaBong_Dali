@@ -1,17 +1,19 @@
 import styled from '@emotion/styled';
 
 export const BannerContainer = styled.div`
-  position: fixed;
+  position: absolute;
   z-index: 2000;
-  left: 0%;
-  right: 0%;
   top: 0;
-  height: 116px;
-  padding-top: 58px;
+  left: 0;
+  width: 100%;
+  min-width: 23rem;
+  height: 7rem;
+  padding-top: 3.6rem;
+  padding-bottom: 0.5rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: ${(props) => props.theme.colors.skyblue[0]};
-  border-radius: 0px 0px 30px 30px;
+  border-radius: 0 0 2rem 2rem;
 
   &.hide {
     animation: down 0.4s ease-out;

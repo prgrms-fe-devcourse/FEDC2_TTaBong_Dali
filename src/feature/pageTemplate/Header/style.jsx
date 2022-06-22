@@ -4,9 +4,9 @@ import Logo from '../../../components/Logo';
 export const Header = styled.div`
   z-index: 3000;
   position: fixed;
-  left: 0;
-  right: 0;
   top: 0;
+  width: 100%;
+  min-width: 23rem;
   height: 3.6rem;
   display: flex;
   justify-content: center;
@@ -17,7 +17,7 @@ export const Header = styled.div`
 `;
 
 export const AvatarContainer = styled.div`
-  position: fixed;
+  position: absolute;
   left: 1.5rem;
   display: flex;
   justify-content: center;
@@ -61,7 +61,7 @@ export const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
+  position: absolute;
   top: 0.6rem;
   right: 1.5rem;
 `;
