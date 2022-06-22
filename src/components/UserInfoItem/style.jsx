@@ -85,6 +85,7 @@ export const AvatarContainer = styled.div`
 
 export const UserNameWrapper = styled.div`
   max-width: 120px;
+  padding-top: 0.2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

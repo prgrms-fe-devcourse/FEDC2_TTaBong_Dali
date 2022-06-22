@@ -9,7 +9,7 @@ export const RankPageContainer = styled.div`
   width: 100%;
   min-width: 22rem;
   height: 100%;
-  min-height: 30rem;
+  min-height: 20rem;
 
   position: relative;
   gap: 16px;
