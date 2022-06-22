@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import LoginForm from '../../feature/auth/LoginForm';
+import Toast from '../../components/Toast';
 import { loginUser } from '../../apis/auth';
 import { setCookie } from '../../utils/cookies';
 import { useAuthContext } from '../../contexts/UserProvider';
 import { LOGIN_ERROR } from '../../commons/constants/error';
+import { LOGIN_SUCCESS } from '../../commons/constants/string';
 
 const LoginPage = () => {
   const { dispatch } = useAuthContext();
@@ -13,7 +15,7 @@ const LoginPage = () => {
   const handleLogin = async (email, password) => {
     const { user, token } = await loginUser(email, password);
     if (!user) {
-      alert(LOGIN_ERROR);
+      Toast.show(LOGIN_ERROR);
       return;
     }
 
@@ -34,6 +36,7 @@ const LoginPage = () => {
     );
 
     if (token) {
+      Toast.show(LOGIN_SUCCESS);
       navigate(-1, { replace: true }); // registerPage에서 오면 ..?
     }
   };

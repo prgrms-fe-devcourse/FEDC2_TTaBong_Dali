@@ -7,9 +7,14 @@ import { getSpecificPost } from '../../apis/posts';
 import { getSpecificUser } from '../../apis/users';
 import DummyData from '../../assets/data/dummyData';
 import Spinner from '../../components/Spinner';
+import Toast from '../../components/Toast';
 import { useAuthContext } from '../../contexts/UserProvider';
 import CardDetail from '../../feature/cards/CardDetail';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
+import {
+  IS_NOT_AUTH_ERROR,
+  COMMENT_DATA_ERROR,
+} from '../../commons/constants/error';
 
 const getLiked = (likes, userId) => {
   return likes.filter((like) => like.user === userId);
@@ -65,7 +70,7 @@ const CardDetailPage = () => {
   const onClickLike = async () => {
     // 먼저 접속한 유저의 jwt 토큰을 가져오고 없으면 로그인 페이지로 이동
     if (!authUser.isAuth) {
-      alert('로그인이 필요합니다');
+      Toast.show(IS_NOT_AUTH_ERROR);
       navigator('/login');
     } else if (props.isLike) {
       const targetLikeId = getLiked(props.likes, authUser.userId)[0]._id;
@@ -95,10 +100,10 @@ const CardDetailPage = () => {
     e.preventDefault();
 
     if (!authUser.isAuth) {
-      alert('로그인이 필요합니다');
+      Toast.show(IS_NOT_AUTH_ERROR);
       navigator('/login');
     } else if (commentInput.current.length < 1) {
-      alert('댓글에 값을 입력해주세요');
+      Toast.show(COMMENT_DATA_ERROR);
     } else {
       const comment = await postComments(
         authUser.token,

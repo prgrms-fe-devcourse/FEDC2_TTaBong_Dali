@@ -2,8 +2,9 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
+import Toast from '../../components/Toast';
 import { putPassword } from '../../apis/settings';
-import { PASSWORD_UPDATE_SUCCESS } from '../../commons/constants/string';
+import { PROFILE_UPDATE_SUCCESS } from '../../commons/constants/string';
 import { useAuthContext } from '../../contexts/UserProvider';
 import { postProfileImg } from '../../apis';
 
@@ -21,7 +22,7 @@ const ProfileEditPage = () => {
         await postProfileImg(token, formData);
       }
 
-      alert(PASSWORD_UPDATE_SUCCESS);
+      Toast.show(PROFILE_UPDATE_SUCCESS);
       navigate(`/userProfile/${authUser.userId}`);
     }
   };

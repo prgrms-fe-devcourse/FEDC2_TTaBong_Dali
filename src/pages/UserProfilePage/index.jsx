@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 import Divider from '../../components/Divider/index';
 import ProfileCard from '../../feature/cards/ProfileCard';
 import Icon from '../../components/Icon';
+import Toast from '../../components/Toast';
 import { TabItem } from '../../components/Tab';
 import { getChannelPosts, getAuthorPosts } from '../../apis/index';
 import { getAllUsers } from '../../apis/users';
@@ -15,6 +16,7 @@ import { useAuthContext } from '../../contexts/UserProvider';
 import { removeCookie } from '../../utils/cookies';
 import Spinner from '../../components/Spinner';
 import { useChannelContext } from '../../contexts/ChannelProvider';
+import { LOGOUT_SUCCESS } from '../../commons/constants/string';
 
 const UserProfilePage = () => {
   const { authUser, dispatch } = useAuthContext();
@@ -44,6 +46,7 @@ const UserProfilePage = () => {
     if (window.confirm('로그아웃 하시겠습니까?')) {
       removeCookie('user');
       dispatch({ type: 'LOGOUT_USER' });
+      Toast.show(LOGOUT_SUCCESS);
       navigate('/');
     }
   };
