@@ -52,8 +52,8 @@ const RankPage = () => {
   const sortUsers = async () => {
     const allUsers = await getAllUsers();
     const channelPosts = await getChannelPosts(channelId);
-    const allUserInfo = allUsers.map(({ fullName, _id, posts }) => {
-      return { _id, fullName, TTaBongCount: posts.length, coinCount: 0 };
+    const allUserInfo = allUsers.map(({ image, fullName, _id, posts }) => {
+      return { _id, image, fullName, TTaBongCount: posts.length, coinCount: 0 };
     });
 
     channelPosts.forEach(({ title }) => {
