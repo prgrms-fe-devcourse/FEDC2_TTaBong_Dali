@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.18.2",
     "@emotion/babel-preset-css-prop": "^11.2.0",
     "@storybook/addon-actions": "^6.5.7",
     "@storybook/addon-essentials": "^6.5.7",
