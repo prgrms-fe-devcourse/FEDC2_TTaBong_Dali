@@ -5,11 +5,13 @@ import { getPxToRem } from '../../utils/getPxToRem';
 export const SearchPageContainer = styled.div`
   height: 100%;
   width: 100%;
+  padding: 1rem 0;
 
   display: flex;
   flex-direction: column;
 
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 1rem;
 `;
 
 export const ContentWrapper = styled.div`
@@ -31,8 +33,10 @@ export const SearchInputForm = styled(InputForm)`
 export const TabWrapper = styled(ContentWrapper)`
   height: ${getPxToRem(45)};
 `;
-export const BaseCardWrapper = styled(ContentWrapper)`
-  height: ${getPxToRem(450)};
+
+export const BaseCardWrapper = styled.div`
+  height: 10rem;
+  flex-grow: 1;
 `;
 
 export const ItemWrapper = styled.div`
