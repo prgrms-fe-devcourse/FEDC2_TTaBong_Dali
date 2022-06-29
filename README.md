@@ -1,70 +1,263 @@
-# Getting Started with Create React App
+# 프롱이님! 따봉 드릴게요 - TTaBong
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 달리팀 프로젝트 TTaBong[따봉] : 칭찬감사 SNS 어플리케이션
 
-## Available Scripts
+[따봉 앱 배포 링크](https://ttabong.netlify.app/)
 
-In the project directory, you can run:
+[팀 노션 바로가기](https://www.notion.so/1-fc8ac9e026554b90987146a396b3698e)
 
-### `npm start`
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 프로젝트 소개
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+`따봉`은 사용자 간 칭찬 포스트를 공유하는 SNS 어플리케이션입니다.
 
-### `npm test`
+- 사용자는 다른 사용자에게 칭찬 및 감사를 전달하기 위해`따봉`을보낼 수 있습니다.
+- 특정한 한 명의 사용자에게는 더 큰 칭찬 및 감사를 전달하기 위해 `빅따봉`을 보낼 수 있습니다.
+- 사용자는 다른 사용자 간의 칭찬 및 감사 포스트에 댓글을 달거나 공감을 함으로써 상호작용할 수 있습니다.
+- 사용자가 칭찬을 한 횟수를 따봉으로, 칭찬을 받은 횟수를 코인으로 계산하여 랭킹 시스템을 제공합니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br>
 
-### `npm run build`
+## 팀원 소개
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| [이우제](https://github.com/woojerry) | [이지은](https://github.com/MayOwall) | [정종관(팀장)](https://github.com/devBuzz142) | [민상기](https://github.com/Steadystudy) | [엄윤성](https://github.com/blacktoast) |
+| --- | --- | --- | --- | --- |
+| <img src='https://user-images.githubusercontent.com/97934878/176350925-9cf2289f-3500-4914-9038-23736ff25d7b.png' width='150' />  | <img src='https://user-images.githubusercontent.com/97934878/176350864-9ceaf830-36b3-4383-acc9-bc1e2de4bde7.png' width='150' />  | <img src='https://user-images.githubusercontent.com/97934878/176351807-7934715a-17c7-4efd-84d1-713c45af5794.png' width='150' />  | <img src='https://user-images.githubusercontent.com/97934878/176350735-e41793a0-c656-466c-9ec2-7e3f674b059b.png' width='150' />  | <img src='https://user-images.githubusercontent.com/97934878/176350691-e2293a98-896c-46b1-adee-6288e08173d0.png' width='150' />  |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `npm run eject`
+## 📃 Doc
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+[Git Convention](https://www.notion.so/Git-Convention-e1527ffc72324d7a9dbeeceb68791396)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 프로젝트 구조
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 각 컴포넌트 구조
 
-## Learn More
+Ex)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+┣ 📂Avatar<br>
+ ┣ 📜index.jsx<br>
+ ┣ 📜index.stories.jsx<br>
+ ┗ 📜style.jsx<br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+각 컴포넌트 이름으로 폴더 생성
 
-### Code Splitting
+이후 아래에 `index.jsx`, `stories.jsx`, `style.jsx` 파일을 생성함으로써 각 컴포넌트를 구성
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- `index.jsx` : Component UI및 로직
+- `stories.jsx` : storybook file
+- `style.jsx` : emotion/styled Component
 
-### Analyzing the Bundle Size
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 디렉토리 구조
 
-### Making a Progressive Web App
+### 📂Apis
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+ Api 코드 
 
-### Advanced Configuration
+### 📂assets
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- svg, png 등 이미지 파일을 보관
 
-### Deployment
+### 📂commons
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `GlobalStyle` , `themes`
+- `constants`
 
-### `npm run build` fails to minify
+### 📂components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 웹앱 전반적으로 재사용되는 base 컴포넌트
+
+### 📂feature
+
+- 도메인 관련 컴포넌트
+
+### 📂hooks
+
+- 커스텀훅들을 저장
+
+### 📂pages
+
+- 웹앱의 각 페이지를 담당하는 컴포넌트
+
+### 📂routes
+
+- `ProtectedRoute` : 로그인 하지 않았을 경우 접근 불가능한 Route
+- `AuthRoute` : 로그인 상태 시 접근 불가능한 Route
+
+### 📂utils
+
+- 재사용되는 로직(hook이 들어가지 않은)
+
+### 전체 폴더 구조
+
+```
+📦src
+ ┣ 📂apis
+ ┃ ┣ 📜ReadMe.md
+ ┃ ┣ 📜api.js
+ ┃ ┣ 📜auth.js
+ ┃ ┣ 📜channels.js
+ ┃ ┣ 📜comments.js
+ ┃ ┣ 📜follow.js
+ ┃ ┣ 📜index.js
+ ┃ ┣ 📜like.js
+ ┃ ┣ 📜messages.js
+ ┃ ┣ 📜notifications.js
+ ┃ ┣ 📜posts.js
+ ┃ ┣ 📜search.js
+ ┃ ┣ 📜settings.js
+ ┃ ┗ 📜users.js
+ ┣ 📂assets
+ ┃ ┣ 📂icons
+ ┃ ┣ 📂images
+ ┣ 📂commons
+ ┃ ┣ 📂constants
+ ┃ ┃ ┣ 📜apis.js
+ ┃ ┃ ┣ 📜error.js
+ ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┣ 📜routes.js
+ ┃ ┃ ┗ 📜string.js
+ ┃ ┗ 📂style
+ ┃ ┃ ┣ 📜GlobalStyle.jsx
+ ┃ ┃ ┗ 📜themes.js
+ ┣ 📂components
+ ┃ ┣ 📂Avatar
+ ┃ ┣ 📂AvatarBorder
+ ┃ ┣ 📂Badge
+ ┃ ┣ 📂BaseCardContainer
+ ┃ ┣ 📂Button
+ ┃ ┣ 📂Divider
+ ┃ ┣ 📂Icon
+ ┃ ┣ 📂Image
+ ┃ ┣ 📂ImageUploadContainer
+ ┃ ┣ 📂InputForm
+ ┃ ┣ 📂Label
+ ┃ ┣ 📂Logo
+ ┃ ┣ 📂Modal
+ ┃ ┣ 📂Spinner
+ ┃ ┣ 📂Tab
+ ┃ ┣ 📂Toast
+ ┃ ┗ 📂UserInfoItem
+ ┣ 📂contexts
+ ┃ ┣ 📜ChannelProvider.jsx
+ ┃ ┗ 📜UserProvider.jsx
+ ┣ 📂feature
+ ┃ ┣ 📂alarm
+ ┃ ┃ ┣ 📂AlarmItem
+ ┃ ┃ ┗ 📂AlarmSection
+ ┃ ┣ 📂auth
+ ┃ ┃ ┣ 📂LoginForm
+ ┃ ┃ ┗ 📂RegisterForm
+ ┃ ┣ 📂cards
+ ┃ ┃ ┣ 📂Card
+ ┃ ┃ ┣ 📂CardDetail
+ ┃ ┃ ┣ 📂Comment
+ ┃ ┃ ┣ 📂CommentList
+ ┃ ┃ ┣ 📂LabelList
+ ┃ ┃ ┣ 📂MainCard
+ ┃ ┃ ┣ 📂ProfileCard
+ ┃ ┃ ┗ 📂TTaBongerAndTTaBonged
+ ┃ ┣ 📂pageTemplate
+ ┃ ┃ ┣ 📂Banner
+ ┃ ┃ ┣ 📂BottomBar
+ ┃ ┃ ┣ 📂Header
+ ┃ ┃ ┗ 📂PageTemplate
+ ┃ ┣ 📂profile
+ ┃ ┃ ┗ 📂ProfileEditForm
+ ┃ ┣ 📂rank
+ ┃ ┃ ┗ 📂RankFirstInfo
+ ┃ ┗ 📂ttabong
+ ┃ ┃ ┣ 📂CheckIcon
+ ┃ ┃ ┣ 📂LabelList
+ ┃ ┃ ┣ 📂ReasonContainer
+ ┃ ┃ ┣ 📂TTaBongModal
+ ┃ ┃ ┗ 📜index.js
+ ┣ 📂hooks
+ ┃ ┣ 📜useForm.js
+ ┃ ┣ 📜useRafState.js
+ ┃ ┣ 📜useScroll.js
+ ┃ ┣ 📜useScrollDown.js
+ ┃ ┗ 📜useTimeOut.js
+ ┣ 📂pages
+ ┃ ┣ 📂AlarmPage
+ ┃ ┣ 📂CardDetailPage
+ ┃ ┣ 📂LoginPage
+ ┃ ┣ 📂MainFeedPage
+ ┃ ┣ 📂NotFoundPage
+ ┃ ┣ 📂ProfileEditPage
+ ┃ ┣ 📂RankPage
+ ┃ ┣ 📂RegisterPage
+ ┃ ┣ 📂SearchPage
+ ┃ ┣ 📂TTaBongPage
+ ┃ ┣ 📂UserProfilePage
+ ┃ ┗ 📜index.js
+ ┣ 📂routes
+ ┃ ┣ 📜AuthRoute.jsx
+ ┃ ┣ 📜ProtectedRoute.jsx
+ ┃ ┗ 📜index.js
+ ┣ 📂utils
+ ┃ ┣ 📜cookies.js
+ ┃ ┣ 📜getDayString.js
+ ┃ ┣ 📜getHexToRgb.js
+ ┃ ┗ 📜getPxToRem.js
+ ┣ 📜App.jsx
+ ┣ 📜App.test.js
+ ┣ 📜index.jsx
+ ┣ 📜reportWebVitals.js
+ ┗ 📜setupTests.js
+```
+
+<br>
+
+## 활용 기술
+
+<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/deb9d7b2-b0a3-46ea-b049-2b06aadeaa7b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220629%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220629T041403Z&X-Amz-Expires=86400&X-Amz-Signature=9205bf2e6eaf9cb2a77f168f4c8aadb449e9f6c2f527b53ff569d4a826f4755d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject' width='500' />
+
+
+<br>
+
+## 순서도
+
+<img src='https://user-images.githubusercontent.com/97934878/176352062-eacf4b6b-3a29-4072-9167-1e113fb29d1c.png' width='500' />
+
+
+[피그마 링크](https://www.figma.com/embed?embed_host=notion&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F5PlRlkHD1viN6R0JVksUMs%2F%3Fnode-id%3D545%253A117)
+
+<br>
+
+## 데모 화면
+
+- 메인피드 페이지
+    
+    ![image](https://user-images.githubusercontent.com/97934878/176352323-f484b40d-e292-4a7a-9eba-4615f8a188bc.gif)
+    
+- 카드디테일 페이지
+    
+    ![image](https://user-images.githubusercontent.com/97934878/176352353-868772a7-51ad-403f-95e9-ee012c87bd46.gif)
+    
+- 랭크 페이지
+    
+    ![image](https://user-images.githubusercontent.com/97934878/176352386-400e40b8-9772-46e7-939a-99cabd447a7d.gif)
+    
+- 따봉 페이지
+    
+    ![image](https://user-images.githubusercontent.com/97934878/176352472-26580398-b102-4ee1-8c38-1bd331552ea2.png)
+    
+- 검색 페이지
+    
+    ![image](https://user-images.githubusercontent.com/97934878/176352517-e0b6f483-6ff4-4c2b-a63e-3046d7715325.png)
+    
+- 유저프로필 페이지
+    
+    ![image](https://user-images.githubusercontent.com/97934878/176352605-a0667aa1-d34b-4d36-905b-345b2a0da7ef.png)
+    
+- 로그인 페이지
+    
+    ![image](https://user-images.githubusercontent.com/97934878/176352728-fd1be4d8-21b7-4b6e-9df3-731be3a1502b.png)
