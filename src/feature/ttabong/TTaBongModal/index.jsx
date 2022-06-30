@@ -32,9 +32,7 @@ const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
   }, []);
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault();
-
-    const keyword = e.target.search.value;
+    const keyword = e;
 
     setUsers(
       users.map((user) =>
