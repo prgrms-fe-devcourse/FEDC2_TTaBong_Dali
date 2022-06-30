@@ -6,8 +6,7 @@ export const useScroll = () => {
   const ref = useRef(null);
   useEffect(() => {
     const element = ref.current;
-    if (!element) return null;
-
+    if (!element) return;
     const handleScroll = () => {
       setOffset({
         x: ref.current.scrollLeft,
@@ -17,8 +16,9 @@ export const useScroll = () => {
 
     element.addEventListener('scroll', handleScroll, { passive: true });
 
+    // eslint-disable-next-line consistent-return
     return () => element.removeEventListener('scroll', handleScroll);
-  }, [ref, setOffset]);
+  }, [ref.current, setOffset]);
 
   return [ref, offset];
 };

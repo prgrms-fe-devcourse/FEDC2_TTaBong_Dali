@@ -19,7 +19,7 @@ const MainFeedPage = () => {
   const [offset, setOffset] = useState(0);
 
   const [ref, isScrollDown] = useScrollDown();
-  const [firstLoading, setFirstLoading] = useState(false);
+  const [firstLoading, setFirstLoading] = useState(true);
 
   const LIMIT_NUM = 10;
 
@@ -84,6 +84,7 @@ const MainFeedPage = () => {
           ref={ref}
           className={!isScrollDown ? 'bannerShown' : null}
         >
+          {console.log(ref.current)}
           <Banner isScrollDown={isScrollDown} />
           {posts.map((post, idx) => (
             <S.MainCardWrapper key={post._id}>
