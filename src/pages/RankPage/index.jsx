@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import UserInfoItem from '../../components/UserInfoItem';
@@ -7,12 +7,8 @@ import RankFirstInfo from '../../feature/rank/RankFirstInfo';
 import Spinner from '../../components/Spinner';
 import { getAllUsers, getChannelPosts } from '../../apis/index';
 import { TabItem } from '../../components/Tab';
-import Constants from '../../commons/constants/index';
 import { useAuthContext } from '../../contexts/UserProvider';
-import {
-  channelActionType,
-  useChannelContext,
-} from '../../contexts/ChannelProvider';
+import { useChannelContext } from '../../contexts/ChannelProvider';
 
 const RankPage = () => {
   const TTABONG = 'TTaBongCount';
@@ -27,51 +23,62 @@ const RankPage = () => {
   const [goods, setGoods] = useState(TTABONG);
   const [loading, setLoading] = useState(false);
 
-  const sortGoods = (goods, res = users) => {
-    const sortedRank = res
-      .sort((pre, cur) => {
-        if (pre[goods] < cur[goods]) return 1;
-        if (pre[goods] > cur[goods]) return -1;
-        if (pre._id > cur._id) return 1;
-        if (pre._id < cur._id) return -1;
-        return 0;
-      })
-      .map((user, i) => {
-        return { ...user, rank: i + 1 };
-      });
+  const sortGoods = useCallback(
+    (goods, res = users) => {
+      const sortedRank = res
+        .sort((pre, cur) => {
+          if (pre[goods] < cur[goods]) return 1;
+          if (pre[goods] > cur[goods]) return -1;
+          if (pre._id > cur._id) return 1;
+          if (pre._id < cur._id) return -1;
+          return 0;
+        })
+        .map((user, i) => {
+          return { ...user, rank: i + 1 };
+        });
 
-    setUsers(sortedRank);
-    setCurrentUser(sortedRank.filter(({ _id }) => _id === authUser.userId)[0]);
-  };
+      setUsers(sortedRank);
+      setCurrentUser(
+        sortedRank.filter(({ _id }) => _id === authUser.userId)[0],
+      );
+    },
+    [goods],
+  );
 
-  const onClickTab = (type) => {
+  const onClickTab = useCallback((type) => {
     setGoods(type);
     sortGoods(type);
-  };
-
-  const sortUsers = async () => {
-    const allUsers = await getAllUsers();
-    const channelPosts = await getChannelPosts(channelId);
-    const allUserInfo = allUsers.map(({ image, fullName, _id, posts }) => {
-      return { _id, image, fullName, TTaBongCount: posts.length, coinCount: 0 };
-    });
-
-    channelPosts.forEach(({ title }) => {
-      const { type, receiver } = JSON.parse(title);
-
-      for (let i = 0; i < allUserInfo.length; i += 1) {
-        const { _id, coinCount } = allUserInfo[i];
-        if (receiver._id === _id) {
-          const count = type === 'TTaBong' ? coinCount + 1 : coinCount + 2;
-          allUserInfo[i].coinCount = count;
-          break;
-        }
-      }
-    });
-    return allUserInfo;
-  };
+  }, []);
 
   useEffect(() => {
+    const sortUsers = async () => {
+      const allUsers = await getAllUsers();
+      const channelPosts = await getChannelPosts(channelId);
+      const allUserInfo = allUsers.map(({ image, fullName, _id, posts }) => {
+        return {
+          _id,
+          image,
+          fullName,
+          TTaBongCount: posts.length,
+          coinCount: 0,
+        };
+      });
+
+      channelPosts.forEach(({ title }) => {
+        const { type, receiver } = JSON.parse(title);
+
+        for (let i = 0; i < allUserInfo.length; i += 1) {
+          const { _id, coinCount } = allUserInfo[i];
+          if (receiver._id === _id) {
+            const count = type === 'TTaBong' ? coinCount + 1 : coinCount + 2;
+            allUserInfo[i].coinCount = count;
+            break;
+          }
+        }
+      });
+      return allUserInfo;
+    };
+
     const fetchData = async () => {
       setLoading(true);
       const sortedUsers = await sortUsers();
@@ -79,7 +86,7 @@ const RankPage = () => {
       setLoading(false);
     };
     fetchData();
-  }, [authUser]);
+  }, [authUser, goods]);
 
   return (
     <PageTemplate page="rank">
