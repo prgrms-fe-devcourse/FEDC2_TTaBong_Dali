@@ -23,62 +23,46 @@ const RankPage = () => {
   const [goods, setGoods] = useState(TTABONG);
   const [loading, setLoading] = useState(false);
 
-  const sortGoods = useCallback(
-    (goods, res = users) => {
-      const sortedRank = res
-        .sort((pre, cur) => {
-          if (pre[goods] < cur[goods]) return 1;
-          if (pre[goods] > cur[goods]) return -1;
-          if (pre._id > cur._id) return 1;
-          if (pre._id < cur._id) return -1;
-          return 0;
-        })
-        .map((user, i) => {
-          return { ...user, rank: i + 1 };
-        });
+  const sortGoods = useCallback((goods, res) => {
+    const sortedRank = res
+      .sort((pre, cur) => {
+        if (pre[goods] < cur[goods]) return 1;
+        if (pre[goods] > cur[goods]) return -1;
+        if (pre._id > cur._id) return 1;
+        if (pre._id < cur._id) return -1;
+        return 0;
+      })
+      .map((user, i) => {
+        return { ...user, rank: i + 1 };
+      });
 
-      setUsers(sortedRank);
-      setCurrentUser(
-        sortedRank.filter(({ _id }) => _id === authUser.userId)[0],
-      );
-    },
-    [goods],
-  );
+    setUsers(sortedRank);
+    setCurrentUser(sortedRank.filter(({ _id }) => _id === authUser.userId)[0]);
+  }, []);
 
-  const onClickTab = useCallback((type) => {
-    setGoods(type);
-    sortGoods(type);
+  const sortUsers = useCallback(async () => {
+    const allUsers = await getAllUsers();
+    const channelPosts = await getChannelPosts(channelId);
+    const allUserInfo = allUsers.map(({ image, fullName, _id, posts }) => {
+      return { _id, image, fullName, [TTABONG]: posts.length, [COIN]: 0 };
+    });
+
+    channelPosts.forEach(({ title }) => {
+      const { type, receiver } = JSON.parse(title);
+
+      for (let i = 0; i < allUserInfo.length; i += 1) {
+        const { _id, coinCount } = allUserInfo[i];
+        if (receiver._id === _id) {
+          const count = type === 'TTaBong' ? coinCount + 1 : coinCount + 2;
+          allUserInfo[i].coinCount = count;
+          break;
+        }
+      }
+    });
+    return allUserInfo;
   }, []);
 
   useEffect(() => {
-    const sortUsers = async () => {
-      const allUsers = await getAllUsers();
-      const channelPosts = await getChannelPosts(channelId);
-      const allUserInfo = allUsers.map(({ image, fullName, _id, posts }) => {
-        return {
-          _id,
-          image,
-          fullName,
-          TTaBongCount: posts.length,
-          coinCount: 0,
-        };
-      });
-
-      channelPosts.forEach(({ title }) => {
-        const { type, receiver } = JSON.parse(title);
-
-        for (let i = 0; i < allUserInfo.length; i += 1) {
-          const { _id, coinCount } = allUserInfo[i];
-          if (receiver._id === _id) {
-            const count = type === 'TTaBong' ? coinCount + 1 : coinCount + 2;
-            allUserInfo[i].coinCount = count;
-            break;
-          }
-        }
-      });
-      return allUserInfo;
-    };
-
     const fetchData = async () => {
       setLoading(true);
       const sortedUsers = await sortUsers();
@@ -97,11 +81,11 @@ const RankPage = () => {
           <S.TabContainer>
             <TabItem
               active={goods === TTABONG}
-              onClick={() => onClickTab(TTABONG)}
+              onClick={() => setGoods(TTABONG)}
             >
               따봉왕
             </TabItem>
-            <TabItem active={goods === COIN} onClick={() => onClickTab(COIN)}>
+            <TabItem active={goods === COIN} onClick={() => setGoods(COIN)}>
               코인왕
             </TabItem>
           </S.TabContainer>
