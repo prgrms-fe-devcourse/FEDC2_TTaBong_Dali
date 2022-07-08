@@ -6,6 +6,7 @@ import Image from '../Image';
 const ImageUploadContainer = ({ setImageSrc, iconName, ...style }) => {
   const [imgSrc, setImgSrc] = useState('');
 
+  // img받으면 이미지 미리보기 및 상위 컴포넌트로 img파일 보내기
   const handleImage = useCallback((img) => {
     setImageSrc(img);
 
@@ -19,7 +20,7 @@ const ImageUploadContainer = ({ setImageSrc, iconName, ...style }) => {
     };
   }, []);
 
-  // Input 추가하면 ImageSrc 추가
+  // Input에 클릭시 이미지 추가
   const onChangeInput = useCallback((event) => {
     const img = event.target.files[0];
     handleImage(img);
@@ -32,12 +33,13 @@ const ImageUploadContainer = ({ setImageSrc, iconName, ...style }) => {
     setImageSrc('');
   }, []);
 
+  // 이미지 드래그 앤 드랍
   const handleFileDrop = useCallback((event) => {
     event.preventDefault();
     event.stopPropagation();
     const { files } = event.dataTransfer;
-    const changedFile = files[0];
-    handleImage(changedFile);
+    const img = files[0];
+    handleImage(img);
   }, []);
 
   const onDragOver = useCallback((event) => {
