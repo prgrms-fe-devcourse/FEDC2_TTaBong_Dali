@@ -20,25 +20,25 @@ const ImageUploadContainer = ({ setImageSrc, iconName, ...style }) => {
   }, []);
 
   // Input 추가하면 ImageSrc 추가
-  const onChangeInput = (event) => {
+  const onChangeInput = useCallback((event) => {
     const img = event.target.files[0];
     handleImage(img);
-  };
+  }, []);
 
   // 이미지 삭제 버튼 누르면 ImageSrc 리셋
-  const onDeleteImg = (event) => {
+  const onDeleteImg = useCallback((event) => {
     event.preventDefault();
     setImgSrc('');
     setImageSrc('');
-  };
+  }, []);
 
-  const handleFileDrop = (event) => {
+  const handleFileDrop = useCallback((event) => {
     event.preventDefault();
     event.stopPropagation();
     const { files } = event.dataTransfer;
     const changedFile = files[0];
     handleImage(changedFile);
-  };
+  }, []);
 
   const onDragOver = useCallback((event) => {
     event.preventDefault();
