@@ -28,32 +28,38 @@ const TTaBongModal = ({ setCheckedUsers, modalProps }) => {
     fetchAllUsers();
   }, []);
 
-  const handleSearchSubmit = (e) => {
-    const keyword = e;
+  const handleSearchSubmit = useCallback(
+    (e) => {
+      const keyword = e;
 
-    setUsers(
-      users.map((user) =>
-        user.fullName.indexOf(keyword) >= 0
-          ? { ...user, searched: true }
-          : { ...user, searched: false },
-      ),
-    );
-  };
+      setUsers(
+        users.map((user) =>
+          user.fullName.indexOf(keyword) >= 0
+            ? { ...user, searched: true }
+            : { ...user, searched: false },
+        ),
+      );
+    },
+    [users],
+  );
 
-  const handleUserCheck = (e, userId) => {
-    e.preventDefault();
+  const handleUserCheck = useCallback(
+    (e, userId) => {
+      e.preventDefault();
 
-    const newUsers = users.map((user) =>
-      user._id !== userId ? user : { ...user, checked: !user.checked },
-    );
+      const newUsers = users.map((user) =>
+        user._id !== userId ? user : { ...user, checked: !user.checked },
+      );
 
-    const newCheckdUsers = newUsers.filter((user) => user.checked);
+      const newCheckdUsers = newUsers.filter((user) => user.checked);
 
-    if (newCheckdUsers.length > 5) return;
+      if (newCheckdUsers.length > 5) return;
 
-    setUsers(newUsers);
-    setCheckedUsers(newCheckdUsers);
-  };
+      setUsers(newUsers);
+      setCheckedUsers(newCheckdUsers);
+    },
+    [users],
+  );
 
   return (
     <Modal
