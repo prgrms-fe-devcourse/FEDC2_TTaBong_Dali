@@ -63,8 +63,8 @@ const SearchPage = () => {
   const handleSubmit = (keyword) => {
     const { users, posts } = items;
 
-    const searchedUsers = users.filter((user) =>
-      user.fullName.startsWith(keyword),
+    const searchedUsers = users.filter(
+      (user) => user.fullName.indexOf(keyword) >= 0,
     );
 
     const searchedPosts = posts.filter((post) =>

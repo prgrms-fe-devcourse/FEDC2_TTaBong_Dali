@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useCallback } from 'react';
 import * as S from './style';
-import Modal, { useModal } from '../../../components/Modal';
+import Modal from '../../../components/Modal';
 import BaseCardContainer from '../../../components/BaseCardContainer';
-import InputForm from '../../../components/InputForm';
 import UserInfoItem from '../../../components/UserInfoItem';
 import theme from '../../../commons/style/themes';
-import useForm from '../../../hooks/useForm';
-import { getAllUsers, searchUser } from '../../../apis';
+import { getAllUsers } from '../../../apis';
 import { useAuthContext } from '../../../contexts/UserProvider';
 
-const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
+const TTaBongModal = ({ setCheckedUsers, modalProps }) => {
   const { isModalOn, backgroundRef, handleCloseModal } = modalProps;
 
   const { authUser } = useAuthContext();
@@ -31,35 +28,38 @@ const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
     fetchAllUsers();
   }, []);
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
+  const handleSearchSubmit = useCallback(
+    (e) => {
+      const keyword = e;
 
-    const keyword = e.target.search.value;
+      setUsers(
+        users.map((user) =>
+          user.fullName.indexOf(keyword) >= 0
+            ? { ...user, searched: true }
+            : { ...user, searched: false },
+        ),
+      );
+    },
+    [users],
+  );
 
-    setUsers(
-      users.map((user) =>
-        user.fullName.startsWith(keyword)
-          ? { ...user, searched: true }
-          : { ...user, searched: false },
-      ),
-    );
-  };
+  const handleUserCheck = useCallback(
+    (e, userId) => {
+      e.preventDefault();
 
-  const handleUserCheck = (e, userId) => {
-    e.preventDefault(); // 5명까지만
+      const newUsers = users.map((user) =>
+        user._id !== userId ? user : { ...user, checked: !user.checked },
+      );
 
-    const newUsers = users.map((user) =>
-      user._id !== userId ? user : { ...user, checked: !user.checked },
-    );
+      const newCheckdUsers = newUsers.filter((user) => user.checked);
 
-    const newCheckdUsers = newUsers.filter((user) => user.checked);
+      if (newCheckdUsers.length > 5) return;
 
-    if (newCheckdUsers.length > 5) return;
-
-    setUsers(newUsers);
-
-    setCheckedUsers(newCheckdUsers);
-  };
+      setUsers(newUsers);
+      setCheckedUsers(newCheckdUsers);
+    },
+    [users],
+  );
 
   return (
     <Modal
@@ -103,7 +103,5 @@ const TTaBongModal = ({ checkedUsers, setCheckedUsers, modalProps }) => {
     </Modal>
   );
 };
-
-TTaBongModal.propTypes = {};
 
 export default TTaBongModal;
