@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from '../../../components/Avatar';
 import * as S from './style';
@@ -45,4 +46,4 @@ RankFirstInfo.propTypes = {
   TTaBongCount: PropTypes.number,
 };
 
-export default RankFirstInfo;
+export default React.memo(RankFirstInfo);
