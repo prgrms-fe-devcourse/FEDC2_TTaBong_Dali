@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import * as S from './style';
 import Icon from '../Icon';
 import Image from '../Image';
@@ -6,28 +6,53 @@ import Image from '../Image';
 const ImageUploadContainer = ({ setImageSrc, iconName, ...style }) => {
   const [imgSrc, setImgSrc] = useState('');
 
-  // Input 추가하면 ImageSrc 추가
-  const onChangeInput = (event) => {
-    setImageSrc(event.target.files[0]);
+  // img받으면 이미지 미리보기 및 상위 컴포넌트로 img파일 보내기
+  const handleImage = useCallback((img) => {
+    setImageSrc(img);
 
     const reader = new FileReader();
-    if (event.target.files[0]) {
-      reader.readAsDataURL(event.target.files[0]);
+    if (img) {
+      reader.readAsDataURL(img);
     }
     reader.onloadend = () => {
       const resultImage = reader.result;
       setImgSrc(resultImage);
     };
-  };
+  }, []);
+
+  // Input에 클릭시 이미지 추가
+  const onChangeInput = useCallback((event) => {
+    const img = event.target.files[0];
+    handleImage(img);
+  }, []);
 
   // 이미지 삭제 버튼 누르면 ImageSrc 리셋
-  const onDeleteImg = (event) => {
+  const onDeleteImg = useCallback((event) => {
     event.preventDefault();
+    setImgSrc('');
     setImageSrc('');
-  };
+  }, []);
+
+  // 이미지 드래그 앤 드랍
+  const handleFileDrop = useCallback((event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const { files } = event.dataTransfer;
+    const img = files[0];
+    handleImage(img);
+  }, []);
+
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  }, []);
 
   return (
-    <S.ImageUploadForm {...style}>
+    <S.ImageUploadForm
+      {...style}
+      onDrop={handleFileDrop}
+      onDragOver={onDragOver}
+    >
       <S.FileLabel htmlFor="fileInput">
         {/* 이미지 파일이 있을 때 이미지와 삭제 버튼 */}
         {imgSrc ? (
@@ -36,7 +61,7 @@ const ImageUploadContainer = ({ setImageSrc, iconName, ...style }) => {
               src={imgSrc}
               mode="contain"
               alt="따봉 사유 이미지"
-              height={140}
+              height={100}
             />
             <S.DeleteIconWrapper onClick={(event) => onDeleteImg(event)}>
               <Icon name="deleteLine" size={10} />
