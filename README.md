@@ -217,8 +217,12 @@ Ex)
 <br>
 
 ## 활용 기술
-
-<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/deb9d7b2-b0a3-46ea-b049-2b06aadeaa7b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220629%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220629T041403Z&X-Amz-Expires=86400&X-Amz-Signature=9205bf2e6eaf9cb2a77f168f4c8aadb449e9f6c2f527b53ff569d4a826f4755d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject' width='500' />
+|||
+|---|---|
+|언어|JavaScript ES6+|
+|라이브러리|React, react-router-dom, adios, emotion|
+|디자인/UI|Figma, Storybook|
+|협업도구|Git, Slack, Discord, Notion|
 
 
 <br>
