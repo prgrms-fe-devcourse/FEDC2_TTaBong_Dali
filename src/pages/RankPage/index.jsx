@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import * as S from './style';
 import PageTemplate from '../../feature/pageTemplate/PageTemplate';
 import UserInfoItem from '../../components/UserInfoItem';
@@ -7,12 +7,8 @@ import RankFirstInfo from '../../feature/rank/RankFirstInfo';
 import Spinner from '../../components/Spinner';
 import { getAllUsers, getChannelPosts } from '../../apis/index';
 import { TabItem } from '../../components/Tab';
-import Constants from '../../commons/constants/index';
 import { useAuthContext } from '../../contexts/UserProvider';
-import {
-  channelActionType,
-  useChannelContext,
-} from '../../contexts/ChannelProvider';
+import { useChannelContext } from '../../contexts/ChannelProvider';
 
 const RankPage = () => {
   const TTABONG = 'TTaBongCount';
@@ -27,7 +23,7 @@ const RankPage = () => {
   const [goods, setGoods] = useState(TTABONG);
   const [loading, setLoading] = useState(false);
 
-  const sortGoods = (goods, res = users) => {
+  const sortGoods = useCallback((goods, res) => {
     const sortedRank = res
       .sort((pre, cur) => {
         if (pre[goods] < cur[goods]) return 1;
@@ -42,18 +38,13 @@ const RankPage = () => {
 
     setUsers(sortedRank);
     setCurrentUser(sortedRank.filter(({ _id }) => _id === authUser.userId)[0]);
-  };
+  }, []);
 
-  const onClickTab = (type) => {
-    setGoods(type);
-    sortGoods(type);
-  };
-
-  const sortUsers = async () => {
+  const sortUsers = useCallback(async () => {
     const allUsers = await getAllUsers();
     const channelPosts = await getChannelPosts(channelId);
     const allUserInfo = allUsers.map(({ image, fullName, _id, posts }) => {
-      return { _id, image, fullName, TTaBongCount: posts.length, coinCount: 0 };
+      return { _id, image, fullName, [TTABONG]: posts.length, [COIN]: 0 };
     });
 
     channelPosts.forEach(({ title }) => {
@@ -69,7 +60,7 @@ const RankPage = () => {
       }
     });
     return allUserInfo;
-  };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,7 +70,7 @@ const RankPage = () => {
       setLoading(false);
     };
     fetchData();
-  }, [authUser]);
+  }, [authUser, goods]);
 
   return (
     <PageTemplate page="rank">
@@ -90,11 +81,11 @@ const RankPage = () => {
           <S.TabContainer>
             <TabItem
               active={goods === TTABONG}
-              onClick={() => onClickTab(TTABONG)}
+              onClick={() => setGoods(TTABONG)}
             >
               따봉왕
             </TabItem>
-            <TabItem active={goods === COIN} onClick={() => onClickTab(COIN)}>
+            <TabItem active={goods === COIN} onClick={() => setGoods(COIN)}>
               코인왕
             </TabItem>
           </S.TabContainer>
